@@ -6,7 +6,7 @@ export default function NotFoundPage() {
   return (
     <Fragment>
       <PageTitleUtil title="Not Found" />
-      <div className="not-found">
+      <div className="p-5 mx-auto border rounded-md max-w-7xl">
         <h1>404 - Page Not Found</h1>
         <p>Oops! The page you're looking for does not exist.</p>
         <p>Here are some things you can do:</p>

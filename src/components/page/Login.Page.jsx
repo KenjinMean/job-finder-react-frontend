@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect, Fragment } from "react";
-
-import { useStateContext } from "../../context/ContextProvider";
 import { Link, Navigate, useLocation } from "react-router-dom";
+import { useStateContext } from "../../context/ContextProvider";
 
 import {
   useGithubAuthLogin,
@@ -11,9 +10,9 @@ import {
 import { useResetUrlPath } from "../../hooks/useResetUrlPath";
 
 import LoadingSpinnerUtil from "../utils/LoadingSpinnder.Util";
+import { PageTitleUtil } from "../utils/PageTitle.Util";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import { PageTitleUtil } from "../utils/PageTitle.Util";
 
 export default function LoginPage() {
   const location = useLocation();
@@ -26,7 +25,6 @@ export default function LoginPage() {
   const loginSuccess = (data) => {
     setToken(data);
     setUser(data.user);
-    console.log(data);
   };
 
   const {
@@ -237,7 +235,10 @@ export default function LoginPage() {
                     </button>
                     <p className="px-2 mt-5 text-sm font-medium leading-none tracking-wide text-center text-gray-600 transform translate-y-1/2 bg-white ">
                       Dont have an account yet?{" "}
-                      <Link to="/register" className="text-indigo-500">
+                      {/* <Link to="/register" className="text-indigo-500">
+                        Register
+                      </Link> */}
+                      <Link to="/auth/register" className="text-indigo-500">
                         Register
                       </Link>
                     </p>

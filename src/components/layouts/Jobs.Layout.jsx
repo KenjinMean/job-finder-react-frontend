@@ -1,12 +1,10 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
-import FilterSearchBar from "../../views/FilterSearchBar";
 
 export default function JobsLayout() {
   return (
-    <Fragment>
-      <FilterSearchBar />
+    <div className="mx-auto max-w-7xl">
       <Outlet />
-    </Fragment>
+    </div>
   );
 }

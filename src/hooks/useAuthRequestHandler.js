@@ -1,4 +1,4 @@
-import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axiosClient from "../axios-client";
 
 const login = (payload) => {

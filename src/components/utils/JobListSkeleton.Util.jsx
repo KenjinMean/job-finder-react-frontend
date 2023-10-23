@@ -1,0 +1,18 @@
+import React from "react";
+
+export default function JobListSkeletonUtil() {
+  const getRandomWidth = () => {
+    const widthClasses = ["1/5", "1/4", "1/3", "1/2"];
+    const randomIndex = Math.floor(Math.random() * widthClasses.length);
+    return widthClasses[randomIndex];
+  };
+
+  return (
+    <div className="flex flex-col gap-3 p-5 mt-5 bg-white border rounded-md">
+      <div className={`w-1/5 h-10 rounded-md pulse`}></div>
+      <div className={`w-${getRandomWidth()} h-5 rounded-md pulse`}></div>
+      <div className={`w-${getRandomWidth()} h-5 rounded-md pulse`}></div>
+      <div className={`w-${getRandomWidth()} h-5 rounded-md pulse`}></div>
+    </div>
+  );
+}

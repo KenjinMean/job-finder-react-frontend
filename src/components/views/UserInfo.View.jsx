@@ -29,6 +29,7 @@ export default function UserInfoView({ data, handleEdit }) {
           </div>
           <p>{data?.data?.headline}</p>
           <span>{data?.data?.location}</span>
+          <p>{data?.data?.about}</p>
         </div>
       </div>
     </>

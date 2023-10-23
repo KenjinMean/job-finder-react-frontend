@@ -1,8 +1,8 @@
 import React from "react";
-import { QueryBoundaries } from "../utils/QueryBoundaries.Util";
 import { Outlet } from "react-router-dom";
+import { QueryBoundaries } from "../utils/QueryBoundaries.Util";
 
-export default function AuthLayout() {
+export default function RegistrationLayout() {
   return (
     <div>
       <QueryBoundaries>

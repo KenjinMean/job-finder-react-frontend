@@ -2,14 +2,14 @@ import React, { Fragment } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import LoadingSpinnerUtil from "../utils/LoadingSpinnder.Util";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
-import { useGetJobDetails } from "../../hooks/useJobRequestHandler";
+import { useFetchJobdetails } from "../../hooks/useJobRequestHandler";
 
 export default function JobDetailsPage() {
   const { jobSlug } = useParams();
 
   const navigate = useNavigate();
 
-  const { isLoading, data, isError, error } = useGetJobDetails(jobSlug);
+  const { isLoading, data, isError, error } = useFetchJobdetails(jobSlug);
 
   const { job: { title, description, salary, company } = {} } =
     data?.data || {};
