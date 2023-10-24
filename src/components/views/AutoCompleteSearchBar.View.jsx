@@ -5,16 +5,18 @@ import { useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import searchIcon from "../../assets/icons/search-icon.png";
 import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
+import { useFetchSearchSuggestions } from "../../hooks/useJobRequestHandler";
 
 export default function AutoCompleteSearchBarView() {
   const inputRef = useRef();
   const navigate = useNavigate();
   const suggestionsDropdownRef = useRef(null);
   const [filters, setFilter] = useState({ job_type: "", skills: "" });
-  const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
   const [isSuggestionDropdownActive, setIsSuggestionDropdownActive] =
     useState(false);
+
+  const [keyword, setKeyword] = useState();
 
   const jobTypes = [
     { name: "clear", value: "" },
@@ -32,20 +34,8 @@ export default function AutoCompleteSearchBarView() {
     { name: "Hybrid", value: "Hybrid" },
   ];
 
-  const fetchSearchSuggestions = async (keyword) => {
-    try {
-      const payload = {
-        keyword: keyword,
-      };
-
-      const { data } = await axiosClient.get("/jobs/search-jobs-suggestions", {
-        params: payload,
-      });
-      setSearchSuggestions(data.suggestions);
-    } catch (error) {
-      console.error("Failed to fetch job postings:", error);
-    }
-  };
+  const { data: searchSuggestions, refetch: fetchSearchSuggestions } =
+    useFetchSearchSuggestions(keyword);
 
   const debouncedFetchSearchSuggestions = useDebouncedCallback((value) => {
     fetchSearchSuggestions(value);
@@ -55,14 +45,13 @@ export default function AutoCompleteSearchBarView() {
   const handleInputChange = (event) => {
     const { value } = event.target;
     if (value.trim() !== "") {
-      debouncedFetchSearchSuggestions(value);
+      setKeyword(value);
     }
   };
 
   const handleSuggestionClick = (jobSuggestion) => {
     inputRef.current.value = jobSuggestion;
     setIsSuggestionDropdownActive(false);
-    setSearchSuggestions([]);
     handleSearch();
   };
 
@@ -106,15 +95,12 @@ export default function AutoCompleteSearchBarView() {
     if (selectedSuggestionIndex === -1) {
       if (!inputRef.current.value) {
         navigateToJobsPage();
-        setSearchSuggestions([]);
       } else {
         handleSearch();
-        setSearchSuggestions([]);
       }
     } else {
       const selectedSuggestion = searchSuggestions[selectedSuggestionIndex];
       inputRef.current.value = selectedSuggestion;
-      setSearchSuggestions([]);
       setSelectedSuggestionIndex(-1);
       handleSearch();
     }
@@ -135,6 +121,10 @@ export default function AutoCompleteSearchBarView() {
   const closeSuggestions = () => {
     setIsSuggestionDropdownActive(false);
   };
+
+  useEffect(() => {
+    debouncedFetchSearchSuggestions();
+  }, [keyword]);
 
   useEffect(() => {
     const handleDocumentClick = (event) => {
@@ -178,7 +168,7 @@ export default function AutoCompleteSearchBarView() {
           />
           <Transition show={isSuggestionDropdownActive}>
             <SearchSuggestionsList
-              searchSuggestions={searchSuggestions}
+              searchSuggestions={searchSuggestions || []}
               handleSuggestionClick={handleSuggestionClick}
               selectedSuggestionIndex={selectedSuggestionIndex}
             />
