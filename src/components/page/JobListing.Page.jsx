@@ -8,17 +8,10 @@ import JobListSkeletonUtil from "../utils/JobListSkeleton.Util";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 export default function JobListingPage() {
-  const {
-    error,
-    status,
-    data,
-    hasNextPage,
-    fetchNextPage,
-    isFetching,
-    isFetchingNextPage,
-  } = useFetchJobs();
+  const { data, hasNextPage, fetchNextPage, isFetching, isFetchingNextPage } =
+    useFetchJobs();
 
-  const lastProductRef = useIntersectionObserver(
+  const latJobRef = useIntersectionObserver(
     () => fetchNextPage(),
     [hasNextPage, !isFetchingNextPage]
   );
@@ -35,15 +28,15 @@ export default function JobListingPage() {
                 <div
                   key={job.id}
                   className="relative"
-                  ref={isLastJob ? lastProductRef : null}
+                  ref={isLastJob ? latJobRef : null}
                 >
                   <button
                     onClick={() => console.log("clicked")}
-                    className="absolute z-10 p-1 transition-all duration-300 border rounded-full right-5 top-5 hover:bg-background-200 "
+                    className="absolute z-10 p-1 transition-all duration-300 bg-white border rounded-full right-5 top-5 hover:bg-background-200 "
                   >
                     <img src={menuIcon} alt="Menu icon" className="w-5 h-5" />
                   </button>
-                  <Link to={`/jobs/view/${job.slug}`}>
+                  <Link to={`/job/view/${job.slug}`}>
                     <JobContainerView job={job} />
                   </Link>
                 </div>

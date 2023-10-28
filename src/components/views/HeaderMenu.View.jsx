@@ -32,7 +32,7 @@ export default function HeaderMenuView({
             <li className="ml-auto ">
               <Link
                 to="/jobs"
-                className="font-semibold text-color600 hover:text-purple-500"
+                className="font-semibold text-foreground-300 hover:text-purple-500"
               >
                 Jobs
               </Link>
@@ -40,7 +40,7 @@ export default function HeaderMenuView({
             <li>
               <Link
                 to="/companies"
-                className="font-semibold text-color600 hover:text-purple-500"
+                className="font-semibold text-foreground-300 hover:text-purple-500"
               >
                 Companies
               </Link>
@@ -48,13 +48,13 @@ export default function HeaderMenuView({
             <li>
               <button
                 onClick={handleLogout}
-                className="font-semibold text-color600 hover:text-purple-500"
+                className="font-semibold text-foreground-300 hover:text-purple-500"
               >
                 logout
               </button>
-            </li>{" "}
+            </li>
             <Menu as="li" className="relative">
-              <div className="flex w-10 h-10 overflow-hidden border rounded-full">
+              <div className="flex w-10 h-10 overflow-hidden rounded-full">
                 <Menu.Button>
                   {user.user_info && (
                     <ImageUrlLoaderUtil
@@ -62,7 +62,7 @@ export default function HeaderMenuView({
                       alt="User Profile Image"
                     />
                   )}
-                </Menu.Button>{" "}
+                </Menu.Button>
               </div>
               <Menu.Items className="absolute right-0 flex flex-col w-40 py-1 text-sm text-gray-700 bg-white rounded-md shadow-lg top-14">
                 <Menu.Item
@@ -81,14 +81,24 @@ export default function HeaderMenuView({
             </Menu>
           </Fragment>
         ) : (
-          <li className="ml-auto">
-            <Link
-              to="/auth/login"
-              className="text-xl font-bold text-foreground-100"
-            >
-              Login
-            </Link>
-          </li>
+          <ul className="flex gap-2">
+            <li className="ml-auto">
+              <Link
+                to="/auth/login"
+                className="text-xl font-bold transition-all text-foreground-300 hover:text-foreground-100"
+              >
+                Sign in
+              </Link>
+            </li>
+            <li className="pl-2 border-l-2 border-l-foreground-300">
+              <Link
+                to="/auth/register/employer"
+                className="text-xl font-bold transition-all text-foreground-300 hover:text-foreground-100"
+              >
+                Post Job
+              </Link>
+            </li>
+          </ul>
         )}
       </ul>
     </Fragment>

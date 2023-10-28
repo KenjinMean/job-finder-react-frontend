@@ -26,7 +26,7 @@ export default function HeaderView() {
   const logoutSuccess = () => {
     setUser("");
     setToken("");
-    navigate("/login");
+    navigate("/auth/login");
   };
 
   const refreshTokenSuccess = (data) => {
@@ -83,7 +83,7 @@ export default function HeaderView() {
               <img
                 src={appLogo}
                 alt="job finder logo"
-                className="w-36 aspect-auto"
+                className="w-48 aspect-auto"
               />
             </div>
           </Link>

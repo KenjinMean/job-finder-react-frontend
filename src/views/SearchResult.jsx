@@ -71,7 +71,7 @@ export default function SearchResult() {
                   <div className="w-full">
                     {jobs.map((job) => {
                       return (
-                        <Link to={`/jobs/view/${job.id}`} key={job.id}>
+                        <Link to={`/job/view/${job.id}`} key={job.id}>
                           <JobContainer job={job} />
                         </Link>
                       );

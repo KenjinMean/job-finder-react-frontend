@@ -105,7 +105,7 @@ export default function MemberHeaderLayout() {
         <li>
           <Link
             to="/jobs"
-            className="text-color600 hover:text-purple-500 hover:text-lg hover:font-bold"
+            className="text-foreground-300 hover:text-purple-500 hover:text-lg hover:font-bold"
           >
             Jobs
           </Link>
@@ -113,7 +113,7 @@ export default function MemberHeaderLayout() {
         <li>
           <Link
             to="/companies"
-            className="text-color600 hover:text-purple-500 hover:text-lg"
+            className="text-foreground-300 hover:text-purple-500 hover:text-lg"
           >
             Companies
           </Link>
@@ -121,7 +121,7 @@ export default function MemberHeaderLayout() {
         <li>
           <button
             onClick={handleLogout}
-            className="text-color600 hover:text-purple-500 hover:text-lg"
+            className="text-foreground-300 hover:text-purple-500 hover:text-lg"
           >
             logout
           </button>

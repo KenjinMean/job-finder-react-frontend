@@ -1,22 +1,20 @@
-import axiosClient from "../../axios-client";
 import React, { useState, useRef, useEffect } from "react";
-import SearchSuggestionsList from "../../views/SearchSuggestionsList";
 import { useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import searchIcon from "../../assets/icons/search-icon.png";
 import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
+import SearchSuggestionsListView from "./SearchSuggestionList.View";
 import { useFetchSearchSuggestions } from "../../hooks/useJobRequestHandler";
 
 export default function AutoCompleteSearchBarView() {
   const inputRef = useRef();
   const navigate = useNavigate();
+  const [keyword, setKeyword] = useState("");
   const suggestionsDropdownRef = useRef(null);
   const [filters, setFilter] = useState({ job_type: "", skills: "" });
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
   const [isSuggestionDropdownActive, setIsSuggestionDropdownActive] =
     useState(false);
-
-  const [keyword, setKeyword] = useState();
 
   const jobTypes = [
     { name: "clear", value: "" },
@@ -41,12 +39,9 @@ export default function AutoCompleteSearchBarView() {
     fetchSearchSuggestions(value);
   }, 300);
 
-  // FIX when pressing delete on fast succession if statement still execute
   const handleInputChange = (event) => {
     const { value } = event.target;
-    if (value.trim() !== "") {
-      setKeyword(value);
-    }
+    setKeyword(value.trim());
   };
 
   const handleSuggestionClick = (jobSuggestion) => {
@@ -94,6 +89,7 @@ export default function AutoCompleteSearchBarView() {
     setIsSuggestionDropdownActive(false);
     if (selectedSuggestionIndex === -1) {
       if (!inputRef.current.value) {
+        setKeyword("");
         navigateToJobsPage();
       } else {
         handleSearch();
@@ -122,6 +118,15 @@ export default function AutoCompleteSearchBarView() {
     setIsSuggestionDropdownActive(false);
   };
 
+  const handleButtonClear = () => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+
+    setKeyword("");
+    navigateToJobsPage();
+  };
+
   useEffect(() => {
     debouncedFetchSearchSuggestions();
   }, [keyword]);
@@ -144,48 +149,51 @@ export default function AutoCompleteSearchBarView() {
   }, []);
 
   return (
-    <div className="mx-auto mt-10 mb-10 bg-white rounded-sm">
-      <div className="flex items-center gap-5 p-5 ">
+    <div className="relative mx-auto mt-10 mb-5 rounded-sm sm:mb-10">
+      <div className="flex items-center gap-5 bg-white rounded-md sm:rounded-none">
         <Menu
           as="div"
           ref={suggestionsDropdownRef}
-          className="relative flex-grow "
+          className="flex-grow "
           open={isSuggestionDropdownActive}
         >
           <input
             type="text"
             ref={inputRef}
             onFocus={handleInputFocus}
-            className="w-full p-2 pl-10 font-semibold"
             onKeyDown={handleSearchBarKeyDown}
             placeholder="Job Title or Keyword"
             onChange={(event) => handleInputChange(event)}
+            // className="w-full p-5 font-semibold text-center sm:pl-10 sm:p-5 sm:text-left"
+            className="w-full p-5 pl-12 font-semibold text-center rounded-md sm:text-left"
           />
           <img
             src={searchIcon}
             alt="search icon"
-            className="absolute w-5 h-5 top-2 left-2"
+            className="absolute w-5 h-5 top-5 left-5"
           />
           <Transition show={isSuggestionDropdownActive}>
-            <SearchSuggestionsList
+            <SearchSuggestionsListView
               searchSuggestions={searchSuggestions || []}
               handleSuggestionClick={handleSuggestionClick}
               selectedSuggestionIndex={selectedSuggestionIndex}
             />
           </Transition>
         </Menu>
-
-        <div className="flex flex-grow-0 gap-2 font-semibold">
-          <button className="px-4 py-1 border rounded-md text-foreground-300">
-            Clear
-          </button>
-          <button
-            onClick={handleSearch}
-            className="px-4 py-1 text-white rounded-md bg-foreground-100"
-          >
-            Search
-          </button>
-        </div>
+      </div>
+      <div className="top-[-5px] flex flex-col gap-5 mt-5 sm:absolute sm:flex-row sm:gap-2 right-5">
+        <button
+          className="px-4 py-5 font-bold transition-all bg-white rounded-md sm:border text-foreground-300 sm:py-1 hover:text-black hover:bg-background-400"
+          onClick={handleButtonClear}
+        >
+          Clear
+        </button>
+        <button
+          onClick={handleSearch}
+          className="px-4 py-5 font-bold text-white transition-all rounded-md bg-foreground-100 sm:py-1 hover:bg-background-400 hover:text-foreground-100 "
+        >
+          Search
+        </button>
       </div>
     </div>
   );

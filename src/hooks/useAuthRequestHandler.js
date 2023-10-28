@@ -25,11 +25,16 @@ const refreshToken = () => {
   return axiosClient.post("refresh-token");
 };
 
+// ****************************************************
+
 export const useLogin = (onSuccess) => {
   return useMutation(login, {
     onSuccess: ({ data }) => {
       onSuccess(data);
     },
+    useErrorBoundary: (error) =>
+      !error.response ||
+      (error.response.status !== 422 && error.response.status !== 409),
   });
 };
 
@@ -52,6 +57,9 @@ export const useRegister = (onSuccess) => {
     onSuccess: ({ data }) => {
       onSuccess(data);
     },
+    useErrorBoundary: (error) =>
+      !error.response ||
+      (error.response.status !== 422 && error.response.status !== 409),
   });
 };
 
@@ -87,7 +95,7 @@ export const useRefreshToken = (id, onSuccess, finallyFn) => {
   return useQuery({
     queryKey: ["refreshtoken", id],
     queryFn: async () => {
-      console.log("silent-refreshing-token");
+      // console.log("silent-refreshing-token");
       try {
         const response = await refreshToken();
         if (response.status === 200) {

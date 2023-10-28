@@ -1,38 +1,105 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
+
+import menuIcon from "../../assets/icons/option.png";
 import { Link, useLocation } from "react-router-dom";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 import JobContainerView from "../views/JobContainer.View";
-import { useSearchJobs } from "../../hooks/useJobRequestHandler";
+import JobListSkeletonUtil from "../utils/JobListSkeleton.Util";
 import { useExtractUrlParams } from "../../hooks/useExtractUrlParams";
+import { useSearchJobsInfinite } from "../../hooks/useJobRequestHandler";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 export default function SearchResultPage() {
   const location = useLocation();
+  const lastJobResultRef = useRef(null);
   const params = useExtractUrlParams(location);
 
-  const { data } = useSearchJobs(params);
+  const {
+    data,
+    hasNextPage,
+    refetch,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+  } = useSearchJobsInfinite(params);
+
+  // FIX: cant use useIntersectionObserver custom hook because
+  // because infinitely calling console.log or any function when intersecting
+  // const latJobResultRef = useIntersectionObserver(
+  //   () => fetchNextPage(),
+  //   [hasNextPage, !isFetchingNextPage]
+  // );
+
+  const handleIntersect = () => {
+    if (lastJobResultRef.current && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        handleIntersect();
+      }
+    });
+
+    if (lastJobResultRef.current) {
+      observer.observe(lastJobResultRef.current);
+    }
+
+    return () => {
+      if (lastJobResultRef.current) {
+        observer.unobserve(lastJobResultRef.current);
+      }
+    };
+  }, [handleIntersect]);
+
+  useEffect(() => {
+    refetch();
+  }, [location]);
 
   return (
     <Fragment>
-      <PageTitleUtil title="Job Search" />
-      <div className="max-w-[86rem] mx-auto m-5">
-        {data?.data?.length === 0 ? (
-          <div className="no-results-message">No results found</div>
-        ) : (
-          <>
-            <div className="flex gap-1">
-              <div className="w-full">
-                {data?.data?.map((job) => {
-                  return (
-                    <Link to={`/jobs/view/${job.id}`} key={job.id}>
-                      <JobContainerView job={job} />
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </>
-        )}
-      </div>
+      <PageTitleUtil title="Job Listings" />
+      {data?.pages?.map((group, index) => {
+        return (
+          <Fragment key={index}>
+            {group.data?.data?.map((job, jobIndex, array) => {
+              const isLastJob = jobIndex === array.length - 1;
+              return (
+                <div
+                  key={job.id}
+                  className="relative"
+                  // ref={isLastJob ? latJobResultRef : null}
+                  ref={isLastJob ? lastJobResultRef : null}
+                >
+                  <button
+                    onClick={() => console.log("clicked")}
+                    className="absolute z-10 p-1 transition-all duration-300 border rounded-full right-5 top-5 hover:bg-background-200 "
+                  >
+                    <img src={menuIcon} alt="Menu icon" className="w-5 h-5" />
+                  </button>
+                  <Link to={`/job/view/${job.slug}`}>
+                    <JobContainerView job={job} />
+                  </Link>
+                </div>
+              );
+            })}
+          </Fragment>
+        );
+      })}
+
+      {isFetchingNextPage && (
+        <div className="pt-5 ">
+          <JobListSkeletonUtil />
+        </div>
+      )}
+
+      {!hasNextPage && !isFetching && !isFetchingNextPage && (
+        <div className="w-full mt-5 text-lg font-semibold text-center text-foreground-300">
+          No more jobs available for the search: {params.query}
+        </div>
+      )}
     </Fragment>
   );
 }

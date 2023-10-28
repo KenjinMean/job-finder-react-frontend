@@ -3,6 +3,7 @@ import { useGetElapsedTime } from "../../hooks/useGetElapsedTime";
 import pesoIcon from "../../assets/icons/peso2-icon.png";
 import memberIcon from "../../assets/icons/people-icon.png";
 import locationIcon from "../../assets/icons/location-icon.png";
+import { useFormatSalary } from "../../hooks/useFormatSalary";
 
 export default function JobContainerView({
   job: { title, location, created_at, company, skills, job_types, salary },
@@ -25,18 +26,18 @@ export default function JobContainerView({
   }, [company.company_logo]);
 
   return (
-    <div className="relative w-full gap-5 p-5 mt-5 transition-colors bg-white border rounded-md sm:flex xl:mt-5 hover:bg-zinc-100">
+    <div className="relative w-full gap-5 p-5 mt-5 transition-colors bg-white border rounded-md border-background-400 sm:flex xl:mt-5 hover:bg-zinc-100">
       <div className="flex-shrink-0 mb-5 overflow-hidden rounded-full w-14 h-14">
         <Suspense fallback={<div>loading...</div>}>
           {memoizedCompanyLogo}
         </Suspense>
       </div>
-      <div className="w-full">
-        <h2 className="mb-3 text-2xl font-bold font-primary">{title}</h2>
+      <div className="flex flex-col w-full gap-2 sm:gap-3">
+        <h2 className="text-xl font-bold sm:text-2xl font-primary">{title}</h2>
         <p className="font-semibold ">
           <span>{company.name}</span>
         </p>
-        <p className="flex flex-wrap items-center gap-5 mt-3 font-semibold text-foreground-300 empty:hidden">
+        <p className="flex flex-wrap items-center gap-5 font-semibold text-foreground-300 empty:hidden">
           <span className="flex gap-1">
             <img
               src={memberIcon}
@@ -52,7 +53,7 @@ export default function JobContainerView({
                 alt="Philippine peso icon"
                 className="w-4 h-4"
               />
-              {salary}
+              {useFormatSalary(salary)}
             </span>
           )}
 
@@ -65,7 +66,7 @@ export default function JobContainerView({
         </p>
 
         <div className="sm:flex sm:items-baseline sm:justify-between">
-          <div className="flex flex-wrap gap-1 mt-5 text-sm font-bold text-gray-500">
+          <div className="flex flex-wrap font-bold text-gray-500 gap-1text-sm">
             {job_types.map((jobType, index) => (
               <Fragment key={index}>
                 <span
@@ -80,7 +81,7 @@ export default function JobContainerView({
               </Fragment>
             ))}
           </div>
-          <p className="mt-5 font-bold sm:mt-0 text-foreground-300">
+          <p className="mt-2 font-bold text-foreground-300">
             {useGetElapsedTime(created_at)}
           </p>
         </div>

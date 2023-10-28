@@ -1,31 +1,28 @@
 import { lazy, Suspense } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallbackView from "./components/views/ErrorFallback.View";
 
+import ErrorPage from "./components/page/Error.Page";
 import AppLayout from "./components/layouts/App.Layout";
 import JobsLayout from "./components/layouts/Jobs.Layout";
-// import JobListingPage from "./components/page/JobListing.Page";
-import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Page";
-import ProfileSkeletonLoadingUtil from "./components/utils/ProfileSkeletonLoading.Util.jsx";
+import AuthLayout from "./components/layouts/Auth.Layout";
+import NotFoundPage from "./components/page/NotFound.Page";
+import AuthSkeletonUtil from "./components/utils/AuthSkeleton.Util";
+import UserProfileLayout from "./components/layouts/UserProfile.Layout";
 import JobListSkeletonUtil from "./components/utils/JobListSkeleton.Util";
 import { QueryBoundaries } from "./components/utils/QueryBoundaries.Util";
-import AuthLayout from "./components/layouts/Auth.Layout";
-const NotFoundPage = lazy(() => import("./components/page/NotFound.Page"));
-const ErrorPage = lazy(() => import("./components/page/Error.Page"));
+import ComponentDesignView from "./components/views/ComponentDesign.View";
+import JobDetailSkeletonUtil from "./components/utils/JobDetailSkeleton.Util";
+import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Page";
+import ProfileSkeletonLoadingUtil from "./components/utils/ProfileSkeletonLoading.Util.jsx";
+import Error404View from "./components/views/Error404.View";
+
 const LoginPage = lazy(() => import("./components/page/Login.Page"));
 const RegisterPage = lazy(() => import("./components/page/Register.Page"));
 const JobDetailsPage = lazy(() => import("./components/page/JobDetails.Page"));
 const JobListingPage = lazy(() => import("./components/page/JobListing.Page"));
 
-const RegistrationLayout = lazy(() =>
-  import("./components/layouts/Registration.Layout")
-);
 const SearchResultPage = lazy(() =>
   import("./components/page/SearchResult.Page")
-);
-const UserProfileLayout = lazy(() =>
-  import("./components/layouts/UserProfile.Layout")
 );
 const UserProfilePage = lazy(() =>
   import("./components/page/UserProfile.Page")
@@ -47,6 +44,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Navigate to="/jobs" />,
       },
+
       {
         path: "/jobs",
         element: <JobsLayout />,
@@ -75,27 +73,35 @@ const router = createBrowserRouter([
               </Suspense>
             ),
           },
+        ],
+      },
+
+      {
+        path: "job",
+        element: <JobsLayout />,
+        children: [
           {
             path: "view/:jobSlug",
             element: (
-              <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
+              <Suspense fallback={<JobDetailSkeletonUtil />}>
                 <JobDetailsPage />
               </Suspense>
             ),
           },
         ],
       },
+
       {
         path: "profile",
-        element: (
-          <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
-            <UserProfileLayout />
-          </Suspense>
-        ),
+        element: <UserProfileLayout />,
         children: [
           {
             path: "",
-            element: <UserProfilePage />,
+            element: (
+              <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
+                <UserProfilePage />
+              </Suspense>
+            ),
           },
           {
             path: "setup",
@@ -103,32 +109,21 @@ const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: "*",
-        element: (
-          <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
-            <NotFoundPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/error",
-        element: (
-          <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
-            <ErrorPage />
-          </Suspense>
-        ),
-      },
     ],
   },
+
   {
     path: "/auth",
     element: <AuthLayout />,
     children: [
       {
+        path: "/auth",
+        element: <Navigate to="/auth/login" />,
+      },
+      {
         path: "login",
         element: (
-          <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
+          <Suspense fallback={<AuthSkeletonUtil />}>
             <LoginPage />
           </Suspense>
         ),
@@ -136,44 +131,28 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: (
-          <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
+          <Suspense fallback={<AuthSkeletonUtil />}>
             <RegisterPage />
           </Suspense>
         ),
       },
     ],
   },
-  // {
-  //   path: "/login",
-  //   element: (
-  //     <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
-  //       <AuthLayout />
-  //     </Suspense>
-  //   ),
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <LoginPage />,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: "/register",
-  //   element: (
-  //     <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
-  //       <RegistrationLayout />
-  //     </Suspense>
-  //   ),
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <RegisterPage />,
-  //     },
-  //   ],
-  // },
+  {
+    path: "/test-component",
+    element: <ComponentDesignView />,
+  },
   {
     path: "/callback",
     element: <AuthProviderCallbackPage />,
+  },
+  {
+    path: "*",
+    element: <Error404View />,
+  },
+  {
+    path: "/error",
+    element: <ErrorPage />,
   },
 ]);
 

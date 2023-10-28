@@ -1,11 +1,15 @@
 import React from "react";
+import Error500View from "../views/Error500.View";
+import Error503View from "../views/Error503.View";
 
-export default function ErrorPage() {
+export default function ErrorPage({ error, resetErrorBoundary }) {
   return (
-    <div>
-      We're currently unable to connect to our servers. Please check your
-      internet connection and try again. If the issue persists, contact support
-      at support@yourapp.com. You can also retry the connection.
+    <div className="flex items-center justify-center min-h-screen text-gray-900 border">
+      {error.code === "ERR_NETWORK" ? (
+        <Error503View resetErrorBoundary={resetErrorBoundary} />
+      ) : (
+        <Error500View resetErrorBoundary={resetErrorBoundary} />
+      )}
     </div>
   );
 }
