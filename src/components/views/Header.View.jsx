@@ -1,33 +1,20 @@
-import { useNavigate } from "react-router-dom";
-import HeroBannerView from "./HeroBanner.View";
-import HeaderMenuView from "./HeaderMenu.View";
-import { Link, useLocation } from "react-router-dom";
-import appLogo from "../../assets/logo/JobFinderLogo.png";
 import React, { useRef, useEffect, Fragment } from "react";
+
+import HeroBannerView from "./HeroBanner.View";
+import { useLocation } from "react-router-dom";
+import HeaderNavViewV2 from "./HeaderNavV2.View";
 import { useStateContext } from "../../context/ContextProvider";
+import MaxWidthWrapperUtil from "../utils/MaxWidthWrapper.Util";
+import { useRefreshToken } from "../../hooks/useAuthRequestHandler";
 import AutoCompleteSearchBarView from "./AutoCompleteSearchBar.View";
-import { useLogout, useRefreshToken } from "../../hooks/useAuthRequestHandler";
 
 export default function HeaderView() {
-  const navigate = useNavigate();
   const location = useLocation();
+  const isRefreshing = useRef(false);
   const isLocationJobs = location.pathname.startsWith("/jobs");
 
-  const isRefreshing = useRef(false);
-  const {
-    token,
-    user,
-    setToken,
-    setUser,
-    refreshTimeoutRef,
-    setIsTokenRefreshing,
-  } = useStateContext();
-
-  const logoutSuccess = () => {
-    setUser("");
-    setToken("");
-    navigate("/auth/login");
-  };
+  const { token, user, setToken, refreshTimeoutRef, setIsTokenRefreshing } =
+    useStateContext();
 
   const refreshTokenSuccess = (data) => {
     refreshTimeoutRef.current = setTimeout(() => {
@@ -39,21 +26,11 @@ export default function HeaderView() {
 
   const refreshTokenFinally = () => setIsTokenRefreshing(false);
 
-  const { refetch: logoutFn } = useLogout(
-    user.id,
-    logoutSuccess,
-    refreshTokenFinally
-  );
-
   const { refetch: refreshTokenFn } = useRefreshToken(
     user.id,
     refreshTokenSuccess,
     refreshTokenFinally
   );
-
-  const handleProfileClick = () => {
-    navigate("/profile");
-  };
 
   const refreshToken = () => {
     if (!isRefreshing.current) {
@@ -61,11 +38,6 @@ export default function HeaderView() {
       isRefreshing.current = true;
       refreshTokenFn();
     }
-  };
-
-  const handleLogout = () => {
-    clearTimeout(refreshTimeoutRef.current);
-    logoutFn();
   };
 
   useEffect(() => {
@@ -76,30 +48,15 @@ export default function HeaderView() {
 
   return (
     <header className="p-5 py-8 bg-gradient-to-r from-background-100 to-background-200 lg:px-10">
-      <div className="mx-auto max-w-7xl">
-        <nav className="flex items-center justify-between">
-          <Link to="/">
-            <div>
-              <img
-                src={appLogo}
-                alt="job finder logo"
-                className="w-48 aspect-auto"
-              />
-            </div>
-          </Link>
-          <HeaderMenuView
-            user={user}
-            handleLogout={handleLogout}
-            handleProfileClick={handleProfileClick}
-          />
-        </nav>
+      <MaxWidthWrapperUtil>
+        <HeaderNavViewV2 />
         {isLocationJobs && (
           <Fragment>
             <HeroBannerView />
             <AutoCompleteSearchBarView />
           </Fragment>
         )}
-      </div>
+      </MaxWidthWrapperUtil>
     </header>
   );
 }

@@ -16,22 +16,6 @@ export default function AutoCompleteSearchBarView() {
   const [isSuggestionDropdownActive, setIsSuggestionDropdownActive] =
     useState(false);
 
-  const jobTypes = [
-    { name: "clear", value: "" },
-    { name: "Full-Time", value: "Full-Time" },
-    { name: "Part-Time", value: "Part-Time" },
-    { name: "Remote", value: "Remote" },
-    { name: "On-Site", value: "On-Site" },
-    { name: "Contract/Freelance", value: "Contract/Freelance" },
-    { name: "Internship", value: "Internship" },
-    { name: "Temporary", value: "Temporary" },
-    { name: "Freelance", value: "Freelance" },
-    { name: "Commission-Based", value: "Commission-Based" },
-    { name: "Seasonal", value: "Seasonal" },
-    { name: "Remote Part-Time", value: "Remote Part-Time" },
-    { name: "Hybrid", value: "Hybrid" },
-  ];
-
   const { data: searchSuggestions, refetch: fetchSearchSuggestions } =
     useFetchSearchSuggestions(keyword);
 
@@ -164,7 +148,6 @@ export default function AutoCompleteSearchBarView() {
             onKeyDown={handleSearchBarKeyDown}
             placeholder="Job Title or Keyword"
             onChange={(event) => handleInputChange(event)}
-            // className="w-full p-5 font-semibold text-center sm:pl-10 sm:p-5 sm:text-left"
             className="w-full p-5 pl-12 font-semibold text-center rounded-md sm:text-left"
           />
           <img

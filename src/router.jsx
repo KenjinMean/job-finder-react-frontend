@@ -5,7 +5,6 @@ import ErrorPage from "./components/page/Error.Page";
 import AppLayout from "./components/layouts/App.Layout";
 import JobsLayout from "./components/layouts/Jobs.Layout";
 import AuthLayout from "./components/layouts/Auth.Layout";
-import NotFoundPage from "./components/page/NotFound.Page";
 import AuthSkeletonUtil from "./components/utils/AuthSkeleton.Util";
 import UserProfileLayout from "./components/layouts/UserProfile.Layout";
 import JobListSkeletonUtil from "./components/utils/JobListSkeleton.Util";
@@ -114,7 +113,11 @@ const router = createBrowserRouter([
 
   {
     path: "/auth",
-    element: <AuthLayout />,
+    element: (
+      <QueryBoundaries>
+        <AuthLayout />
+      </QueryBoundaries>
+    ),
     children: [
       {
         path: "/auth",
@@ -143,8 +146,12 @@ const router = createBrowserRouter([
     element: <ComponentDesignView />,
   },
   {
-    path: "/callback",
-    element: <AuthProviderCallbackPage />,
+    path: "/auth-provider-callback",
+    element: (
+      <QueryBoundaries>
+        <AuthProviderCallbackPage />
+      </QueryBoundaries>
+    ),
   },
   {
     path: "*",

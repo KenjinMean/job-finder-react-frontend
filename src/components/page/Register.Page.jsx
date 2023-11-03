@@ -2,15 +2,16 @@ import { Fragment, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useStateContext } from "../../context/ContextProvider";
 
+import { PageTitleUtil } from "../utils/PageTitle.Util";
 import LoadingSpinnerUtil from "../utils/LoadingSpinnder.Util";
 
 import { useRegister } from "../../hooks/useAuthRequestHandler";
+import PasswordChecklistView from "../views/PasswordChecklist.View";
 
 // ICON SOURCES  "https://www.flaticon.com/free-icons/password" title="password icons" Password icons created by th studio - Flaticon
 import showPass from "../../assets/icons/showPass.png";
 import hidePass from "../../assets/icons/hidePass.png";
-import { PageTitleUtil } from "../utils/PageTitle.Util";
-import PasswordChecklistView from "../views/PasswordChecklist.View";
+import appLogo from "../../assets/logo/JobFinderLogo.png";
 
 const FOCUSED = {
   email: "false",
@@ -119,13 +120,11 @@ export default function RegisterPage() {
     <Fragment>
       <PageTitleUtil title="Register | JobFinder" />
       <div className="p-6 sm:p-12">
-        <div>
-          <Link to="/">
-            <h1 className="text-4xl font-bold text-center text-indigo-500">
-              Job Finder
-            </h1>
-          </Link>
-        </div>
+        <Link to="/">
+          <div className="flex justify-center">
+            <img src={appLogo} alt="" />
+          </div>
+        </Link>
         <div className="flex flex-col items-center mt-12">
           <h1 className="text-2xl font-extrabold xl:text-3xl">
             Sign up for Job Finder

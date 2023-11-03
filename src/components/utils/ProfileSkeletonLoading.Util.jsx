@@ -2,8 +2,8 @@ import React from "react";
 
 export default function ProfileSkeletonLoadingUtil() {
   return (
-    <>
-      <div>
+    <div className="overflow-hidden rounded-md">
+      <div className="relative">
         <div className="block w-full h-48 bg-gray-300">
           <img src="" alt="" />
         </div>
@@ -19,6 +19,6 @@ export default function ProfileSkeletonLoadingUtil() {
           <div className="h-5 w-44 pulse rounded-xl"></div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

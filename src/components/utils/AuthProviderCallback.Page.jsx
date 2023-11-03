@@ -1,12 +1,13 @@
-// FIX the callback page extract the error
-
-import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import MaxWidthWrapperUtil from "./MaxWidthWrapper.Util";
 import { useStateContext } from "../../context/ContextProvider";
 
 export default function AuthProviderCallbackPage() {
   const { token, setToken, setUser } = useStateContext();
   const [loading, setLoading] = useState(true);
+  const [redirecting, setRedirecting] = useState(false);
+  const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -16,26 +17,56 @@ export default function AuthProviderCallbackPage() {
       const responseData = JSON.parse(responseParam);
 
       if (responseData.error) {
+        console.log(responseData.error);
       } else {
         const { user } = responseData.original;
 
         setUser(user);
         setToken(responseData.original);
         setLoading(false);
+
+        setRedirecting(true);
+
+        setTimeout(() => {
+          setRedirecting(false);
+        }, 5000);
+
+        const timer = setInterval(() => {
+          setSeconds((prevSeconds) => prevSeconds - 1);
+        }, 1000);
+
+        return () => clearInterval(timer);
       }
     } catch (error) {
       console.log("Failed to parse response data", error);
     }
   }, []);
 
+  if (token && redirecting) {
+    return (
+      <MaxWidthWrapperUtil className="min-h-screen ">
+        <div className="mt-10 text-xl">
+          <span className="">
+            Authenticated! Redirecting to Application in {seconds}...{" "}
+          </span>
+          <button
+            onClick={() => setRedirecting(false)}
+            className="px-5 py-1 font-bold transition-all border border-white rounded-md bg-background-400 hover:border-foreground-100 hover:bg-white 300ms hover:text-foreground-100"
+          >
+            Skip
+          </button>
+        </div>
+      </MaxWidthWrapperUtil>
+    );
+  }
+
   if (token) {
     return <Navigate to="/" />;
   }
 
-  console.log("on callback page");
   return (
     <div>
-      {loading ? "Loading..." : "Authenticated! Redirecting to Dashboard..."}
+      <div>{loading ? "Loading..." : "Authentication Failed"}</div>;
     </div>
   );
 }

@@ -74,6 +74,7 @@ export const useGithubAuthLogin = (onSuccess) => {
       return response;
     },
     enabled: false,
+    useErrorBoundary: true,
   });
 };
 
@@ -88,6 +89,7 @@ export const useGoogleAuthLogin = (onSuccess) => {
       return response;
     },
     enabled: false,
+    useErrorBoundary: true,
   });
 };
 
@@ -95,7 +97,6 @@ export const useRefreshToken = (id, onSuccess, finallyFn) => {
   return useQuery({
     queryKey: ["refreshtoken", id],
     queryFn: async () => {
-      // console.log("silent-refreshing-token");
       try {
         const response = await refreshToken();
         if (response.status === 200) {

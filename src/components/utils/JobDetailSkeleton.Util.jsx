@@ -1,9 +1,10 @@
 import React from "react";
 import JobListSkeletonUtil from "./JobListSkeleton.Util";
+import MaxWidthWrapperUtil from "./MaxWidthWrapper.Util";
 
 export default function JobDetailSkeletonUtil() {
   return (
-    <div className="p-5 mx-auto border rounded-md max-w-7xl">
+    <MaxWidthWrapperUtil className="p-5 border rouned-md">
       <div className="flex gap-5">
         <div>
           <div className="w-20 h-20 rounded-full pulse"></div>
@@ -18,6 +19,6 @@ export default function JobDetailSkeletonUtil() {
       {[...Array(5).keys()].map((i) => {
         return <JobListSkeletonUtil key={i} />;
       })}
-    </div>
+    </MaxWidthWrapperUtil>
   );
 }

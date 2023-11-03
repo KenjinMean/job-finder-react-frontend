@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        primary: ["Quicksand"],
+        primary: ["Quicksand", "sans-serif"],
         secondary: ["Poppins"],
       },
       colors: {

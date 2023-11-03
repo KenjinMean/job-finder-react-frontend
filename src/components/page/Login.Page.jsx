@@ -93,18 +93,13 @@ export default function LoginPage() {
     <Fragment>
       <PageTitleUtil title="Login" />
       <div className="p-6 sm:p-12 ">
-        <div>
-          <Link to="/">
-            <div className="flex justify-center">
-              <img src={appLogo} alt="" />
-            </div>
-          </Link>
-        </div>
+        <Link to="/">
+          <div className="flex justify-center">
+            <img src={appLogo} alt="" />
+          </div>
+        </Link>
 
         <div className="flex flex-col items-center mt-12">
-          <h1 className="mb-8 text-2xl font-extrabold text-center xl:text-3xl">
-            Create an account or sign in
-          </h1>
           <div
             aria-hidden={authServiceError ? "false" : "true"}
             className="max-w-xs text-center height-auto"

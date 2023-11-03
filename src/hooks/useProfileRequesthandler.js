@@ -9,5 +9,6 @@ export const useGetUserInfo = (id) => {
   return useQuery({
     queryKey: ["userinfo", id],
     queryFn: () => getUserInfo(),
+    suspense: true,
   });
 };

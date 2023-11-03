@@ -1,10 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import MaxWidthWrapperUtil from "../utils/MaxWidthWrapper.Util";
 
 export default function JobsLayout() {
   return (
-    <div className="mx-auto max-w-7xl">
+    <MaxWidthWrapperUtil>
       <Outlet />
-    </div>
+    </MaxWidthWrapperUtil>
   );
 }
