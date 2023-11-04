@@ -155,7 +155,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Error404View />,
+    element: <ErrorPage error={{ code: "404" }} />,
   },
   {
     path: "/error",
