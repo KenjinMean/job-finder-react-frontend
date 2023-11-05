@@ -142,7 +142,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/test-component",
+    path: "/component-design",
     element: <ComponentDesignView />,
   },
   {
