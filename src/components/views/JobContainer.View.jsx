@@ -1,13 +1,13 @@
 import React, { Fragment, Suspense, lazy, useMemo } from "react";
-import { useGetElapsedTime } from "../../hooks/useGetElapsedTime";
+
 import pesoIcon from "../../assets/icons/peso2-icon.png";
 import memberIcon from "../../assets/icons/people-icon.png";
-import locationIcon from "../../assets/icons/location-icon.png";
 import { useFormatSalary } from "../../hooks/useFormatSalary";
+import locationIcon from "../../assets/icons/location-icon.png";
+import { useGetElapsedTime } from "../../hooks/useGetElapsedTime";
 
 export default function JobContainerView({
-  job: { title, location, created_at, company, skills, job_types, salary },
-  myRef,
+  job: { title, location, created_at, company, job_types, salary },
 }) {
   const CompanyLogo = lazy(() =>
     import("../../components/utils/ImageUrlLoader.Util")
@@ -44,7 +44,7 @@ export default function JobContainerView({
               alt="members count icon"
               className="w-5 h-5"
             />
-            1001-5000
+            {company.company_size}
           </span>
           {salary && (
             <span className="flex items-center">
