@@ -26,7 +26,6 @@ export const useFetchJobdetails = (id) => {
     queryKey: ["jobdetails", id],
     queryFn: () => getJobDetails(id),
     suspense: true,
-    networkMode: "always",
   });
 };
 
@@ -43,7 +42,6 @@ export const useFetchJobs = () => {
       return undefined;
     },
     suspense: true,
-    networkMode: "always",
   });
 };
 
@@ -61,7 +59,6 @@ export const useSearchJobsInfinite = (params) => {
     },
     enabled: false,
     suspense: true,
-    networkMode: "always",
   });
 };
 
@@ -71,6 +68,5 @@ export const useFetchSearchSuggestions = (param) => {
     queryFn: () => fetchSearchSuggestion(param),
     enabled: false,
     select: (data) => data?.data?.suggestions,
-    networkMode: "always",
   });
 };
