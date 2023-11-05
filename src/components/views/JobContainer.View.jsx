@@ -32,8 +32,8 @@ export default function JobContainerView({
           {memoizedCompanyLogo}
         </Suspense>
       </div>
-      <div className="flex flex-col w-full gap-2 sm:gap-3">
-        <h2 className="text-xl font-bold sm:text-2xl font-primary">{title}</h2>
+      <div className="flex flex-col w-full gap-1">
+        <h2 className="text-xl font-bold sm:text-xl font-primary">{title}</h2>
         <p className="font-semibold ">
           <span>{company.name}</span>
         </p>
@@ -66,12 +66,12 @@ export default function JobContainerView({
         </p>
 
         <div className="sm:flex sm:items-baseline sm:justify-between">
-          <div className="flex flex-wrap font-bold text-gray-500 gap-1text-sm">
+          <div className="flex flex-wrap gap-1 text-sm font-bold text-gray-500">
             {job_types.map((jobType, index) => (
               <Fragment key={index}>
                 <span
                   key={index}
-                  className="px-2 text-purple-600 bg-purple-100 border rounded-full"
+                  className="px-2 border rounded-full bg-background-blue text-foreground-400"
                 >
                   {jobType.job_type}
                 </span>
@@ -86,54 +86,6 @@ export default function JobContainerView({
           </p>
         </div>
       </div>
-      {/* <div className="flex-shrink-0 overflow-hidden rounded-full w-14 h-14">
-        <Suspense fallback={<div>loading...</div>}>
-          {memoizedCompanyLogo}
-        </Suspense>
-      </div>
-      <div className="flex justify-between w-full">
-        <div className="font-secondary">
-          <h2 className="mb-3 text-xl font-bold font-primary">{title}</h2>
-          <p className="flex items-center gap-3 mb-3">
-            <span className="">{company.name}</span>
-            {salary && (
-              <Fragment>
-                <span className="flex items-center gap-1 text-foreground-300">
-                  <img
-                    src={PhilippinePeso}
-                    alt="Philippine peso"
-                    className="w-4 h-4"
-                  />
-                  {salary}
-                </span>
-              </Fragment>
-            )}
-          </p>
-          <div className="flex flex-wrap gap-1 mt-5 text-sm text-gray-500">
-            {job_types.map((jobType, index) => (
-              <React.Fragment key={index}>
-                <span
-                  key={index}
-                  className="px-2 text-purple-600 bg-purple-100 border rounded-full"
-                >
-                  {jobType.job_type}
-                </span>
-                {index !== jobType.length - 1 && (
-                  <span className="text-sm text-gray-400">•</span>
-                )}
-              </React.Fragment>
-            ))}
-            <span className="px-2 text-blue-800 bg-blue-100 border rounded-full">
-              {location}
-            </span>
-          </div>
-        </div>
-        <div className="flex flex-col-reverse justify-between">
-          <span className="font-semibold text-gray-500">
-            {useGetElapsedTime(created_at)}
-          </span>
-        </div>
-      </div> */}
     </div>
   );
 }

@@ -8,7 +8,7 @@ export default function JobListSkeletonUtil() {
   };
 
   return (
-    <div className="flex flex-col gap-2 p-5 mt-5 bg-white border rounded-md">
+    <div className="flex flex-col gap-2 mt-5 bg-white">
       <div className={`w-${getRandomWidth()} h-10 rounded-md pulse`}></div>
       <div className={`w-${getRandomWidth()} h-3 rounded-md pulse`}></div>
       <div className={`w-${getRandomWidth()} h-3 rounded-md pulse`}></div>

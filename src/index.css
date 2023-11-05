@@ -55,7 +55,7 @@ h6 {
 
 /* Skeletom Loader Pulse Animation */
 .pulse {
-  background: linear-gradient(-90deg, #efefef 0%, #d2d2d2 50%, #efefef 100%);
+  background: linear-gradient(-90deg, #efefef 0%, #cccccc 50%, #efefef 100%);
   background-size: 400% 400%;
   animation: pulse 2.3s ease-in-out infinite;
 }
@@ -67,26 +67,6 @@ h6 {
   100% {
     background-position: -135% 0%;
   }
-}
-
-.lines {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.lines .line,
-.lines .thumb {
-  background-color: #f5f5f5;
-  width: 15rem;
-  height: 1rem;
-  margin: 0.25rem;
-}
-
-.lines .thumb {
-  height: 7.5rem;
 }
 
 /* Height Auto div */

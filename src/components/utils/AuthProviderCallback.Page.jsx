@@ -1,7 +1,8 @@
 import { Navigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import MaxWidthWrapperUtil from "./MaxWidthWrapper.Util";
 import { useStateContext } from "../../context/ContextProvider";
+import { PageTitleUtil } from "./PageTitle.Util";
 
 export default function AuthProviderCallbackPage() {
   const { token, setToken, setUser } = useStateContext();
@@ -44,19 +45,22 @@ export default function AuthProviderCallbackPage() {
 
   if (token && redirecting) {
     return (
-      <MaxWidthWrapperUtil className="min-h-screen ">
-        <div className="mt-10 text-xl">
-          <span className="">
-            Authenticated! Redirecting to Application in {seconds}...{" "}
-          </span>
-          <button
-            onClick={() => setRedirecting(false)}
-            className="px-5 py-1 font-bold transition-all border border-white rounded-md bg-background-400 hover:border-foreground-100 hover:bg-white 300ms hover:text-foreground-100"
-          >
-            Skip
-          </button>
-        </div>
-      </MaxWidthWrapperUtil>
+      <Fragment>
+        <PageTitleUtil title="Redirect Page" />
+        <MaxWidthWrapperUtil className="min-h-screen ">
+          <div className="mt-10 text-xl">
+            <span className="">
+              Authenticated! Redirecting to Application in {seconds}...{" "}
+            </span>
+            <button
+              onClick={() => setRedirecting(false)}
+              className="px-5 py-1 font-bold transition-all border border-white rounded-md bg-background-400 hover:border-foreground-100 hover:bg-white 300ms hover:text-foreground-100"
+            >
+              Skip
+            </button>
+          </div>
+        </MaxWidthWrapperUtil>
+      </Fragment>
     );
   }
 

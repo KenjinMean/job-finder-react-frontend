@@ -28,6 +28,7 @@ export default function JobListingPage() {
                 <div
                   key={job.id}
                   className="relative"
+                  // attach lastJobRef on lastjob per pagination for infinite query intersection observer
                   ref={isLastJob ? latJobRef : null}
                 >
                   <button
@@ -46,11 +47,7 @@ export default function JobListingPage() {
         );
       })}
 
-      {isFetchingNextPage && (
-        <div className="pt-5 ">
-          <JobListSkeletonUtil />
-        </div>
-      )}
+      {isFetchingNextPage && <JobListSkeletonUtil />}
 
       {!hasNextPage && !isFetching && !isFetchingNextPage && (
         <div className="w-full mt-5 text-lg font-semibold text-center text-foreground-300">
