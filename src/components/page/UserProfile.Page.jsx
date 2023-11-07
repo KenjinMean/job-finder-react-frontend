@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import UserInfoView from "../views/UserInfo.View";
+import UserInfoView from "../views/user/UserInfo.View";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 import { useStateContext } from "../../context/ContextProvider";
 import { useGetUserInfo } from "../../hooks/useProfileRequesthandler";

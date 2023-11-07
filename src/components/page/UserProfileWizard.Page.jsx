@@ -1,15 +1,11 @@
-import axiosClient from "../../axios-client";
 import React, { useRef, useState } from "react";
-import { Link, useLocation, Navigate } from "react-router-dom";
 
-import { useMutation } from "@tanstack/react-query";
-import { useStateContext } from "../../context/ContextProvider";
 import { useMultistepForm } from "../../hooks/useMultistepForm";
 
 import Details from "../views/Details";
 import Payment from "../views/Payment";
+import MaxWidthWrapperUtil from "../utils/MaxWidthWrapper.Util";
 import PersonalInformationStep from "../views/PersonalInformationStep";
-import UserProfileWizardStepsButtonView from "../views/UserProfileWizardStepsButton.view";
 
 /** WARNING fix: find a way
   to not store password on state
@@ -59,10 +55,12 @@ export default function UserProfileWizardPage() {
   };
 
   return (
-    <div className="flex w-full max-w-5xl overflow-hidden rounded-xl mt-14 h-72">
-      <div className="w-1/4 border bg-blue-950">steps</div>
-      <div className="w-3/4 border bg-slate-300">step component</div>
-    </div>
+    <MaxWidthWrapperUtil>
+      <div className="flex w-full overflow-hidden rounded-xl mt-14 h-72">
+        <div className="w-1/4 border bg-blue-950">steps</div>
+        <div className="w-3/4 border bg-slate-300">step component</div>
+      </div>
+    </MaxWidthWrapperUtil>
   );
   // return (
   //   <div className="flex justify-center min-h-screen text-gray-900 bg-gray-50">
