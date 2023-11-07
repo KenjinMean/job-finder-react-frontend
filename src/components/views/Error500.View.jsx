@@ -41,22 +41,15 @@ export default function Error500View({ resetErrorBoundary }) {
           this page or <br /> feel free to contact us if the problem presists.
         </p>
         <a
-          href="https://postsrc.com/components"
+          href="https://postsrc.com/components/tailwind-css-error-pages"
           target="_blank"
-          rel="noopener"
-          title="PostSrc Components - Collection of Tailwind CSS components for everyone to use"
+          className="flex justify-center mt-5"
         >
-          <a
-            href="https://postsrc.com/components/tailwind-css-error-pages"
-            target="_blank"
-            className="flex justify-center mt-5"
-          >
-            <img
-              className="w-auto h-12"
-              src="https://postsrc.com/img/attr.png"
-              alt="PostSrc logo"
-            />
-          </a>
+          <img
+            className="w-auto h-12"
+            src="https://postsrc.com/img/attr.png"
+            alt="PostSrc logo"
+          />
         </a>
       </div>
     </div>

@@ -37,8 +37,8 @@ export default function JobContainerView({
         <p className="font-semibold ">
           <span>{company.name}</span>
         </p>
-        <p className="flex flex-wrap items-center gap-5 font-semibold text-foreground-300 empty:hidden">
-          <span className="flex gap-1">
+        <p className="flex flex-wrap items-center font-semibold text-foreground-300 empty:hidden">
+          <span className="flex gap-1 mr-3">
             <img
               src={memberIcon}
               alt="members count icon"
@@ -47,7 +47,7 @@ export default function JobContainerView({
             {company.company_size}
           </span>
           {salary && (
-            <span className="flex items-center">
+            <span className="flex items-center mr-3">
               <img
                 src={pesoIcon}
                 alt="Philippine peso icon"
