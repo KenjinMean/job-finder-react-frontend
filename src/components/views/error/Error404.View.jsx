@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Error404View() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 bg-white w-full">
       <div className="text-center">
@@ -30,7 +32,15 @@ export default function Error404View() {
           has been removed. You can return to the{" "}
           <Link to="/" className="text-blue-500 hover:text-blue-700">
             Home page
-          </Link>
+          </Link>{" "}
+          or{" "}
+          <button
+            className="text-blue-500 hover:text-blue-700"
+            onClick={() => navigate(-1)}
+          >
+            {" "}
+            Go Back
+          </button>
           .
         </p>
         <a
