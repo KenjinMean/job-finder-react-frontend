@@ -1,7 +1,7 @@
 import React from "react";
-import Error500View from "../views/Error500.View";
-import Error503View from "../views/Error503.View";
-import Error404View from "../views/Error404.View";
+import Error500View from "../views/error/Error500.View";
+import Error503View from "../views/error/Error503.View";
+import Error404View from "../views/error/Error404.View";
 
 export default function ErrorPage({ error, resetErrorBoundary }) {
   if (error.code === "404") {
