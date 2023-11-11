@@ -3,12 +3,8 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useStateContext } from "../../context/ContextProvider";
 
 import { PageTitleUtil } from "../utils/PageTitle.Util";
-import LoadingSpinnerUtil from "../utils/LoadingSpinnder.Util";
 
 import { useRegister } from "../../hooks/useAuthRequestHandler";
-import PasswordChecklistView from "../views/PasswordChecklist.View";
-
-// ICON SOURCES  "https://www.flaticon.com/free-icons/password" title="password icons" Password icons created by th studio - Flaticon
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 import RegisterForm from "../forms/auth/Register.Form";
