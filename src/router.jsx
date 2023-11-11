@@ -13,7 +13,6 @@ import ComponentDesignView from "./components/views/ComponentDesign.View";
 import JobDetailSkeletonUtil from "./components/utils/JobDetailSkeleton.Util";
 import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Page";
 import ProfileSkeletonLoadingUtil from "./components/utils/ProfileSkeletonLoading.Util.jsx";
-import Error404View from "./components/views/error/Error404.View";
 
 const LoginPage = lazy(() => import("./components/page/Login.Page"));
 const RegisterPage = lazy(() => import("./components/page/Register.Page"));

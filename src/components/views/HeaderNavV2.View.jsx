@@ -9,9 +9,10 @@ import { useStateContext } from "../../context/ContextProvider";
 
 export default function HeaderNavViewV2() {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
   const mainMenuRef = useRef(null);
   const mainMenuButtonRef = useRef(null);
-  const navigate = useNavigate();
 
   const { user, token, setUser, setToken, refreshTimeoutRef } =
     useStateContext();
@@ -74,7 +75,7 @@ export default function HeaderNavViewV2() {
               <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full border-foreground-300 md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                 {user.user_info && (
                   <ImageUrlLoaderUtil
-                    imageUrl={user?.user_info.profile_image}
+                    imageUrl={user?.user_info?.profile_image}
                     alt="User Profile Image"
                   />
                 )}
