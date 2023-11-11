@@ -5,9 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 import JobContainerView from "../views/JobContainer.View";
 import JobListSkeletonUtil from "../utils/JobListSkeleton.Util";
-import { useExtractUrlParams } from "../../hooks/useExtractUrlParams";
-import { useSearchJobsInfinite } from "../../hooks/useJobRequestHandler";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import { useExtractUrlParams } from "../../lib/hooks/useExtractUrlParams";
+import { useSearchJobsInfinite } from "../../lib/hooks/useJobRequestHandler";
+import useIntersectionObserver from "../../lib/hooks/useIntersectionObserver";
 
 export default function SearchResultPage() {
   const location = useLocation();
@@ -70,7 +70,6 @@ export default function SearchResultPage() {
                 <div
                   key={job.id}
                   className="relative"
-                  // ref={isLastJob ? latJobResultRef : null}
                   ref={isLastJob ? lastJobResultRef : null}
                 >
                   <button
