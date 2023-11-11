@@ -4,7 +4,7 @@ import { useStateContext } from "../../context/ContextProvider";
 
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 
-import { useRegister } from "../../hooks/useAuthRequestHandler";
+import { useRegister } from "../../lib/hooks/useAuthRequestHandler";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 import RegisterForm from "../forms/auth/Register.Form";

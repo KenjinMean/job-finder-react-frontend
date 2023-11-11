@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import HeaderView from "../views/Header.View";
 import { UNSAFE_useScrollRestoration } from "react-router-dom";
+import OverlaysUtil from "../utils/Overlays.Util";
 
 export default function AppLayout() {
   UNSAFE_useScrollRestoration((prevLocation, location) => {

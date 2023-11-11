@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import searchIcon from "../../assets/icons/search-icon.png";
-import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
+import { useDebouncedCallback } from "../../lib/hooks/UseDebounceCallback";
 import SearchSuggestionsListView from "./SearchSuggestionList.View";
-import { useFetchSearchSuggestions } from "../../hooks/useJobRequestHandler";
+import { useFetchSearchSuggestions } from "../../lib/hooks/useJobRequestHandler";
 
 export default function AutoCompleteSearchBarView() {
   const inputRef = useRef();

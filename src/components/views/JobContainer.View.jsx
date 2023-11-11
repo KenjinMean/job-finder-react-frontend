@@ -2,9 +2,10 @@ import React, { Fragment, Suspense, lazy, useMemo } from "react";
 
 import pesoIcon from "../../assets/icons/peso2-icon.png";
 import memberIcon from "../../assets/icons/people-icon.png";
-import { useFormatSalary } from "../../hooks/useFormatSalary";
 import locationIcon from "../../assets/icons/location-icon.png";
-import { useGetElapsedTime } from "../../hooks/useGetElapsedTime";
+
+import { useFormatSalary } from "../../lib/hooks/useFormatSalary";
+import { useGetElapsedTime } from "../../lib/hooks/useGetElapsedTime";
 
 export default function JobContainerView({
   job: { title, location, created_at, company, job_types, salary },

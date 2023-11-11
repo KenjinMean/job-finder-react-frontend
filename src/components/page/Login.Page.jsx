@@ -6,9 +6,9 @@ import {
   useGithubAuthLogin,
   useGoogleAuthLogin,
   useLogin,
-} from "../../hooks/useAuthRequestHandler";
-import { useResetUrlPath } from "../../hooks/useResetUrlPath";
-import useButtonDisabled from "../../hooks/useButtonDisabled";
+} from "../../lib/hooks/useAuthRequestHandler";
+import { useResetUrlPath } from "../../lib/hooks/useResetUrlPath";
+import useButtonDisabled from "../../lib/hooks/useButtonDisabled";
 
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 

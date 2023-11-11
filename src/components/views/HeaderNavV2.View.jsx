@@ -4,7 +4,7 @@ import { Menu } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 import ImageUrlLoaderUtil from "../utils/ImageUrlLoader.Util";
-import { useLogout } from "../../hooks/useAuthRequestHandler";
+import { useLogout } from "../../lib/hooks/useAuthRequestHandler";
 import { useStateContext } from "../../context/ContextProvider";
 
 export default function HeaderNavViewV2() {

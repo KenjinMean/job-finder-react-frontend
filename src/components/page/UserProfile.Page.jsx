@@ -4,9 +4,9 @@ import UserInfoView from "../views/user/UserInfo.View";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 import { useStateContext } from "../../context/ContextProvider";
 import UserCoverPhotoView from "../views/user/UserCoverPhoto.View";
-import { useGetUserInfo } from "../../hooks/useProfileRequesthandler";
 import UserProfilePhotoView from "../views/user/UserProfilePhoto.View";
 import UserSkillsView from "../views/user/UserSkills.View";
+import { useGetUserInfo } from "../../lib/hooks/useProfileRequesthandler";
 
 export default function UserProfilePage() {
   const { user } = useStateContext();
@@ -33,7 +33,6 @@ export default function UserProfilePage() {
             <div></div>
           </div>
         </section>
-        <section></section>
         <UserSkillsView userData={userData} />
       </main>
     </Fragment>
