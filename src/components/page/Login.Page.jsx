@@ -13,7 +13,7 @@ import useButtonDisabled from "../../lib/hooks/useButtonDisabled";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import LoginForm from "../forms/auth/Login.Form";
+import LoginForm from "../../forms/auth/Login.Form";
 import AuthProviderLoginView from "../views/auth/AuthProviderLogin.View";
 import AuthErrorView from "../views/auth/AuthError.View";
 

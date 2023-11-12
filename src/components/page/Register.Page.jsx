@@ -7,7 +7,7 @@ import { PageTitleUtil } from "../utils/PageTitle.Util";
 import { useRegister } from "../../lib/hooks/useAuthRequestHandler";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import RegisterForm from "../forms/auth/Register.Form";
+import RegisterForm from "../../forms/auth/Register.Form";
 import AuthErrorView from "../views/auth/AuthError.View";
 
 const PAYLOAD = {
