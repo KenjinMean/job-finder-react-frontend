@@ -8,6 +8,10 @@ import MaxWidthWrapperUtil from "../utils/MaxWidthWrapper.Util";
 import { useRefreshToken } from "../../lib/hooks/useAuthRequestHandler";
 import AutoCompleteSearchBarView from "./AutoCompleteSearchBar.View";
 import OverlaysUtil from "../utils/Overlays.Util";
+import TestModal from "../modals/user_modals/Test.Modal";
+import { useSetAtom } from "jotai";
+import { uiAtom } from "../../lib/jotaiStates";
+import { useModalStates } from "../../lib/zustand/modalStore";
 
 export default function HeaderView() {
   const location = useLocation();
@@ -47,7 +51,7 @@ export default function HeaderView() {
     }
   }, [token]);
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const { openModal } = useModalStates((state) => state);
 
   return (
     <header className="p-5 py-8 bg-gradient-to-r from-background-100 to-background-200 lg:px-10">
@@ -57,10 +61,14 @@ export default function HeaderView() {
           <Fragment>
             <HeroBannerView />
             <AutoCompleteSearchBarView />
-            <button onClick={() => setModalOpen((prev) => !prev)}>
-              open modal
+            <button
+              className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear bg-pink-500 rounded shadow outline-none active:bg-pink-600 hover:shadow-lg focus:outline-none"
+              type="button"
+              onClick={() => openModal("testModalState")}
+            >
+              Open regular modal
             </button>
-            <OverlaysUtil isOpen={modalOpen} setIsOpen={setModalOpen} />
+            <OverlaysUtil modalComponent={<TestModal />} />
           </Fragment>
         )}
       </MaxWidthWrapperUtil>
