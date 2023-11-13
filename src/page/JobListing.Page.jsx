@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import menuIcon from "../../assets/icons/option.png";
+import menuIcon from "../assets/icons/option.png";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 import JobContainerView from "../views/JobContainer.View";
-import { useFetchJobs } from "../../lib/hooks/useJobRequestHandler";
+import { useFetchJobs } from "../lib/hooks/useJobRequestHandler";
 import JobListSkeletonUtil from "../utils/JobListSkeleton.Util";
-import useIntersectionObserver from "../../lib/hooks/useIntersectionObserver";
+import useIntersectionObserver from "../lib/hooks/useIntersectionObserver";
 
 export default function JobListingPage() {
   const { data, hasNextPage, fetchNextPage, isFetching, isFetchingNextPage } =

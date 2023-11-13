@@ -3,15 +3,13 @@ import React, { useRef, useEffect, Fragment, useState } from "react";
 import HeroBannerView from "./HeroBanner.View";
 import { useLocation } from "react-router-dom";
 import HeaderNavViewV2 from "./HeaderNavV2.View";
-import { useStateContext } from "../../context/ContextProvider";
+import { useStateContext } from "../context/ContextProvider";
 import MaxWidthWrapperUtil from "../utils/MaxWidthWrapper.Util";
-import { useRefreshToken } from "../../lib/hooks/useAuthRequestHandler";
+import { useRefreshToken } from "../lib/hooks/useAuthRequestHandler";
 import AutoCompleteSearchBarView from "./AutoCompleteSearchBar.View";
 import OverlaysUtil from "../utils/Overlays.Util";
 import TestModal from "../modals/user_modals/Test.Modal";
-import { useSetAtom } from "jotai";
-import { uiAtom } from "../../lib/jotaiStates";
-import { useModalStates } from "../../lib/zustand/modalStore";
+import { useModalStates } from "../lib/zustand/modalStore";
 
 export default function HeaderView() {
   const location = useLocation();

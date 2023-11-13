@@ -1,13 +1,12 @@
 import React, { Fragment, useEffect, useRef } from "react";
 
-import menuIcon from "../../assets/icons/option.png";
+import menuIcon from "../assets/icons/option.png";
 import { Link, useLocation } from "react-router-dom";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 import JobContainerView from "../views/JobContainer.View";
 import JobListSkeletonUtil from "../utils/JobListSkeleton.Util";
-import { useExtractUrlParams } from "../../lib/hooks/useExtractUrlParams";
-import { useSearchJobsInfinite } from "../../lib/hooks/useJobRequestHandler";
-import useIntersectionObserver from "../../lib/hooks/useIntersectionObserver";
+import { useExtractUrlParams } from "../lib/hooks/useExtractUrlParams";
+import { useSearchJobsInfinite } from "../lib/hooks/useJobRequestHandler";
 
 export default function SearchResultPage() {
   const location = useLocation();

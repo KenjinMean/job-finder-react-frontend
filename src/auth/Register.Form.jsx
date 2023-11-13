@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
-import PasswordChecklistView from "../components/views/PasswordChecklist.View";
+import PasswordChecklistView from "../views/PasswordChecklist.View";
 
 // ICON SOURCES  "https://www.flaticon.com/free-icons/password" title="password icons" Password icons created by th studio - Flaticon
-import showPass from "../../../assets/icons/showPass.png";
-import hidePass from "../../../assets/icons/hidePass.png";
+import showPass from "../assets/icons/showPass.png";
+import hidePass from "../assets/icons/hidePass.png";
 
-import LoadingSpinnerUtil from "../components/utils/LoadingSpinnder.Util";
+import LoadingSpinnerUtil from "../utils/LoadingSpinnder.Util";
 
 const FOCUSED = {
   email: "false",

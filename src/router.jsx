@@ -1,32 +1,28 @@
 import { lazy, Suspense } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import ErrorPage from "./components/page/Error.Page";
-import AppLayout from "./components/layouts/App.Layout";
-import JobsLayout from "./components/layouts/Jobs.Layout";
-import AuthLayout from "./components/layouts/Auth.Layout";
-import AuthSkeletonUtil from "./components/utils/AuthSkeleton.Util";
-import UserProfileLayout from "./components/layouts/UserProfile.Layout";
-import JobListSkeletonUtil from "./components/utils/JobListSkeleton.Util";
-import { QueryBoundaries } from "./components/utils/QueryBoundaries.Util";
-import ComponentDesignView from "./components/views/ComponentDesign.View";
-import JobDetailSkeletonUtil from "./components/utils/JobDetailSkeleton.Util";
-import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Page";
-import ProfileSkeletonLoadingUtil from "./components/utils/ProfileSkeletonLoading.Util.jsx";
+import ErrorPage from "./page/Error.Page";
+import AppLayout from "./layouts/App.Layout";
+import JobsLayout from "./layouts/Jobs.Layout";
+import AuthLayout from "./layouts/Auth.Layout";
+import AuthSkeletonUtil from "./utils/AuthSkeleton.Util";
+import UserProfileLayout from "./layouts/UserProfile.Layout";
+import JobListSkeletonUtil from "./utils/JobListSkeleton.Util";
+import { QueryBoundaries } from "./utils/QueryBoundaries.Util";
+import ComponentDesignView from "./views/ComponentDesign.View";
+import JobDetailSkeletonUtil from "./utils/JobDetailSkeleton.Util";
+import AuthProviderCallbackPage from "./utils/AuthProviderCallback.Page";
+import ProfileSkeletonLoadingUtil from "./utils/ProfileSkeletonLoading.Util.jsx";
 
-const LoginPage = lazy(() => import("./components/page/Login.Page"));
-const RegisterPage = lazy(() => import("./components/page/Register.Page"));
-const JobDetailsPage = lazy(() => import("./components/page/JobDetails.Page"));
-const JobListingPage = lazy(() => import("./components/page/JobListing.Page"));
+const LoginPage = lazy(() => import("./page/Login.Page"));
+const RegisterPage = lazy(() => import("./page/Register.Page"));
+const JobDetailsPage = lazy(() => import("./page/JobDetails.Page"));
+const JobListingPage = lazy(() => import("./page/JobListing.Page"));
 
-const SearchResultPage = lazy(() =>
-  import("./components/page/SearchResult.Page")
-);
-const UserProfilePage = lazy(() =>
-  import("./components/page/UserProfile.Page")
-);
+const SearchResultPage = lazy(() => import("./page/SearchResult.Page"));
+const UserProfilePage = lazy(() => import("./page/UserProfile.Page"));
 const UserProfileWizardPage = lazy(() =>
-  import("./components/page/UserProfileWizard.Page")
+  import("./page/UserProfileWizard.Page")
 );
 
 const router = createBrowserRouter([

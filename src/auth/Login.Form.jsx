@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LoadingSpinnerUtil from "../../utils/LoadingSpinnder.Util";
+import LoadingSpinnerUtil from "../utils/LoadingSpinnder.Util";
 
 export default function LoginForm({
   handleLogin,

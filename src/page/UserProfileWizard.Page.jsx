@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-import { useMultistepForm } from "../../hooks/useMultistepForm";
+import { useMultistepForm } from "../lib/hooks/useMultistepForm";
 
 import Details from "../views/Details";
 import Payment from "../views/Payment";

@@ -1,8 +1,8 @@
 import React from "react";
 
 // ICON SOURCES pass/fail from: https://www.flaticon.com/free-icons/tick" title="tick icons" Tick icons created by kliwir art - Flaticon
-import passed from "../../assets/icons/yes.png";
-import failed from "../../assets/icons/remove.png";
+import passed from "../assets/icons/yes.png";
+import failed from "../assets/icons/remove.png";
 
 export default function PasswordChecklistView({ payload, checkPassword }) {
   const { password } = payload;

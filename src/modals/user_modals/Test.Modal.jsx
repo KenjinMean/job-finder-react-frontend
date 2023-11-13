@@ -1,7 +1,7 @@
 // SOURCE: https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular
 import React from "react";
 
-import { useModalStates } from "../../../lib/zustand/modalStore";
+import { useModalStates } from "../../lib/zustand/modalStore";
 
 export default function TestModal() {
   const { testModalState, closeModal } = useModalStates((state) => state);

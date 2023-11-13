@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 import MaxWidthWrapperUtil from "./MaxWidthWrapper.Util";
-import { useStateContext } from "../../context/ContextProvider";
+import { useStateContext } from "../context/ContextProvider";
 import { PageTitleUtil } from "./PageTitle.Util";
 
 export default function AuthProviderCallbackPage() {

@@ -1,18 +1,16 @@
 import React, { Fragment, Suspense, lazy, useMemo } from "react";
 
-import pesoIcon from "../../assets/icons/peso2-icon.png";
-import memberIcon from "../../assets/icons/people-icon.png";
-import locationIcon from "../../assets/icons/location-icon.png";
+import pesoIcon from "../assets/icons/peso2-icon.png";
+import memberIcon from "../assets/icons/people-icon.png";
+import locationIcon from "../assets/icons/location-icon.png";
 
-import { useFormatSalary } from "../../lib/hooks/useFormatSalary";
-import { useGetElapsedTime } from "../../lib/hooks/useGetElapsedTime";
+import { useFormatSalary } from "../lib/hooks/useFormatSalary";
+import { useGetElapsedTime } from "../lib/hooks/useGetElapsedTime";
 
 export default function JobContainerView({
   job: { title, location, created_at, company, job_types, salary },
 }) {
-  const CompanyLogo = lazy(() =>
-    import("../../components/utils/ImageUrlLoader.Util")
-  );
+  const CompanyLogo = lazy(() => import("../utils/ImageUrlLoader.Util"));
 
   const isNew = () => {
     const now = new Date();

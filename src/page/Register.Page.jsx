@@ -1,13 +1,13 @@
 import { Fragment, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useStateContext } from "../../context/ContextProvider";
+import { useStateContext } from "../context/ContextProvider";
 
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 
-import { useRegister } from "../../lib/hooks/useAuthRequestHandler";
+import { useRegister } from "../lib/hooks/useAuthRequestHandler";
 
-import appLogo from "../../assets/logo/JobFinderLogo.png";
-import RegisterForm from "../../forms/auth/Register.Form";
+import appLogo from "../assets/logo/JobFinderLogo.png";
+import RegisterForm from "../auth/Register.Form";
 import AuthErrorView from "../views/auth/AuthError.View";
 
 const PAYLOAD = {

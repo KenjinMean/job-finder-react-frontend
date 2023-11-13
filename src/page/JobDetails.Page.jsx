@@ -1,9 +1,9 @@
 import React, { Fragment, Suspense } from "react";
 import { PageTitleUtil } from "../utils/PageTitle.Util";
 import { useParams, useNavigate } from "react-router-dom";
-import { useFormatSalary } from "../../lib/hooks/useFormatSalary";
+import { useFormatSalary } from "../lib/hooks/useFormatSalary";
 import JobDetailSkeletonUtil from "../utils/JobDetailSkeleton.Util";
-import { useFetchJobdetails } from "../../lib/hooks/useJobRequestHandler";
+import { useFetchJobdetails } from "../lib/hooks/useJobRequestHandler";
 
 export default function JobDetailsPage() {
   const { jobSlug } = useParams();
