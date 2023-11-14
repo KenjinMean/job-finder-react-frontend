@@ -62,7 +62,7 @@ export default function HeaderNavViewV2() {
   return (
     <nav className="relative bg-transparent border-gray-200">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl gap-5 mx-auto">
-        <Link to="/" className="flex items-center">
+        <Link to="/jobs" className="flex items-center">
           <img src={appLogo} className="h-14" alt="Flowbite Logo" />
         </Link>
 

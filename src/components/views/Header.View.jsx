@@ -1,12 +1,11 @@
 import React, { useRef, useEffect, Fragment } from "react";
 
 import { useLocation } from "react-router-dom";
-import { useModalStates } from "../../lib/zustand/modalStore";
+import { useStateContext } from "../../context/ContextProvider";
+import { useRefreshToken } from "../../lib/hooks/useAuthRequestHandler";
 
 import HeroBannerView from "./HeroBanner.View";
 import HeaderNavViewV2 from "./HeaderNavV2.View";
-import { useStateContext } from "../../context/ContextProvider";
-import { useRefreshToken } from "../../lib/hooks/useAuthRequestHandler";
 
 import MaxWidthWrapperUtil from "../../utils/MaxWidthWrapper.Util";
 

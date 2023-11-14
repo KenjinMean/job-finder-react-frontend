@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link, useLocation, Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axiosClient from "../../axios-client";
 import { useStateContext } from "../../context/ContextProvider";
 import { useMutation } from "@tanstack/react-query";
@@ -50,7 +50,7 @@ export default function Register() {
       <div className="flex items-center justify-center flex-1 m-0 bg-white shadow sm:max-w-xl sm:m-14 sm:rounded-lg">
         <div className="p-6 sm:p-12">
           <div>
-            <Link to="/">
+            <Link to="/jobs">
               <h1 className="text-4xl font-bold text-center text-indigo-500">
                 Job Finder
               </h1>

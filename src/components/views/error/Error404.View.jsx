@@ -30,7 +30,7 @@ export default function Error404View() {
         <p className="mt-5 text-slate-600 lg:text-lg">
           The page you are looking for doesn't exist or <br />
           has been removed. You can return to the{" "}
-          <Link to="/" className="text-blue-500 hover:text-blue-700">
+          <Link to="/jobs" className="text-blue-500 hover:text-blue-700">
             Home page
           </Link>{" "}
           or{" "}

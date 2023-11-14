@@ -5,20 +5,24 @@ import ErrorPage from "./pages/Error.Page";
 import AppLayout from "./layouts/App.Layout";
 import JobsLayout from "./layouts/Jobs.Layout";
 import AuthLayout from "./layouts/Auth.Layout";
-import AuthSkeletonUtil from "./utils/AuthSkeleton.Util";
 import UserProfileLayout from "./layouts/UserProfile.Layout";
-import JobListSkeletonUtil from "./utils/JobListSkeleton.Util";
+
+import ModalUtil from "./utils/Modal.Util.jsx";
+import AuthSkeletonUtil from "./utils/LoadersSpinners/AuthSkeleton.Util.jsx";
+import JobListSkeletonUtil from "./utils/LoadersSpinners/JobListSkeleton.Util.jsx";
 import { QueryBoundaries } from "./utils/QueryBoundaries.Util";
-import ComponentDesignView from "./components/views/ComponentDesign.View";
-import JobDetailSkeletonUtil from "./utils/JobDetailSkeleton.Util";
+import JobDetailSkeletonUtil from "./utils/LoadersSpinners/JobDetailSkeleton.Util.jsx";
 import AuthProviderCallbackPage from "./utils/AuthProviderCallback.Page";
 import ProfileSkeletonLoadingUtil from "./utils/ProfileSkeletonLoading.Util.jsx";
+
+import ComponentDesignView from "./components/views/ComponentDesign.View";
+import AddUserSkillModalComponent from "./components/modals/user/AddUserSkill.Modal.Component.jsx";
+import EditUserSkillModalComponent from "./components/modals/user/EditUserSkill.Modal.Component.jsx";
 
 const LoginPage = lazy(() => import("./pages/Login.Page"));
 const RegisterPage = lazy(() => import("./pages/Register.Page"));
 const JobDetailsPage = lazy(() => import("./pages/JobDetails.Page"));
 const JobListingPage = lazy(() => import("./pages/JobListing.Page"));
-
 const SearchResultPage = lazy(() => import("./pages/SearchResult.Page"));
 const UserProfilePage = lazy(() => import("./pages/UserProfile.Page"));
 const UserProfileWizardPage = lazy(() =>
@@ -96,6 +100,26 @@ const router = createBrowserRouter([
                 <UserProfilePage />
               </Suspense>
             ),
+            children: [
+              {
+                path: "edit-skill",
+                element: (
+                  <ModalUtil modalComponent={<EditUserSkillModalComponent />} />
+                ),
+              },
+              {
+                path: "add-skill",
+                element: (
+                  <ModalUtil modalComponent={<AddUserSkillModalComponent />} />
+                ),
+              },
+              {
+                path: "edit-contact",
+                element: (
+                  <ModalUtil modalComponent={<EditUserSkillModalComponent />} />
+                ),
+              },
+            ],
           },
           {
             path: "setup",

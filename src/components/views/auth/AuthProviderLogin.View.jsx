@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingSpinnerUtil from "../../../utils/LoadingSpinnder.Util";
+import LoadingSpinnerUtil from "../../../utils/LoadersSpinners/LoadingSpinnder.Util";
 
 export default function AuthProviderLoginView({
   githubLoading,
