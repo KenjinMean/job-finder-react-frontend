@@ -58,7 +58,7 @@ export default function RegisterPage() {
     <Fragment>
       <PageTitleUtil title="Register | JobFinder" />
       <div className="p-6 sm:p-12">
-        <Link to="/">
+        <Link to="/jobs">
           <div className="flex justify-center">
             <img src={appLogo} alt="" />
           </div>

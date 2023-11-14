@@ -7,7 +7,7 @@ import useIntersectionObserver from "../lib/hooks/useIntersectionObserver";
 import menuIcon from "../assets/icons/option.png";
 
 import { PageTitleUtil } from "../utils/PageTitle.Util";
-import JobListSkeletonUtil from "../utils/JobListSkeleton.Util";
+import JobListSkeletonUtil from "../utils/LoadersSpinners/JobListSkeleton.Util";
 import JobContainerView from "../components/views/JobContainer.View";
 
 export default function JobListingPage() {

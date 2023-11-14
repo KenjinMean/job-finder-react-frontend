@@ -7,6 +7,8 @@ import UserCoverPhotoView from "../components/views/user/UserCoverPhoto.View";
 import UserProfilePhotoView from "../components/views/user/UserProfilePhoto.View";
 import UserSkillsView from "../components/views/user/UserSkills.View";
 import { useGetUserInfo } from "../lib/hooks/useProfileRequesthandler";
+import { Outlet } from "react-router-dom";
+import UserContactView from "../components/views/user/UserContact.View";
 
 export default function UserProfilePage() {
   const { user } = useStateContext();
@@ -21,7 +23,7 @@ export default function UserProfilePage() {
   return (
     <Fragment>
       <PageTitleUtil title="Profile" />
-      <main>
+      <div>
         <section className="relative w-full overflow-hidden rounded-lg bg-slate-200">
           <UserCoverPhotoView userData={userData?.user_info} />
           <UserProfilePhotoView userData={userData?.user_info} />
@@ -34,7 +36,11 @@ export default function UserProfilePage() {
           </div>
         </section>
         <UserSkillsView userData={userData} />
-      </main>
+        <UserContactView userData={userData} />
+
+        {/* This Outlet renders modals matched from url */}
+        <Outlet />
+      </div>
     </Fragment>
   );
 }

@@ -5,7 +5,7 @@ import { useFormatSalary } from "../lib/hooks/useFormatSalary";
 import { useFetchJobdetails } from "../lib/hooks/useJobRequestHandler";
 
 import { PageTitleUtil } from "../utils/PageTitle.Util";
-import JobDetailSkeletonUtil from "../utils/JobDetailSkeleton.Util";
+import JobDetailSkeletonUtil from "../utils/LoadersSpinners/JobDetailSkeleton.Util";
 
 export default function JobDetailsPage() {
   const { jobSlug } = useParams();

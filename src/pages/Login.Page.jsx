@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, Fragment } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
+
 import { useStateContext } from "../context/ContextProvider";
 
 import {
@@ -100,7 +101,7 @@ export default function LoginPage() {
     <Fragment>
       <PageTitleUtil title="Login" />
       <div className="p-6 sm:p-12 ">
-        <Link to="/">
+        <Link to="/jobs">
           <div className="flex justify-center">
             <img src={appLogo} alt="" />
           </div>
