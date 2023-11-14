@@ -93,7 +93,11 @@ export const useGoogleAuthLogin = (onSuccess) => {
   });
 };
 
-export const useRefreshToken = (id, onSuccess, finallyFn) => {
+export const useRefreshToken = (
+  id,
+  onSuccess = () => {},
+  finallyFn = () => {}
+) => {
   return useQuery({
     queryKey: ["refreshtoken", id],
     queryFn: async () => {
