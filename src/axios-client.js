@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const axiosClient = axios.create({
   baseURL: `${import.meta.env.VITE_API_BASE_URL}/api/`,
@@ -11,13 +10,12 @@ const axiosClient = axios.create({
   withCredentials: true,
 });
 
+//  this interceptor sends bearer token to every request
 axiosClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("ACCESS_TOKEN");
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
-
-// FIX create a dedicated error page and navigate to it if theres an error
 
 axiosClient.interceptors.response.use(
   (response) => {
