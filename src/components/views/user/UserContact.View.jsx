@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import OverlaysUtil from "../../../utils/Overlays.Util";
 import TestModal from "../../modals/user/Test.Modal";
-import EditUserSkillModalComponent from "../../modals/user/EditUserSkill.Modal.Component";
+
+import OverlaysUtil from "../../../components/utils/Overlays.Util";
 
 export default function UserContactView({ userData }) {
   // console.log("UserContact Component: ", userData);

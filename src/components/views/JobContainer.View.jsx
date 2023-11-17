@@ -10,7 +10,9 @@ import { useGetElapsedTime } from "../../lib/hooks/useGetElapsedTime";
 export default function JobContainerView({
   job: { title, location, created_at, company, job_types, salary },
 }) {
-  const CompanyLogo = lazy(() => import("../../utils/ImageUrlLoader.Util"));
+  const CompanyLogo = lazy(() =>
+    import("../../components/utils/ImageUrlLoader.Util")
+  );
 
   const isNew = () => {
     const now = new Date();

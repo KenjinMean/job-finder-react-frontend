@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import ImageUrlLoaderUtil from "../../../utils/ImageUrlLoader.Util";
+import ImageUrlLoaderUtil from "../../../components/utils/ImageUrlLoader.Util";
 
 export default function UserCoverPhotoView({ userData }) {
   return (

@@ -7,7 +7,7 @@ import { useRefreshToken } from "../../lib/hooks/useAuthRequestHandler";
 import HeroBannerView from "./HeroBanner.View";
 import HeaderNavViewV2 from "./HeaderNavV2.View";
 
-import MaxWidthWrapperUtil from "../../utils/MaxWidthWrapper.Util";
+import MaxWidthWrapperUtil from "../../components/utils/MaxWidthWrapper.Util";
 
 import AutoCompleteSearchBarUiComponent from "../UI/AutoCompleteSearchBar.Ui.Component";
 

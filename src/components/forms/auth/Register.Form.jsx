@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import showPass from "../../../assets/icons/showPass.png";
 import hidePass from "../../../assets/icons/hidePass.png";
 
-import LoadingSpinnerUtil from "../../../utils/LoadersSpinners/LoadingSpinnder.Util";
+import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
+
 import PasswordChecklistUiComponent from "../../UI/auth/PasswordChecklist.Ui.Component";
 
 const FOCUSED = {

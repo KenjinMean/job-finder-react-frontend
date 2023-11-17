@@ -1,14 +1,16 @@
 import React, { Fragment } from "react";
-
-import UserInfoView from "../components/views/user/UserInfo.View";
-import { PageTitleUtil } from "../utils/PageTitle.Util";
-import { useStateContext } from "../context/ContextProvider";
-import UserCoverPhotoView from "../components/views/user/UserCoverPhoto.View";
-import UserProfilePhotoView from "../components/views/user/UserProfilePhoto.View";
-import UserSkillsView from "../components/views/user/UserSkills.View";
-import { useGetUserInfo } from "../lib/hooks/useProfileRequesthandler";
 import { Outlet } from "react-router-dom";
-import UserContactView from "../components/views/user/UserContact.View";
+
+import { useStateContext } from "../../context/ContextProvider";
+import { useGetUserInfo } from "../../lib/hooks/useProfileRequesthandler";
+
+import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
+
+import UserContactView from "../../components/views/user/UserContact.View";
+import UserInfoView from "../../components/views/user/UserInfo.View";
+import UserSkillsView from "../../components/views/user/UserSkills.View";
+import UserCoverPhotoView from "../../components/views/user/UserCoverPhoto.View";
+import UserProfilePhotoView from "../../components/views/user/UserProfilePhoto.View";
 
 export default function UserProfilePage() {
   const { user } = useStateContext();

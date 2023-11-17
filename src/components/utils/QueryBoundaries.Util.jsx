@@ -1,10 +1,12 @@
 // SOURCE: https://www.bam.tech/en/article/suspense-and-react-query-make-data-fetching-easy
 
 import React, { Suspense } from "react";
-import ErrorPage from "../pages/Error.Page";
+
 import { ErrorBoundary } from "react-error-boundary";
-import JobListSkeletonUtil from "./LoadersSpinners/JobListSkeleton.Util";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
+
+import ErrorPage from "../pages/Error.Page";
+import JobListSkeletonUtil from "./LoadersSpinners/JobListSkeleton.Util";
 
 export const QueryBoundaries = ({ children }) => (
   <QueryErrorResetBoundary>

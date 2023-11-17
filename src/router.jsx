@@ -1,32 +1,38 @@
 import { lazy, Suspense } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import ErrorPage from "./pages/Error.Page";
-import AppLayout from "./layouts/App.Layout";
-import JobsLayout from "./layouts/Jobs.Layout";
-import AuthLayout from "./layouts/Auth.Layout";
-import UserProfileLayout from "./layouts/UserProfile.Layout";
-
-import ModalUtil from "./utils/Modal.Util.jsx";
-import AuthSkeletonUtil from "./utils/LoadersSpinners/AuthSkeleton.Util.jsx";
-import JobListSkeletonUtil from "./utils/LoadersSpinners/JobListSkeleton.Util.jsx";
-import { QueryBoundaries } from "./utils/QueryBoundaries.Util";
-import JobDetailSkeletonUtil from "./utils/LoadersSpinners/JobDetailSkeleton.Util.jsx";
-import AuthProviderCallbackPage from "./utils/AuthProviderCallback.Page";
-import ProfileSkeletonLoadingUtil from "./utils/ProfileSkeletonLoading.Util.jsx";
+import AppLayout from "./components/layouts/App.Layout";
+import JobsLayout from "./components/layouts/Jobs.Layout";
+import AuthLayout from "./components/layouts/Auth.Layout";
+import UserProfileLayout from "./components/layouts/UserProfile.Layout";
 
 import ComponentDesignView from "./components/views/ComponentDesign.View";
+
+import ModalUtil from "./components/utils/Modal.Util.jsx";
+import { QueryBoundaries } from "./components/utils/QueryBoundaries.Util";
+import AuthSkeletonUtil from "./components/utils/LoadersSpinners/AuthSkeleton.Util.jsx";
+import ProfileSkeletonLoadingUtil from "./components/utils/ProfileSkeletonLoading.Util.jsx";
+import JobListSkeletonUtil from "./components/utils/LoadersSpinners/JobListSkeleton.Util.jsx";
+import JobDetailSkeletonUtil from "./components/utils/LoadersSpinners/JobDetailSkeleton.Util.jsx";
+
 import AddUserSkillModalComponent from "./components/modals/user/AddUserSkill.Modal.Component.jsx";
 import EditUserSkillModalComponent from "./components/modals/user/EditUserSkill.Modal.Component.jsx";
 
-const LoginPage = lazy(() => import("./pages/Login.Page"));
-const RegisterPage = lazy(() => import("./pages/Register.Page"));
-const JobDetailsPage = lazy(() => import("./pages/JobDetails.Page"));
-const JobListingPage = lazy(() => import("./pages/JobListing.Page"));
-const SearchResultPage = lazy(() => import("./pages/SearchResult.Page"));
-const UserProfilePage = lazy(() => import("./pages/UserProfile.Page"));
+import ErrorPage from "./components/pages/Error.Page";
+import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Page.Util.jsx";
+
+const LoginPage = lazy(() => import("./components/pages/Login.Page"));
+const RegisterPage = lazy(() => import("./components/pages/Register.Page"));
+const JobDetailsPage = lazy(() => import("./components/pages/JobDetails.Page"));
+const JobListingPage = lazy(() => import("./components/pages/JobListing.Page"));
+const SearchResultPage = lazy(() =>
+  import("./components/pages/SearchResult.Page")
+);
+const UserProfilePage = lazy(() =>
+  import("./components/pages/UserProfile.Page")
+);
 const UserProfileWizardPage = lazy(() =>
-  import("./pages/UserProfileWizard.Page")
+  import("./components/pages/UserProfileWizard.Page")
 );
 
 const router = createBrowserRouter([

@@ -1,14 +1,15 @@
+// AUTH TEMPLATE SOURCE: https://codepen.io/owaiswiz/pen/jOPvEPB
 import { Fragment, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useStateContext } from "../context/ContextProvider";
 
-import { PageTitleUtil } from "../utils/PageTitle.Util";
+import { useStateContext } from "../../context/ContextProvider";
+import { useRegister } from "../../lib/hooks/useAuthRequestHandler";
 
-import { useRegister } from "../lib/hooks/useAuthRequestHandler";
+import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
-import appLogo from "../assets/logo/JobFinderLogo.png";
-import RegisterForm from "../components/forms/auth/Register.Form";
-import AuthErrorView from "../components/views/auth/AuthError.View";
+import appLogo from "../../assets/logo/JobFinderLogo.png";
+import RegisterForm from "../../components/forms/auth/Register.Form";
+import AuthErrorView from "../../components/views/auth/AuthError.View";
 
 const PAYLOAD = {
   email: "",

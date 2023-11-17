@@ -1,7 +1,6 @@
 import React from "react";
-import MaxWidthWrapperUtil from "../../utils/MaxWidthWrapper.Util";
-import JobListSkeletonUtil from "../../utils/LoadersSpinners/JobListSkeleton.Util";
-import JobDetailSkeletonUtil from "../../utils/LoadersSpinners/JobDetailSkeleton.Util";
+import MaxWidthWrapperUtil from "../../components/utils/MaxWidthWrapper.Util";
+import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
 
 export default function ComponentDesignView() {
   return (

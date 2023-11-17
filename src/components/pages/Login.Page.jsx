@@ -1,23 +1,24 @@
+// AUTH TEMPLATE SOURCE: https://codepen.io/owaiswiz/pen/jOPvEPB
 import React, { useRef, useState, useEffect, Fragment } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 
-import { useStateContext } from "../context/ContextProvider";
+import { useStateContext } from "../../context/ContextProvider";
 
 import {
   useGithubAuthLogin,
   useGoogleAuthLogin,
   useLogin,
-} from "../lib/hooks/useAuthRequestHandler";
-import { useResetUrlPath } from "../lib/hooks/useResetUrlPath";
-import useButtonDisabled from "../lib/hooks/useButtonDisabled";
+} from "../../lib/hooks/useAuthRequestHandler";
+import { useResetUrlPath } from "../../lib/hooks/useResetUrlPath";
+import useButtonDisabled from "../../lib/hooks/useButtonDisabled";
 
-import { PageTitleUtil } from "../utils/PageTitle.Util";
+import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
-import appLogo from "../assets/logo/JobFinderLogo.png";
+import appLogo from "../../assets/logo/JobFinderLogo.png";
 
-import LoginForm from "../components/forms/auth/Login.Form";
-import AuthErrorView from "../components/views/auth/AuthError.View";
-import AuthProviderLoginView from "../components/views/auth/AuthProviderLogin.View";
+import LoginForm from "../../components/forms/auth/Login.Form";
+import AuthErrorView from "../../components/views/auth/AuthError.View";
+import AuthProviderLoginView from "../../components/views/auth/AuthProviderLogin.View";
 
 export default function LoginPage() {
   const location = useLocation();

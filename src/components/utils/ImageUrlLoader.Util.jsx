@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import fallBackCompanyImage from "../assets/icons/fallbackCompanyImage.png";
+import fallBackCompanyImage from "../../assets/icons/fallbackCompanyImage.png";
 
 export default function ImageUrlLoaderUtil({ imageUrl, alt = "" }) {
   const [isLoading, setIsLoading] = useState(true);

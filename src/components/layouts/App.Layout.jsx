@@ -3,8 +3,8 @@ import { Outlet } from "react-router-dom";
 // https://reactrouter.com/en/main/components/scroll-restoration
 import { ScrollRestoration } from "react-router-dom";
 
-import { useModalScrollLock } from "../lib/hooks/useModalScrollLock";
-import HeaderView from "../components/views/Header.View";
+import HeaderView from "../../components/views/Header.View";
+import { useModalScrollLock } from "../../lib/hooks/useModalScrollLock";
 
 export default function AppLayout() {
   const modalScrollLockRef = useRef();
