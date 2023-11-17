@@ -16,11 +16,7 @@ export default function DebouncedSearchSkillUiComponent({}) {
     setSearchSuggestions
   );
 
-  const inputRef = useRef();
-  const suggestionsDropdownRef = useRef(null);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
-  const [isSuggestionDropdownActive, setIsSuggestionDropdownActive] =
-    useState(false);
 
   const debouncedFetchSearchSuggestions = useDebouncedCallback(() => {
     fetchSearchSuggestions();
@@ -70,54 +66,20 @@ export default function DebouncedSearchSkillUiComponent({}) {
     setIsSuggestionDropdownActive(true);
   };
 
-  const closeSuggestions = () => {
-    setIsSuggestionDropdownActive(false);
-  };
-
-  const handleButtonClear = () => {
-    if (inputRef.current) {
-      inputRef.current.value = "";
-    }
-
-    setKeyword("");
-  };
-
   useEffect(() => {
     debouncedFetchSearchSuggestions();
   }, [keyword]);
 
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (
-        suggestionsDropdownRef.current &&
-        !suggestionsDropdownRef.current.contains(event.target)
-      ) {
-        closeSuggestions();
-      }
-    };
-
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
-
   return (
     <div className="relative w-full mx-auto mt-10 mb-5 rounded-sm sm:mb-10">
       <div className="flex items-center gap-5 bg-white rounded-md sm:rounded-none">
-        <Menu
-          as="div"
-          ref={suggestionsDropdownRef}
-          className="flex-grow "
-          open={isSuggestionDropdownActive}
-        >
+        <div className="flex-grow ">
           <input
             type="text"
-            ref={inputRef}
             onFocus={handleInputFocus}
             onKeyDown={handleSearchBarKeyDown}
             placeholder="Job Title or Keyword"
+            value={keyword}
             onChange={(event) => handleInputChange(event)}
             className="w-full p-5 pl-12 font-semibold text-center rounded-md sm:text-left"
           />
@@ -126,7 +88,7 @@ export default function DebouncedSearchSkillUiComponent({}) {
             alt="search icon"
             className="absolute w-5 h-5 top-5 left-5"
           />
-        </Menu>
+        </div>
       </div>
     </div>
   );
