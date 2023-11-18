@@ -6,7 +6,8 @@ const getJobDetails = (id) => {
 };
 
 const fetchJobs = ({ pageParam }) => {
-  return axiosClient.get(`/jobs/get-job-posting?page=${pageParam}`);
+  const url = `/jobs/get-job-posting${pageParam ? `?page=${pageParam}` : ""}`;
+  return axiosClient.get(url);
 };
 
 const searchJobs = (param, { pageParam }) => {
@@ -65,7 +66,13 @@ export const useSearchJobsInfinite = (params) => {
 export const useFetchSearchSuggestions = (param) => {
   return useQuery({
     queryKey: ["fetchjobsuggestion", param],
-    queryFn: () => fetchSearchSuggestion(param),
+    queryFn: () => {
+      // checks if param is not empty before invoking fetch function
+      if (param) {
+        return fetchSearchSuggestion(param);
+      }
+      return { data: null };
+    },
     enabled: false,
     select: (data) => data?.data?.suggestions,
   });
