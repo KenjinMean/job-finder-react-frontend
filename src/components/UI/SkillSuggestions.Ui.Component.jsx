@@ -54,20 +54,21 @@ export default function SkillSuggestionsUiComponent() {
         {isFetching ? (
           <LoadingSpinnerUtil />
         ) : (
-          <div className="flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-2">
             {skills &&
               skills.map((skill) => {
                 return (
-                  <span
-                    className="px-2 border"
-                    key={skill.id}
-                    onClick={() => handleSuggestionClick(skill.id)}
-                  >
-                    {skill.name}
-                  </span>
+                  <li key={skill.id}>
+                    <button
+                      className="px-2 border"
+                      onClick={() => handleSuggestionClick(skill.id)}
+                    >
+                      {skill.name}
+                    </button>
+                  </li>
                 );
               })}
-          </div>
+          </ul>
         )}
       </div>
     </Fragment>

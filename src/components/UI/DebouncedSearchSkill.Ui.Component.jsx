@@ -1,25 +1,22 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Menu } from "@headlessui/react";
+import React, { useEffect } from "react";
 
 import searchIcon from "../../assets/icons/search-icon.png";
 
 import { useDebouncedCallback } from "../../lib/hooks/UseDebounceCallback";
-import { useSearchSkill } from "../../lib/hooks/ApiRequestsHandlers/useSkillRequestHandler";
 import { useDebouncedSearchSkillStore } from "../../lib/zustand/DebouncedSearchSkillStore";
+import { useSearchSkill } from "../../lib/hooks/ApiRequestsHandlers/useSkillRequestHandler";
 
 export default function DebouncedSearchSkillUiComponent({}) {
-  const { setKeyword, keyword, setSearchSuggestions } =
+  const { keyword, setKeyword, setSearchSuggestions } =
     useDebouncedSearchSkillStore();
 
-  const { refetch: fetchSearchSuggestions } = useSearchSkill(
+  const { refetch: searchSkillFn } = useSearchSkill(
     keyword,
     setSearchSuggestions
   );
 
-  const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
-
-  const debouncedFetchSearchSuggestions = useDebouncedCallback(() => {
-    fetchSearchSuggestions();
+  const debouncedSearchSkillFn = useDebouncedCallback(() => {
+    searchSkillFn();
   }, 300);
 
   const handleInputChange = (event) => {
@@ -27,47 +24,8 @@ export default function DebouncedSearchSkillUiComponent({}) {
     setKeyword(value.trim());
   };
 
-  const handleArrowKeyPress = (key) => {
-    setSelectedSuggestionIndex((prevIndex) => {
-      if (key === "ArrowUp") {
-        return prevIndex === -1
-          ? searchSuggestionArray.length - 1
-          : prevIndex - 1;
-      } else if (key === "ArrowDown") {
-        return prevIndex === searchSuggestionArray.length - 1
-          ? -1
-          : prevIndex + 1;
-      }
-    });
-  };
-
-  const handleEnterKeyPress = () => {
-    inputRef.current.blur();
-    setIsSuggestionDropdownActive(false);
-    if (selectedSuggestionIndex === -1) {
-      fetchFn();
-    } else {
-      const selectedSuggestion = searchSuggestionArray[selectedSuggestionIndex];
-      inputRef.current.value = selectedSuggestion;
-      setSelectedSuggestionIndex(-1);
-      handleSearch();
-    }
-  };
-
-  const handleSearchBarKeyDown = (event) => {
-    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-      handleArrowKeyPress(event.key);
-    } else if (event.key === "Enter") {
-      handleEnterKeyPress();
-    }
-  };
-
-  const handleInputFocus = () => {
-    setIsSuggestionDropdownActive(true);
-  };
-
   useEffect(() => {
-    debouncedFetchSearchSuggestions();
+    debouncedSearchSkillFn();
   }, [keyword]);
 
   return (
@@ -76,8 +34,6 @@ export default function DebouncedSearchSkillUiComponent({}) {
         <div className="flex-grow ">
           <input
             type="text"
-            onFocus={handleInputFocus}
-            onKeyDown={handleSearchBarKeyDown}
             placeholder="Job Title or Keyword"
             value={keyword}
             onChange={(event) => handleInputChange(event)}

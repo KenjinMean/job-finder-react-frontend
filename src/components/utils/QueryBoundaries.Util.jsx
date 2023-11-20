@@ -5,7 +5,7 @@ import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
 
-import ErrorPage from "../pages/Error.Page";
+import ErrorPage from "../../pages/Error.Page";
 import JobListSkeletonUtil from "./LoadersSpinners/JobListSkeleton.Util";
 
 export const QueryBoundaries = ({ children }) => (

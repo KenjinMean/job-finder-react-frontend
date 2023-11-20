@@ -30,7 +30,7 @@ export const useFetchJobdetails = (id) => {
   });
 };
 
-export const useFetchJobs = () => {
+export const useFetchJobsInfinite = () => {
   return useInfiniteQuery({
     queryKey: ["joblisting"],
     queryFn: ({ pageParam }) => fetchJobs({ pageParam }),

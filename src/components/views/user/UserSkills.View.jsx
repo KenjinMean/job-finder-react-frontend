@@ -1,27 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useRemoveSkill } from "../../../lib/hooks/ApiRequestsHandlers/useSkillRequestHandler";
+
 export default function UserSkillsView({ userData }) {
+  const [removeSkillActive, setRemoveSkillactive] = useState(false);
+
+  const {
+    isLoading: removeSkillLoading,
+    isError,
+    error,
+    mutate: removeSkillMutation,
+  } = useRemoveSkill();
+
+  const handleRemoveSkill = () => {
+    removeSkillMutation();
+  };
+
   return (
     <section className="relative w-full p-5 mt-5 overflow-hidden rounded-lg bg-slate-200">
       <h2 className="text-2xl font-semibold">Skills</h2>
-      <div className="flex flex-col">
+      <ul className="flex flex-col">
         {userData.user_skills.map((skill) => {
           return (
-            <span className="rounded-md" key={skill.id}>
-              {skill.name}
-            </span>
+            <li className="flex justify-between" key={skill.id}>
+              <span className="rounded-md">{skill.name}</span>
+              {removeSkillActive && (
+                <button
+                  onClick={() => console.log("will remove skill", skill.name)}
+                >
+                  remove
+                </button>
+              )}
+            </li>
           );
         })}
-      </div>
+      </ul>
       <div className="absolute flex gap-5 right-5 top-5">
-        <Link
-          to="edit-skill"
-          // prevents page scrolling back to top when opening modals
-          preventScrollReset={true}
-        >
-          edit
-        </Link>
+        <Link to="edit-skills">edit</Link>
         <Link
           to="add-skill"
           // prevents page scrolling back to top when opening modals

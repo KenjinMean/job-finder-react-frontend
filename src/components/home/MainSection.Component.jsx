@@ -11,7 +11,7 @@ import JobListSkeletonUtil from "../components/utils/LoadersSpinners/JobListSkel
 
 import JobContainerView from "../components/views/JobContainer.View";
 
-export default function JobListingPage() {
+export default function MainSectionComponent() {
   const { data, hasNextPage, fetchNextPage, isFetching, isFetchingNextPage } =
     useFetchJobsInfinite();
 

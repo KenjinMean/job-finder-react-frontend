@@ -8,10 +8,11 @@ export default function ImageUrlLoaderUtil({ imageUrl, alt = "" }) {
     setIsLoading(false);
   };
 
-  const url =
-    imageUrl.startsWith("http://") || imageUrl.startsWith("https://")
+  const url = imageUrl
+    ? imageUrl.startsWith("http://") || imageUrl.startsWith("https://")
       ? imageUrl
-      : `${import.meta.env.VITE_API_BASE_URL}/${imageUrl}`;
+      : `${import.meta.env.VITE_API_BASE_URL}/${imageUrl}`
+    : fallBackCompanyImage;
 
   return (
     <div className="relative w-full h-full">
@@ -33,23 +34,3 @@ export default function ImageUrlLoaderUtil({ imageUrl, alt = "" }) {
     </div>
   );
 }
-
-// OLD Implementations ************
-
-// import React from "react";
-
-// export default function ImageUrlLoaderUtil({ imageUrl, alt = "" }) {
-//   const getImageUrl = (imageUrl) => {
-//     if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
-//       return imageUrl;
-//     } else {
-//       return `${import.meta.env.VITE_API_BASE_URL}/${imageUrl}`;
-//     }
-//   };
-
-//   const url = getImageUrl(imageUrl);
-
-//   return (
-//     <img src={url} alt={alt} className="block object-cover w-full h-full" />
-//   );
-// }
