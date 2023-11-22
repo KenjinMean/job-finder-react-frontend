@@ -1,26 +1,29 @@
 import React from "react";
-import Error500View from "../components/views/error/Error500.View";
-import Error503View from "../components/views/error/Error503.View";
-import Error404View from "../components/views/error/Error404.View";
+
+import ErrorNotFoundUiComponent from "../components/UI/error/ErrorNotFound.Ui.Component";
+import ErrorServerErrorUiComponent from "../components/UI/error/ErrorServerError.Ui.Component";
+import ErrorServerUnavailableUiComponent from "../components/UI/error/ErrorServerUnavailable.Ui.Component";
 
 export default function ErrorPage({ error, resetErrorBoundary }) {
   if (error.code === "404") {
     return (
       <div className="flex items-center justify-center min-h-screen text-gray-900 border">
-        <Error404View />
+        <ErrorNotFoundUiComponent />
       </div>
     );
   }
 
   if (error.code === "ERR_NETWORK") {
     <div className="flex items-center justify-center min-h-screen text-gray-900 border">
-      <Error503View resetErrorBoundary={resetErrorBoundary} />
+      <ErrorServerUnavailableUiComponent
+        resetErrorBoundary={resetErrorBoundary}
+      />
     </div>;
   }
 
   return (
     <div className="flex items-center justify-center min-h-screen text-gray-900 border">
-      <Error500View resetErrorBoundary={resetErrorBoundary} />
+      <ErrorServerErrorUiComponent resetErrorBoundary={resetErrorBoundary} />
     </div>
   );
 }

@@ -5,9 +5,9 @@ import { Menu, Transition } from "@headlessui/react";
 import searchIcon from "../../assets/icons/search-icon.png";
 
 import { useDebouncedCallback } from "../../lib/hooks/UseDebounceCallback";
-import { useFetchSearchSuggestions } from "../../lib/hooks/useJobRequestHandler";
+import { useFetchSearchSuggestions } from "../../lib/hooks/ApiRequestsHandlers/useJobRequestHandler";
 
-import SearchSuggestionsListView from "../views/SearchSuggestionList.View";
+import SearchSuggestionsUiComponent from "./SearchSuggestions.Ui.Component";
 
 export default function AutoCompleteSearchBarUiComponent() {
   const inputRef = useRef();
@@ -159,7 +159,7 @@ export default function AutoCompleteSearchBarUiComponent() {
             className="absolute w-5 h-5 top-5 left-5"
           />
           <Transition show={isSuggestionDropdownActive}>
-            <SearchSuggestionsListView
+            <SearchSuggestionsUiComponent
               searchSuggestions={searchSuggestions || []}
               handleSuggestionClick={handleSuggestionClick}
               selectedSuggestionIndex={selectedSuggestionIndex}

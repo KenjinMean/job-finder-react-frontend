@@ -1,5 +1,6 @@
 import { Menu } from "@headlessui/react";
 import React, { useEffect } from "react";
+
 export default function SearchSuggestionsUiComponent({
   searchSuggestions,
   handleSuggestionClick,
@@ -48,7 +49,7 @@ export default function SearchSuggestionsUiComponent({
                     active || isSuggestionActive ? "bg-indigo-100" : ""
                   }`}
                 >
-                  {suggestion.name}
+                  {suggestion}
                 </a>
               );
             }}

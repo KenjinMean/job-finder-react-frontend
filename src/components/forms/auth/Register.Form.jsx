@@ -8,7 +8,7 @@ import hidePass from "../../../assets/icons/hidePass.png";
 
 import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
 
-import PasswordChecklistUiComponent from "../../UI/auth/PasswordChecklist.Ui.Component";
+import PasswordChecklistUiComponent from "../../UI/PasswordChecklist.Ui.Component";
 
 const FOCUSED = {
   email: "false",

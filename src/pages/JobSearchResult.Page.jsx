@@ -3,16 +3,16 @@ import React, { Fragment, Suspense, lazy } from "react";
 import { PageTitleUtil } from "../components/utils/PageTitle.Util";
 import JobListSkeletonUtil from "../components/utils/LoadersSpinners/JobListSkeleton.Util";
 
-const JobListingComponent = lazy(() =>
-  import("../components/jobs/JobListing.Component")
+const JobSearchResultComponent = lazy(() =>
+  import("../components/jobs/JobSearchResult.Component")
 );
 
-export default function JobListingPage() {
+export default function JobSearchResultPage() {
   return (
     <Fragment>
-      <PageTitleUtil title="Job Listings" />
+      <PageTitleUtil title="Job Search Results" />
       <Suspense fallback={<JobListSkeletonUtil />}>
-        <JobListingComponent />
+        <JobSearchResultComponent />
       </Suspense>
     </Fragment>
   );
