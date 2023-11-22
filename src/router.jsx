@@ -1,109 +1,63 @@
-import { lazy, Suspense } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import AppLayout from "./components/layouts/App.Layout";
-import JobsLayout from "./components/layouts/Jobs.Layout";
-import AuthLayout from "./components/layouts/Auth.Layout";
-import UserProfileLayout from "./components/layouts/UserProfile.Layout";
+import AppLayout from "./layouts/App.Layout.jsx";
+import JobsLayout from "./layouts/Jobs.Layout.jsx";
+import AuthLayout from "./layouts/Auth.Layout.jsx";
+import UserLayout from "./layouts/User.Layout.jsx";
 
-import ComponentDesignView from "./components/views/ComponentDesign.View";
-import UserEditSkillView from "./components/views/user/UserEditSkill.View.jsx";
-
-import ModalUtil from "./components/utils/Modal.Util.jsx";
-import { QueryBoundaries } from "./components/utils/QueryBoundaries.Util";
-import AuthSkeletonUtil from "./components/utils/LoadersSpinners/AuthSkeleton.Util.jsx";
-import ProfileSkeletonLoadingUtil from "./components/utils/ProfileSkeletonLoading.Util.jsx";
-import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Page.Util.jsx";
-import JobListSkeletonUtil from "./components/utils/LoadersSpinners/JobListSkeleton.Util.jsx";
-import JobDetailSkeletonUtil from "./components/utils/LoadersSpinners/JobDetailSkeleton.Util.jsx";
-
+import ComponentDesignView from "./components/ComponentDesign.View.jsx";
+import UserEditSkillComponent from "./components/user/UserEditSkill.Component.jsx";
 import AddUserSkillModalComponent from "./components/modals/user/AddUserSkill.Modal.Component.jsx";
 
 import ErrorPage from "./pages/Error.Page";
+import LoginPage from "./pages/Login.Page";
+import RegisterPage from "./pages/Register.Page";
+import JobDetailspage from "./pages/JobDetails.Page";
+import UserProfilePage from "./pages/UserProfile.Page";
+import JobListingPage from "./pages/JobListing.Page.jsx";
+import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
 
-const LoginPage = lazy(() => import("./pages/Login.Page"));
-const RegisterPage = lazy(() => import("./pages/Register.Page"));
-const JobDetailsPage = lazy(() => import("./pages/JobDetails.Page"));
-const JobListingPage = lazy(() => import("./pages/JobListing.Page"));
-const SearchResultPage = lazy(() => import("./pages/SearchResult.Page"));
-const UserProfilePage = lazy(() => import("./pages/UserProfile.Page"));
+import ModalUtil from "./components/utils/Modal.Util.jsx";
+import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Page.Util.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <QueryBoundaries>
-        <AppLayout />
-      </QueryBoundaries>
-    ),
+    element: <AppLayout />,
     children: [
       {
         path: "/",
         element: <Navigate to="/jobs" />,
       },
-
       {
         path: "/jobs",
         element: <JobsLayout />,
         children: [
           {
             path: "",
-            element: (
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <JobListSkeletonUtil key={i} />
-                ))}
-              >
-                <JobListingPage />
-              </Suspense>
-            ),
+            element: <JobListingPage />,
           },
           {
             path: "search",
-            element: (
-              <Suspense
-                fallback={[...Array(10).keys()].map((i) => (
-                  <JobListSkeletonUtil key={i} />
-                ))}
-              >
-                <SearchResultPage />
-              </Suspense>
-            ),
+            element: <JobSearchResultpage />,
           },
-        ],
-      },
-
-      {
-        path: "job",
-        element: <JobsLayout />,
-        children: [
           {
             path: "view/:jobSlug",
-            element: (
-              <Suspense fallback={<JobDetailSkeletonUtil />}>
-                <JobDetailsPage />
-              </Suspense>
-            ),
+            element: <JobDetailspage />,
           },
         ],
       },
-
       {
         path: "profile",
-        element: <UserProfileLayout />,
+        element: <UserLayout />,
         children: [
           {
             path: "",
-            element: (
-              <Suspense fallback={<ProfileSkeletonLoadingUtil />}>
-                <UserProfilePage />
-              </Suspense>
-            ),
+            element: <UserProfilePage />,
             children: [
               {
                 path: "add-skill",
                 element: (
-                  // render the modal util inside adduserSkillComponent?
                   <ModalUtil modalComponent={<AddUserSkillModalComponent />} />
                 ),
               },
@@ -111,54 +65,38 @@ const router = createBrowserRouter([
           },
           {
             path: "edit-skills",
-            element: <UserEditSkillView />,
+            element: <UserEditSkillComponent />,
           },
         ],
+      },
+      {
+        path: "/auth",
+        element: <AuthLayout />,
+        children: [
+          {
+            path: "/auth",
+            element: <Navigate to="/auth/login" />,
+          },
+          {
+            path: "login",
+            element: <LoginPage />,
+          },
+          {
+            path: "register",
+            element: <RegisterPage />,
+          },
+        ],
+      },
+      {
+        path: "/auth-provider-callback",
+        element: <AuthProviderCallbackPage />,
       },
     ],
   },
 
   {
-    path: "/auth",
-    element: (
-      <QueryBoundaries>
-        <AuthLayout />
-      </QueryBoundaries>
-    ),
-    children: [
-      {
-        path: "/auth",
-        element: <Navigate to="/auth/login" />,
-      },
-      {
-        path: "login",
-        element: (
-          <Suspense fallback={<AuthSkeletonUtil />}>
-            <LoginPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: "register",
-        element: (
-          <Suspense fallback={<AuthSkeletonUtil />}>
-            <RegisterPage />
-          </Suspense>
-        ),
-      },
-    ],
-  },
-  {
     path: "/component-design",
     element: <ComponentDesignView />,
-  },
-  {
-    path: "/auth-provider-callback",
-    element: (
-      <QueryBoundaries>
-        <AuthProviderCallbackPage />
-      </QueryBoundaries>
-    ),
   },
   {
     path: "*",
