@@ -1,6 +1,6 @@
 import moment from "moment";
 
-export const useGetElapsedTime = (timestamp) => {
+export const getElapsedTime = (timestamp) => {
   const currentTime = moment();
   const postedAt = moment(timestamp);
 

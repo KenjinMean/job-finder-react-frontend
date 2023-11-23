@@ -1,7 +1,7 @@
 import React, { Fragment, Suspense } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { useFormatSalary } from "../../hooks/useFormatSalary";
+import { formatSalary } from "../../utils/formatSalary";
 import { useFetchJobdetails } from "../../services/api/useJobRequestHandler";
 
 export default function JobDetailsComponent() {
@@ -31,7 +31,7 @@ export default function JobDetailsComponent() {
           <h1 className="text-2xl font-bold">{title}</h1>
           <div className="mt-3">
             <span className="text-lg font-bold">Salary:</span>
-            <p>P{useFormatSalary(salary)}</p>
+            <p>P{formatSalary(salary)}</p>
           </div>
           <div className="mt-3">
             <span className="text-lg font-bold">Location:</span>

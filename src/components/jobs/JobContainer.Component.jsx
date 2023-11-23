@@ -4,8 +4,8 @@ import pesoIcon from "../../assets/icons/peso2-icon.png";
 import memberIcon from "../../assets/icons/people-icon.png";
 import locationIcon from "../../assets/icons/location-icon.png";
 
-import { useFormatSalary } from "../../hooks/useFormatSalary";
-import { useGetElapsedTime } from "../../hooks/useGetElapsedTime";
+import { formatSalary } from "../../utils/formatSalary";
+import { getElapsedTime } from "../../utils/getElapsedTime";
 
 export default function JobContainerComponent({
   job: { title, location, created_at, company, job_types, salary },
@@ -46,7 +46,7 @@ export default function JobContainerComponent({
                 alt="Philippine peso icon"
                 className="w-4 h-4"
               />
-              {useFormatSalary(salary)}
+              {formatSalary(salary)}
             </span>
           )}
 
@@ -75,7 +75,7 @@ export default function JobContainerComponent({
             ))}
           </div>
           <p className="mt-2 font-bold text-foreground-300">
-            {useGetElapsedTime(created_at)}
+            {getElapsedTime(created_at)}
           </p>
         </div>
       </div>

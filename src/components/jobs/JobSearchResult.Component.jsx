@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import menuIcon from "../../assets/icons/option.png";
 
-import { useExtractUrlParams } from "../../hooks/useExtractUrlParams";
+import { extractUrlParams } from "../../utils/extractUrlParams";
 import { useSearchJobsInfinite } from "../../services/api/useJobRequestHandler";
 
 import JobContainerComponent from "./JobContainer.Component";
@@ -14,7 +14,7 @@ import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListS
 export default function JobSearchResultComponent() {
   const location = useLocation();
   const lastJobResultRef = useRef(null);
-  const params = useExtractUrlParams(location);
+  const params = extractUrlParams(location);
 
   const {
     data,

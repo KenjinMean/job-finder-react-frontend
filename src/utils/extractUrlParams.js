@@ -1,4 +1,4 @@
-export function useExtractUrlParams(url, param) {
+export function extractUrlParams(url, param) {
   const searchParams = new URLSearchParams(url.search);
   const params = {};
 

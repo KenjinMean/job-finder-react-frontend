@@ -1,4 +1,4 @@
-export function useFormatSalary(salary) {
+export function formatSalary(salary) {
   if (!salary) {
     return "";
   }
