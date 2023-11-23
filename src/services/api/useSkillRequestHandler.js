@@ -1,4 +1,4 @@
-import axiosClient from "../../../axios-client";
+import axiosClient from "../../axios-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 const searchSkill = (keyword) => {
@@ -17,13 +17,18 @@ export const useSearchSkill = (keyword, setSearchSuggestions) => {
   return useQuery({
     queryKey: ["searchskill"],
     queryFn: async () => {
-      const response = await searchSkill(keyword);
+      if (keyword) {
+        const response = await searchSkill(keyword);
 
-      if (response.status === 200) {
-        setSearchSuggestions(response.data.skills);
+        if (response.status === 200) {
+          setSearchSuggestions(response.data.skills);
+        }
+        return response;
+      } else {
+        return { data: null };
       }
-      return response;
     },
+
     enabled: false,
     select: (data) => data?.data?.skills,
   });

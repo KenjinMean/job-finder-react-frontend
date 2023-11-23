@@ -1,14 +1,56 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
 
-export default function LoginForm({
-  handleLogin,
-  emailRef,
-  passwordRef,
-  loginLoading,
-  isButtonDisabled,
-}) {
+import { useStateContext } from "../../../context/ContextProvider";
+
+import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
+import { useLogin } from "../../../services/api/useAuthRequestHandler";
+
+export default function LoginForm({}) {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const { setToken, setUser } = useStateContext();
+
+  const {
+    setSocialServiceLoginError,
+    setLoginError,
+    isButtonDisabled,
+    setIsButtonDisabled,
+  } = useAuthenticationStore();
+
+  const loginSuccess = (data) => {
+    setToken(data);
+    setUser(data.user);
+  };
+
+  const {
+    isLoading: loginLoading,
+    error: loginError,
+    mutate: loginMutation,
+  } = useLogin(loginSuccess);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setSocialServiceLoginError(null);
+
+    const payload = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    loginMutation(payload);
+  };
+
+  useEffect(() => {
+    setLoginError(loginError?.response?.data?.message);
+  }, [loginError]);
+
+  useEffect(() => {
+    setIsButtonDisabled();
+  }, [loginLoading]);
+
   return (
     <form onSubmit={handleLogin}>
       <div className="max-w-xs mx-auto mt-5">
@@ -28,7 +70,7 @@ export default function LoginForm({
         />
         <button
           disabled={isButtonDisabled}
-          className="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:shadow-outline focus:outline-none"
+          className="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:shadow-outline focus:outline-none disabled:bg-slate-300"
         >
           {loginLoading ? (
             <LoadingSpinnerUtil size={6} />

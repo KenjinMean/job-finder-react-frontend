@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 
 import { useStateContext } from "../../context/ContextProvider";
-import { useLogout } from "../../lib/hooks/ApiRequestsHandlers/useAuthRequestHandler";
+import { useLogout } from "../../services/api/useAuthRequestHandler";
 
 import ImageUrlLoaderUtil from "../../components/utils/ImageUrlLoader.Util";
 

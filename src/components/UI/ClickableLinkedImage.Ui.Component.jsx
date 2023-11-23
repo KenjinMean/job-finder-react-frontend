@@ -6,11 +6,12 @@ import ImageUrlLoaderUtil from "../../components/utils/ImageUrlLoader.Util";
 export default function ClickableLinkedImageUiComponent({
   imagePathUrl,
   className,
-  to,
+  to = "",
+  alt = "",
 }) {
   return (
     <Link to={to} className={className}>
-      <ImageUrlLoaderUtil imageUrl={imagePathUrl} />
+      <ImageUrlLoaderUtil imageUrl={imagePathUrl} alt={alt} />
     </Link>
   );
 }

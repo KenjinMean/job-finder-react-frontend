@@ -2,11 +2,11 @@ import React, { Fragment, useEffect } from "react";
 
 import { useQueryClient } from "@tanstack/react-query";
 
-import { useUpdateUserStore } from "../../lib/zustand/UpdateUserStore";
-import { useDebouncedSearchSkillStore } from "../../lib/zustand/DebouncedSearchSkillStore";
+import { useUpdateUserStore } from "../../services/state/UpdateUserStore";
+import { useDebouncedSearchSkillStore } from "../../services/state/DebouncedSearchSkillStore";
 
-import { useAddSkill } from "../../lib/hooks/ApiRequestsHandlers/useSkillRequestHandler";
-import { useSearchSkill } from "../../lib/hooks/ApiRequestsHandlers/useSkillRequestHandler";
+import { useAddSkill } from "../../services/api/useSkillRequestHandler";
+import { useSearchSkill } from "../../services/api/useSkillRequestHandler";
 
 import LoadingSpinnerUtil from "../utils/LoadersSpinners/LoadingSpinnder.Util";
 

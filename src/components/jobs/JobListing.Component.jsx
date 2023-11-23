@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import menuIcon from "../../assets/icons/option.png";
 
-import useIntersectionObserver from "../../lib/hooks/useIntersectionObserver";
-import { useFetchJobsInfinite } from "../../lib/hooks/ApiRequestsHandlers/useJobRequestHandler";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import { useFetchJobsInfinite } from "../../services/api/useJobRequestHandler";
 
 import JobContainerComponent from "./JobContainer.Component";
 

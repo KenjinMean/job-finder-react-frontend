@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AuthErrorUiComponent({ error, errorMessage }) {
+export default function AuthErrorComponent({ error, errorMessage }) {
   return (
     <div
       aria-hidden={error ? "false" : "true"}

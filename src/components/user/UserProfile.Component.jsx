@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
 import { useStateContext } from "../../context/ContextProvider";
-import { useUserInformationStore } from "../../lib/zustand/UserInformationStore";
-import { useFetchtUserInfo } from "../../lib/hooks/ApiRequestsHandlers/useProfileRequesthandler";
+import { useUserInformationStore } from "../../services/state/UserInformationStore";
+import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
 
 import UserInfoComponent from "./UserInfo.Component";
 import UserSkillsComponent from "./UserSkills.Component";

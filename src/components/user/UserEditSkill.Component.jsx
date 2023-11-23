@@ -1,6 +1,7 @@
 import React from "react";
-import { useUserInformationStore } from "../../lib/zustand/UserInformationStore";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { useUserInformationStore } from "../../services/state/UserInformationStore";
 
 export default function UserEditSkillComponent() {
   const { user } = useUserInformationStore();

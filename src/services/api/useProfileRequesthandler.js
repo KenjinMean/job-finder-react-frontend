@@ -1,4 +1,4 @@
-import axiosClient from "../../../axios-client";
+import axiosClient from "../../axios-client";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchUserInfo = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useRemoveSkill } from "../../lib/hooks/ApiRequestsHandlers/useSkillRequestHandler";
+import { useRemoveSkill } from "../../services/api/useSkillRequestHandler";
 
 export default function UserSkillsComponent({ userData }) {
   const [removeSkillActive, setRemoveSkillactive] = useState(false);

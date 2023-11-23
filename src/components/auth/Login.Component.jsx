@@ -1,98 +1,29 @@
 // AUTH TEMPLATE SOURCE: https://codepen.io/owaiswiz/pen/jOPvEPB
-import React, { useRef, useState, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
-
-import { useStateContext } from "../../context/ContextProvider";
-
-import {
-  useGithubAuthLogin,
-  useGoogleAuthLogin,
-  useLogin,
-} from "../../lib/hooks/ApiRequestsHandlers/useAuthRequestHandler";
-import { useResetUrlPath } from "../../lib/hooks/useResetUrlPath";
-import useButtonDisabled from "../../lib/hooks/useButtonDisabled";
-
-import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 
+import { useStateContext } from "../../context/ContextProvider";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+import useSocialAuthErrorHandling from "../../hooks/useSocialAuthErrorHandling";
+
 import LoginForm from "../../components/forms/auth/Login.Form";
-import AuthErrorUiComponent from "./AuthError.Ui.Component";
-import AuthProvidersUiComponent from "./AuthProviders.Ui.Component";
+
+import AuthErrorComponent from "./AuthError.Component";
+import SocilaLoginComponent from "./SocialLogin.Component";
+
+import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function LoginComponent() {
   const location = useLocation();
+
   const { token, setUser, setToken } = useStateContext();
-  const [authServiceError, setAuthServiceError] = useState(null);
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const { socialServiceLoginError, setSocialServiceLoginError, loginError } =
+    useAuthenticationStore();
 
-  const loginSuccess = (data) => {
-    setToken(data);
-    setUser(data.user);
-  };
-
-  const {
-    isLoading: loginLoading,
-    error: loginError,
-    mutate: loginMutation,
-  } = useLogin(loginSuccess);
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    setAuthServiceError(null);
-
-    const payload = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-
-    loginMutation(payload);
-  };
-
-  const authProviderLoginSuccess = (url) => {
-    window.location.href = url;
-  };
-
-  const { isFetching: githubLoading, refetch: getGithubAuthURL } =
-    useGithubAuthLogin(authProviderLoginSuccess);
-
-  const { isFetching: googleLoading, refetch: getGoogleAuthURL } =
-    useGoogleAuthLogin(authProviderLoginSuccess);
-
-  const handleProviderLogin = (provider) => {
-    setAuthServiceError(null);
-    if (provider === "github") {
-      getGithubAuthURL();
-    } else if (provider === "google") {
-      getGoogleAuthURL();
-    }
-  };
-
-  const loadingStates = [loginLoading, githubLoading, googleLoading];
-  const isButtonDisabled = useButtonDisabled(loadingStates);
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const errorMessage = queryParams.get("error");
-
-    if (errorMessage) {
-      if (errorMessage === "This email already exists") {
-        setAuthServiceError(decodeURIComponent(errorMessage));
-      } else if (errorMessage === "Email already associated with GitHub") {
-        setAuthServiceError(
-          "Login using Google failed, Email already associated with another Auth service provider"
-        );
-      } else if (errorMessage === "Email already associated with Google") {
-        setAuthServiceError(
-          "Login using Github failed, Email already associated with another Auth Service Provider"
-        );
-      } else setAuthServiceError(decodeURIComponent(errorMessage));
-      useResetUrlPath();
-    }
-  }, [location]);
+  useSocialAuthErrorHandling(location, setSocialServiceLoginError);
 
   if (token) {
     return <Navigate to="/" />;
@@ -109,33 +40,19 @@ export default function LoginComponent() {
         </Link>
 
         <div className="flex flex-col items-center mt-12">
-          <AuthErrorUiComponent
-            error={authServiceError}
-            errorMessage={authServiceError}
+          <AuthErrorComponent
+            error={socialServiceLoginError}
+            errorMessage={socialServiceLoginError}
           />
           <div className="flex-1 w-full">
-            <AuthProvidersUiComponent
-              googleLoading={googleLoading}
-              githubLoading={githubLoading}
-              isButtonDisabled={isButtonDisabled}
-              handleProviderLogin={handleProviderLogin}
-            />
+            <SocilaLoginComponent />
             <div className="my-12 text-center border-b">
               <div className="inline-block px-2 text-sm font-medium leading-none tracking-wide text-gray-600 transform translate-y-1/2 bg-white">
                 Or sign up with e-mail
               </div>
             </div>
-            <AuthErrorUiComponent
-              error={loginError}
-              errorMessage={loginError?.response?.data?.message}
-            />
-            <LoginForm
-              handleLogin={handleLogin}
-              emailRef={emailRef}
-              passwordRef={passwordRef}
-              isButtonDisabled={isButtonDisabled}
-              loginLoading={loginLoading}
-            />
+            <AuthErrorComponent error={loginError} errorMessage={loginError} />
+            <LoginForm />
           </div>
         </div>
       </div>

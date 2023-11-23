@@ -6,7 +6,6 @@ import AuthLayout from "./layouts/Auth.Layout.jsx";
 import UserLayout from "./layouts/User.Layout.jsx";
 
 import ComponentDesignView from "./components/ComponentDesign.View.jsx";
-import UserEditSkillComponent from "./components/user/UserEditSkill.Component.jsx";
 import AddUserSkillModalComponent from "./components/modals/user/AddUserSkill.Modal.Component.jsx";
 
 import ErrorPage from "./pages/Error.Page";
@@ -15,6 +14,7 @@ import RegisterPage from "./pages/Register.Page";
 import JobDetailspage from "./pages/JobDetails.Page";
 import UserProfilePage from "./pages/UserProfile.Page";
 import JobListingPage from "./pages/JobListing.Page.jsx";
+import UserSkillEditPage from "./pages/UserSkillEdit.Page.jsx";
 import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
 
 import ModalUtil from "./components/utils/Modal.Util.jsx";
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
           },
           {
             path: "edit-skills",
-            element: <UserEditSkillComponent />,
+            element: <UserSkillEditPage />,
           },
         ],
       },

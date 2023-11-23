@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useRefreshToken } from "../../lib/hooks/ApiRequestsHandlers/useAuthRequestHandler";
+import { useRefreshToken } from "../../services/api/useAuthRequestHandler";
 import { useStateContext } from "../../context/ContextProvider";
 
 const AuthProvider = ({ children }) => {

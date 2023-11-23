@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import menuIcon from "../../assets/icons/option.png";
 
-import { useExtractUrlParams } from "../../lib/hooks/useExtractUrlParams";
-import { useSearchJobsInfinite } from "../../lib/hooks/ApiRequestsHandlers/useJobRequestHandler";
+import { useExtractUrlParams } from "../../hooks/useExtractUrlParams";
+import { useSearchJobsInfinite } from "../../services/api/useJobRequestHandler";
 
 import JobContainerComponent from "./JobContainer.Component";
 

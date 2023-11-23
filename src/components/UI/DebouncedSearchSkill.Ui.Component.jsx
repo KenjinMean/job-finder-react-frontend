@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 
 import searchIcon from "../../assets/icons/search-icon.png";
 
-import { useDebouncedCallback } from "../../lib/hooks/UseDebounceCallback";
-import { useDebouncedSearchSkillStore } from "../../lib/zustand/DebouncedSearchSkillStore";
-import { useSearchSkill } from "../../lib/hooks/ApiRequestsHandlers/useSkillRequestHandler";
+import { useDebouncedSearchSkillStore } from "../../services/state/DebouncedSearchSkillStore";
+import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
+import { useSearchSkill } from "../../services/api/useSkillRequestHandler";
 
 export default function DebouncedSearchSkillUiComponent({}) {
   const { keyword, setKeyword, setSearchSuggestions } =

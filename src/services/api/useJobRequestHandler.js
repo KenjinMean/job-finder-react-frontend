@@ -1,4 +1,4 @@
-import axiosClient from "../../../axios-client";
+import axiosClient from "../../axios-client";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 const getJobDetails = (id) => {
@@ -67,7 +67,6 @@ export const useFetchSearchSuggestions = (param) => {
   return useQuery({
     queryKey: ["fetchjobsuggestion", param],
     queryFn: () => {
-      // checks if param is not empty before invoking fetch function
       if (param) {
         return fetchSearchSuggestion(param);
       }

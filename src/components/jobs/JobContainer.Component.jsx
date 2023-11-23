@@ -4,8 +4,8 @@ import pesoIcon from "../../assets/icons/peso2-icon.png";
 import memberIcon from "../../assets/icons/people-icon.png";
 import locationIcon from "../../assets/icons/location-icon.png";
 
-import { useFormatSalary } from "../../lib/hooks/useFormatSalary";
-import { useGetElapsedTime } from "../../lib/hooks/useGetElapsedTime";
+import { useFormatSalary } from "../../hooks/useFormatSalary";
+import { useGetElapsedTime } from "../../hooks/useGetElapsedTime";
 
 export default function JobContainerComponent({
   job: { title, location, created_at, company, job_types, salary },

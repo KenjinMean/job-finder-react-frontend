@@ -7,6 +7,7 @@ const UserProfileComponent = lazy(() =>
 import { PageTitleUtil } from "../components/utils/PageTitle.Util";
 import ProfileSkeletonLoadingUtil from "../components/utils/LoadersSpinners/ProfileSkeletonLoading.Util";
 
+// can get the user inof here and pass on the user profile component
 export default function UserProfilePage() {
   return (
     <Fragment>

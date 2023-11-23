@@ -1,12 +1,36 @@
-import React from "react";
-import LoadingSpinnerUtil from "../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
+import React, { useEffect } from "react";
+import LoadingSpinnerUtil from "../utils/LoadersSpinners/LoadingSpinnder.Util";
 
-export default function AuthProvidersUiComponent({
-  githubLoading,
-  googleLoading,
-  isButtonDisabled,
-  handleProviderLogin,
-}) {
+import { useGithubAuthLogin } from "../../services/api/useAuthRequestHandler";
+import { useGoogleAuthLogin } from "../../services/api/useAuthRequestHandler";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+
+export default function SocilaLoginComponent() {
+  const { setSocialServiceLoginError, setIsButtonDisabled, isButtonDisabled } =
+    useAuthenticationStore();
+
+  const authProviderLoginSuccess = (url) => {
+    window.location.href = url;
+  };
+
+  const { isFetching: githubLoading, refetch: getGithubAuthURL } =
+    useGithubAuthLogin(authProviderLoginSuccess);
+
+  const { isFetching: googleLoading, refetch: getGoogleAuthURL } =
+    useGoogleAuthLogin(authProviderLoginSuccess);
+
+  const handleProviderLogin = (provider) => {
+    setSocialServiceLoginError(null);
+    if (provider === "github") {
+      getGithubAuthURL();
+    } else if (provider === "google") {
+      getGoogleAuthURL();
+    }
+  };
+
+  useEffect(() => {
+    setIsButtonDisabled();
+  }, [githubLoading, googleLoading]);
   return (
     // This component responsible for rendering auth provider buttons
     <div className="flex flex-col items-center">
@@ -14,7 +38,7 @@ export default function AuthProvidersUiComponent({
         onClick={() => {
           handleProviderLogin("google");
         }}
-        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline disabled:bg-slate-300"
         disabled={isButtonDisabled}
       >
         {googleLoading ? (
@@ -49,7 +73,7 @@ export default function AuthProvidersUiComponent({
         onClick={() => {
           handleProviderLogin("github");
         }}
-        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline disabled:bg-slate-300"
         disabled={isButtonDisabled}
       >
         {githubLoading ? (

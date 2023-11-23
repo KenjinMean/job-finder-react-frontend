@@ -4,8 +4,8 @@ import { Menu, Transition } from "@headlessui/react";
 
 import searchIcon from "../../assets/icons/search-icon.png";
 
-import { useDebouncedCallback } from "../../lib/hooks/UseDebounceCallback";
-import { useFetchSearchSuggestions } from "../../lib/hooks/ApiRequestsHandlers/useJobRequestHandler";
+import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
+import { useFetchSearchSuggestions } from "../../services/api/useJobRequestHandler";
 
 import SearchSuggestionsUiComponent from "./SearchSuggestions.Ui.Component";
 

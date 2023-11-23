@@ -3,9 +3,10 @@ import React from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { useUpdateUserStore } from "../../../lib/zustand/UpdateUserStore";
+import { useUpdateUserStore } from "../../../services/state/UpdateUserStore";
 
 import AddSkillSpinnerUtil from "../../../components/utils/LoadersSpinners/AddSkillSpinner.util";
+
 import SkillSuggestionsUiComponent from "../../UI/SkillSuggestions.Ui.Component";
 import DebouncedSearchSkillUiComponent from "../../UI/DebouncedSearchSkill.Ui.Component";
 
