@@ -6,7 +6,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { ContextProvider } from "./context/ContextProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AuthProvider from "./components/auth/AuthProvider";
 import { QueryBoundaries } from "./components/utils/QueryBoundaries.Util";
 import AuthProviderProvider from "./services/providers/AuthProvider.Provider";
 
