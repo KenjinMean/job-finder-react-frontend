@@ -2,14 +2,14 @@ import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-import { useStateContext } from "../context/ContextProvider";
+import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 import HeaderComponent from "../components/header/header.Component";
 
 import MaxWidthWrapperUtil from "../components/utils/MaxWidthWrapper.Util";
 
 export default function UserProfileLayout() {
-  const { token } = useStateContext();
+  const { token } = useAuthenticationStore();
 
   if (!token) {
     return <Navigate to="/auth/login" />;

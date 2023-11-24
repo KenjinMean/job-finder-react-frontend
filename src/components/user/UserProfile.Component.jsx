@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
-import { useStateContext } from "../../context/ContextProvider";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 import { useUserInformationStore } from "../../services/state/UserInformationStore";
 import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
 
@@ -12,10 +12,10 @@ import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Compo
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function UserProfileComponent() {
-  const { user: userContext } = useStateContext();
   const { user, setUser } = useUserInformationStore();
+  const { authenticatedUser } = useAuthenticationStore();
 
-  useFetchtUserInfo(userContext.id, setUser);
+  useFetchtUserInfo(authenticatedUser.id, setUser);
 
   const handleEdit = () => {
     setEditActive((prev) => !prev);

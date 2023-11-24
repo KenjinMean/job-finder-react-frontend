@@ -1,6 +1,7 @@
 // REFRESH TOKEN SOURCE: https://katifrantz.com/the-ultimate-guide-to-jwt-client-side-authentication-stop-using-local-storage
 import { createContext, useContext, useRef, useState } from "react";
 
+// can migrate this to zustand as state manager and remove provider
 const StateContex = createContext({
   refreshTimeoutRef: null,
   isRefreshingToken: null,

@@ -6,8 +6,11 @@ import { useGoogleAuthLogin } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 export default function SocilaLoginComponent() {
-  const { setSocialServiceLoginError, setIsButtonDisabled, isButtonDisabled } =
-    useAuthenticationStore();
+  const {
+    setSocialServiceLoginError,
+    setIsLoginButtonDisabled,
+    isLoginButtonDisabled,
+  } = useAuthenticationStore();
 
   const authProviderLoginSuccess = (url) => {
     window.location.href = url;
@@ -29,7 +32,7 @@ export default function SocilaLoginComponent() {
   };
 
   useEffect(() => {
-    setIsButtonDisabled();
+    setIsLoginButtonDisabled();
   }, [githubLoading, googleLoading]);
   return (
     // This component responsible for rendering auth provider buttons
@@ -39,7 +42,7 @@ export default function SocilaLoginComponent() {
           handleProviderLogin("google");
         }}
         className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline disabled:bg-slate-300"
-        disabled={isButtonDisabled}
+        disabled={isLoginButtonDisabled}
       >
         {googleLoading ? (
           <LoadingSpinnerUtil size={6} />
@@ -74,7 +77,7 @@ export default function SocilaLoginComponent() {
           handleProviderLogin("github");
         }}
         className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline disabled:bg-slate-300"
-        disabled={isButtonDisabled}
+        disabled={isLoginButtonDisabled}
       >
         {githubLoading ? (
           <LoadingSpinnerUtil size={6} />

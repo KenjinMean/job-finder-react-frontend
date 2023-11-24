@@ -1,5 +1,7 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
 import axiosClient from "../../axios-client";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useAuthenticationStore } from "../state/AuthenticationStore";
+import { useState } from "react";
 
 const login = (payload) => {
   return axiosClient.post("/login", payload);
@@ -27,10 +29,30 @@ const refreshToken = () => {
 
 // ****************************************************
 
-export const useLogin = (onSuccess) => {
+export const useLogin = () => {
+  const {
+    setToken,
+    setAuthenticatedUser,
+    setIsLoginButtonDisabled,
+    setSocialServiceLoginError,
+    setLoginError,
+  } = useAuthenticationStore();
+
   return useMutation(login, {
+    onMutate: () => {
+      setLoginError(null);
+      setSocialServiceLoginError(null);
+      setIsLoginButtonDisabled(true);
+    },
     onSuccess: ({ data }) => {
-      onSuccess(data);
+      setToken(data);
+      setAuthenticatedUser(data.user);
+    },
+    onError: (error) => {
+      setLoginError(error?.response?.data?.message);
+    },
+    onSettled: () => {
+      setIsLoginButtonDisabled(false);
     },
     useErrorBoundary: (error) =>
       !error.response ||
@@ -39,12 +61,16 @@ export const useLogin = (onSuccess) => {
 };
 
 export const useLogout = (id, onSuccess) => {
+  const { setToken, clearRefreshTimeout, setAuthenticatedUser } =
+    useAuthenticationStore();
   return useQuery({
     queryKey: ["userlogout", id],
     queryFn: async () => {
       const response = await logout();
       if (response.status === 200) {
-        onSuccess();
+        setToken(null);
+        setAuthenticatedUser({});
+        clearRefreshTimeout();
       }
       return response;
     },
@@ -55,7 +81,11 @@ export const useLogout = (id, onSuccess) => {
 export const useRegister = (onSuccess) => {
   return useMutation(register, {
     onSuccess: ({ data }) => {
-      onSuccess(data);
+      setToken(data);
+      setAuthenticatedUser(data.user);
+    },
+    onError: (error) => {
+      setLoginError(error?.response?.data?.message);
     },
     useErrorBoundary: (error) =>
       !error.response ||
@@ -93,27 +123,82 @@ export const useGoogleAuthLogin = (onSuccess) => {
   });
 };
 
-export const useRefreshToken = (
-  id,
-  onSuccess = () => {},
-  finallyFn = () => {}
-) => {
-  return useQuery({
-    queryKey: ["refreshtoken", id],
+export const useRefreshToken = (callback) => {
+  const {
+    setRefreshTimeout,
+    setToken,
+    clearRefreshTimeout,
+    authenticatedUser,
+  } = useAuthenticationStore();
+
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const { refetch } = useQuery({
+    queryKey: ["refreshtoken", authenticatedUser.id], // do you need to provide ID
     queryFn: async () => {
       try {
-        const response = await refreshToken();
-        if (response.status === 200) {
-          onSuccess(response.data);
+        if (isRefreshing) {
+          // Token refresh is already in progress, skip
+          return { data: null }; // Return a default value to satisfy useQuery
         }
+
+        setIsRefreshing(true);
+
+        const response = await refreshToken();
+
+        if (response.status === 200) {
+          // Clear the existing timeout
+          clearRefreshTimeout();
+
+          // Calculate the time until the next refresh (5 seconds before expiry)
+          const refreshTime = (response.data.expires_in - 5) * 1000;
+
+          // Set a new timeout for automatic refresh
+          setRefreshTimeout(() => {
+            setIsRefreshing(false); // Reset the refresh state before calling the callback
+            callback();
+          }, refreshTime);
+
+          // Update the token
+          setToken(response.data);
+        }
+
         return response;
       } catch (error) {
         throw error;
       } finally {
-        finallyFn();
+        setIsRefreshing(false); // Reset the refresh state in case of errors
       }
     },
     enabled: false,
     cacheTime: 0,
   });
+
+  return { refetch };
 };
+
+// old refresh token
+// export const useRefreshToken = (
+//   id,
+//   onSuccess = () => {},
+//   finallyFn = () => {}
+// ) => {
+//   return useQuery({
+//     queryKey: ["refreshtoken", id],
+//     queryFn: async () => {
+//       try {
+//         const response = await refreshToken();
+//         if (response.status === 200) {
+//           onSuccess(response.data);
+//         }
+//         return response;
+//       } catch (error) {
+//         throw error;
+//       } finally {
+//         finallyFn();
+//       }
+//     },
+//     enabled: false,
+//     cacheTime: 0,
+//   });
+// };

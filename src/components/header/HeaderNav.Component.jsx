@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 
-import { useStateContext } from "../../context/ContextProvider";
 import { useLogout } from "../../services/api/useAuthRequestHandler";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 import ImageUrlLoaderUtil from "../../components/utils/ImageUrlLoader.Util";
 
@@ -17,31 +17,17 @@ export default function HeaderNavComponent() {
   const mainMenuRef = useRef(null);
   const mainMenuButtonRef = useRef(null);
 
-  const { user, token, setUser, setToken, refreshTimeoutRef } =
-    useStateContext();
+  const { token, authenticatedUser } = useAuthenticationStore();
 
   const closeMainMenu = () => {
     setIsMainMenuOpen(false);
   };
 
-  const logoutSuccess = () => {
-    setUser("");
-    setToken("");
-    navigate("/auth/login");
-  };
-
-  const refreshTokenFinally = () => setIsTokenRefreshing(false);
-
   const handleLogout = () => {
-    clearTimeout(refreshTimeoutRef.current);
     logoutFn();
   };
 
-  const { refetch: logoutFn } = useLogout(
-    user.id,
-    logoutSuccess,
-    refreshTokenFinally
-  );
+  const { refetch: logoutFn } = useLogout(authenticatedUser.id);
 
   useEffect(() => {
     const handleDocumentClick = (event) => {
@@ -76,9 +62,9 @@ export default function HeaderNavComponent() {
           {token && (
             <>
               <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full border-foreground-300 md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                {user.user_info && (
+                {authenticatedUser.user_info && (
                   <ImageUrlLoaderUtil
-                    imageUrl={user?.user_info?.profile_image}
+                    imageUrl={authenticatedUser?.user_info?.profile_image}
                     alt="User Profile Image"
                   />
                 )}
@@ -90,10 +76,11 @@ export default function HeaderNavComponent() {
               >
                 <div className="p-5">
                   <span className="block text-sm text-gray-900 ">
-                    {user?.user_info?.first_name} {user?.user_info?.last_name}
+                    {authenticatedUser?.user_info?.first_name}{" "}
+                    {authenticatedUser?.user_info?.last_name}
                   </span>
                   <span className="block text-sm text-gray-500 truncate">
-                    {user?.email}
+                    {authenticatedUser?.email}
                   </span>
                 </div>
 

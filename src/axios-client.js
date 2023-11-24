@@ -32,43 +32,43 @@ axiosClient.interceptors.response.use(
         console.log("email already taken");
       }
 
-      if (error.response.data.message === "JWT error") {
-        localStorage.removeItem("ACCESS_TOKEN");
-        localStorage.removeItem("ACCESS_TOKEN_EXPIRES_IN");
-        localStorage.removeItem("USER");
-        window.location.reload();
-      }
+      // if (error.response.data.message === "JWT error") {
+      //   localStorage.removeItem("ACCESS_TOKEN");
+      //   localStorage.removeItem("ACCESS_TOKEN_EXPIRES_IN");
+      //   localStorage.removeItem("USER");
+      //   window.location.reload();
+      // }
 
-      if (
-        error.response.status === 500 &&
-        error.response.data.message === "Failed to authenticate token"
-      ) {
-        localStorage.removeItem("ACCESS_TOKEN");
-        localStorage.removeItem("ACCESS_TOKEN_EXPIRES_IN");
-        localStorage.removeItem("USER");
-        window.location.reload();
-      }
+      // if (
+      //   error.response.status === 500 &&
+      //   error.response.data.message === "Failed to authenticate token"
+      // ) {
+      //   localStorage.removeItem("ACCESS_TOKEN");
+      //   localStorage.removeItem("ACCESS_TOKEN_EXPIRES_IN");
+      //   localStorage.removeItem("USER");
+      //   window.location.reload();
+      // }
 
-      if (error.response.data.message === "Token has expired") {
-        try {
-          const refreshResponse = await axiosClient.post("/refresh-token");
+      // if (error.response.data.message === "Token has expired") {
+      //   try {
+      //     const refreshResponse = await axiosClient.post("/refresh-token");
 
-          const newAccessToken = refreshResponse.data.access_token;
-          const newExpiresIn = refreshResponse.data.expires_in;
+      //     const newAccessToken = refreshResponse.data.access_token;
+      //     const newExpiresIn = refreshResponse.data.expires_in;
 
-          localStorage.setItem("ACCESS_TOKEN", newAccessToken);
-          localStorage.setItem("ACCESS_TOKEN_EXPIRES_IN", newExpiresIn);
+      //     localStorage.setItem("ACCESS_TOKEN", newAccessToken);
+      //     localStorage.setItem("ACCESS_TOKEN_EXPIRES_IN", newExpiresIn);
 
-          axiosClient.defaults.headers.common[
-            "Authorization"
-          ] = `Bearer ${newAccessToken}`;
+      //     axiosClient.defaults.headers.common[
+      //       "Authorization"
+      //     ] = `Bearer ${newAccessToken}`;
 
-          return axiosClient(originalRequest);
-        } catch (refreshError) {
-          console.error("Failed to refresh token:", refreshError);
-          // window.location.reload(); redirect to guest layout
-        }
-      }
+      //     return axiosClient(originalRequest);
+      //   } catch (refreshError) {
+      //     console.error("Failed to refresh token:", refreshError);
+      //     // window.location.reload(); redirect to guest layout
+      //   }
+      // }
     }
 
     return Promise.reject(error);

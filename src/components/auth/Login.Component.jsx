@@ -4,9 +4,9 @@ import { Link, Navigate, useLocation } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 
-import { useStateContext } from "../../context/ContextProvider";
-import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+import { useLogin } from "../../services/api/useAuthRequestHandler";
 import useSocialAuthErrorHandling from "../../hooks/useSocialAuthErrorHandling";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 import LoginForm from "../../components/forms/auth/Login.Form";
 
@@ -17,16 +17,21 @@ import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function LoginComponent() {
   const location = useLocation();
+  const { token } = useAuthenticationStore();
 
-  const { token, setUser, setToken } = useStateContext();
+  const { isLoading: loginLoading, mutate: loginMutation } = useLogin();
 
-  const { socialServiceLoginError, setSocialServiceLoginError, loginError } =
-    useAuthenticationStore();
+  const {
+    socialServiceLoginError,
+    setSocialServiceLoginError,
+    loginError,
+    isLoginButtonDisabled,
+  } = useAuthenticationStore();
 
   useSocialAuthErrorHandling(location, setSocialServiceLoginError);
 
   if (token) {
-    return <Navigate to="/" />;
+    return <Navigate to="/jobs" />;
   }
 
   return (
@@ -52,7 +57,11 @@ export default function LoginComponent() {
               </div>
             </div>
             <AuthErrorComponent error={loginError} errorMessage={loginError} />
-            <LoginForm />
+            <LoginForm
+              loginLoading={loginLoading}
+              loginMutation={loginMutation}
+              isLoginButtonDisabled={isLoginButtonDisabled}
+            />
           </div>
         </div>
       </div>

@@ -1,14 +1,17 @@
 import { Navigate } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
-import MaxWidthWrapperUtil from "./MaxWidthWrapper.Util";
-import { useStateContext } from "../../context/ContextProvider";
+
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+
 import { PageTitleUtil } from "./PageTitle.Util";
+import MaxWidthWrapperUtil from "./MaxWidthWrapper.Util";
 
 export default function AuthProviderCallbackPageUtil() {
-  const { token, setToken, setUser } = useStateContext();
+  const { token, setToken, setAuthenticatedUser } = useAuthenticationStore();
+
+  const [seconds, setSeconds] = useState(5);
   const [loading, setLoading] = useState(true);
   const [redirecting, setRedirecting] = useState(false);
-  const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -22,7 +25,7 @@ export default function AuthProviderCallbackPageUtil() {
       } else {
         const { user } = responseData.original;
 
-        setUser(user);
+        setAuthenticatedUser(user);
         setToken(responseData.original);
         setLoading(false);
 

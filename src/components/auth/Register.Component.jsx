@@ -2,16 +2,14 @@
 import { Fragment, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
-import appLogo from "../../assets/logo/JobFinderLogo.png";
-
 import { useStateContext } from "../../context/ContextProvider";
-import { useRegister } from "../../services/api/useAuthRequestHandler";
-
-import RegisterForm from "../../components/forms/auth/Register.Form";
-
-import AuthErrorUiComponent from "./AuthError.Component";
+import { useRegister } from "../../lib/hooks/ApiRequestsHandlers/useAuthRequestHandler";
 
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
+
+import appLogo from "../../assets/logo/JobFinderLogo.png";
+import RegisterForm from "../../components/forms/auth/Register.Form";
+import AuthErrorUiComponent from "./AuthError.Component";
 
 const PAYLOAD = {
   email: "",
