@@ -5,6 +5,8 @@ import { Link, Navigate, useLocation } from "react-router-dom";
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 
 import { useLogin } from "../../services/api/useAuthRequestHandler";
+import { useGithubAuthLogin } from "../../services/api/useAuthRequestHandler";
+import { useGoogleAuthLogin } from "../../services/api/useAuthRequestHandler";
 import useSocialAuthErrorHandling from "../../hooks/useSocialAuthErrorHandling";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
@@ -16,19 +18,18 @@ import SocilaLoginComponent from "./SocialLogin.Component";
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function LoginComponent() {
-  const location = useLocation();
-  const { token } = useAuthenticationStore();
+  const { token, socialServiceLoginError, loginError, isLoginButtonDisabled } =
+    useAuthenticationStore();
 
   const { isLoading: loginLoading, mutate: loginMutation } = useLogin();
 
-  const {
-    socialServiceLoginError,
-    setSocialServiceLoginError,
-    loginError,
-    isLoginButtonDisabled,
-  } = useAuthenticationStore();
+  const { isFetching: githubLoading, refetch: getGithubAuthURL } =
+    useGithubAuthLogin();
 
-  useSocialAuthErrorHandling(location, setSocialServiceLoginError);
+  const { isFetching: googleLoading, refetch: getGoogleAuthURL } =
+    useGoogleAuthLogin();
+
+  useSocialAuthErrorHandling();
 
   if (token) {
     return <Navigate to="/jobs" />;
@@ -50,7 +51,13 @@ export default function LoginComponent() {
             errorMessage={socialServiceLoginError}
           />
           <div className="flex-1 w-full">
-            <SocilaLoginComponent />
+            <SocilaLoginComponent
+              isLoginButtonDisabled={isLoginButtonDisabled}
+              githubLoading={githubLoading}
+              googleLoading={googleLoading}
+              getGithubAuthURL={getGithubAuthURL}
+              getGoogleAuthURL={getGoogleAuthURL}
+            />
             <div className="my-12 text-center border-b">
               <div className="inline-block px-2 text-sm font-medium leading-none tracking-wide text-gray-600 transform translate-y-1/2 bg-white">
                 Or sign up with e-mail
