@@ -1,29 +1,14 @@
-import React, { useEffect } from "react";
+import React, { Fragment } from "react";
 import LoadingSpinnerUtil from "../utils/LoadersSpinners/LoadingSpinnder.Util";
 
-import { useGithubAuthLogin } from "../../services/api/useAuthRequestHandler";
-import { useGoogleAuthLogin } from "../../services/api/useAuthRequestHandler";
-import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
-
-export default function SocilaLoginComponent() {
-  const {
-    setSocialServiceLoginError,
-    setIsLoginButtonDisabled,
-    isLoginButtonDisabled,
-  } = useAuthenticationStore();
-
-  const authProviderLoginSuccess = (url) => {
-    window.location.href = url;
-  };
-
-  const { isFetching: githubLoading, refetch: getGithubAuthURL } =
-    useGithubAuthLogin(authProviderLoginSuccess);
-
-  const { isFetching: googleLoading, refetch: getGoogleAuthURL } =
-    useGoogleAuthLogin(authProviderLoginSuccess);
-
+export default function SocilaLoginComponent({
+  githubLoading,
+  googleLoading,
+  getGithubAuthURL,
+  getGoogleAuthURL,
+  isLoginButtonDisabled,
+}) {
   const handleProviderLogin = (provider) => {
-    setSocialServiceLoginError(null);
     if (provider === "github") {
       getGithubAuthURL();
     } else if (provider === "google") {
@@ -31,23 +16,19 @@ export default function SocilaLoginComponent() {
     }
   };
 
-  useEffect(() => {
-    setIsLoginButtonDisabled();
-  }, [githubLoading, googleLoading]);
   return (
-    // This component responsible for rendering auth provider buttons
     <div className="flex flex-col items-center">
       <button
         onClick={() => {
           handleProviderLogin("google");
         }}
-        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline disabled:bg-slate-300"
+        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm h-14 focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline disabled:bg-slate-300"
         disabled={isLoginButtonDisabled}
       >
         {googleLoading ? (
           <LoadingSpinnerUtil size={6} />
         ) : (
-          <>
+          <Fragment>
             <div className="p-2 bg-white rounded-full">
               <svg className="w-4" viewBox="0 0 533.5 544.3">
                 <path
@@ -69,20 +50,20 @@ export default function SocilaLoginComponent() {
               </svg>
             </div>
             <span className="ml-3">Continue with Google</span>
-          </>
+          </Fragment>
         )}
       </button>
       <button
         onClick={() => {
           handleProviderLogin("github");
         }}
-        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline disabled:bg-slate-300"
+        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold text-gray-800 transition-all duration-300 ease-in-out bg-indigo-100 border rounded-lg shadow-sm h-14 focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline disabled:bg-slate-300"
         disabled={isLoginButtonDisabled}
       >
         {githubLoading ? (
           <LoadingSpinnerUtil size={6} />
         ) : (
-          <>
+          <Fragment>
             <div className="p-1 bg-white rounded-full">
               <svg className="w-6" viewBox="0 0 32 32">
                 <path
@@ -92,7 +73,7 @@ export default function SocilaLoginComponent() {
               </svg>
             </div>
             <span className="ml-3">Continue with GitHub</span>
-          </>
+          </Fragment>
         )}
       </button>
     </div>
