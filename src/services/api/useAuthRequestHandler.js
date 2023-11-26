@@ -60,7 +60,7 @@ export const useLogin = () => {
   });
 };
 
-export const useLogout = (id, onSuccess) => {
+export const useLogout = (id) => {
   const { setToken, clearRefreshTimeout, setAuthenticatedUser } =
     useAuthenticationStore();
   return useQuery({
@@ -78,7 +78,7 @@ export const useLogout = (id, onSuccess) => {
   });
 };
 
-export const useRegister = (onSuccess) => {
+export const useRegister = () => {
   return useMutation(register, {
     onSuccess: ({ data }) => {
       setToken(data);
@@ -93,30 +93,50 @@ export const useRegister = (onSuccess) => {
   });
 };
 
-export const useGithubAuthLogin = (onSuccess) => {
+export const useGithubAuthLogin = () => {
+  const { setIsLoginButtonDisabled, setSocialServiceLoginError } =
+    useAuthenticationStore();
   return useQuery({
     queryKey: ["getgithubauthurl"],
     queryFn: async () => {
-      const response = await githubAuthLogin();
-      if (response.status === 200) {
-        onSuccess(response.data.authorization_url);
+      try {
+        setSocialServiceLoginError(null);
+        setIsLoginButtonDisabled(true);
+        const response = await githubAuthLogin();
+        if (response.status === 200) {
+          window.location.href = response.data.authorization_url;
+        }
+        return response;
+      } catch (error) {
+        throw error;
+      } finally {
+        setIsLoginButtonDisabled(false);
       }
-      return response;
     },
     enabled: false,
     useErrorBoundary: true,
   });
 };
 
-export const useGoogleAuthLogin = (onSuccess) => {
+export const useGoogleAuthLogin = () => {
+  const { setIsLoginButtonDisabled, setSocialServiceLoginError } =
+    useAuthenticationStore();
   return useQuery({
     queryKey: ["getgoogleauthurl"],
     queryFn: async () => {
-      const response = await googleAuthLogin();
-      if (response.status === 200) {
-        onSuccess(response.data.authorization_url);
+      try {
+        setSocialServiceLoginError(null);
+        setIsLoginButtonDisabled(true);
+        const response = await googleAuthLogin();
+        if (response.status === 200) {
+          window.location.href = response.data.authorization_url;
+        }
+        return response;
+      } catch (error) {
+        throw error;
+      } finally {
+        setIsLoginButtonDisabled(false);
       }
-      return response;
     },
     enabled: false,
     useErrorBoundary: true,
@@ -134,7 +154,7 @@ export const useRefreshToken = (callback) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { refetch } = useQuery({
-    queryKey: ["refreshtoken", authenticatedUser.id], // do you need to provide ID
+    queryKey: ["refreshToken", authenticatedUser.id], // do you need to provide ID
     queryFn: async () => {
       try {
         if (isRefreshing) {
@@ -176,29 +196,3 @@ export const useRefreshToken = (callback) => {
 
   return { refetch };
 };
-
-// old refresh token
-// export const useRefreshToken = (
-//   id,
-//   onSuccess = () => {},
-//   finallyFn = () => {}
-// ) => {
-//   return useQuery({
-//     queryKey: ["refreshtoken", id],
-//     queryFn: async () => {
-//       try {
-//         const response = await refreshToken();
-//         if (response.status === 200) {
-//           onSuccess(response.data);
-//         }
-//         return response;
-//       } catch (error) {
-//         throw error;
-//       } finally {
-//         finallyFn();
-//       }
-//     },
-//     enabled: false,
-//     cacheTime: 0,
-//   });
-// };
