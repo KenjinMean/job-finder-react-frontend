@@ -4,5 +4,6 @@ import react from "@vitejs/plugin-react-swc";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/job-finder-react-frontend/",
+  // deploy source https://github.com/ErickKS/vite-react-router
+  // base: "/job-finder-react-frontend/",
 });
