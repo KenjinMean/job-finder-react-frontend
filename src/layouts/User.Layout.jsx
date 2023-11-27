@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
-import HeaderComponent from "../components/header/header.Component";
+import HeaderComponent from "../components/header/Header.Component";
 
 import MaxWidthWrapperUtil from "../components/utils/MaxWidthWrapper.Util";
 

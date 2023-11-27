@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
-import HeaderComponent from "../components/header/header.Component";
+import HeaderComponent from "../components/header/Header.Component";
 
 import MaxWidthWrapperUtil from "../components/utils/MaxWidthWrapper.Util";
 
