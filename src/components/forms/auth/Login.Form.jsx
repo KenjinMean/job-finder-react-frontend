@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
+import TermsServices from "../../auth/TermsServices";
 
 export default function LoginForm({
   loginMutation,
@@ -69,16 +70,7 @@ export default function LoginForm({
             Register
           </Link>
         </p>
-        <p className="mt-6 text-xs text-center text-gray-600">
-          I agree to abide by templatana's
-          <a href="#" className="border-b border-gray-500 border-dotted">
-            Terms of Service
-          </a>
-          and its
-          <a href="#" className="border-b border-gray-500 border-dotted">
-            Privacy Policy
-          </a>
-        </p>
+        <TermsServices />
       </div>
     </form>
   );

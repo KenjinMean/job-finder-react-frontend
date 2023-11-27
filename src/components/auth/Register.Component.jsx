@@ -1,55 +1,26 @@
 // AUTH TEMPLATE SOURCE: https://codepen.io/owaiswiz/pen/jOPvEPB
-import { Fragment, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Fragment } from "react";
+import { Link, Navigate } from "react-router-dom";
 
-import { useStateContext } from "../../context/ContextProvider";
-import { useRegister } from "../../lib/hooks/ApiRequestsHandlers/useAuthRequestHandler";
+import appLogo from "../../assets/logo/JobFinderLogo.png";
+
+import { useRegister } from "../../services/api/useAuthRequestHandler";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+
+import AuthErrorUiComponent from "./AuthError.Component";
+import RegisterForm from "../../components/forms/auth/Register.Form";
 
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
-import appLogo from "../../assets/logo/JobFinderLogo.png";
-import RegisterForm from "../../components/forms/auth/Register.Form";
-import AuthErrorUiComponent from "./AuthError.Component";
-
-const PAYLOAD = {
-  email: "",
-  password: "",
-  password_confirmation: "",
-};
-
 export default function RegisterComponent() {
-  const navigate = useNavigate();
-
-  const { token, setToken, setUser } = useStateContext();
-
-  const [payload, setpayload] = useState(PAYLOAD);
-
-  const onSuccess = (data) => {
-    setToken(data);
-    setUser(data.user);
-    navigate("/profile/setup");
-  };
-
-  const onError = () => {
-    setpayload({
-      ...payload,
-      password: "",
-      password_confirmation: "",
-    });
-    setFocused(FOCUSED);
-  };
+  const { token } = useAuthenticationStore();
 
   const {
     isLoading: registerLoading,
     isError,
     error,
     mutate: registerMutation,
-  } = useRegister(onSuccess, onError);
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    registerMutation(payload);
-  };
+  } = useRegister();
 
   if (token) {
     return <Navigate to="/" />;
@@ -75,10 +46,9 @@ export default function RegisterComponent() {
                 errorMessage={error?.response?.data?.message}
               />
               <RegisterForm
-                payload={payload}
                 registerLoading={registerLoading}
-                setpayload={setpayload}
-                onSubmit={onSubmit}
+                registerMutation={registerMutation}
+                isError={isError}
               />
             </div>
           </div>

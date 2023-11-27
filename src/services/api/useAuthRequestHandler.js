@@ -79,13 +79,12 @@ export const useLogout = (id) => {
 };
 
 export const useRegister = () => {
+  const { setToken, setAuthenticatedUser, setLoginError } =
+    useAuthenticationStore();
   return useMutation(register, {
     onSuccess: ({ data }) => {
       setToken(data);
       setAuthenticatedUser(data.user);
-    },
-    onError: (error) => {
-      setLoginError(error?.response?.data?.message);
     },
     useErrorBoundary: (error) =>
       !error.response ||
