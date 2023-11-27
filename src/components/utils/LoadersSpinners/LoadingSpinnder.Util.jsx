@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function LoadingSpinnerUtil({ size = 8 }) {
+export default function LoadingSpinnerUtil({ size = 10 }) {
   return (
     <div role="status" className="flex justify-center">
       <svg
