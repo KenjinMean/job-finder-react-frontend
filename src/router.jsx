@@ -26,7 +26,6 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        // Remove the leading "/" from the path
         path: "",
         element: <Navigate to="/job-finder-react-frontend/jobs" />,
       },
@@ -48,47 +47,47 @@ const router = createBrowserRouter([
           },
         ],
       },
-      // {
-      //   path: "profile",
-      //   element: <UserLayout />,
-      //   children: [
-      //     {
-      //       path: "",
-      //       element: <UserProfilePage />,
-      //       children: [
-      //         {
-      //           path: "add-skill",
-      //           element: (
-      //             <ModalUtil modalComponent={<AddUserSkillModalComponent />} />
-      //           ),
-      //         },
-      //       ],
-      //     },
-      //     {
-      //       path: "edit-skills",
-      //       element: <UserSkillEditPage />,
-      //     },
-      //   ],
-      // },
-      // {
-      //   path: "auth",
-      //   element: <AuthLayout />,
-      //   children: [
-      //     {
-      //       // Remove the leading "/" from the path
-      //       path: "auth",
-      //       element: <Navigate to="/auth/login" />,
-      //     },
-      //     {
-      //       path: "login",
-      //       element: <LoginPage />,
-      //     },
-      //     {
-      //       path: "register",
-      //       element: <RegisterPage />,
-      //     },
-      //   ],
-      // },
+      {
+        path: "profile",
+        element: <UserLayout />,
+        children: [
+          {
+            path: "",
+            element: <UserProfilePage />,
+            children: [
+              {
+                path: "add-skill",
+                element: (
+                  <ModalUtil modalComponent={<AddUserSkillModalComponent />} />
+                ),
+              },
+            ],
+          },
+          {
+            path: "edit-skills",
+            element: <UserSkillEditPage />,
+          },
+        ],
+      },
+      {
+        path: "auth",
+        element: <AuthLayout />,
+        children: [
+          {
+            // Remove the leading "/" from the path
+            path: "auth",
+            element: <Navigate to="/auth/login" />,
+          },
+          {
+            path: "login",
+            element: <LoginPage />,
+          },
+          {
+            path: "register",
+            element: <RegisterPage />,
+          },
+        ],
+      },
       {
         path: "auth-provider-callback",
         element: <AuthProviderCallbackPage />,
