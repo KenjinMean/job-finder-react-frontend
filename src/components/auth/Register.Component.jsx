@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import { jobListingPageRoute } from "../../misc/constants/routes";
+import { jobListingPageRoute } from "../../constants/routes";
 
 import { useRegister } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";

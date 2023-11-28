@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
-import { authRegisterPageRoute } from "../../../misc/constants/routes";
+import { authRegisterPageRoute } from "../../../constants/routes";
 
 import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
 import TermsServices from "../../auth/TermsServices";

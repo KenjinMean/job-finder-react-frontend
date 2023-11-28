@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
-import { authLoginPageRoute } from "../misc/constants/routes";
+import { authLoginPageRoute } from "../constants/routes";
 
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { jobListingPageRoute } from "../../../misc/constants/routes";
+import { jobListingPageRoute } from "../../../constants/routes";
 
 export default function ErrorNotFoundUiComponent() {
   const navigate = useNavigate();

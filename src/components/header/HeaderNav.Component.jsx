@@ -8,7 +8,7 @@ import {
   jobListingPageRoute,
   userProfilePageRoute,
   authLoginPageRoute,
-} from "../../misc/constants/routes";
+} from "../../constants/routes";
 
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
