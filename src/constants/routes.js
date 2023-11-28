@@ -13,6 +13,7 @@ const authRegisterPageRoute = `${baseUrl}auth/register`;
 const authProviderCallbackPageRoute = `${baseUrl}auth-provider-callback`;
 
 export {
+  baseUrl,
   jobListingPageRoute,
   jobDetailsPageRoute,
   jobSearchResultPageRoute,
