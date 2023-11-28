@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 import { useLocation } from "react-router-dom";
+import baseUrl from "../../constants/routes/baseUrl";
 
 import MaxWidthWrapperUtil from "../../components/utils/MaxWidthWrapper.Util";
 
@@ -10,7 +11,7 @@ import HeaderNavComponent from "./HeaderNav.Component";
 
 export default function HeaderComponent() {
   const location = useLocation();
-  const baseUrl = import.meta.env.VITE_BASE_URL;
+  const baseUrl = baseUrl;
 
   return (
     <header className="p-5 py-8 bg-gradient-to-r from-background-100 to-background-200 lg:px-10">

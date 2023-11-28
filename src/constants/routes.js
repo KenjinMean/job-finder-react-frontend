@@ -1,4 +1,4 @@
-const baseUrl = import.meta.env.VITE_BASE_URL;
+const baseUrl = "/job-finder-react-frontend/";
 
 const jobListingPageRoute = `${baseUrl}jobs`;
 const jobDetailsPageRoute = `${baseUrl}jobs/view/`;
