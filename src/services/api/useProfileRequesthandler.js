@@ -18,17 +18,3 @@ export const useFetchtUserInfo = (id, onSuccess) => {
     suspense: true,
   });
 };
-
-export const useLogout = (id, onSuccess) => {
-  return useQuery({
-    queryKey: ["userlogout", id],
-    queryFn: async () => {
-      const response = await logout();
-      if (response.status === 200) {
-        onSuccess();
-      }
-      return response;
-    },
-    enabled: false,
-  });
-};
