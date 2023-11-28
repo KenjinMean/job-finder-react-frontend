@@ -7,7 +7,17 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { QueryBoundaries } from "./components/utils/QueryBoundaries.Util";
 import AuthProviderProvider from "./services/providers/AuthProvider.Provider";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      onError: (error) => {
+        // Handle the error globally
+        console.error("Network error:", error);
+      },
+      useErrorBoundary: true,
+    },
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
