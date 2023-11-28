@@ -1,1 +1,0 @@
-import{o as r,p as i}from"./index-d6649195.js";const l=r(i(t=>({user:{user_info:{},user_skills:[]},setUser:s=>{t(e=>({...e,user:s}))},userStates:{isAddingSkills:!1,isDeletingSkills:!1,isUpdatingInfo:!1,isUpdatingContact:!1},setUserStates:(s,e)=>t(a=>({userStates:{...a.userStates,[s]:e}}))})));export{l as u};
