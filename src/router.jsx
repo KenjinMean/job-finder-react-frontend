@@ -26,11 +26,12 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/",
+        // Remove the leading "/" from the path
+        path: "",
         element: <Navigate to="/jobs" />,
       },
       {
-        path: "/jobs",
+        path: "jobs",
         element: <JobsLayout />,
         children: [
           {
@@ -70,11 +71,12 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/auth",
+        path: "auth",
         element: <AuthLayout />,
         children: [
           {
-            path: "/auth",
+            // Remove the leading "/" from the path
+            path: "auth",
             element: <Navigate to="/auth/login" />,
           },
           {
@@ -88,14 +90,13 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/auth-provider-callback",
+        path: "auth-provider-callback",
         element: <AuthProviderCallbackPage />,
       },
     ],
   },
-
   {
-    path: "/component-design",
+    path: "component-design",
     element: <ComponentDesignView />,
   },
   {
@@ -103,7 +104,7 @@ const router = createBrowserRouter([
     element: <ErrorPage error={{ code: "404" }} />,
   },
   {
-    path: "/error",
+    path: "error",
     element: <ErrorPage />,
   },
 ]);
