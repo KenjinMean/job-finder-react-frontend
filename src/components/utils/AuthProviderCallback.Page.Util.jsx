@@ -1,6 +1,8 @@
 import { Navigate } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 
+import { jobListingPageRoute } from "../../misc/constants/routes";
+
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 import { PageTitleUtil } from "./PageTitle.Util";
@@ -68,7 +70,7 @@ export default function AuthProviderCallbackPageUtil() {
   }
 
   if (token) {
-    return <Navigate to="/" />;
+    return <Navigate to={jobListingPageRoute} />;
   }
 
   return (

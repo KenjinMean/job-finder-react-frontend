@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { jobListingPageRoute } from "../../../misc/constants/routes";
+
 export default function ErrorNotFoundUiComponent() {
   const navigate = useNavigate();
 
@@ -30,7 +32,10 @@ export default function ErrorNotFoundUiComponent() {
         <p className="mt-5 text-slate-600 lg:text-lg">
           The page you are looking for doesn't exist or <br />
           has been removed. You can return to the{" "}
-          <Link to="/jobs" className="text-blue-500 hover:text-blue-700">
+          <Link
+            to={jobListingPageRoute}
+            className="text-blue-500 hover:text-blue-700"
+          >
             Home page
           </Link>{" "}
           or{" "}

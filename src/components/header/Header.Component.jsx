@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 
 import { useLocation } from "react-router-dom";
 
@@ -10,13 +10,14 @@ import HeaderNavComponent from "./HeaderNav.Component";
 
 export default function HeaderComponent() {
   const location = useLocation();
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   return (
     <header className="p-5 py-8 bg-gradient-to-r from-background-100 to-background-200 lg:px-10">
       <MaxWidthWrapperUtil>
         <HeaderNavComponent />
-        {location.pathname === "/jobs" ||
-        location.pathname.startsWith("/jobs/search") ? (
+        {location.pathname === `${baseUrl}jobs` ||
+        location.pathname.startsWith(`${baseUrl}jobs/search`) ? (
           <Fragment>
             <HeaderHeroBannerComponent />
             <AutoCompleteSearchBarUiComponent />

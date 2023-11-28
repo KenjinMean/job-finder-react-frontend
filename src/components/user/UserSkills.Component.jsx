@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import {
+  userEditSkillPageRoute,
+  userAddSkillPageRoute,
+} from "../../misc/constants/routes";
+
 import { useRemoveSkill } from "../../services/api/useSkillRequestHandler";
 
 export default function UserSkillsComponent({ userData }) {
@@ -37,9 +42,9 @@ export default function UserSkillsComponent({ userData }) {
         })}
       </ul>
       <div className="absolute flex gap-5 right-5 top-5">
-        <Link to="edit-skills">edit</Link>
+        <Link to={userEditSkillPageRoute}>edit</Link>
         <Link
-          to="add-skill"
+          to={userAddSkillPageRoute}
           // prevents page scrolling back to top when opening modals
           preventScrollReset={true}
         >

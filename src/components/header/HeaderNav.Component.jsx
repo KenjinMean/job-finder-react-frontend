@@ -4,6 +4,11 @@ import { Menu } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
+import {
+  jobListingPageRoute,
+  userProfilePageRoute,
+  authLoginPageRoute,
+} from "../../misc/constants/routes";
 
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
@@ -51,7 +56,7 @@ export default function HeaderNavComponent() {
   return (
     <nav className="relative bg-transparent border-gray-200">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl gap-5 mx-auto">
-        <Link to="/jobs" className="flex items-center">
+        <Link to={jobListingPageRoute} className="flex items-center">
           <img src={appLogo} className="h-14" alt="Flowbite Logo" />
         </Link>
 
@@ -86,7 +91,7 @@ export default function HeaderNavComponent() {
 
                 <Menu.Item
                   as={Link}
-                  to="/profile"
+                  to={userProfilePageRoute}
                   className="block px-5 py-1 hover:bg-indigo-500 hover:text-white"
                 >
                   Profile
@@ -147,7 +152,7 @@ export default function HeaderNavComponent() {
             </li>
             {!token && (
               <li className="w-full p-2 font-semibold text-foreground-300 hover:text-purple-500">
-                <Link to="/auth/login">login</Link>
+                <Link to={authLoginPageRoute}>login</Link>
               </li>
             )}
           </ul>

@@ -1,8 +1,9 @@
 // AUTH TEMPLATE SOURCE: https://codepen.io/owaiswiz/pen/jOPvEPB
 import React, { Fragment } from "react";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
+import { jobListingPageRoute } from "../../misc/constants/routes";
 
 import { useLogin } from "../../services/api/useAuthRequestHandler";
 import { useGithubAuthLogin } from "../../services/api/useAuthRequestHandler";
@@ -32,14 +33,14 @@ export default function LoginComponent() {
   useSocialAuthErrorHandling();
 
   if (token) {
-    return <Navigate to="/jobs" />;
+    return <Navigate to={jobListingPageRoute} />;
   }
 
   return (
     <Fragment>
       <PageTitleUtil title="Login" />
       <div className="p-6 sm:p-12 ">
-        <Link to="/jobs">
+        <Link to={jobListingPageRoute}>
           <div className="flex justify-center">
             <img src={appLogo} alt="" />
           </div>

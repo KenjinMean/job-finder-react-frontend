@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react()],
   // deploy source https://www.youtube.com/watch?v=uEEj2c3_ydg
-  base: "/job-finder-react-frontend/",
+  base: import.meta.env.VITE_BASE_URL,
 });

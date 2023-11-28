@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
+import { authLoginPageRoute } from "../misc/constants/routes";
+
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 import HeaderComponent from "../components/header/Header.Component";
@@ -12,7 +14,7 @@ export default function UserProfileLayout() {
   const { token } = useAuthenticationStore();
 
   if (!token) {
-    return <Navigate to="/auth/login" />;
+    return <Navigate to={authLoginPageRoute} />;
   }
 
   return (
