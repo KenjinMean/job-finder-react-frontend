@@ -22,7 +22,7 @@ import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Pa
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/job-finder-react-frontend/",
     element: <AppLayout />,
     children: [
       {
