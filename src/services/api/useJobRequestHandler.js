@@ -26,6 +26,7 @@ export const useFetchJobdetails = (id) => {
   return useQuery({
     queryKey: ["jobdetails", id],
     queryFn: () => getJobDetails(id),
+    select: (data) => data?.data?.job,
     suspense: true,
   });
 };

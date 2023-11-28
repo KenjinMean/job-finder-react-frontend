@@ -1,28 +1,24 @@
-import React, { Fragment, Suspense } from "react";
+import React, { Fragment } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { formatSalary } from "../../utils/formatSalary";
 import { useFetchJobdetails } from "../../services/api/useJobRequestHandler";
 
 export default function JobDetailsComponent() {
-  const { jobSlug } = useParams();
-
   const navigate = useNavigate();
 
+  const { jobSlug } = useParams();
+
   const { data: jobDetails } = useFetchJobdetails(jobSlug);
-
   const {
-    job: {
-      title,
-      description,
-      salary,
-      company,
-      skills,
-      requirements,
-      location,
-    } = {},
-  } = jobDetails?.data || {};
-
+    title,
+    salary,
+    location,
+    skills,
+    description,
+    requirements,
+    company,
+  } = jobDetails ?? {};
   return (
     <Fragment>
       <div className="mx-auto">
