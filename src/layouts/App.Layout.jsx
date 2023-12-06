@@ -1,21 +1,38 @@
 import { useRef } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 
-// https://reactrouter.com/en/main/components/scroll-restoration
-import { ScrollRestoration } from "react-router-dom";
+import {
+  userAddSkillPageRoute,
+  userAddSkillErrorPageRoute,
+  userAddSkillSuccessPageRoute,
+} from "../constants/routes";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
+import usePreserveScrollPositionForRoute from "../hooks/usePreserveScrollForRoute";
 
 export default function AppLayout() {
-  const modalScrollLockRef = useRef();
+  // lock app scrolling when a modal is active
+  const elementToScrollLockRef = useRef();
+  const { setElementToScrollLockRef } = useModalScrollLock();
+  setElementToScrollLockRef(elementToScrollLockRef);
 
-  // lock scrolling when modal is active
-  const { setModalParentRef } = useModalScrollLock();
-  setModalParentRef(modalScrollLockRef);
+  usePreserveScrollPositionForRoute([
+    userAddSkillErrorPageRoute,
+    userAddSkillSuccessPageRoute,
+  ]);
 
   return (
-    <div ref={modalScrollLockRef}>
-      <ScrollRestoration />
+    <div ref={elementToScrollLockRef}>
+      {/*  SOURCE https://reactrouter.com/en/main/components/scroll-restoration */}
+      <ScrollRestoration
+        getKey={(location, matches) => {
+          const paths = [userAddSkillPageRoute];
+          return paths.includes(location.pathname)
+            ? location.pathname
+            : location.key;
+        }}
+      />
+
       <Outlet />
     </div>
   );
