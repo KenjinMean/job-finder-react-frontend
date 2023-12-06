@@ -1,12 +1,14 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
+import { baseUrl } from "./constants/routes.js";
+
 import AppLayout from "./layouts/App.Layout.jsx";
 import JobsLayout from "./layouts/Jobs.Layout.jsx";
 import AuthLayout from "./layouts/Auth.Layout.jsx";
 import UserLayout from "./layouts/User.Layout.jsx";
 
+// used for designing/previewing component
 import ComponentDesignView from "./components/ComponentDesign.View.jsx";
-import AddUserSkillModalComponent from "./components/modals/user/AddUserSkill.Modal.Component.jsx";
 
 import ErrorPage from "./pages/Error.Page";
 import LoginPage from "./pages/Login.Page";
@@ -14,20 +16,21 @@ import RegisterPage from "./pages/Register.Page";
 import JobDetailspage from "./pages/JobDetails.Page";
 import UserProfilePage from "./pages/UserProfile.Page";
 import JobListingPage from "./pages/JobListing.Page.jsx";
+import AddUserSkillPage from "./pages/AddUserSkill.Page.jsx";
 import UserSkillEditPage from "./pages/UserSkillEdit.Page.jsx";
 import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
-
-import ModalUtil from "./components/utils/Modal.Util.jsx";
-import AuthProviderCallbackPage from "./components/utils/AuthProviderCallback.Page.Util.jsx";
+import AddUserSkillErrorPage from "./pages/AddUserSkillError.Page.jsx";
+import AddUserSkillSuccessPage from "./pages/AddUserSkillSuccess.Page.jsx";
+import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/job-finder-react-frontend/",
+    path: baseUrl,
     element: <AppLayout />,
     children: [
       {
         path: "",
-        element: <Navigate to="/job-finder-react-frontend/jobs" />,
+        element: <Navigate to={`${baseUrl}jobs`} />,
       },
       {
         path: "jobs",
@@ -57,9 +60,15 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "add-skill",
-                element: (
-                  <ModalUtil modalComponent={<AddUserSkillModalComponent />} />
-                ),
+                element: <AddUserSkillPage />,
+              },
+              {
+                path: "add-skill-success",
+                element: <AddUserSkillSuccessPage />,
+              },
+              {
+                path: "add-skill-error",
+                element: <AddUserSkillErrorPage />,
               },
             ],
           },
@@ -74,7 +83,6 @@ const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [
           {
-            // Remove the leading "/" from the path
             path: "auth",
             element: <Navigate to="/auth/login" />,
           },
