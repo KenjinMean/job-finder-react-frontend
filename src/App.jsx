@@ -2,7 +2,8 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router.jsx";
 import { useAuthenticationStore } from "./services/state/AuthenticationStore.js";
 import { useRefreshToken } from "./services/api/useAuthRequestHandler.js";
-import { useEffect } from "react";
+import { useEffect, Fragment } from "react";
+import { Helmet } from "react-helmet";
 
 function App() {
   const { token } = useAuthenticationStore();
@@ -20,9 +21,18 @@ function App() {
   }, [token]);
 
   return (
-    <div className="font-primary">
-      <RouterProvider router={router} />
-    </div>
+    <Fragment>
+      <Helmet>
+        {/* Add your CSP meta tag */}
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' https://example.com; style-src 'self' https://fonts.googleapis.com; img-src 'self' data: https://example.com; font-src 'self' https://fonts.gstatic.com"
+        />
+      </Helmet>
+      <div className="font-primary">
+        <RouterProvider router={router} />
+      </div>
+    </Fragment>
   );
 }
 export default App;
