@@ -1,51 +1,64 @@
 import axiosClient from "../../axios-client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  userAddSkillSuccessPageRoute,
+  userAddSkillErrorPageRoute,
+} from "../../constants/routes";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useAuthenticationStore } from "../state/AuthenticationStore";
+import { useNavigate } from "react-router-dom";
 
 const searchSkill = (keyword) => {
   return axiosClient.get(`/search-skills?keyword=${keyword}`);
 };
 
-const addSkill = (skillId) => {
+const addUserSkill = (skillId) => {
   return axiosClient.post(`/add-skill?skill_id=${skillId}`);
 };
 
-const removeSkill = (skillsArray) => {
-  return axiosClient.delete(`/remove-skills`, skillsArray);
+const removeUSerSkill = (skillId) => {
+  return axiosClient.delete(`/remove-skill?skill_id=${skillId}`);
 };
 
-export const useSearchSkill = (keyword, setSearchSuggestions) => {
+export const useSearchSkill = (keyword, setKeyword) => {
   return useQuery({
     queryKey: ["searchskill"],
     queryFn: async () => {
-      if (keyword) {
-        const response = await searchSkill(keyword);
+      const response = await searchSkill(keyword);
 
-        if (response.status === 200) {
-          setSearchSuggestions(response.data.skills);
-        }
-        return response;
-      } else {
-        return { data: null };
-      }
+      return response;
     },
-
-    enabled: false,
     select: (data) => data?.data?.skills,
   });
 };
 
-export const useAddSkill = (onSuccess) => {
-  return useMutation(addSkill, {
-    onSuccess: async ({ data }) => {
-      onSuccess(data);
+export const useAddUserSkill = () => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useMutation(addUserSkill, {
+    onSuccess: async () => {
+      await queryClient.refetchQueries(["userinfo", authenticatedUser.id]);
+      queryClient.invalidateQueries("searchskill");
+      navigate(userAddSkillSuccessPageRoute);
+    },
+    onError: (error) => {
+      const errorMessage = error.response.data.error || "An error occurred";
+      navigate(
+        `${userAddSkillErrorPageRoute}?error=${encodeURIComponent(
+          errorMessage
+        )}`
+      );
     },
   });
 };
 
-export const useRemoveSkill = (onSuccess) => {
-  return useMutation(removeSkill, {
-    onSuccess: async ({ data }) => {
-      onSuccess(data);
+export const useRemoveUserSkill = () => {
+  const navigate = useNavigate();
+
+  return useMutation(removeUSerSkill, {
+    onSuccess: async () => {
+      navigate(userAddSkillSuccessPageRoute);
     },
   });
 };
