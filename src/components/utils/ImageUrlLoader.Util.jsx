@@ -11,7 +11,7 @@ export default function ImageUrlLoaderUtil({ imageUrl, alt = "" }) {
   const url = imageUrl
     ? imageUrl.startsWith("http://") || imageUrl.startsWith("https://")
       ? imageUrl
-      : `${import.meta.env.VITE_API_BASE_URL}/${imageUrl}`
+      : `${import.meta.env.VITE_APP_LARAVEL_API_URL}/${imageUrl}`
     : fallBackCompanyImage;
 
   return (
