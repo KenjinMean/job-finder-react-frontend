@@ -1,14 +1,14 @@
 import { Navigate } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 
-import { jobListingPageRoute } from "../../constants/routes";
+import { jobListingPageRoute } from "../constants/routes";
 
-import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
-import { PageTitleUtil } from "./PageTitle.Util";
-import MaxWidthWrapperUtil from "./MaxWidthWrapper.Util";
+import { PageTitleUtil } from "../components/utils/PageTitle.Util";
+import MaxWidthWrapperUtil from "../components/utils/MaxWidthWrapper.Util";
 
-export default function AuthProviderCallbackPageUtil() {
+export default function AuthProviderCallbackPage() {
   const { token, setToken, setAuthenticatedUser } = useAuthenticationStore();
 
   const [seconds, setSeconds] = useState(5);
