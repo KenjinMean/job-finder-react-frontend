@@ -26,7 +26,7 @@ function App() {
         {/* Add your CSP meta tag */}
         <meta
           http-equiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' https://example.com; style-src 'self' https://fonts.googleapis.com; img-src 'self' data: https://example.com; font-src 'self' https://fonts.gstatic.com"
+          content="default-src 'self'; script-src 'self' https://example.com; style-src 'self' https://fonts.googleapis.com; img-src 'self' data: https://example.com https://postsrc.com/; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://localhost:8000;"
         />
       </Helmet>
       <div className="font-primary">
