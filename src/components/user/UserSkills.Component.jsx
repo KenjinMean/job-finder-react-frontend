@@ -6,7 +6,7 @@ import {
   userAddSkillPageRoute,
 } from "../../constants/routes";
 
-import { useRemoveSkill } from "../../services/api/useSkillRequestHandler";
+import { useRemoveUserSkill } from "../../services/api/useSkillRequestHandler";
 
 export default function UserSkillsComponent({ userData }) {
   const [removeSkillActive, setRemoveSkillactive] = useState(false);
@@ -16,7 +16,7 @@ export default function UserSkillsComponent({ userData }) {
     isError,
     error,
     mutate: removeSkillMutation,
-  } = useRemoveSkill();
+  } = useRemoveUserSkill();
 
   const handleRemoveSkill = () => {
     removeSkillMutation();
