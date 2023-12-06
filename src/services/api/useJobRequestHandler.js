@@ -1,7 +1,7 @@
 import axiosClient from "../../axios-client";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
-const getJobDetails = (id) => {
+const fetchJobDetails = (id) => {
   return axiosClient.get(`/jobs/${id}`);
 };
 
@@ -16,7 +16,7 @@ const searchJobs = (param, { pageParam }) => {
   );
 };
 
-const fetchSearchSuggestion = (keyword) => {
+const searchJobsSuggestions = (keyword) => {
   return axiosClient.get(`/jobs/search-jobs-suggestions?keyword=${keyword}`);
 };
 
@@ -25,9 +25,11 @@ const fetchSearchSuggestion = (keyword) => {
 export const useFetchJobdetails = (id) => {
   return useQuery({
     queryKey: ["jobdetails", id],
-    queryFn: () => getJobDetails(id),
+    queryFn: () => fetchJobDetails(id),
     select: (data) => data?.data?.job,
     suspense: true,
+    cacheTime: 1000 * 60 * 60 * 24 * 7,
+    staleTime: 1000 * 60 * 60 * 24 * 3,
   });
 };
 
@@ -44,6 +46,8 @@ export const useFetchJobsInfinite = () => {
       return undefined;
     },
     suspense: true,
+    cacheTime: 1000 * 60 * 60 * 24 * 7,
+    staleTime: 1000 * 60 * 60 * 24 * 3,
   });
 };
 
@@ -69,7 +73,7 @@ export const useFetchSearchSuggestions = (param) => {
     queryKey: ["fetchjobsuggestion", param],
     queryFn: () => {
       if (param) {
-        return fetchSearchSuggestion(param);
+        return searchJobsSuggestions(param);
       }
       return { data: null };
     },
