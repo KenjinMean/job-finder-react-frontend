@@ -5,7 +5,7 @@ import {
   userAddSkillPageRoute,
   userAddSkillErrorPageRoute,
   userAddSkillSuccessPageRoute,
-} from "../constants/routes";
+} from "../constants/routes.jsx";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
 import usePreserveScrollPositionForRoute from "../hooks/usePreserveScrollForRoute";

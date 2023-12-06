@@ -8,7 +8,7 @@ import {
   jobListingPageRoute,
   userProfilePageRoute,
   authLoginPageRoute,
-} from "../../constants/routes";
+} from "../../constants/routes.jsx";
 
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";

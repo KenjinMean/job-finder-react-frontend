@@ -5,7 +5,7 @@ import error from "../../../assets/icons/error.png";
 import {
   userProfilePageRoute,
   userAddSkillPageRoute,
-} from "../../../constants/routes";
+} from "../../../constants/routes.jsx";
 
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component";

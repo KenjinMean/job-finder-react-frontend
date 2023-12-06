@@ -6,7 +6,7 @@ import searchIcon from "../../assets/icons/search-icon.png";
 import {
   jobSearchResultPageRoute,
   jobListingPageRoute,
-} from "../../constants/routes";
+} from "../../constants/routes.jsx";
 
 import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
 import { useFetchSearchSuggestions } from "../../services/api/useJobRequestHandler";

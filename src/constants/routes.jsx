@@ -24,7 +24,7 @@
 //   Object.entries(routeNames).map(([key, value]) => [key, prependBaseUrl(value)])
 // );
 
-const baseUrl = "/job-finder-react-frontend/";
+const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
 const prependBaseUrl = (route) => baseUrl + route;
 

@@ -1,6 +1,6 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import { baseUrl } from "./constants/routes.js";
+import { baseUrl } from "./constants/routes.jsx";
 
 import AppLayout from "./layouts/App.Layout.jsx";
 import JobsLayout from "./layouts/Jobs.Layout.jsx";

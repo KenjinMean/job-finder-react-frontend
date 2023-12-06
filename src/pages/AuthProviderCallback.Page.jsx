@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 
-import { jobListingPageRoute } from "../constants/routes";
+import { jobListingPageRoute } from "../constants/routes.jsx";
 
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 

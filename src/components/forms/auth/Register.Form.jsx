@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { authLoginPageRoute } from "../../../constants/routes";
+import { authLoginPageRoute } from "../../../constants/routes.jsx";
 
 import TermsServices from "../../auth/TermsServices";
 import AuthSubmitButtonComponent from "../../auth/AuthSubmitButton.Component";

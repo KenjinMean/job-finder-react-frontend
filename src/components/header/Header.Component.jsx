@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import { useLocation } from "react-router-dom";
-import { baseUrl } from "../../constants/routes";
+import { baseUrl } from "../../constants/routes.jsx";
 
 import MaxWidthWrapperUtil from "../../components/utils/MaxWidthWrapper.Util";
 

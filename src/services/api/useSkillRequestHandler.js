@@ -2,7 +2,7 @@ import axiosClient from "../../axios-client";
 import {
   userAddSkillSuccessPageRoute,
   userAddSkillErrorPageRoute,
-} from "../../constants/routes";
+} from "../../constants/routes.jsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
 import { useNavigate } from "react-router-dom";

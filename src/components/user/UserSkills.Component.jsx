@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
   userEditSkillPageRoute,
   userAddSkillPageRoute,
-} from "../../constants/routes";
+} from "../../constants/routes.jsx";
 
 import { useRemoveUserSkill } from "../../services/api/useSkillRequestHandler";
 

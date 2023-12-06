@@ -1,7 +1,7 @@
 // MODAL SOURCE: https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular
 import React, { Fragment, useState } from "react";
 
-import { userProfilePageRoute } from "../../../constants/routes";
+import { userProfilePageRoute } from "../../../constants/routes.jsx";
 
 import { useAddUserSkill } from "../../../services/api/useSkillRequestHandler";
 import { useSearchSkill } from "../../../services/api/useSkillRequestHandler";

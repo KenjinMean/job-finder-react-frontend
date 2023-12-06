@@ -5,7 +5,7 @@ import success from "../../../assets/icons/success.png";
 import {
   userProfilePageRoute,
   userAddSkillPageRoute,
-} from "../../../constants/routes";
+} from "../../../constants/routes.jsx";
 
 import ButtonClosePrimaryUiComponent from "../../UI/ButtonClosePrimary.Ui.Component";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component";
