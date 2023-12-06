@@ -25,7 +25,8 @@
 // );
 
 // IMPROVE: dynamic routes can be a function that accepts the dynamic variable and return it.
-export const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+// export const baseUrl = import.meta.env.VITE_APP_BASE_URL;
+export const baseUrl = "/job-finder-react-frontend/";
 
 export const prependBaseUrl = (route) => baseUrl + route;
 
