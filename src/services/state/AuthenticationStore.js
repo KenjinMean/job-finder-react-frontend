@@ -9,7 +9,6 @@ export const useAuthenticationStore = create(
     isRefreshingToken: false,
     isLoginButtonDisabled: false,
     isRegisterButtonDisabled: false,
-    loginError: null,
     socialServiceLoginError: null,
 
     setIsTokenRefreshing: (value) => set(() => ({ isRefreshingToken: value })),
@@ -65,11 +64,6 @@ export const useAuthenticationStore = create(
     setIsRegisterButtonDisabled: () =>
       set((state) => ({
         isRegisterButtonDisabled: !state.isRegisterButtonDisabled,
-      })),
-
-    setLoginError: (newError) =>
-      set(() => ({
-        loginError: newError,
       })),
 
     setSocialServiceLoginError: (newError) =>
