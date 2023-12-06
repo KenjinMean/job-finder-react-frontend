@@ -35,12 +35,10 @@ export const useLogin = () => {
     setAuthenticatedUser,
     setIsLoginButtonDisabled,
     setSocialServiceLoginError,
-    setLoginError,
   } = useAuthenticationStore();
 
   return useMutation(login, {
     onMutate: () => {
-      setLoginError(null);
       setSocialServiceLoginError(null);
       setIsLoginButtonDisabled(true);
     },
@@ -48,12 +46,10 @@ export const useLogin = () => {
       setToken(data);
       setAuthenticatedUser(data.user);
     },
-    onError: (error) => {
-      setLoginError(error?.response?.data?.message);
-    },
     onSettled: () => {
       setIsLoginButtonDisabled(false);
     },
+    // do not use ErrorBoundary if the response status is 422 or 409 because login component has error to display error on the component
     useErrorBoundary: (error) =>
       !error.response ||
       (error.response.status !== 422 && error.response.status !== 409),
@@ -79,13 +75,13 @@ export const useLogout = (id) => {
 };
 
 export const useRegister = () => {
-  const { setToken, setAuthenticatedUser, setLoginError } =
-    useAuthenticationStore();
+  const { setToken, setAuthenticatedUser } = useAuthenticationStore();
   return useMutation(register, {
     onSuccess: ({ data }) => {
       setToken(data);
       setAuthenticatedUser(data.user);
     },
+    // do not use ErrorBoundary if the response status is 422 or 409 because register component has error to display error on the component
     useErrorBoundary: (error) =>
       !error.response ||
       (error.response.status !== 422 && error.response.status !== 409),
