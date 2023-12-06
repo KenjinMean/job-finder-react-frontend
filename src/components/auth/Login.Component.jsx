@@ -19,10 +19,15 @@ import SocilaLoginComponent from "./SocialLogin.Component";
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function LoginComponent() {
-  const { token, socialServiceLoginError, loginError, isLoginButtonDisabled } =
+  const { token, socialServiceLoginError, isLoginButtonDisabled } =
     useAuthenticationStore();
 
-  const { isLoading: loginLoading, mutate: loginMutation } = useLogin();
+  const {
+    error: loginError,
+    isError: isLoginError,
+    isLoading: loginLoading,
+    mutate: loginMutation,
+  } = useLogin();
 
   const { isFetching: githubLoading, refetch: getGithubAuthURL } =
     useGithubAuthLogin();
@@ -30,6 +35,7 @@ export default function LoginComponent() {
   const { isFetching: googleLoading, refetch: getGoogleAuthURL } =
     useGoogleAuthLogin();
 
+  // social auth error comes from server as url params, so we need to extract it using this function
   useSocialAuthErrorHandling();
 
   if (token) {
@@ -64,7 +70,10 @@ export default function LoginComponent() {
                 Or sign up with e-mail
               </div>
             </div>
-            <AuthErrorComponent error={loginError} errorMessage={loginError} />
+            <AuthErrorComponent
+              error={isLoginError}
+              errorMessage={loginError?.response?.data?.message}
+            />
             <LoginForm
               loginLoading={loginLoading}
               loginMutation={loginMutation}
