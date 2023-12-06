@@ -25,7 +25,7 @@ export default function AddSkillSpinnerUtil() {
         />
       </svg>
       <span className="sr-only">Loading...</span>
-      <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
+      {/* <div className="fixed inset-0 z-40 bg-black opacity-25"></div> */}
     </div>
   );
 }
