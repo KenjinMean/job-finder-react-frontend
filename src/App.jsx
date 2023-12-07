@@ -1,26 +1,11 @@
-import { RouterProvider } from "react-router-dom";
+import { Fragment } from "react";
 import router from "./router.jsx";
-import { useAuthenticationStore } from "./services/state/AuthenticationStore.js";
-import { useRefreshToken } from "./services/api/useAuthRequestHandler.js";
-import { useEffect, Fragment } from "react";
+import { RouterProvider } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
+
 import cspConfig from "./config/cspConfig.js";
 
 function App() {
-  const { token } = useAuthenticationStore();
-
-  const refreshToken = () => {
-    refreshTokenFn();
-  };
-
-  const { refetch: refreshTokenFn } = useRefreshToken(refreshToken);
-
-  useEffect(() => {
-    if (token) {
-      refreshToken();
-    }
-  }, [token]);
-
   return (
     <HelmetProvider>
       <Fragment>
@@ -41,15 +26,11 @@ function App() {
             property="og:description"
             content="Find your next career opportunity with Job Finder. Search and apply for thousands of job listings in various industries."
           />
-          <meta property="og:image" content="URL_TO_YOUR_APP_IMAGE" />
+          <meta property="og:image" content="/src/assets/icons/favicon.png" />
           {/* <!-- Add an image URL for social sharing  --> */}
           <meta property="og:url" content="URL_TO_YOUR_APP" />
           <meta property="og:type" content="website" />
-          <meta
-            http-equiv="Content-Security-Policy"
-            // content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.example.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://example.com https://postsrc.com/ http://127.0.0.1:8000/ https://via.placeholder.com/; font-src 'self' https://fonts.gstatic.com; connect-src 'self' http://127.0.0.1:8000/;"
-            content={`default-src ${cspConfig.defaultSrc}; script-src ${cspConfig.scriptSrc}; style-src ${cspConfig.styleSrc}; img-src ${cspConfig.imgSrc}; font-src ${cspConfig.fontSrc}; connect-src ${cspConfig.connectSrc};`}
-          />
+          <meta http-equiv="Content-Security-Policy" content={cspConfig} />
           <link
             rel="icon"
             type="image/png"
