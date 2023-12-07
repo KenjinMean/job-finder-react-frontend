@@ -22,6 +22,7 @@ import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
 import AddUserSkillErrorPage from "./pages/AddUserSkillError.Page.jsx";
 import AddUserSkillSuccessPage from "./pages/AddUserSkillSuccess.Page.jsx";
 import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
+import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <UserLayout />,
+        element: <ProtectedRouteUtil component={<UserLayout />} />,
         children: [
           {
             path: "",
