@@ -1,3 +1,5 @@
+// IMPROVE: define csp in http headers
+
 const cspConfigContent = {
   defaultSrc: "'self'",
   scriptSrc: "'self' 'unsafe-inline' https://cdn.example.com",
