@@ -1,4 +1,4 @@
-const cspConfig = {
+const cspConfigContent = {
   defaultSrc: "'self'",
   scriptSrc: "'self' 'unsafe-inline' https://cdn.example.com",
   styleSrc: "'self' 'unsafe-inline' https://fonts.googleapis.com",
@@ -8,4 +8,5 @@ const cspConfig = {
   connectSrc: "'self' http://127.0.0.1:8000/",
 };
 
+const cspConfig = `default-src ${cspConfigContent.defaultSrc}; script-src ${cspConfigContent.scriptSrc}; style-src ${cspConfigContent.styleSrc}; img-src ${cspConfigContent.imgSrc}; font-src ${cspConfigContent.fontSrc}; connect-src ${cspConfigContent.connectSrc};`;
 export default cspConfig;
