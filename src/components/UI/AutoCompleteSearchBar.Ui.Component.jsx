@@ -149,6 +149,7 @@ export default function AutoCompleteSearchBarUiComponent() {
           open={isSuggestionDropdownActive}
         >
           <input
+            name="search"
             type="text"
             ref={inputRef}
             onFocus={handleInputFocus}
