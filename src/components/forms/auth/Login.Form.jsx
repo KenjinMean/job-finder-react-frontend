@@ -33,6 +33,9 @@ export default function LoginForm({
           type="email"
           ref={emailRef}
           placeholder="Email"
+          id="email"
+          name="email"
+          autoComplete="username"
           required
         />
         <input
@@ -40,9 +43,13 @@ export default function LoginForm({
           type="password"
           ref={passwordRef}
           placeholder="Password"
+          name="password"
+          autoComplete="current-password"
+          id="password"
           required
         />
         <button
+          type="submit"
           disabled={isLoginButtonDisabled}
           className="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:shadow-outline focus:outline-none disabled:bg-slate-300"
         >
@@ -67,7 +74,7 @@ export default function LoginForm({
           )}
         </button>
         <p className="px-2 mt-5 text-sm font-medium leading-none tracking-wide text-center text-gray-600 transform translate-y-1/2 bg-white ">
-          Dont have an account yet?{" "}
+          Don't have an account yet?{" "}
           <Link to={authRegisterPageRoute} className="text-indigo-500">
             Register
           </Link>
