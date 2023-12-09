@@ -31,11 +31,6 @@ function App() {
           <meta property="og:url" content="URL_TO_YOUR_APP" />
           <meta property="og:type" content="website" />
           <meta http-equiv="Content-Security-Policy" content={cspConfig} />
-          <link
-            rel="icon"
-            type="image/png"
-            href="/src/assets/icons/favicon.png"
-          />
         </Helmet>
         <div className="font-primary">
           <RouterProvider router={router} />
