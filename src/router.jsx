@@ -101,12 +101,13 @@ const router = createBrowserRouter([
         path: "auth-provider-callback",
         element: <AuthProviderCallbackPage />,
       },
+      {
+        path: "component-design",
+        element: <ComponentDesignView />,
+      },
     ],
   },
-  {
-    path: "component-design",
-    element: <ComponentDesignView />,
-  },
+
   {
     path: "*",
     element: <ErrorPage error={{ code: "404" }} />,
