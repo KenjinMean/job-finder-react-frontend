@@ -1,55 +1,36 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+
+import { useFetchUserSkills } from "../../services/api/useSkillRequestHandler.js";
 
 import {
   userEditSkillPageRoute,
   userAddSkillPageRoute,
 } from "../../constants/routes.jsx";
 
-import { useRemoveUserSkill } from "../../services/api/useSkillRequestHandler";
+import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component.jsx";
+import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component.jsx";
 
 export default function UserSkillsComponent({ userData }) {
-  const [removeSkillActive, setRemoveSkillactive] = useState(false);
-
-  const {
-    isLoading: removeSkillLoading,
-    isError,
-    error,
-    mutate: removeSkillMutation,
-  } = useRemoveUserSkill();
-
-  const handleRemoveSkill = () => {
-    removeSkillMutation();
-  };
+  const { data: userSkills } = useFetchUserSkills();
 
   return (
     <section className="relative w-full p-5 mt-5 overflow-hidden rounded-lg bg-slate-200">
       <h2 className="text-2xl font-semibold">Skills</h2>
       <ul className="flex flex-col">
-        {userData.user_skills.map((skill) => {
+        {userSkills?.map((skill) => {
           return (
             <li className="flex justify-between" key={skill.id}>
               <span className="rounded-md">{skill.name}</span>
-              {removeSkillActive && (
-                <button
-                  onClick={() => console.log("will remove skill", skill.name)}
-                >
-                  remove
-                </button>
-              )}
             </li>
           );
         })}
       </ul>
-      <div className="absolute flex gap-5 right-5 top-5">
-        <Link to={userEditSkillPageRoute}>edit</Link>
-        <Link
+      <div className="absolute flex items-center gap-1 right-5 top-5">
+        <LinkAddUiComponent
           to={userAddSkillPageRoute}
-          // prevents page scrolling back to top when opening modals
           preventScrollReset={true}
-        >
-          Add
-        </Link>
+        />
+        <LinkEditUiComponent to={userEditSkillPageRoute} />
       </div>
     </section>
   );
