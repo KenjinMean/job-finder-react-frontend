@@ -1,26 +1,32 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  useAsyncRemoveUserSkill,
+  useFetchUserSkills,
+} from "../../services/api/useSkillRequestHandler";
 
-import { useUserInformationStore } from "../../services/state/UserInformationStore";
+import { userProfilePageRoute } from "../../constants/routes";
 
-import { useRemoveUserSkill } from "../../services/api/useSkillRequestHandler";
+import { toast } from "react-toastify";
 
 export default function UserEditSkillComponent() {
   const navigate = useNavigate();
-  const { user } = useUserInformationStore();
+  const { data: userSkills } = useFetchUserSkills();
+  const asyncRemoveUserSkill = useAsyncRemoveUserSkill();
 
-  const { isLoading: removeSkillLoading, mutate: removeSkillMutation } =
-    useRemoveUserSkill();
-
-  const handleRemoveSkill = (skillId) => {
-    removeSkillMutation(skillId);
+  const handleRemoveSkill = async (skillId) => {
+    toast.promise(asyncRemoveUserSkill(skillId), {
+      pending: "Removing Skill",
+      success: "Skill Removed Successfully",
+      error: "Error Removing Skill",
+    });
   };
 
   return (
     <div>
-      <button onClick={() => navigate(-1)}>Go back</button>
+      <button onClick={() => navigate(userProfilePageRoute)}>Go back</button>
       <ul className="flex flex-col">
-        {user.user_skills.map((skill) => {
+        {userSkills?.map((skill) => {
           return (
             <li className="flex justify-between" key={skill.id}>
               <span className="rounded-md">{skill.name}</span>{" "}
