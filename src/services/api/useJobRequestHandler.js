@@ -1,5 +1,6 @@
 import axiosClient from "../../axios-client";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { toMilliseconds } from "../../utils/toMilliseconds";
 
 const fetchJobDetails = (id) => {
   return axiosClient.get(`/jobs/${id}`);
@@ -28,8 +29,8 @@ export const useFetchJobdetails = (id) => {
     queryFn: () => fetchJobDetails(id),
     select: (data) => data?.data?.job,
     suspense: true,
-    cacheTime: 1000 * 60 * 60 * 24 * 7,
-    staleTime: 1000 * 60 * 60 * 24 * 3,
+    cacheTime: toMilliseconds(30, "mins"),
+    staleTime: toMilliseconds(10, "mins"),
   });
 };
 
@@ -46,8 +47,8 @@ export const useFetchJobsInfinite = () => {
       return undefined;
     },
     suspense: true,
-    cacheTime: 1000 * 60 * 60 * 24 * 7,
-    staleTime: 1000 * 60 * 60 * 24 * 3,
+    cacheTime: toMilliseconds(30, "mins"),
+    staleTime: toMilliseconds(10, "mins"),
   });
 };
 

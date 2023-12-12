@@ -6,6 +6,7 @@ import {
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
+import { toMilliseconds } from "../../utils/toMilliseconds.js";
 
 const searchSkill = (keyword) => {
   return axiosClient.get(`/search-skills?keyword=${keyword}`);
@@ -37,7 +38,6 @@ export const useSearchSkill = (keyword, setKeyword) => {
 export const useAddUserSkill = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
 
   return useMutation(addUserSkill, {
     onSuccess: async () => {
@@ -96,5 +96,7 @@ export const useFetchUserSkills = (userId) => {
     },
     select: (data) => data?.data?.skills,
     suspense: true,
+    cacheTime: toMilliseconds(30, "mins"),
+    staleTime: toMilliseconds(10, "mins"),
   });
 };
