@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import success from "../../../assets/icons/success.png";
+import { successIcon } from "../../../assets/icons/index.js";
 
 import {
   userProfilePageRoute,
@@ -30,8 +30,8 @@ export default function AddUserSkillSuccessModalComponent() {
               <div className="flex flex-col items-center p-5 border-b">
                 <img
                   className="block w-20 h-20 mb-5"
-                  src={success}
-                  alt="red x error"
+                  src={successIcon.path}
+                  alt={`success icon. Attribution: ${successIcon.attribution}`}
                 />
                 <span className="text-lg font-secondary">
                   Add skill success
