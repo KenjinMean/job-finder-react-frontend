@@ -10,7 +10,7 @@ import {
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component.jsx";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component.jsx";
 
-export default function UserSkillsComponent({ userData }) {
+export default function UserSkillsComponent() {
   const { data: userSkills } = useFetchUserSkills();
 
   return (
