@@ -24,6 +24,7 @@ export default function AppLayout() {
   return (
     <div ref={elementToScrollLockRef}>
       {/*  SOURCE https://reactrouter.com/en/main/components/scroll-restoration */}
+      {/* BUG: after sometime on the page the scroll reset do not work, solution is to open a new page */}
       <ScrollRestoration
         getKey={(location, matches) => {
           const paths = [userAddSkillPageRoute];
