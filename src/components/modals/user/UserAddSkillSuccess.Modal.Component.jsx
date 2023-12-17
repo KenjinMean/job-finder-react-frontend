@@ -9,10 +9,10 @@ import {
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
 
-import ButtonClosePrimaryUiComponent from "../../UI/ButtonClosePrimary.Ui.Component";
-import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component";
+import ButtonClosePrimaryUiComponent from "../../UI/ButtonClosePrimary.Ui.Component.jsx";
+import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
 
-export default function AddUserSkillSuccessModalComponent() {
+export default function UserAddSkillSuccessModalComponent() {
   return (
     <ModalContainerUtil navigateOnClose={userProfilePageRoute}>
       <div className="relative w-full max-w-3xl mx-auto my-6 min-w-[48rem]">

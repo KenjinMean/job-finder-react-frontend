@@ -3,17 +3,17 @@ import React, { useState } from "react";
 
 import { userProfilePageRoute } from "../../../constants/routes.jsx";
 
-import { useAddUserSkill } from "../../../services/api/useSkillRequestHandler";
-import { useSearchSkill } from "../../../services/api/useSkillRequestHandler";
+import { useUserAddSkill } from "../../../services/api/useSkillRequestHandler.js";
+import { useSearchSkill } from "../../../services/api/useSkillRequestHandler.js";
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
-import AddSkillSpinnerUtil from "../../../components/utils/LoadersSpinners/AddSkillSpinner.Util";
+import AddSkillSpinnerUtil from "../../utils/LoadersSpinners/AddSkillSpinner.Util.jsx";
 
-import SkillSearchInputComponent from "../../skills/SkillSearchInput.Component";
-import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
-import SkillSuggestionsGridComponent from "../../skills/SkillSuggestionsGrid.Component";
+import SkillSearchInputComponent from "../../skills/SkillSearchInput.Component.jsx";
+import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component.jsx";
+import SkillSuggestionsGridComponent from "../../skills/SkillSuggestionsGrid.Component.jsx";
 
-export default function AddUserSkillModalComponent() {
+export default function UserAddSkillModalComponent() {
   const [keyword, setKeyword] = useState("");
 
   const {
@@ -23,7 +23,7 @@ export default function AddUserSkillModalComponent() {
   } = useSearchSkill(keyword, setKeyword);
 
   const { isLoading: addSkillLoading, mutate: addSkillMutation } =
-    useAddUserSkill();
+    useUserAddSkill();
 
   return (
     <ModalContainerUtil navigateOnClose={userProfilePageRoute}>

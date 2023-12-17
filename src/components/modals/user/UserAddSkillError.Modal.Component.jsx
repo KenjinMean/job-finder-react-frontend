@@ -10,10 +10,10 @@ import {
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
 
-import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
-import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component";
+import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component.jsx";
+import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
 
-export default function AdduserSkillErrorModalComponent() {
+export default function UserAddSkillErrorModalComponent() {
   const [errorMessage, setErrorMessage] = useState(null);
 
   const location = useLocation();

@@ -35,7 +35,7 @@ export const useSearchSkill = (keyword, setKeyword) => {
   });
 };
 
-export const useAddUserSkill = () => {
+export const useUserAddSkill = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
