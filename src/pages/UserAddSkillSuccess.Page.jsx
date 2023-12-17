@@ -4,7 +4,7 @@ import UserAddSkillSuccessModalComponent from "../components/modals/user/UserAdd
 
 import { PageTitleUtil } from "../components/utils/PageTitle.Util";
 
-export default function AddUserSkillSuccessPage() {
+export default function UserAddSkillSuccessPage() {
   return (
     <Fragment>
       <PageTitleUtil title="Add skill success" />

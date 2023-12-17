@@ -4,7 +4,7 @@ import UserAddSkillErrorModalComponent from "../components/modals/user/UserAddSk
 
 import { PageTitleUtil } from "../components/utils/PageTitle.Util";
 
-export default function AddUserSkillErrorPage() {
+export default function UserAddSkillErrorPage() {
   return (
     <Fragment>
       <PageTitleUtil title="Add skill error" />
