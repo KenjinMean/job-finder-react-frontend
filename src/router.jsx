@@ -16,13 +16,14 @@ import RegisterPage from "./pages/Register.Page";
 import JobDetailspage from "./pages/JobDetails.Page";
 import UserProfilePage from "./pages/UserProfile.Page";
 import JobListingPage from "./pages/JobListing.Page.jsx";
-import AddUserSkillPage from "./pages/AddUserSkill.Page.jsx";
+import UserAddSkillPage from "./pages/UserAddSkill.Page.jsx";
+import UserInfoEditPage from "./pages/UserInfoEdit.Page.jsx";
 import UserSkillEditPage from "./pages/UserSkillEdit.Page.jsx";
 import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
-import AddUserSkillErrorPage from "./pages/AddUserSkillError.Page.jsx";
-import AddUserSkillSuccessPage from "./pages/AddUserSkillSuccess.Page.jsx";
-import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
+import UserAddSkillErrorPage from "./pages/UserAddSkillError.Page.jsx";
+import UserAddSkillSuccessPage from "./pages/UserAddSkillSuccess.Page.jsx";
 import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
+import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,15 +62,19 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "add-skill",
-                element: <AddUserSkillPage />,
+                element: <UserAddSkillPage />,
               },
               {
                 path: "add-skill-success",
-                element: <AddUserSkillSuccessPage />,
+                element: <UserAddSkillSuccessPage />,
               },
               {
                 path: "add-skill-error",
-                element: <AddUserSkillErrorPage />,
+                element: <UserAddSkillErrorPage />,
+              },
+              {
+                path: "edit-user-info",
+                element: <UserInfoEditPage />,
               },
             ],
           },
