@@ -13,7 +13,7 @@ import ModalContainerUtil from "../../utils/ModalContainer.Util";
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import { toast } from "react-toastify";
 
-export default function EditUserInfoModalComponent() {
+export default function UserInfoEditModalComponent() {
   const { data: userInfo } = useFetchtUserInfo();
   const updateUserInfo = useAsyncUpdateUserInfo();
 
