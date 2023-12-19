@@ -1,7 +1,7 @@
 // SOURCE: https://flowbite.com/docs/components/navbar/
 import React, { useEffect, useRef, useState } from "react";
 import { Menu } from "@headlessui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 import {
@@ -18,7 +18,6 @@ import ImageUrlLoaderUtil from "../../components/utils/ImageUrlLoader.Util";
 export default function HeaderNavComponent() {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
 
-  const navigate = useNavigate();
   const mainMenuRef = useRef(null);
   const mainMenuButtonRef = useRef(null);
 
@@ -76,30 +75,30 @@ export default function HeaderNavComponent() {
               </Menu.Button>
               <Menu.Items
                 as="div"
-                className="absolute right-0 z-50 w-full pb-5 my-4 overflow-hidden text-base list-none bg-white border rounded-md border-foreground-300 top-14 sm:w-auto"
+                className="absolute right-0 z-50 w-full max-w-xs p-5 my-4 overflow-hidden text-base list-none bg-white border rounded-md border-foreground-300 top-14 sm:w-auto"
                 id="user-dropdown"
               >
-                <div className="p-5">
-                  <span className="block text-sm text-gray-900 ">
+                <div className="">
+                  <span className="block text-lg font-semibold text-gray-900 ">
                     {authenticatedUser?.user_info?.first_name}{" "}
                     {authenticatedUser?.user_info?.last_name}
                   </span>
-                  <span className="block text-sm text-gray-500 truncate">
-                    {authenticatedUser?.email}
+                  <span className="flex-wrap block text-gray-500">
+                    {authenticatedUser?.user_info?.headline}
                   </span>
                 </div>
 
                 <Menu.Item
                   as={Link}
                   to={userProfilePageRoute}
-                  className="block px-5 py-1 hover:bg-indigo-500 hover:text-white"
+                  className="block px-5 py-1 mt-5 text-lg font-semibold text-center transition-all border rounded-full hover:bg-indigo-500 text-foreground-300 hover:text-white border-foreground-300"
                 >
-                  Profile
+                  View Profile
                 </Menu.Item>
 
                 <Menu.Item
                   as="button"
-                  className="w-full px-5 py-1 text-left hover:bg-indigo-500 hover:text-white"
+                  className="w-full px-5 py-1 mt-5 text-lg text-left hover:text-foreground-100 hover:underline"
                   onClick={handleLogout}
                 >
                   Logout
