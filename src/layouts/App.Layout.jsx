@@ -5,6 +5,7 @@ import {
   userAddSkillPageRoute,
   userAddSkillErrorPageRoute,
   userAddSkillSuccessPageRoute,
+  userProfilePageRoute,
 } from "../constants/routes.jsx";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
@@ -27,7 +28,7 @@ export default function AppLayout() {
       {/* BUG: after sometime on the page the scroll reset do not work, solution is to open a new page */}
       <ScrollRestoration
         getKey={(location, matches) => {
-          const paths = [userAddSkillPageRoute];
+          const paths = [userProfilePageRoute];
           return paths.includes(location.pathname)
             ? location.pathname
             : location.key;
