@@ -23,7 +23,7 @@ export default function UserEditSkillComponent() {
   };
 
   return (
-    <div>
+    <div className="p-5">
       <button onClick={() => navigate(userProfilePageRoute)}>Go back</button>
       <ul className="flex flex-col">
         {userSkills?.map((skill) => {
