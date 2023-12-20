@@ -9,20 +9,20 @@ import {
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
 
-import ButtonClosePrimaryUiComponent from "../../UI/ButtonClosePrimary.Ui.Component.jsx";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
+import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component.jsx";
 
 export default function UserAddSkillSuccessModalComponent() {
   return (
     <ModalContainerUtil navigateOnClose={userProfilePageRoute}>
-      <div className="relative w-full max-w-3xl mx-auto my-6 min-w-[48rem]">
+      <div className="w-full max-w-3xl modal-content">
         {/*content*/}
-        <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+        <div className="flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
           {/*header*/}
           <div className="flex items-center justify-end p-5">
-            <ButtonClosePrimaryUiComponent
+            <LinkClosePrimaryUiComponent
               to={userProfilePageRoute}
-              preventScrollReset={true}
+              preventScrollReset="true"
             />
           </div>
           {/* body */}
@@ -37,7 +37,7 @@ export default function UserAddSkillSuccessModalComponent() {
           <div className="flex items-center justify-end p-5">
             <LinkActionPrimaryUiComponent
               to={userAddSkillPageRoute}
-              preventScollReset={true}
+              preventscollreset="true"
             >
               Add more
             </LinkActionPrimaryUiComponent>

@@ -27,10 +27,10 @@ export default function UserAddSkillModalComponent() {
 
   return (
     <ModalContainerUtil navigateOnClose={userProfilePageRoute}>
-      <div className="relative w-full max-w-3xl mx-auto my-6 min-w-[48rem]">
+      <div className="w-full max-w-3xl modal-content">
         {addSkillLoading && <AddSkillSpinnerUtil />}
         {/*content*/}
-        <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+        <div className="relative flex flex-col w-full bg-white rounded-lg shadow-lg">
           {/*header*/}
           <div className="flex items-center justify-between p-5">
             <h3 className="text-xl font-secondary">Add User Skill</h3>

@@ -64,8 +64,8 @@ export default function UserInfoEditModalComponent() {
 
   return (
     <ModalContainerUtil navigateOnClose={userProfilePageRoute}>
-      <div className="relative w-full max-w-3xl  mx-auto my-6 md:min-w-[48rem]">
-        <div className="relative flex flex-col w-full bg-white rounded-lg shadow-lg outline-none focus:outline-none">
+      <div className="w-full max-w-3xl modal-content">
+        <div className="flex flex-col w-full bg-white rounded-lg shadow-lg outline-none focus:outline-none">
           <div className="flex items-center justify-between p-5 border-b border-slate-300">
             <h2 className="text-xl">Edit Info</h2>
             <LinkClosePrimaryUiComponent to={userProfilePageRoute} />

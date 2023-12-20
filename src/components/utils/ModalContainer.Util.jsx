@@ -1,8 +1,33 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+/**
+ * NOTE: ensure to use "modal-content" class to the component parent div/container
+ * so component properly closes when clicekd outside. see DOCS below
+ * The `ModalContainerUtil` component is a utility component for creating modal containers.
+ * It handles the rendering of modal content and provides functionality to close the modal
+ * when clicking outside the content area.
+ *
+ * @component
+ * @example
+ * // Import the component
+ * import ModalContainerUtil from 'path-to/ModalContainerUtil';
+ *
+ * // Usage in a component
+ *    const YourComponent = () => {
+ *   // Your component logic here
+ *
+ *    return (
+ *    <ModalContainerUtil navigateOnClose="/path-to-navigate">
+ *
+ *       <div className="modal-content">
+ *          // Your modal content goes here
+ *       </div>
+ *     </ModalContainerUtil>
+ *
+ */
+
+import React, { Fragment, useEffect, useState } from "react";
 import { useModalScrollLock } from "../../hooks/useModalScrollLock";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
-import { userProfilePageRoute } from "../../constants/routes";
 
 export default function ModalContainerUtil({ children, navigateOnClose }) {
   const navigate = useNavigate();
@@ -33,8 +58,8 @@ export default function ModalContainerUtil({ children, navigateOnClose }) {
 
   return createPortal(
     <Fragment>
-      <div className="fixed left-0 right-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none top-5 focus:outline-none">
-        <div className="modal-content">{children}</div>
+      <div className="fixed left-0 right-0 z-50 flex items-center justify-center top-5 ">
+        {children}
       </div>
       <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
     </Fragment>,
