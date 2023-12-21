@@ -29,7 +29,12 @@ import { useModalScrollLock } from "../../hooks/useModalScrollLock";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 
-export default function ModalContainerUtil({ children, navigateOnClose }) {
+export default function ModalContainerUtil({
+  children,
+  navigateOnClose,
+  contentClassName,
+  containerClassName,
+}) {
   const navigate = useNavigate();
 
   // is ready prevents the click source from triggering handleOutsideClick on mount
@@ -58,8 +63,14 @@ export default function ModalContainerUtil({ children, navigateOnClose }) {
 
   return createPortal(
     <Fragment>
-      <div className="fixed left-0 right-0 z-50 flex items-center justify-center top-5 ">
-        {children}
+      <div
+        className={
+          containerClassName
+            ? containerClassName
+            : "fixed left-0 right-0 z-50 flex items-center justify-center top-5"
+        }
+      >
+        <div className={`modal-content ${contentClassName}`}>{children}</div>
       </div>
       <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
     </Fragment>,

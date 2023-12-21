@@ -63,23 +63,24 @@ export default function UserInfoEditModalComponent() {
   }, [userInfo]);
 
   return (
-    <ModalContainerUtil navigateOnClose={userProfilePageRoute}>
-      <div className="w-full max-w-3xl modal-content">
-        <div className="flex flex-col w-full bg-white rounded-lg shadow-lg outline-none focus:outline-none">
-          <div className="flex items-center justify-between p-5 border-b border-slate-300">
-            <h2 className="text-xl">Edit Info</h2>
-            <LinkClosePrimaryUiComponent to={userProfilePageRoute} />
-          </div>
-          {/* add height to enable autoscroll */}
-          <div className="p-5 overflow-y-auto">
-            <span className="text-sm"> * indicates required</span>
-            <UserInfoEditForm
-              payload={payload}
-              handleSubmit={handleSubmit}
-              handleInputChange={handleInputChange}
-              handleGenderChange={handleGenderChange}
-            />
-          </div>
+    <ModalContainerUtil
+      navigateOnClose={userProfilePageRoute}
+      contentClassName="w-full max-w-3xl modal-content"
+    >
+      <div className="flex flex-col w-full bg-white rounded-lg shadow-lg outline-none focus:outline-none">
+        <div className="flex items-center justify-between p-5 border-b border-slate-300">
+          <h2 className="text-xl">Edit Info</h2>
+          <LinkClosePrimaryUiComponent to={userProfilePageRoute} />
+        </div>
+        {/* add height to enable autoscroll */}
+        <div className="p-5 overflow-y-auto">
+          <span className="text-sm"> * indicates required</span>
+          <UserInfoEditForm
+            payload={payload}
+            handleSubmit={handleSubmit}
+            handleInputChange={handleInputChange}
+            handleGenderChange={handleGenderChange}
+          />
         </div>
       </div>
     </ModalContainerUtil>

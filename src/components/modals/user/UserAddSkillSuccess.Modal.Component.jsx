@@ -14,34 +14,35 @@ import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component.j
 
 export default function UserAddSkillSuccessModalComponent() {
   return (
-    <ModalContainerUtil navigateOnClose={userProfilePageRoute}>
-      <div className="w-full max-w-3xl modal-content">
-        {/*content*/}
-        <div className="flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
-          {/*header*/}
-          <div className="flex items-center justify-end p-5">
-            <LinkClosePrimaryUiComponent
-              to={userProfilePageRoute}
-              preventScrollReset="true"
-            />
-          </div>
-          {/* body */}
-          <div className="flex flex-col items-center p-5 border-b">
-            <img
-              className="block w-20 h-20 mb-5"
-              src={successIcon.path}
-              alt={`success icon. Attribution: ${successIcon.attribution}`}
-            />
-            <span className="text-lg font-secondary">Add skill success</span>
-          </div>
-          <div className="flex items-center justify-end p-5">
-            <LinkActionPrimaryUiComponent
-              to={userAddSkillPageRoute}
-              preventscollreset="true"
-            >
-              Add more
-            </LinkActionPrimaryUiComponent>
-          </div>
+    <ModalContainerUtil
+      navigateOnClose={userProfilePageRoute}
+      contentClassName="w-full max-w-3xl modal-content"
+    >
+      {/*content*/}
+      <div className="flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
+        {/*header*/}
+        <div className="flex items-center justify-end p-5">
+          <LinkClosePrimaryUiComponent
+            to={userProfilePageRoute}
+            preventScrollReset="true"
+          />
+        </div>
+        {/* body */}
+        <div className="flex flex-col items-center p-5 border-b">
+          <img
+            className="block w-20 h-20 mb-5"
+            src={successIcon.path}
+            alt={`success icon. Attribution: ${successIcon.attribution}`}
+          />
+          <span className="text-lg font-secondary">Add skill success</span>
+        </div>
+        <div className="flex items-center justify-end p-5">
+          <LinkActionPrimaryUiComponent
+            to={userAddSkillPageRoute}
+            preventscollreset="true"
+          >
+            Add more
+          </LinkActionPrimaryUiComponent>
         </div>
       </div>
     </ModalContainerUtil>
