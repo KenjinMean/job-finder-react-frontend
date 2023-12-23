@@ -14,7 +14,7 @@ export default function UserEditSkillComponent() {
   const { data: userSkills } = useFetchUserSkills();
   const asyncRemoveUserSkill = useAsyncRemoveUserSkill();
 
-  const handleRemoveSkill = async (skillId) => {
+  const handleRemoveSkill = (skillId) => {
     toast.promise(asyncRemoveUserSkill(skillId), {
       pending: "Removing Skill",
       success: "Skill Removed Successfully",
