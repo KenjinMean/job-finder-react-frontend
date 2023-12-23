@@ -1,1 +1,0 @@
-import{j as n}from"./index-dd773d74.js";function r({children:o,...t}){return n.jsx("button",{className:"px-4 py-1 text-white bg-indigo-500 rounded-full font-secondary hover:bg-indigo-600",...t,children:o})}export{r as B};
