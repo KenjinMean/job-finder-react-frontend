@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-import { userProfilePageRoute } from "../../../constants/routes";
+import {
+  userProfileImagePreviewpageRoute,
+  userProfilePageRoute,
+} from "../../../constants/routes";
 
 import { useFileUploadStore } from "../../../services/state/FileUploadStore";
 import { useUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
@@ -9,9 +12,15 @@ import ModalContainerUtil from "../../utils/ModalContainer.Util";
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
+import { useNavigate } from "react-router-dom";
 
+// ENHANCE: create a modal component the handles user update preview and
+//    user cover update preview because they got the same functionality but different sizes only
 export default function UserProfileImageUpdatePreviewModalComponent() {
-  const { imageFile, imageDataURL } = useFileUploadStore();
+  const navigate = useNavigate();
+
+  const { imageFile, setImageFile, imageDataURL, setImageDataURL } =
+    useFileUploadStore();
   const [formData, setFormData] = useState(new FormData());
 
   const { mutate: updateUserProfileMutation } = useUpdateUserProfileImage();
@@ -21,6 +30,16 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
     formData.append("profile_image", imageFile);
 
     updateUserProfileMutation(formData);
+  };
+
+  const handleFileSelect = (file) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      navigate(userProfileImagePreviewpageRoute);
+      setImageDataURL(reader.result);
+    };
+    reader.readAsDataURL(file);
+    setImageFile(file);
   };
 
   return (
@@ -46,7 +65,10 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
         </div>
         {/* footer */}
         <div className="flex justify-between p-5">
-          <ButtonFileUploadUiComponent title="Add Photo" />
+          <ButtonFileUploadUiComponent
+            title="Add Photo"
+            handleFileSelect={handleFileSelect}
+          />
           <ButtonActionPrimaryUiComponent onClick={handleSubmit}>
             Save
           </ButtonActionPrimaryUiComponent>

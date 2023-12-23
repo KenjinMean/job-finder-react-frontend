@@ -1,6 +1,11 @@
 import React from "react";
 
-import { userProfilePageRoute } from "../../../constants/routes";
+import {
+  userProfilePageRoute,
+  userProfileImagePreviewpageRoute,
+} from "../../../constants/routes";
+
+import { useFileUploadStore } from "../../../services/state/FileUploadStore";
 import {
   useFetchtUserInfo,
   useUpdateUserProfileImage,
@@ -12,10 +17,26 @@ import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
+import { useNavigate } from "react-router-dom";
 
 export default function UserProfileImageOverlayModalComponent() {
+  const { setImageDataURL, setImageFile } = useFileUploadStore();
+
+  const navigate = useNavigate();
+
   const { data: userInfo } = useFetchtUserInfo();
   const { mutate: updateUserProfileMutation } = useUpdateUserProfileImage();
+
+  const handleFileSelect = (file) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      navigate(userProfileImagePreviewpageRoute);
+      setImageDataURL(reader.result);
+    };
+    reader.readAsDataURL(file);
+
+    setImageFile(file);
+  };
 
   const handleProfileDelete = () => {
     const formData = new FormData();
@@ -51,7 +72,10 @@ export default function UserProfileImageOverlayModalComponent() {
         </div>
         {/* footer */}
         <div className="flex justify-between p-5">
-          <ButtonFileUploadUiComponent title="Add Photo" />
+          <ButtonFileUploadUiComponent
+            title="Add Photo"
+            handleFileSelect={handleFileSelect}
+          />
           <ButtonActionPrimaryUiComponent onClick={handleProfileDelete}>
             Delete
           </ButtonActionPrimaryUiComponent>

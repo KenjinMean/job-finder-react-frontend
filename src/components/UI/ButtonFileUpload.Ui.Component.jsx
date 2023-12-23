@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { userImagePreviewpageRoute } from "../../constants/routes";
-
 import { useFileUploadStore } from "../../services/state/FileUploadStore";
 
 export default function ButtonFileUploadUiComponent({
@@ -22,18 +20,7 @@ export default function ButtonFileUploadUiComponent({
     const fileUploaded = e.target.files[0];
 
     if (fileUploaded) {
-      if (handleFileSelect) {
-        handleFileSelect(fileUploaded);
-      } else {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImageDataURL(reader.result);
-          navigate(userImagePreviewpageRoute);
-        };
-        reader.readAsDataURL(fileUploaded);
-      }
-
-      setImageFile(fileUploaded);
+      handleFileSelect(fileUploaded);
     }
   };
 
