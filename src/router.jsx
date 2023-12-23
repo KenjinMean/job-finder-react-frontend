@@ -24,8 +24,10 @@ import UserAddSkillErrorPage from "./pages/UserAddSkillError.Page.jsx";
 import UserAddSkillSuccessPage from "./pages/UserAddSkillSuccess.Page.jsx";
 import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
 import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
+import UserCoverImageOverlayPage from "./pages/UserCoverImageOverlay.Page.jsx";
 import UserProfileImageOverlayPage from "./pages/UserProfileImageOverlay.Page.jsx";
 import UserProfileImagePreviewPage from "./pages/UserProfileImageUpdatePreview.Page.jsx";
+import UserCoverImageUpdatePreviewModalComponent from "./components/modals/user/UserCoverImageUpdatePreview.Modal.Component.jsx";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +87,14 @@ const router = createBrowserRouter([
               {
                 path: "overlay/profile-image-preview",
                 element: <UserProfileImagePreviewPage />,
+              },
+              {
+                path: "overlay/user/cover-image-overlay",
+                element: <UserCoverImageOverlayPage />,
+              },
+              {
+                path: "overlay/user/cover-image-update-preview",
+                element: <UserCoverImageUpdatePreviewModalComponent />,
               },
             ],
           },

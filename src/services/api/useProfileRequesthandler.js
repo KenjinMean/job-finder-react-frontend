@@ -18,6 +18,10 @@ const updateUserProfileImage = (payload) => {
   return axiosClient.post("/user-infos/update-profile-image", payload);
 };
 
+const updateUserCoverImage = (payload) => {
+  return axiosClient.post("/user-infos/update-cover-image", payload);
+};
+
 // ********************************************************************************************
 
 export const useFetchtUserInfo = () => {
@@ -139,6 +143,23 @@ export const useUpdateUserProfileImage = () => {
   const { authenticatedUser } = useAuthenticationStore();
 
   return useMutation(updateUserProfileImage, {
+    onSuccess: async () => {
+      queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
+      navigate(userProfilePageRoute);
+    },
+
+    onError: (error) => {
+      console.log("there was an error updating user-info");
+    },
+  });
+};
+
+export const useUpdateUserCoverImage = () => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useMutation(updateUserCoverImage, {
     onSuccess: async () => {
       queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
       navigate(userProfilePageRoute);

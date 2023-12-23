@@ -8,6 +8,7 @@ import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Compo
 import {
   editUserInfoPageRoute,
   userProfileOverlayPageRoute,
+  userCoverImageOverlayPageRoute,
 } from "../../constants/routes";
 
 export default function UserInfoComponent() {
@@ -19,7 +20,7 @@ export default function UserInfoComponent() {
     <section className="relative w-full overflow-hidden sm:rounded-lg bg-slate-200">
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.cover_image}
-        to="/edit-cover"
+        to={userCoverImageOverlayPageRoute}
         className="block w-full h-36 sm:h-48 "
       />
       <ClickableLinkedImageUiComponent

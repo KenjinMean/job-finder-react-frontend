@@ -50,8 +50,14 @@ export const editUserInfoPageRoute = prependBaseUrl("profile/edit-user-info");
 export const userProfileOverlayPageRoute = prependBaseUrl(
   "profile/overlay/profile-picture"
 );
-export const userImagePreviewpageRoute = prependBaseUrl(
+export const userProfileImagePreviewpageRoute = prependBaseUrl(
   "profile/overlay/profile-image-preview"
+);
+export const userCoverImageOverlayPageRoute = prependBaseUrl(
+  "profile/overlay/user/cover-image-overlay"
+);
+export const userCoverImageUpdatePreviewPageRoute = prependBaseUrl(
+  "profile/overlay/user/cover-image-update-preview"
 );
 
 export const authLoginPageRoute = prependBaseUrl("auth/login");
