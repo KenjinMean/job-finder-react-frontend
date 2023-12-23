@@ -51,7 +51,7 @@ export const userProfileOverlayPageRoute = prependBaseUrl(
   "profile/overlay/profile-picture"
 );
 export const userImagePreviewpageRoute = prependBaseUrl(
-  "profile/overlay/image-preview"
+  "profile/overlay/profile-image-preview"
 );
 
 export const authLoginPageRoute = prependBaseUrl("auth/login");

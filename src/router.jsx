@@ -83,7 +83,7 @@ const router = createBrowserRouter([
                 element: <UserProfileOverlayPage />,
               },
               {
-                path: "overlay/image-preview",
+                path: "overlay/profile-image-preview",
                 element: <UserProfileImagePreviewPage />,
               },
             ],
