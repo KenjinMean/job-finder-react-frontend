@@ -17,7 +17,7 @@ export default function UserInfoEditModalComponent() {
   const { data: userInfo } = useFetchtUserInfo();
   const updateUserInfo = useAsyncUpdateUserInfo();
 
-  const [payload, setPayload] = useState();
+  const [payload, setPayload] = useState(null);
   const [formData, setFormData] = useState(new FormData());
   const [isUserInfoChanged, setIsUserInfoChanged] = useState(false);
 
