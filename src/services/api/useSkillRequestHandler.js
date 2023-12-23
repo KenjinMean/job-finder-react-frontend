@@ -66,7 +66,17 @@ export const useRemoveUserSkill = () => {
   });
 };
 
-// remove skill using an async function, used for react-toast that needs an async function to work
+/**
+ * Asynchronous function for removing user skill using an API request.
+ * This function is designed for use with react-toast notifications, which require
+ * an asynchronous function for handling promises.
+ *
+ * @function
+ * @async
+ * @param {Object} skillId - The skillId to be removed
+ * @throws {Error} Throws an error if the API request fails.
+ * @returns {Promise<void>} A promise that resolves when the user information is successfully updated.
+ */
 export const useAsyncRemoveUserSkill = () => {
   const { authenticatedUser } = useAuthenticationStore();
   const queryClient = useQueryClient();
