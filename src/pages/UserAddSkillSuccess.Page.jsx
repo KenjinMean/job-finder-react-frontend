@@ -1,14 +1,18 @@
-import React, { Fragment } from "react";
-
-import UserAddSkillSuccessModalComponent from "../components/modals/user/UserAddSkillSuccess.Modal.Component";
+import React, { Fragment, Suspense, lazy } from "react";
 
 import { PageTitleUtil } from "../components/utils/PageTitle.Util";
+
+const UserAddSkillSuccessModalComponent = lazy(() =>
+  import("../components/modals/user/UserAddSkillSuccess.Modal.Component")
+);
 
 export default function UserAddSkillSuccessPage() {
   return (
     <Fragment>
       <PageTitleUtil title="Add skill success" />
-      <UserAddSkillSuccessModalComponent />
+      <Suspense fallback={<div>loading...</div>}>
+        <UserAddSkillSuccessModalComponent />
+      </Suspense>
     </Fragment>
   );
 }

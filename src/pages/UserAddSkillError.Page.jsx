@@ -1,14 +1,18 @@
-import React, { Fragment } from "react";
-
-import UserAddSkillErrorModalComponent from "../components/modals/user/UserAddSkillError.Modal.Component";
+import React, { Fragment, lazy } from "react";
 
 import { PageTitleUtil } from "../components/utils/PageTitle.Util";
+
+const UserAddSkillErrorModalComponent = lazy(() =>
+  import("../components/modals/user/UserAddSkillError.Modal.Component")
+);
 
 export default function UserAddSkillErrorPage() {
   return (
     <Fragment>
       <PageTitleUtil title="Add skill error" />
-      <UserAddSkillErrorModalComponent />
+      <Suspense fallback={<div>loading...</div>}>
+        <UserAddSkillErrorModalComponent />
+      </Suspense>
     </Fragment>
   );
 }
