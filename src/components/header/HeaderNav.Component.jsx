@@ -12,6 +12,7 @@ import {
 
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler.js";
 
 import ImageUrlLoaderUtil from "../../components/utils/ImageUrlLoader.Util";
 
@@ -22,6 +23,8 @@ export default function HeaderNavComponent() {
   const mainMenuButtonRef = useRef(null);
 
   const { token, authenticatedUser } = useAuthenticationStore();
+
+  const { data: userInfo } = useFetchtUserInfo();
 
   const closeMainMenu = () => {
     setIsMainMenuOpen(false);
@@ -68,23 +71,22 @@ export default function HeaderNavComponent() {
               <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full border-foreground-300 md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                 {authenticatedUser.user_info && (
                   <ImageUrlLoaderUtil
-                    imageUrl={authenticatedUser?.user_info?.profile_image}
+                    imageUrl={userInfo?.profile_image}
                     alt="User Profile Image"
                   />
                 )}
               </Menu.Button>
               <Menu.Items
                 as="div"
-                className="absolute right-0 z-50 w-full max-w-xs p-5 my-4 overflow-hidden text-base list-none bg-white border rounded-md border-foreground-300 top-14 sm:w-auto"
+                className="absolute right-0 z-50 w-full max-w-xs p-5 my-4 overflow-hidden text-base list-none bg-white border rounded-md border-foreground-300 top-14"
                 id="user-dropdown"
               >
                 <div className="">
                   <span className="block text-lg font-semibold text-gray-900 ">
-                    {authenticatedUser?.user_info?.first_name}{" "}
-                    {authenticatedUser?.user_info?.last_name}
+                    {userInfo?.first_name} {userInfo?.last_name}
                   </span>
                   <span className="flex-wrap block text-gray-500">
-                    {authenticatedUser?.user_info?.headline}
+                    {userInfo?.headline}
                   </span>
                 </div>
 
