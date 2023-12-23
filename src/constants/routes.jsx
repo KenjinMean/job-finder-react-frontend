@@ -47,6 +47,12 @@ export const userAddSkillStatusPageRoute = prependBaseUrl(
   "profile/add-skill-status/"
 );
 export const editUserInfoPageRoute = prependBaseUrl("profile/edit-user-info");
+export const userProfileOverlayPageRoute = prependBaseUrl(
+  "profile/overlay/profile-picture"
+);
+export const userImagePreviewpageRoute = prependBaseUrl(
+  "profile/overlay/image-preview"
+);
 
 export const authLoginPageRoute = prependBaseUrl("auth/login");
 export const authRegisterPageRoute = prependBaseUrl("auth/register");
