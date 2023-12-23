@@ -24,8 +24,8 @@ import UserAddSkillErrorPage from "./pages/UserAddSkillError.Page.jsx";
 import UserAddSkillSuccessPage from "./pages/UserAddSkillSuccess.Page.jsx";
 import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
 import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
-import UserProfileOverlayPage from "./pages/UserProfileOverlay.Page.jsx";
-import UserProfileImagePreviewPage from "./pages/UserProfileImagePreview.Page.jsx";
+import UserProfileImageOverlayPage from "./pages/UserProfileImageOverlay.Page.jsx";
+import UserProfileImagePreviewPage from "./pages/UserProfileImageUpdatePreview.Page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "overlay/profile-picture",
-                element: <UserProfileOverlayPage />,
+                element: <UserProfileImageOverlayPage />,
               },
               {
                 path: "overlay/profile-image-preview",
