@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import menuIcon from "../../assets/icons/option.png";
-import { jobDetailsPageRoute } from "../../constants/routes.jsx";
+import { jobRoutes } from "../../constants/routes.jsx";
 
 import { extractUrlParams } from "../../utils/extractUrlParams";
 import { useSearchJobsInfinite } from "../../services/api/useJobRequestHandler";
@@ -74,7 +74,7 @@ export default function JobSearchResultComponent() {
                   >
                     <img src={menuIcon} alt="Menu icon" className="w-5 h-5" />
                   </button>
-                  <Link to={`${jobDetailsPageRoute}${job.slug}`}>
+                  <Link to={`${jobRoutes.jobDetailsPage}${job.slug}`}>
                     <JobContainerComponent job={job} />
                   </Link>
                 </div>

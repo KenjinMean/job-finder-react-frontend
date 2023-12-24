@@ -1,12 +1,7 @@
 import { useRef } from "react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 
-import {
-  userAddSkillPageRoute,
-  userAddSkillErrorPageRoute,
-  userAddSkillSuccessPageRoute,
-  userProfilePageRoute,
-} from "../constants/routes.jsx";
+import { userRoutes } from "../constants/routes.jsx";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
 import usePreserveScrollPositionForRoute from "../hooks/usePreserveScrollForRoute";
@@ -18,8 +13,8 @@ export default function AppLayout() {
   setElementToScrollLockRef(elementToScrollLockRef);
 
   usePreserveScrollPositionForRoute([
-    userAddSkillErrorPageRoute,
-    userAddSkillSuccessPageRoute,
+    userRoutes.userAddSkillErrorPage,
+    userRoutes.userAddSkillSuccessPage,
   ]);
 
   return (
@@ -28,7 +23,7 @@ export default function AppLayout() {
       {/* BUG: after sometime on the page the scroll reset do not work, solution is to open a new page */}
       <ScrollRestoration
         getKey={(location, matches) => {
-          const paths = [userProfilePageRoute];
+          const paths = [userRoutes.userProfilePage];
           return paths.includes(location.pathname)
             ? location.pathname
             : location.key;

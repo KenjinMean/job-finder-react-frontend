@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import menuIcon from "../../assets/icons/option.png";
-import { jobDetailsPageRoute } from "../../constants/routes.jsx";
+import { jobRoutes } from "../../constants/routes.jsx";
 
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { useFetchJobsInfinite } from "../../services/api/useJobRequestHandler";
@@ -42,7 +42,7 @@ export default function JobListingComponent() {
                   >
                     <img src={menuIcon} alt="Menu icon" className="w-5 h-5" />
                   </button>
-                  <Link to={`${jobDetailsPageRoute}${job.slug}`}>
+                  <Link to={`${jobRoutes.jobDetailsPage}${job.slug}`}>
                     <JobContainerComponent job={job} />
                   </Link>
                 </div>

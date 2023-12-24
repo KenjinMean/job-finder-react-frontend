@@ -2,10 +2,7 @@ import React from "react";
 
 import { successIcon } from "../../../assets/icons/index.js";
 
-import {
-  userProfilePageRoute,
-  userAddSkillPageRoute,
-} from "../../../constants/routes.jsx";
+import { userRoutes } from "../../../constants/routes.jsx";
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
 
@@ -15,7 +12,7 @@ import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component.j
 export default function UserAddSkillSuccessModalComponent() {
   return (
     <ModalContainerUtil
-      navigateOnClose={userProfilePageRoute}
+      navigateOnClose={userRoutes.userProfilePage}
       contentClassName="w-full max-w-3xl modal-content"
     >
       {/*content*/}
@@ -23,8 +20,8 @@ export default function UserAddSkillSuccessModalComponent() {
         {/*header*/}
         <div className="flex items-center justify-end p-5">
           <LinkClosePrimaryUiComponent
-            to={userProfilePageRoute}
-            preventScrollReset="true"
+            to={userRoutes.userProfilePage}
+            preventScrollReset={true}
           />
         </div>
         {/* body */}
@@ -38,8 +35,8 @@ export default function UserAddSkillSuccessModalComponent() {
         </div>
         <div className="flex items-center justify-end p-5">
           <LinkActionPrimaryUiComponent
-            to={userAddSkillPageRoute}
-            preventscollreset="true"
+            to={userRoutes.userAddSkillPage}
+            preventScrollReset={true}
           >
             Add more
           </LinkActionPrimaryUiComponent>

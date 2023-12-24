@@ -3,10 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import error from "../../../assets/icons/error.png";
 
-import {
-  userProfilePageRoute,
-  userAddSkillPageRoute,
-} from "../../../constants/routes.jsx";
+import { userRoutes } from "../../../constants/routes.jsx";
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
 
@@ -37,7 +34,7 @@ export default function UserAddSkillErrorModalComponent() {
 
   return (
     <ModalContainerUtil
-      navigateOnClose={userProfilePageRoute}
+      navigateOnClose={userRoutes.userProfilePage}
       contentClassName="w-full max-w-3xl modal-content"
     >
       {/*content*/}
@@ -45,7 +42,7 @@ export default function UserAddSkillErrorModalComponent() {
         {/*header*/}
         <div className="flex items-center justify-end p-5">
           <LinkClosePrimaryUiComponent
-            to={userProfilePageRoute}
+            to={userRoutes.userProfilePage}
             preventScrollReset={true}
           />
         </div>
@@ -57,7 +54,7 @@ export default function UserAddSkillErrorModalComponent() {
         </div>
         <div className="flex items-center justify-end p-5">
           <LinkActionPrimaryUiComponent
-            to={userAddSkillPageRoute}
+            to={userRoutes.userAddSkillPage}
             preventScrollReset={true}
           >
             Go Back

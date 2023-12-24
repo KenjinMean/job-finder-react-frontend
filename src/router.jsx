@@ -1,10 +1,13 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import {
+  authRoutes,
+  authSubpath,
   baseUrl,
   jobRoutes,
   jobSubpath,
-  userCoverImageUpdatePreviewPageRouteNew,
+  userRoutes,
+  userSubpath,
 } from "./constants/routes.jsx";
 
 import AppLayout from "./layouts/App.Layout.jsx";
@@ -62,7 +65,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "profile",
+        path: userSubpath,
         element: <ProtectedRouteUtil component={<UserLayout />} />,
         children: [
           {
@@ -70,65 +73,65 @@ const router = createBrowserRouter([
             element: <UserProfilePage />,
             children: [
               {
-                path: "add-skill",
+                path: userRoutes.userAddSkillPage,
                 element: <UserAddSkillPage />,
               },
               {
-                path: "add-skill-success",
+                path: userRoutes.userAddSkillSuccessPage,
                 element: <UserAddSkillSuccessPage />,
               },
               {
-                path: "add-skill-error",
+                path: userRoutes.userAddSkillErrorPage,
                 element: <UserAddSkillErrorPage />,
               },
               {
-                path: "edit-user-info",
+                path: userRoutes.userEditUserInfoPage,
                 element: <UserInfoEditPage />,
               },
               {
-                path: "overlay/profile-picture",
+                path: userRoutes.userProfileOverlayPage,
                 element: <UserProfileImageOverlayPage />,
               },
               {
-                path: "overlay/profile-image-preview",
+                path: userRoutes.userProfileImagePreviewPage,
                 element: <UserProfileImagePreviewPage />,
               },
               {
-                path: "overlay/user/cover-image-overlay",
+                path: userRoutes.userCoverImageOverlayPage,
                 element: <UserCoverImageOverlayPage />,
               },
               {
-                path: userCoverImageUpdatePreviewPageRouteNew,
+                path: userRoutes.userCoverImageUpdatePreviewPage,
                 element: <UserCoverImageUpdatePreviewModalComponent />,
               },
             ],
           },
           {
-            path: "edit-skills",
+            path: userRoutes.userEditSkillPage,
             element: <UserSkillEditPage />,
           },
         ],
       },
       {
-        path: "auth",
+        path: authSubpath,
         element: <AuthLayout />,
         children: [
           {
-            path: "auth",
-            element: <Navigate to="/auth/login" />,
+            path: authSubpath,
+            element: <Navigate to={`${authRoutes.authLoginPage}}`} />,
           },
           {
-            path: "login",
+            path: authRoutes.authLoginPage,
             element: <LoginPage />,
           },
           {
-            path: "register",
+            path: authRoutes.authRegisterPage,
             element: <RegisterPage />,
           },
         ],
       },
       {
-        path: "auth-provider-callback",
+        path: authRoutes.authProviderCallbackPage,
         element: <AuthProviderCallbackPage />,
       },
       {

@@ -1,4 +1,4 @@
-import React, { Fragment, lazy } from "react";
+import React, { Fragment, Suspense, lazy } from "react";
 
 import { PageTitleUtil } from "../components/utils/PageTitle.Util";
 

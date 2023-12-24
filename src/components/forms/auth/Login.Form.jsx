@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
-import { authRegisterPageRoute } from "../../../constants/routes.jsx";
+import { authRoutes } from "../../../constants/routes.jsx";
 
 import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
 import TermsServices from "../../auth/TermsServices";
@@ -75,7 +75,7 @@ export default function LoginForm({
         </button>
         <p className="px-2 mt-5 text-sm font-medium leading-none tracking-wide text-center text-gray-600 transform translate-y-1/2 bg-white ">
           Don't have an account yet?{" "}
-          <Link to={authRegisterPageRoute} className="text-indigo-500">
+          <Link to={authRoutes.authRegisterPage} className="text-indigo-500">
             Register
           </Link>
         </p>

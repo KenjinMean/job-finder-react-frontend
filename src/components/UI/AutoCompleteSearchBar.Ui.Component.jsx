@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 
 import searchIcon from "../../assets/icons/search-icon.png";
-import {
-  jobSearchResultPageRoute,
-  jobRoutes,
-} from "../../constants/routes.jsx";
+import { jobRoutes } from "../../constants/routes.jsx";
 
 import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
 import { useFetchSearchSuggestions } from "../../services/api/useJobRequestHandler";
@@ -51,7 +48,7 @@ export default function AutoCompleteSearchBarUiComponent() {
     }
     const searchParams = queryParams.join("&");
 
-    navigate(`${jobSearchResultPageRoute}?${searchParams}`);
+    navigate(`${jobRoutes.jobSearchResultPage}?${searchParams}`);
   };
 
   const handleFilterSelect = (jobType) => {

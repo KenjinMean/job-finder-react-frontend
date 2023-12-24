@@ -2,10 +2,7 @@ import React from "react";
 
 import { useFetchUserSkills } from "../../services/api/useSkillRequestHandler.js";
 
-import {
-  userEditSkillPageRoute,
-  userAddSkillPageRoute,
-} from "../../constants/routes.jsx";
+import { userRoutes } from "../../constants/routes.jsx";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component.jsx";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component.jsx";
@@ -27,10 +24,10 @@ export default function UserSkillsComponent() {
       </ul>
       <div className="absolute flex items-center gap-1 right-5 top-5">
         <LinkAddUiComponent
-          to={userAddSkillPageRoute}
+          to={userRoutes.userAddSkillPage}
           preventScrollReset={true}
         />
-        <LinkEditUiComponent to={userEditSkillPageRoute} />
+        <LinkEditUiComponent to={userRoutes.userEditSkillPage} />
       </div>
     </section>
   );

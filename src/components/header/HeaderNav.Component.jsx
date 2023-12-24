@@ -4,11 +4,7 @@ import { Menu } from "@headlessui/react";
 import { Link } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import {
-  jobRoutes,
-  userProfilePageRoute,
-  authLoginPageRoute,
-} from "../../constants/routes.jsx";
+import { jobRoutes, userRoutes, authRoutes } from "../../constants/routes.jsx";
 
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
@@ -93,7 +89,7 @@ export default function HeaderNavComponent() {
 
                 <Menu.Item
                   as={Link}
-                  to={userProfilePageRoute}
+                  to={userRoutes.userProfilePage}
                   className="block px-5 py-1 mt-5 text-lg font-semibold text-center transition-all border rounded-full hover:bg-indigo-500 text-foreground-300 hover:text-white border-foreground-300"
                 >
                   View Profile
@@ -154,7 +150,7 @@ export default function HeaderNavComponent() {
             </li>
             {!token && (
               <li className="w-full p-2 font-semibold text-foreground-300 hover:text-purple-500">
-                <Link to={authLoginPageRoute}>login</Link>
+                <Link to={authRoutes.authLoginPage}>login</Link>
               </li>
             )}
           </ul>

@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 
-import {
-  userProfileImagePreviewpageRoute,
-  userProfilePageRoute,
-} from "../../../constants/routes";
+import { userRoutes } from "../../../constants/routes";
 
 import { useFileUploadStore } from "../../../services/state/FileUploadStore";
 import { useUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
@@ -35,7 +32,7 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
   const handleFileSelect = (file) => {
     const reader = new FileReader();
     reader.onloadend = () => {
-      navigate(userProfileImagePreviewpageRoute);
+      navigate(userRoutes.userProfileImagePreviewpage);
       setImageDataURL(reader.result);
     };
     reader.readAsDataURL(file);
@@ -44,14 +41,14 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
 
   return (
     <ModalContainerUtil
-      navigateOnClose={userProfilePageRoute}
+      navigateOnClose={userRoutes.userProfilePage}
       contentClassName="w-full max-w-3xl"
     >
       <div className="flex flex-col bg-white rounded-lg shadow-lg">
         {/*header*/}
         <div className="flex items-center justify-between p-5">
           <h3 className="text-xl font-secondary">Image Preview</h3>
-          <LinkClosePrimaryUiComponent to={userProfilePageRoute} />
+          <LinkClosePrimaryUiComponent to={userRoutes.userProfilePage} />
         </div>
         {/* body */}
         <div className="flex justify-center">

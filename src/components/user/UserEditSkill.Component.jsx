@@ -5,7 +5,7 @@ import {
   useFetchUserSkills,
 } from "../../services/api/useSkillRequestHandler";
 
-import { userProfilePageRoute } from "../../constants/routes";
+import { userRoutes } from "../../constants/routes";
 
 import { toast } from "react-toastify";
 
@@ -24,7 +24,9 @@ export default function UserEditSkillComponent() {
 
   return (
     <div className="p-5">
-      <button onClick={() => navigate(userProfilePageRoute)}>Go back</button>
+      <button onClick={() => navigate(userRoutes.userProfilePage)}>
+        Go back
+      </button>
       <ul className="flex flex-col">
         {userSkills?.map((skill) => {
           return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { authLoginPageRoute } from "../../../constants/routes.jsx";
+import { authRoutes } from "../../../constants/routes.jsx";
 
 import TermsServices from "../../auth/TermsServices";
 import AuthSubmitButtonComponent from "../../auth/AuthSubmitButton.Component";
@@ -115,7 +115,10 @@ export default function RegisterForm({
       </AuthSubmitButtonComponent>
       <p className="px-2 mt-5 font-medium leading-none tracking-wide text-center text-gray-600 transform translate-y-1/2 bg-white ">
         Alrady have an account?{" "}
-        <Link to={authLoginPageRoute} className="font-bold text-indigo-500">
+        <Link
+          to={authRoutes.authLoginPage}
+          className="font-bold text-indigo-500"
+        >
           Login
         </Link>
       </p>

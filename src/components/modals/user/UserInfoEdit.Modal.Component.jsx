@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { userProfilePageRoute } from "../../../constants/routes";
+import { userRoutes } from "../../../constants/routes";
 
 import {
   useAsyncUpdateUserInfo,
@@ -64,13 +64,13 @@ export default function UserInfoEditModalComponent() {
 
   return (
     <ModalContainerUtil
-      navigateOnClose={userProfilePageRoute}
+      navigateOnClose={userRoutes.userProfilePage}
       contentClassName="w-full max-w-3xl modal-content"
     >
       <div className="flex flex-col w-full bg-white rounded-lg shadow-lg outline-none focus:outline-none">
         <div className="flex items-center justify-between p-5 border-b border-slate-300">
           <h2 className="text-xl">Edit Info</h2>
-          <LinkClosePrimaryUiComponent to={userProfilePageRoute} />
+          <LinkClosePrimaryUiComponent to={userRoutes.userProfilePage} />
         </div>
         {/* add height to enable autoscroll */}
         <div className="p-5 overflow-y-auto">

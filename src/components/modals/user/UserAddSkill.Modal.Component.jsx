@@ -1,7 +1,7 @@
 // MODAL SOURCE: https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular
 import React, { useState } from "react";
 
-import { userProfilePageRoute } from "../../../constants/routes.jsx";
+import { userRoutes } from "../../../constants/routes.jsx";
 
 import { useUserAddSkill } from "../../../services/api/useSkillRequestHandler.js";
 import { useSearchSkill } from "../../../services/api/useSkillRequestHandler.js";
@@ -28,7 +28,7 @@ export default function UserAddSkillModalComponent() {
 
   return (
     <ModalContainerUtil
-      navigateOnClose={userProfilePageRoute}
+      navigateOnClose={userRoutes.userProfilePage}
       contentClassName="relative w-full max-w-3xl modal-content"
     >
       {/*content*/}
@@ -37,7 +37,7 @@ export default function UserAddSkillModalComponent() {
         <div className="flex items-center justify-between p-5">
           <h3 className="text-xl font-secondary">Add User Skill</h3>
           <LinkClosePrimaryUiComponent
-            to={userProfilePageRoute}
+            to={userRoutes.userProfilePage}
             preventScrollReset={true}
           />
         </div>

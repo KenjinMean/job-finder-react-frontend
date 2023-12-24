@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toMilliseconds } from "../../utils/toMilliseconds";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
 
-import { userProfilePageRoute } from "../../constants/routes";
+import { userRoutes } from "../../constants/routes";
 
 const fetchUserInfo = () => {
   return axiosClient.get("/user-infos/show");
@@ -75,7 +75,7 @@ export const useUpdateUserInfo = () => {
   return useMutation(updateUserInfo, {
     onSuccess: async () => {
       queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
-      navigate(userProfilePageRoute);
+      navigate(userRoutes.userProfilePage);
     },
     onError: (error) => {
       console.log("there was an error updating user-info");
@@ -122,7 +122,7 @@ export const useAsyncUpdateUserInfo = () => {
   const { authenticatedUser } = useAuthenticationStore();
 
   return async (payload) => {
-    navigate(userProfilePageRoute);
+    navigate(userRoutes.userProfilePage);
 
     try {
       const response = await axiosClient.post("/user-infos/update", payload);
@@ -145,7 +145,7 @@ export const useUpdateUserProfileImage = () => {
   return useMutation(updateUserProfileImage, {
     onSuccess: async () => {
       queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
-      navigate(userProfilePageRoute);
+      navigate(userRoutes.userProfilePage);
     },
 
     onError: (error) => {
@@ -162,7 +162,7 @@ export const useUpdateUserCoverImage = () => {
   return useMutation(updateUserCoverImage, {
     onSuccess: async () => {
       queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
-      navigate(userProfilePageRoute);
+      navigate(userRoutes.userProfilePage);
     },
 
     onError: (error) => {

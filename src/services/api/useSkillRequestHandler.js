@@ -1,11 +1,10 @@
 import axiosClient from "../../axios-client";
-import {
-  userAddSkillSuccessPageRoute,
-  userAddSkillErrorPageRoute,
-} from "../../constants/routes.jsx";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { useNavigate } from "react-router-dom";
+import { userRoutes } from "../../constants/routes.jsx";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
+
 import { toMilliseconds } from "../../utils/toMilliseconds.js";
 
 const searchSkill = (keyword) => {
@@ -42,12 +41,12 @@ export const useUserAddSkill = () => {
   return useMutation(addUserSkill, {
     onSuccess: async () => {
       queryClient.invalidateQueries("searchskill");
-      navigate(userAddSkillSuccessPageRoute);
+      navigate(userRoutes.userAddSkillSuccessPage);
     },
     onError: (error) => {
       const errorMessage = error.response.data.error || "An error occurred";
       navigate(
-        `${userAddSkillErrorPageRoute}?error=${encodeURIComponent(
+        `${userRoutes.userAddSkillErrorPage}?error=${encodeURIComponent(
           errorMessage
         )}`
       );
@@ -61,7 +60,7 @@ export const useRemoveUserSkill = () => {
 
   return useMutation(removeUserSkill, {
     onSuccess: async () => {
-      navigate(userAddSkillSuccessPageRoute);
+      navigate(userRoutes.userAddSkillSuccessPage);
     },
   });
 };

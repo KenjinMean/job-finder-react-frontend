@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  userProfilePageRoute,
-  userCoverImageUpdatePreviewPageRoute,
-} from "../../../constants/routes";
+import { userRoutes } from "../../../constants/routes";
 
 import { useFileUploadStore } from "../../../services/state/FileUploadStore";
 
@@ -31,7 +28,7 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
   const handleFileSelect = (file) => {
     const reader = new FileReader();
     reader.onloadend = () => {
-      navigate(userCoverImageUpdatePreviewPageRoute);
+      navigate(userRoutes.userCoverImageUpdatePreviewPage);
       setImageDataURL(reader.result);
     };
     reader.readAsDataURL(file);
@@ -41,14 +38,14 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
 
   return (
     <ModalContainerUtil
-      navigateOnClose={userProfilePageRoute}
+      navigateOnClose={userRoutes.userProfilePage}
       contentClassName="w-full max-w-5xl"
     >
       <div className="flex flex-col bg-white rounded-lg shadow-lg">
         {/*header*/}
         <div className="flex items-center justify-between p-5">
           <h3 className="text-xl font-secondary">Cover Image Preview</h3>
-          <LinkClosePrimaryUiComponent to={userProfilePageRoute} />
+          <LinkClosePrimaryUiComponent to={userRoutes.userProfilePage} />
         </div>
         {/* body */}
         <div className="flex justify-center">
@@ -65,7 +62,7 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
           <ButtonFileUploadUiComponent
             title="Add Photo"
             handleFileSelect={handleFileSelect}
-            imagePreviewPage={userCoverImageUpdatePreviewPageRoute}
+            imagePreviewPage={userRoutes.userCoverImageUpdatePreviewPage}
           />
           <ButtonActionPrimaryUiComponent onClick={handleSubmit}>
             Save

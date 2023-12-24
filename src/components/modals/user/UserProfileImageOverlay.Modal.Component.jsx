@@ -1,9 +1,6 @@
 import React from "react";
 
-import {
-  userProfilePageRoute,
-  userProfileImagePreviewpageRoute,
-} from "../../../constants/routes";
+import { userRoutes } from "../../../constants/routes";
 
 import { useFileUploadStore } from "../../../services/state/FileUploadStore";
 import {
@@ -30,7 +27,7 @@ export default function UserProfileImageOverlayModalComponent() {
   const handleFileSelect = (file) => {
     const reader = new FileReader();
     reader.onloadend = () => {
-      navigate(userProfileImagePreviewpageRoute);
+      navigate(userRoutes.userProfileImagePreviewPage);
       setImageDataURL(reader.result);
     };
     reader.readAsDataURL(file);
@@ -49,7 +46,7 @@ export default function UserProfileImageOverlayModalComponent() {
 
   return (
     <ModalContainerUtil
-      navigateOnClose={userProfilePageRoute}
+      navigateOnClose={userRoutes.userProfilePage}
       contentClassName="w-full max-w-3xl"
     >
       <div className="flex flex-col bg-white rounded-lg shadow-lg">
@@ -57,7 +54,7 @@ export default function UserProfileImageOverlayModalComponent() {
         <div className="flex items-center justify-between p-5">
           <h3 className="text-xl font-secondary">Profile Photo</h3>
           <LinkClosePrimaryUiComponent
-            to={userProfilePageRoute}
+            to={userRoutes.userProfilePage}
             preventScrollReset={true}
           />
         </div>
