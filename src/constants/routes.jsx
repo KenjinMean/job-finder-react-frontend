@@ -28,12 +28,28 @@
 // export const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 export const baseUrl = "/job-finder-react-frontend/";
 
-export const prependBaseUrl = (route) => baseUrl + route;
+export const jobSubpath = "jobs";
 
-export const jobListingPageRoute = prependBaseUrl("jobs");
+export const prependBaseUrl = (route) => baseUrl + route;
+const prependJobsSubpath = (route) => jobSubpath + route;
+
 export const jobDetailsPageRoute = prependBaseUrl("jobs/view/");
 export const jobSearchResultPageRoute = prependBaseUrl("jobs/search");
 
+const job = {
+  jobListingPage: "",
+  jobDetailsPage: "/view/",
+  jobSearchResultPage: "/search",
+};
+
+export const jobRoutes = Object.fromEntries(
+  Object.entries(job).map(([key, value]) => [
+    key,
+    prependBaseUrl(prependJobsSubpath(value)),
+  ])
+);
+
+// NOTE: add another prefixer that prefixes what route it is like, user route or jobs, etc...
 export const userProfilePageRoute = prependBaseUrl("profile");
 export const userAddSkillPageRoute = prependBaseUrl("profile/add-skill");
 export const userEditSkillPageRoute = prependBaseUrl("profile/edit-skills");
@@ -59,6 +75,8 @@ export const userCoverImageOverlayPageRoute = prependBaseUrl(
 export const userCoverImageUpdatePreviewPageRoute = prependBaseUrl(
   "profile/overlay/user/cover-image-update-preview"
 );
+export const userCoverImageUpdatePreviewPageRouteNew =
+  "profile/overlay/user/cover-image-update-preview";
 
 export const authLoginPageRoute = prependBaseUrl("auth/login");
 export const authRegisterPageRoute = prependBaseUrl("auth/register");

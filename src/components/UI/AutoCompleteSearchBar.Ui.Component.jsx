@@ -5,7 +5,7 @@ import { Menu, Transition } from "@headlessui/react";
 import searchIcon from "../../assets/icons/search-icon.png";
 import {
   jobSearchResultPageRoute,
-  jobListingPageRoute,
+  jobRoutes,
 } from "../../constants/routes.jsx";
 
 import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
@@ -62,7 +62,7 @@ export default function AutoCompleteSearchBarUiComponent() {
   };
 
   const navigateToJobsPage = () => {
-    navigate(jobListingPageRoute);
+    navigate(jobRoutes.jobListingPage);
   };
 
   const handleArrowKeyPress = (key) => {

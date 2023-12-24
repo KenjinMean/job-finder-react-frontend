@@ -3,7 +3,8 @@ import { Fragment } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import { jobListingPageRoute } from "../../constants/routes.jsx";
+
+import { jobRoutes } from "../../constants/routes.jsx";
 
 import { useRegister } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
@@ -24,14 +25,14 @@ export default function RegisterComponent() {
   } = useRegister();
 
   if (token) {
-    return <Navigate to={jobListingPageRoute} />;
+    return <Navigate to={jobRoutes.jobListingPage} />;
   }
 
   return (
     <Fragment>
       <PageTitleUtil title="Register | JobFinder" />
       <div className="p-6 sm:p-12">
-        <Link to={jobListingPageRoute}>
+        <Link to={jobRoutes.jobListingPage}>
           <div className="flex justify-center">
             <img src={appLogo} alt="" />
           </div>

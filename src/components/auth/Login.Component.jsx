@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import { jobListingPageRoute } from "../../constants/routes.jsx";
+import { jobRoutes } from "../../constants/routes.jsx";
 
 import { useLogin } from "../../services/api/useAuthRequestHandler";
 import { useGithubAuthLogin } from "../../services/api/useAuthRequestHandler";
@@ -39,14 +39,14 @@ export default function LoginComponent() {
   useSocialAuthErrorHandling();
 
   if (token) {
-    return <Navigate to={jobListingPageRoute} />;
+    return <Navigate to={jobRoutes.jobListingPage} />;
   }
 
   return (
     <Fragment>
       <PageTitleUtil title="Login" />
       <div className="p-6 sm:p-12 ">
-        <Link to={jobListingPageRoute}>
+        <Link to={jobRoutes.jobListingPage}>
           <div className="flex justify-center">
             <img src={appLogo} alt="" />
           </div>

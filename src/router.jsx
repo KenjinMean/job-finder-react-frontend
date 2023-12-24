@@ -1,6 +1,11 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import { baseUrl } from "./constants/routes.jsx";
+import {
+  baseUrl,
+  jobRoutes,
+  jobSubpath,
+  userCoverImageUpdatePreviewPageRouteNew,
+} from "./constants/routes.jsx";
 
 import AppLayout from "./layouts/App.Layout.jsx";
 import JobsLayout from "./layouts/Jobs.Layout.jsx";
@@ -36,22 +41,22 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Navigate to={`${baseUrl}jobs`} />,
+        element: <Navigate to={`${baseUrl}${jobRoutes.JobListingPage}`} />,
       },
       {
-        path: "jobs",
+        path: jobSubpath,
         element: <JobsLayout />,
         children: [
           {
-            path: "",
+            path: jobRoutes.jobListingPage,
             element: <JobListingPage />,
           },
           {
-            path: "search",
+            path: jobRoutes.jobSearchResultPage,
             element: <JobSearchResultpage />,
           },
           {
-            path: "view/:jobSlug",
+            path: `${jobRoutes.jobDetailsPage}:jobSlug`,
             element: <JobDetailspage />,
           },
         ],
@@ -93,7 +98,7 @@ const router = createBrowserRouter([
                 element: <UserCoverImageOverlayPage />,
               },
               {
-                path: "overlay/user/cover-image-update-preview",
+                path: userCoverImageUpdatePreviewPageRouteNew,
                 element: <UserCoverImageUpdatePreviewModalComponent />,
               },
             ],

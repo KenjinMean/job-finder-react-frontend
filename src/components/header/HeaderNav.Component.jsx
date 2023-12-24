@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 import {
-  jobListingPageRoute,
+  jobRoutes,
   userProfilePageRoute,
   authLoginPageRoute,
 } from "../../constants/routes.jsx";
@@ -24,7 +24,7 @@ export default function HeaderNavComponent() {
 
   const { token, authenticatedUser } = useAuthenticationStore();
 
-  const { data: userInfo } = useFetchtUserInfo();
+  // const { data: userInfo } = useFetchtUserInfo();
 
   const closeMainMenu = () => {
     setIsMainMenuOpen(false);
@@ -58,7 +58,7 @@ export default function HeaderNavComponent() {
   return (
     <nav className="relative bg-transparent border-gray-200">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl gap-5 mx-auto">
-        <Link to={jobListingPageRoute} className="flex items-center">
+        <Link to={jobRoutes.jobListingPage} className="flex items-center">
           <img src={appLogo} className="h-14" alt="Flowbite Logo" />
         </Link>
 
@@ -71,7 +71,8 @@ export default function HeaderNavComponent() {
               <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full border-foreground-300 md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                 {authenticatedUser.user_info && (
                   <ImageUrlLoaderUtil
-                    imageUrl={userInfo?.profile_image}
+                    // imageUrl={userInfo?.profile_image}
+                    imageUrl=""
                     alt="User Profile Image"
                   />
                 )}
@@ -83,10 +84,10 @@ export default function HeaderNavComponent() {
               >
                 <div className="">
                   <span className="block text-lg font-semibold text-gray-900 ">
-                    {userInfo?.first_name} {userInfo?.last_name}
+                    {/* {userInfo?.first_name} {userInfo?.last_name} */}
                   </span>
                   <span className="flex-wrap block text-gray-500">
-                    {userInfo?.headline}
+                    {/* {userInfo?.headline} */}
                   </span>
                 </div>
 
