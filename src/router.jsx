@@ -48,7 +48,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Navigate to={`${baseUrl}${jobRoutes.JobListingPage}`} />,
+        element: <Navigate to={`${jobRoutes.jobListingPage}`} />,
       },
       {
         path: jobSubpath,
