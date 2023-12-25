@@ -19,23 +19,27 @@ import UserLayout from "./layouts/User.Layout.jsx";
 import ComponentDesignView from "./components/ComponentDesign.View.jsx";
 
 import ErrorPage from "./pages/Error.Page";
+
 import LoginPage from "./pages/Login.Page";
 import RegisterPage from "./pages/Register.Page";
+import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
+
 import JobDetailspage from "./pages/JobDetails.Page";
-import UserProfilePage from "./pages/UserProfile.Page";
 import JobListingPage from "./pages/JobListing.Page.jsx";
+import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
+
+import UserProfilePage from "./pages/UserProfile.Page";
 import UserAddSkillPage from "./pages/UserAddSkill.Page.jsx";
 import UserInfoEditPage from "./pages/UserInfoEdit.Page.jsx";
 import UserSkillEditPage from "./pages/UserSkillEdit.Page.jsx";
-import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
 import UserAddSkillErrorPage from "./pages/UserAddSkillError.Page.jsx";
+import UserCoverImageViewPage from "./pages/UserCoverImageView.Page.jsx";
 import UserAddSkillSuccessPage from "./pages/UserAddSkillSuccess.Page.jsx";
-import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
-import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
-import UserCoverImageOverlayPage from "./pages/UserCoverImageOverlay.Page.jsx";
-import UserProfileImageOverlayPage from "./pages/UserProfileImageOverlay.Page.jsx";
+import UserProfileImageViewPage from "./pages/UserProfileImageView.Page.jsx";
 import UserProfileImagePreviewPage from "./pages/UserProfileImageUpdatePreview.Page.jsx";
 import UserCoverImageUpdatePreviewModalComponent from "./components/modals/user/UserCoverImageUpdatePreview.Modal.Component.jsx";
+
+import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
 
 const router = createBrowserRouter([
   {
@@ -89,16 +93,16 @@ const router = createBrowserRouter([
                 element: <UserInfoEditPage />,
               },
               {
-                path: userRoutes.userProfileOverlayPage,
-                element: <UserProfileImageOverlayPage />,
+                path: userRoutes.userProfileViewPage,
+                element: <UserProfileImageViewPage />,
               },
               {
                 path: userRoutes.userProfileImagePreviewPage,
                 element: <UserProfileImagePreviewPage />,
               },
               {
-                path: userRoutes.userCoverImageOverlayPage,
-                element: <UserCoverImageOverlayPage />,
+                path: userRoutes.userCoverImageViewPage,
+                element: <UserCoverImageViewPage />,
               },
               {
                 path: userRoutes.userCoverImageUpdatePreviewPage,

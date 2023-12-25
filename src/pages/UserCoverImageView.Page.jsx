@@ -1,16 +1,17 @@
 import React, { Fragment, Suspense, lazy } from "react";
+
 import { PageTitleUtil } from "../components/utils/PageTitle.Util";
 
-const UserCoverImageOverlayModalComponent = lazy(() =>
-  import("../components/modals/user/UserCoverImageOverlay.Modal.Component")
+const UserCoverImageViewModalComponent = lazy(() =>
+  import("../components/modals/user/UserCoverImageView.Modal.Component")
 );
 
-export default function UserCoverImageOverlayPage() {
+export default function UserCoverImageViewPage() {
   return (
     <Fragment>
       <PageTitleUtil title="Cover Photo Overlay" />
       <Suspense fallback={<div>Loading...</div>}>
-        <UserCoverImageOverlayModalComponent />
+        <UserCoverImageViewModalComponent />
       </Suspense>
     </Fragment>
   );

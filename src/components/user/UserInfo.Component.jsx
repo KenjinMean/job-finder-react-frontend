@@ -16,12 +16,12 @@ export default function UserInfoComponent() {
     <section className="relative w-full overflow-hidden sm:rounded-lg bg-slate-200">
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.cover_image}
-        to={userRoutes.userCoverImageOverlayPage}
+        to={userRoutes.userCoverImageViewPage}
         className="block w-full h-36 sm:h-48 "
       />
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.profile_image}
-        to={userRoutes.userProfileOverlayPage}
+        to={userRoutes.userProfileViewPage}
         className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-slate-200"
       />
       <div className="relative p-5 border">
