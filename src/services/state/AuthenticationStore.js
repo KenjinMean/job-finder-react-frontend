@@ -36,22 +36,17 @@ export const useAuthenticationStore = create(
           ...state.authenticatedUser,
           user_info: {
             ...state.authenticatedUser.user_info,
-            first_name:
-              userInfo.first_name ||
-              state.authenticatedUser.user_info.first_name,
-            profile_image:
-              userInfo.profile_image ||
-              state.authenticatedUser.user_info.profile_image,
-            headline:
-              userInfo.headline || state.authenticatedUser.user_info.headline,
-            last_name:
-              userInfo.last_name || state.authenticatedUser.user_info.last_name,
+            first_name: userInfo.first_name,
+            profile_image: userInfo.profile_image,
+            headline: userInfo.headline,
+            last_name: userInfo.last_name,
           },
         };
 
         localStorage.setItem("USER", JSON.stringify(updatedUser));
         return { authenticatedUser: updatedUser };
       }),
+
     setToken: (token) =>
       set(() => {
         if (token) {

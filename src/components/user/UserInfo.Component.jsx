@@ -32,7 +32,7 @@ export default function UserInfoComponent() {
               ${userInfo?.last_name}`}
           </p>
         </div>
-        <p>{userInfo?.headline}</p>
+        <p className="max-w-xl">{userInfo?.headline}</p>
         <span>{userInfo?.location}</span>
         <LinkEditUiComponent
           className="absolute right-5 top-5"

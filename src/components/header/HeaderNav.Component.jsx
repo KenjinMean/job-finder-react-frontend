@@ -12,12 +12,12 @@ import { useAuthenticationStore } from "../../services/state/AuthenticationStore
 import ImageUrlLoaderUtil from "../../components/utils/ImageUrlLoader.Util";
 
 export default function HeaderNavComponent() {
-  const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
-
   const mainMenuRef = useRef(null);
   const mainMenuButtonRef = useRef(null);
+  const [isMainMenuOpen, setIsMainMenuOpen] = useState(false);
 
   const { token, authenticatedUser } = useAuthenticationStore();
+  const { user_info } = authenticatedUser;
 
   const closeMainMenu = () => {
     setIsMainMenuOpen(false);
@@ -62,9 +62,9 @@ export default function HeaderNavComponent() {
           {token && (
             <>
               <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full border-foreground-300 md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                {authenticatedUser.user_info && (
+                {user_info && (
                   <ImageUrlLoaderUtil
-                    imageUrl={authenticatedUser?.user_info?.profile_image}
+                    imageUrl={user_info?.profile_image}
                     alt="User Profile Image"
                   />
                 )}
@@ -76,11 +76,10 @@ export default function HeaderNavComponent() {
               >
                 <div className="">
                   <span className="block text-lg font-semibold text-gray-900 ">
-                    {authenticatedUser?.user_info?.first_name}{" "}
-                    {authenticatedUser?.user_info?.last_name}
+                    {user_info?.first_name} {user_info?.last_name}
                   </span>
-                  <span className="flex-wrap block text-gray-500">
-                    {authenticatedUser?.user_info?.headline}
+                  <span className="flex-wrap block text-gray-500 empty:hidden">
+                    {user_info?.headline}
                   </span>
                 </div>
 
