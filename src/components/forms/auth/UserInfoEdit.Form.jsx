@@ -17,7 +17,7 @@ export default function UserInfoEditForm({
         label="First name*"
         type="text"
         name="first_name"
-        value={payload?.first_name}
+        value={payload?.first_name ? payload.first_name : ""}
         onChange={handleInputChange}
       />
       <LabeledTextInputUiComponent
@@ -25,14 +25,14 @@ export default function UserInfoEditForm({
         label="Last name*"
         type="text"
         name="last_name"
-        value={payload?.last_name}
+        value={payload?.last_name ? payload.last_name : ""}
         onChange={handleInputChange}
       />
       <LabeledTextInputUiComponent
         label="Additional name"
         type="text"
         name="additional_name"
-        value={payload?.additional_name}
+        value={payload?.additional_name ? payload.additional_name : ""}
         onChange={handleInputChange}
       />
       {/* <label>
@@ -52,7 +52,7 @@ export default function UserInfoEditForm({
         label="Headline"
         type="text"
         name="headline"
-        value={payload?.headline}
+        value={payload?.headline ? payload.headline : ""}
         onChange={handleInputChange}
       />
 

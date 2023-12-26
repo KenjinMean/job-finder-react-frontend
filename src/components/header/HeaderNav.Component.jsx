@@ -8,7 +8,6 @@ import { jobRoutes, userRoutes, authRoutes } from "../../constants/routes.jsx";
 
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
-import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler.js";
 
 import ImageUrlLoaderUtil from "../../components/utils/ImageUrlLoader.Util";
 
@@ -19,8 +18,6 @@ export default function HeaderNavComponent() {
   const mainMenuButtonRef = useRef(null);
 
   const { token, authenticatedUser } = useAuthenticationStore();
-
-  // const { data: userInfo } = useFetchtUserInfo();
 
   const closeMainMenu = () => {
     setIsMainMenuOpen(false);
@@ -67,8 +64,7 @@ export default function HeaderNavComponent() {
               <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full border-foreground-300 md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                 {authenticatedUser.user_info && (
                   <ImageUrlLoaderUtil
-                    // imageUrl={userInfo?.profile_image}
-                    imageUrl=""
+                    imageUrl={authenticatedUser?.user_info?.profile_image}
                     alt="User Profile Image"
                   />
                 )}
@@ -80,10 +76,11 @@ export default function HeaderNavComponent() {
               >
                 <div className="">
                   <span className="block text-lg font-semibold text-gray-900 ">
-                    {/* {userInfo?.first_name} {userInfo?.last_name} */}
+                    {authenticatedUser?.user_info?.first_name}{" "}
+                    {authenticatedUser?.user_info?.last_name}
                   </span>
                   <span className="flex-wrap block text-gray-500">
-                    {/* {userInfo?.headline} */}
+                    {authenticatedUser?.user_info?.headline}
                   </span>
                 </div>
 

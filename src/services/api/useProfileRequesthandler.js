@@ -26,10 +26,13 @@ const updateUserCoverImage = (payload) => {
 
 export const useFetchtUserInfo = () => {
   const { authenticatedUser } = useAuthenticationStore();
+  const { setAuthenticatedUserUserInfo } = useAuthenticationStore();
+
   return useQuery({
     queryKey: ["userInfo", authenticatedUser.id],
     queryFn: async () => {
       const response = await fetchUserInfo();
+      setAuthenticatedUserUserInfo(response.data);
       return response;
     },
     select: (data) => data?.data,
@@ -144,6 +147,7 @@ export const useUpdateUserProfileImage = () => {
 
   return useMutation(updateUserProfileImage, {
     onSuccess: async () => {
+      console.log("updated User profile");
       queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
       navigate(userRoutes.userProfilePage);
     },
