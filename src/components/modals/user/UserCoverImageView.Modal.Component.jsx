@@ -5,7 +5,7 @@ import React from "react";
 
 import { userRoutes } from "../../../constants/routes";
 
-import { useFileUploadStore } from "../../../services/state/FileUploadStore";
+import useFileHandling from "../../../hooks/useFileHandling";
 import {
   useFetchtUserInfo,
   useUpdateUserCoverImage,
@@ -17,25 +17,13 @@ import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import { useNavigate } from "react-router-dom";
 
 export default function UserCoverImageViewModalComponent() {
-  const navigate = useNavigate();
-
+  const { handleImageSelect } = useFileHandling(
+    userRoutes.userCoverImageUpdatePreviewPage
+  );
   const { mutate: updateuserCoverMutation } = useUpdateUserCoverImage();
   const { data: userInfo } = useFetchtUserInfo();
-  const { setImageDataURL, setImageFile } = useFileUploadStore();
-
-  const handleFileSelect = (file) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      navigate(userRoutes.userCoverImageUpdatePreviewPage);
-      setImageDataURL(reader.result);
-    };
-    reader.readAsDataURL(file);
-
-    setImageFile(file);
-  };
 
   const handleCoverDelete = () => {
     const formData = new FormData();
@@ -73,7 +61,8 @@ export default function UserCoverImageViewModalComponent() {
         <div className="flex justify-between p-5">
           <ButtonFileUploadUiComponent
             title="Add Photo"
-            handleFileSelect={handleFileSelect}
+            accept="image/*"
+            handleFileSelect={handleImageSelect}
           />
           <ButtonActionPrimaryUiComponent onClick={handleCoverDelete}>
             Delete

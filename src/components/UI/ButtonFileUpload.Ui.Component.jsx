@@ -1,15 +1,12 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 
-import { useFileUploadStore } from "../../services/state/FileUploadStore";
+import useFileHandling from "../../hooks/useFileHandling";
 
 export default function ButtonFileUploadUiComponent({
   title,
+  accept = "./*",
   handleFileSelect,
 }) {
-  const navigate = useNavigate();
-  const { setImageDataURL, setImageFile } = useFileUploadStore();
-
   const ref = useRef();
 
   const handleClick = () => {
@@ -33,7 +30,7 @@ export default function ButtonFileUploadUiComponent({
       <input
         ref={ref}
         type="file"
-        accept="image/*"
+        accept={accept}
         className="hidden"
         onChange={handleChange}
       />

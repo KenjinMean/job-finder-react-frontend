@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { userRoutes } from "../../../constants/routes";
 
+import useFileHandling from "../../../hooks/useFileHandling";
 import { useFileUploadStore } from "../../../services/state/FileUploadStore";
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util";
@@ -8,33 +10,24 @@ import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 import { useUpdateUserCoverImage } from "../../../services/api/useProfileRequesthandler";
-import { useNavigate } from "react-router-dom";
 
 export default function UserCoverImageUpdatePreviewModalComponent() {
-  const navigate = useNavigate();
-
-  const { imageFile, setImageFile, imageDataURL, setImageDataURL } =
-    useFileUploadStore();
-  const [formData, setFormData] = useState(new FormData());
-
+  const { handleImageSelect } = useFileHandling(
+    userRoutes.userCoverImageUpdatePreviewPage
+  );
   const { mutate: updateUserCoverMutation } = useUpdateUserCoverImage();
+  const { imageFile, imageDataURL, fromViewPage } = useFileUploadStore();
 
+  const [formData, setFormData] = useState(new FormData());
   const handleSubmit = () => {
     formData.append("_method", "PATCH");
     formData.append("cover_image", imageFile);
     updateUserCoverMutation(formData);
   };
 
-  const handleFileSelect = (file) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      navigate(userRoutes.userCoverImageUpdatePreviewPage);
-      setImageDataURL(reader.result);
-    };
-    reader.readAsDataURL(file);
-
-    setImageFile(file);
-  };
+  if (!fromViewPage) {
+    return <Navigate to={userRoutes.userProfilePage} />;
+  }
 
   return (
     <ModalContainerUtil
@@ -61,7 +54,7 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
         <div className="flex justify-between p-5">
           <ButtonFileUploadUiComponent
             title="Add Photo"
-            handleFileSelect={handleFileSelect}
+            handleFileSelect={handleImageSelect}
             imagePreviewPage={userRoutes.userCoverImageUpdatePreviewPage}
           />
           <ButtonActionPrimaryUiComponent onClick={handleSubmit}>

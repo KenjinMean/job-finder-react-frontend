@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 import { userRoutes } from "../../../constants/routes";
 
+import useFileHandling from "../../../hooks/useFileHandling";
 import { useFileUploadStore } from "../../../services/state/FileUploadStore";
 import { useUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
 
@@ -9,19 +11,18 @@ import ModalContainerUtil from "../../utils/ModalContainer.Util";
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import { useNavigate } from "react-router-dom";
 
 // ENHANCE: create a modal component the handles user update preview and
 //    user cover update preview because they got the same functionality but different sizes only
 export default function UserProfileImageUpdatePreviewModalComponent() {
-  const navigate = useNavigate();
-
-  const { imageFile, setImageFile, imageDataURL, setImageDataURL } =
-    useFileUploadStore();
-  const [formData, setFormData] = useState(new FormData());
+  const { imageFile, imageDataURL, fromViewPage } = useFileUploadStore();
+  const { handleImageSelect } = useFileHandling(
+    userRoutes.userProfileImagePreviewPage
+  );
 
   const { mutate: updateUserProfileMutation } = useUpdateUserProfileImage();
 
+  const [formData, setFormData] = useState(new FormData());
   const handleSubmit = () => {
     formData.append("_method", "PATCH");
     formData.append("profile_image", imageFile);
@@ -29,15 +30,9 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
     updateUserProfileMutation(formData);
   };
 
-  const handleFileSelect = (file) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      navigate(userRoutes.userProfileImagePreviewpage);
-      setImageDataURL(reader.result);
-    };
-    reader.readAsDataURL(file);
-    setImageFile(file);
-  };
+  if (!fromViewPage) {
+    return <Navigate to={userRoutes.userProfilePage} />;
+  }
 
   return (
     <ModalContainerUtil
@@ -64,7 +59,8 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
         <div className="flex justify-between p-5">
           <ButtonFileUploadUiComponent
             title="Add Photo"
-            handleFileSelect={handleFileSelect}
+            accept="image/*"
+            handleFileSelect={handleImageSelect}
           />
           <ButtonActionPrimaryUiComponent onClick={handleSubmit}>
             Save

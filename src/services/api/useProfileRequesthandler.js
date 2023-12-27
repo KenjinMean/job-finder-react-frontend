@@ -147,7 +147,6 @@ export const useUpdateUserProfileImage = () => {
 
   return useMutation(updateUserProfileImage, {
     onSuccess: async () => {
-      console.log("updated User profile");
       queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
       navigate(userRoutes.userProfilePage);
     },
