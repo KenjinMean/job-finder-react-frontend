@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
+import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
 import { userRoutes } from "../../../constants/routes";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useFileUploadStore } from "../../../services/state/FileUploadStore";
-import { useUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
+import { useAsyncUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util";
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
@@ -20,16 +21,23 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
     userRoutes.userProfileImagePreviewPage
   );
 
-  const { mutate: updateUserProfileMutation } = useUpdateUserProfileImage();
+  const asyncUpdateUserProfileImage = useAsyncUpdateUserProfileImage();
 
-  const [formData, setFormData] = useState(new FormData());
   const handleSubmit = () => {
+    const formData = new FormData();
     formData.append("_method", "PATCH");
     formData.append("profile_image", imageFile);
 
-    updateUserProfileMutation(formData);
+    toast.promise(asyncUpdateUserProfileImage(formData), {
+      pending: "Updating User Profile Image",
+      success: "User Profile image updated sucessfully",
+      error: "Error Updating User profile image",
+    });
   };
 
+  // prevents user from accessing this page (Profile Image Preview Page) directly.
+  // Users must come from the respective profile or cover view pages to ensure a
+  // valid context before previewing and updating their images.
   if (!fromViewPage) {
     return <Navigate to={userRoutes.userProfilePage} />;
   }
