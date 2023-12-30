@@ -9,6 +9,7 @@ import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
 
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component.jsx";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
+import ModalUtil from "../../utils/Modal.Util.jsx";
 
 export default function UserAddSkillErrorModalComponent() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -33,34 +34,24 @@ export default function UserAddSkillErrorModalComponent() {
   }, [location.search, error]);
 
   return (
-    <ModalContainerUtil
-      navigateOnClose={userRoutes.userProfilePage}
-      contentClassName="w-full max-w-3xl modal-content"
+    <ModalUtil
+      navigateToUrlOnClose={userRoutes.userProfilePage}
+      modalTitle="Add Skill Error"
     >
-      {/*content*/}
-      <div className="flex flex-col w-full bg-white rounded-lg shadow-lg">
-        {/*header*/}
-        <div className="flex items-center justify-end p-5">
-          <LinkClosePrimaryUiComponent
-            to={userRoutes.userProfilePage}
-            preventScrollReset={true}
-          />
-        </div>
-        {/* body */}
-        <div className="flex flex-col items-center p-5 border-b">
-          <img className="block w-20 h-20 mb-5" src={error} alt="red x error" />
-          <span className="text-lg font-secondary">Error </span>
-          <p>{errorMessage}</p>
-        </div>
-        <div className="flex items-center justify-end p-5">
-          <LinkActionPrimaryUiComponent
-            to={userRoutes.userAddSkillPage}
-            preventScrollReset={true}
-          >
-            Go Back
-          </LinkActionPrimaryUiComponent>
-        </div>
+      {/* body */}
+      <div className="flex flex-col items-center p-5 border-b">
+        <img className="block w-20 h-20 mb-5" src={error} alt="red x error" />
+        <span className="text-lg font-secondary">Error </span>
+        <p>{errorMessage}</p>
       </div>
-    </ModalContainerUtil>
+      <div className="flex items-center justify-end p-5">
+        <LinkActionPrimaryUiComponent
+          to={userRoutes.userAddSkillPage}
+          preventScrollReset={true}
+        >
+          Go Back
+        </LinkActionPrimaryUiComponent>
+      </div>
+    </ModalUtil>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import LabeledTextInputUiComponent from "../../UI/LabeledTextInput.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
@@ -7,9 +7,7 @@ export default function UserInfoEditForm({
   payload,
   handleInputChange,
   handleSubmit,
-  handleGenderChange,
 }) {
-  // const [selectedGender, setSelectedGender] = useState(payload.gender || ""); // Assuming userInfo has a 'gender' property
   return (
     <form onSubmit={handleSubmit}>
       <LabeledTextInputUiComponent
@@ -35,26 +33,19 @@ export default function UserInfoEditForm({
         value={payload?.additional_name}
         onChange={handleInputChange}
       />
-      {/* <label>
-        Gender:
-        <select
-          name="gender"
-          value={selectedGender}
-          onChange={handleGenderChange}
-        >
-          <option value="">Select</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-      </label> */}
-      <LabeledTextInputUiComponent
-        label="Headline"
-        type="text"
-        name="headline"
-        value={payload?.headline}
-        onChange={handleInputChange}
-      />
+
+      <div className="flex flex-col mt-5">
+        <label htmlFor="headline">Headline</label>
+        <textarea
+          name="headline"
+          id="headline"
+          cols="30"
+          rows="5"
+          value={payload?.headline}
+          onChange={handleInputChange}
+          className="border rounded-sm resize-none outline-offset-1"
+        ></textarea>
+      </div>
 
       <div className="flex flex-row-reverse mt-5">
         <ButtonActionPrimaryUiComponent type="submit">

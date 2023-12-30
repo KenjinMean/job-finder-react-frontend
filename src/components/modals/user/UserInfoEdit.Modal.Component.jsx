@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { userRoutes } from "../../../constants/routes";
-
 import {
   useAsyncUpdateUserInfo,
   useFetchtUserInfo,
 } from "../../../services/api/useProfileRequesthandler";
+import { userRoutes } from "../../../constants/routes";
 
 import UserInfoEditForm from "../../forms/auth/UserInfoEdit.Form";
 
-import ModalContainerUtil from "../../utils/ModalContainer.Util";
-import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import { toast } from "react-toastify";
+import ModalUtil from "../../utils/Modal.Util";
 
 export default function UserInfoEditModalComponent() {
   const { data: userInfo } = useFetchtUserInfo();
@@ -22,6 +20,7 @@ export default function UserInfoEditModalComponent() {
   const [isUserInfoChanged, setIsUserInfoChanged] = useState(false);
 
   const handleInputChange = (e) => {
+    setIsUserInfoChanged(true);
     setPayload({
       ...payload,
       [e.target.name]: e.target.value,
@@ -63,26 +62,22 @@ export default function UserInfoEditModalComponent() {
   }, [userInfo]);
 
   return (
-    <ModalContainerUtil
-      navigateOnClose={userRoutes.userProfilePage}
-      contentClassName="w-full max-w-3xl modal-content"
+    <ModalUtil
+      modalTitle="Edit User Info"
+      isInputChanged={isUserInfoChanged}
+      navigateToUrlOnClose={userRoutes.userProfilePage}
     >
-      <div className="flex flex-col w-full bg-white rounded-lg shadow-lg outline-none focus:outline-none">
-        <div className="flex items-center justify-between p-5 border-b border-slate-300">
-          <h2 className="text-xl">Edit Info</h2>
-          <LinkClosePrimaryUiComponent to={userRoutes.userProfilePage} />
-        </div>
-        {/* add height to enable autoscroll */}
-        <div className="p-5 overflow-y-auto">
-          <span className="text-sm"> * indicates required</span>
-          <UserInfoEditForm
-            payload={payload}
-            handleSubmit={handleSubmit}
-            handleInputChange={handleInputChange}
-            handleGenderChange={handleGenderChange}
-          />
-        </div>
+      {/* add height to enable scroll */}
+      {/* FIX: make auto adjust height using clamp or any*/}
+      <div className="p-5 overflow-y-auto">
+        <span className="text-sm"> * indicates required</span>
+        <UserInfoEditForm
+          payload={payload}
+          handleSubmit={handleSubmit}
+          handleInputChange={handleInputChange}
+          handleGenderChange={handleGenderChange}
+        />
       </div>
-    </ModalContainerUtil>
+    </ModalUtil>
   );
 }

@@ -17,6 +17,7 @@ import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
+import ModalUtil from "../../utils/Modal.Util";
 
 export default function UserCoverImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
@@ -35,40 +36,31 @@ export default function UserCoverImageViewModalComponent() {
   };
 
   return (
-    <ModalContainerUtil
-      navigateOnClose={userRoutes.userProfilePage}
-      contentClassName="w-full max-w-5xl"
+    <ModalUtil
+      size="large"
+      modalTitle="Cover Photo"
+      navigateToUrlOnClose={userRoutes.userProfilePage}
     >
-      <div className="flex flex-col bg-white rounded-lg shadow-lg">
-        {/*header*/}
-        <div className="flex items-center justify-between p-5">
-          <h3 className="text-xl font-secondary">Cover Photo</h3>
-          <LinkClosePrimaryUiComponent
-            to={userRoutes.userProfilePage}
-            preventScrollReset={true}
+      {/* body */}
+      <div className="flex justify-center p-5">
+        <div className="w-full h-64 overflow-hidden ">
+          <ImageUrlLoaderUtil
+            imageUrl={userInfo?.cover_image}
+            alt="user profile image"
           />
-        </div>
-        {/* body */}
-        <div className="flex justify-center p-5">
-          <div className="w-full h-64 overflow-hidden ">
-            <ImageUrlLoaderUtil
-              imageUrl={userInfo?.cover_image}
-              alt="user profile image"
-            />
-          </div>
-        </div>
-        {/* footer */}
-        <div className="flex justify-between p-5">
-          <ButtonFileUploadUiComponent
-            title="Add Photo"
-            accept="image/*"
-            handleFileSelect={handleImageSelect}
-          />
-          <ButtonActionPrimaryUiComponent onClick={handleCoverDelete}>
-            Delete
-          </ButtonActionPrimaryUiComponent>
         </div>
       </div>
-    </ModalContainerUtil>
+      {/* footer */}
+      <div className="flex justify-between p-5">
+        <ButtonFileUploadUiComponent
+          title="Add Photo"
+          accept="image/*"
+          handleFileSelect={handleImageSelect}
+        />
+        <ButtonActionPrimaryUiComponent onClick={handleCoverDelete}>
+          Delete
+        </ButtonActionPrimaryUiComponent>
+      </div>
+    </ModalUtil>
   );
 }
