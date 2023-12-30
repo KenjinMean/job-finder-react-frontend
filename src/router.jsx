@@ -15,11 +15,11 @@ import JobsLayout from "./layouts/Jobs.Layout.jsx";
 import AuthLayout from "./layouts/Auth.Layout.jsx";
 import UserLayout from "./layouts/User.Layout.jsx";
 
-// used for designing/previewing component
 import ComponentDesignView from "./components/ComponentDesign.View.jsx";
 
-import ErrorPage from "./pages/Error.Page";
+import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
 
+import ErrorPage from "./pages/Error.Page";
 import LoginPage from "./pages/Login.Page";
 import RegisterPage from "./pages/Register.Page";
 import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
@@ -32,14 +32,13 @@ import UserProfilePage from "./pages/UserProfile.Page";
 import UserAddSkillPage from "./pages/UserAddSkill.Page.jsx";
 import UserInfoEditPage from "./pages/UserInfoEdit.Page.jsx";
 import UserSkillEditPage from "./pages/UserSkillEdit.Page.jsx";
+import UserAboutEditPage from "./pages/UserAboutEdit.Page.jsx";
 import UserAddSkillErrorPage from "./pages/UserAddSkillError.Page.jsx";
 import UserCoverImageViewPage from "./pages/UserCoverImageView.Page.jsx";
 import UserAddSkillSuccessPage from "./pages/UserAddSkillSuccess.Page.jsx";
 import UserProfileImageViewPage from "./pages/UserProfileImageView.Page.jsx";
-import UserProfileImagePreviewPage from "./pages/UserProfileImageUpdatePreview.Page.jsx";
-import UserCoverImageUpdatePreviewModalComponent from "./components/modals/user/UserCoverImageUpdatePreview.Modal.Component.jsx";
-
-import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
+import UserCoverImageUpdatePreviewPage from "./pages/UserCoverImageUpdatePreview.Page.jsx";
+import UserProfileImageUpdatePreviewPage from "./pages/UserProfileImageUpdatePreview.Page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -89,7 +88,7 @@ const router = createBrowserRouter([
                 element: <UserAddSkillErrorPage />,
               },
               {
-                path: userRoutes.userEditUserInfoPage,
+                path: userRoutes.useUserInfoEditPage,
                 element: <UserInfoEditPage />,
               },
               {
@@ -98,7 +97,7 @@ const router = createBrowserRouter([
               },
               {
                 path: userRoutes.userProfileImagePreviewPage,
-                element: <UserProfileImagePreviewPage />,
+                element: <UserProfileImageUpdatePreviewPage />,
               },
               {
                 path: userRoutes.userCoverImageViewPage,
@@ -106,7 +105,11 @@ const router = createBrowserRouter([
               },
               {
                 path: userRoutes.userCoverImageUpdatePreviewPage,
-                element: <UserCoverImageUpdatePreviewModalComponent />,
+                element: <UserCoverImageUpdatePreviewPage />,
+              },
+              {
+                path: userRoutes.userAboutEditPage,
+                element: <UserAboutEditPage />,
               },
             ],
           },

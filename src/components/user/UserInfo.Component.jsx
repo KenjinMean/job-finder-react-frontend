@@ -36,7 +36,7 @@ export default function UserInfoComponent() {
         <span>{userInfo?.location}</span>
         <LinkEditUiComponent
           className="absolute right-5 top-5"
-          to={userRoutes.userEditUserInfoPage}
+          to={userRoutes.useUserInfoEditPage}
           preventScrollReset={true}
         />
       </div>

@@ -50,7 +50,9 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
       <div className="flex flex-col bg-white rounded-lg shadow-lg">
         {/*header*/}
         <div className="flex items-center justify-between p-5">
-          <h3 className="text-xl font-secondary">Image Preview</h3>
+          <h3 className="text-xl font-secondary">
+            Profile Image Update Preview
+          </h3>
           <LinkClosePrimaryUiComponent to={userRoutes.userProfilePage} />
         </div>
         {/* body */}

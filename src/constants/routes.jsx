@@ -23,11 +23,13 @@ const job = {
 };
 
 // USER Routes
+// update the routes to noun first then adjective
 const user = {
   userProfilePage: "",
   userEditSkillPage: "/edit-skills",
   userAddSkillPage: "/overlay/add-skill",
-  userEditUserInfoPage: "/overlay/edit-user-info",
+  userAboutEditPage: "/overlay/edit-about",
+  useUserInfoEditPage: "/overlay/edit-user-info",
   userAddSkillErrorPage: "/overlay/add-skill-error",
   userProfileViewPage: "/overlay/profile-image/view",
   userCoverImageViewPage: "/overlay/cover-image/view",
