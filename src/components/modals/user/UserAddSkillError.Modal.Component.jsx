@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import error from "../../../assets/icons/error.png";
 
-import { userRoutes } from "../../../constants/routes.jsx";
+import { userRoutes } from "../../../constants/routes.tsx";
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
 

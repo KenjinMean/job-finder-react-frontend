@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
-import { authRoutes } from "../../../constants/routes.jsx";
+import { authRoutes } from "../../../constants/routes.tsx";
 
 import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
 import TermsServices from "../../auth/TermsServices";

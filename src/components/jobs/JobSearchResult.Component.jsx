@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import menuIcon from "../../assets/icons/option.png";
-import { jobRoutes } from "../../constants/routes.jsx";
+import { jobRoutes } from "../../constants/routes.tsx";
 
 import { extractUrlParams } from "../../utils/extractUrlParams";
 import { useSearchJobsInfinite } from "../../services/api/useJobRequestHandler";

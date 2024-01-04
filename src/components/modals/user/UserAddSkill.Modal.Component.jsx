@@ -1,7 +1,7 @@
 // MODAL SOURCE: https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular
 import React, { useState } from "react";
 
-import { userRoutes } from "../../../constants/routes.jsx";
+import { userRoutes } from "../../../constants/routes.tsx";
 
 import { useUserAddSkill } from "../../../services/api/useSkillRequestHandler.js";
 import { useSearchSkill } from "../../../services/api/useSkillRequestHandler.js";

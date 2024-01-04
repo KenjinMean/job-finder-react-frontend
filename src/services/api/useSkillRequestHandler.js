@@ -2,7 +2,7 @@ import axiosClient from "../../axios-client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useNavigate } from "react-router-dom";
-import { userRoutes } from "../../constants/routes.jsx";
+import { userRoutes } from "../../constants/routes.tsx";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
 
 import { toMilliseconds } from "../../utils/toMilliseconds.js";

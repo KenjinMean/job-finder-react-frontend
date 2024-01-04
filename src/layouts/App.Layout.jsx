@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 
-import { userRoutes } from "../constants/routes.jsx";
+import { userRoutes } from "../constants/routes.tsx";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
 import usePreserveScrollPositionForRoute from "../hooks/usePreserveScrollForRoute";

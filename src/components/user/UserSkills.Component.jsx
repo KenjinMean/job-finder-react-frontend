@@ -7,7 +7,7 @@ import {
   useOverlayParamDetector,
 } from "../../hooks/useOverlay.js";
 
-import { userOverlays, userRoutes } from "../../constants/routes.jsx";
+import { userOverlays, userRoutes } from "../../constants/routes.tsx";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component.jsx";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component.jsx";

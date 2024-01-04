@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
 
-import { jobRoutes } from "../constants/routes.jsx";
+import { jobRoutes } from "../constants/routes.tsx";
 
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 

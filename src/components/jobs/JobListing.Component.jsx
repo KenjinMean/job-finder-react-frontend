@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import menuIcon from "../../assets/icons/option.png";
-import { jobRoutes } from "../../constants/routes.jsx";
+import { jobRoutes } from "../../constants/routes.tsx";
 
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { useFetchJobsInfinite } from "../../services/api/useJobRequestHandler";

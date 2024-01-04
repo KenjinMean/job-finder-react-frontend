@@ -4,7 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 
-import { jobRoutes } from "../../constants/routes.jsx";
+import { jobRoutes } from "../../constants/routes.tsx";
 
 import { useRegister } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";

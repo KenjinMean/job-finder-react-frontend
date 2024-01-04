@@ -2,7 +2,7 @@ import React from "react";
 
 import { successIcon } from "../../../assets/icons/index.js";
 
-import { userRoutes } from "../../../constants/routes.jsx";
+import { userRoutes } from "../../../constants/routes.tsx";
 
 import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
 

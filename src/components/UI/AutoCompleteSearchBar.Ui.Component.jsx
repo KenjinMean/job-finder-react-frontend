@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 
 import searchIcon from "../../assets/icons/search-icon.png";
-import { jobRoutes } from "../../constants/routes.jsx";
+import { jobRoutes } from "../../constants/routes.tsx";
 
 import { useDebouncedCallback } from "../../hooks/UseDebounceCallback";
 import { useFetchSearchSuggestions } from "../../services/api/useJobRequestHandler";
