@@ -5,7 +5,7 @@ import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Component";
 
-import { userOverlays, userRoutes } from "../../constants/routes";
+import { userOverlays } from "../../constants/routes";
 import {
   useCreateOverlayParamUrl,
   useOverlayParamDetector,
@@ -13,6 +13,7 @@ import {
 
 import UserCoverImageViewModalComponent from "../modals/user/UserCoverImageView.Modal.Component";
 import UserProfileImageViewModalComponent from "../modals/user/UserProfileImageView.Modal.Component";
+import UserInfoEditModalComponent from "../modals/user/UserInfoEdit.Modal.Component";
 
 export default function UserInfoComponent() {
   const { data: userInfo } = useFetchtUserInfo();
@@ -24,6 +25,10 @@ export default function UserInfoComponent() {
   // User Cover Image Modal Overlay Dectector
   const isUserCoverPreviewOverlayActive = useOverlayParamDetector(
     userOverlays.userCoverImagePreviewOverlay
+  );
+
+  const isUserInfoEditOverlayActive = useOverlayParamDetector(
+    userOverlays.userInfoEditOverlay
   );
 
   return (
@@ -52,7 +57,7 @@ export default function UserInfoComponent() {
         <span>{userInfo?.location}</span>
         <LinkEditUiComponent
           className="absolute right-5 top-5"
-          to={userRoutes.useUserInfoEditPage}
+          to={useCreateOverlayParamUrl(userOverlays.userInfoEditOverlay)}
           preventScrollReset={true}
         />
       </div>
@@ -62,6 +67,8 @@ export default function UserInfoComponent() {
       )}
 
       {isUserCoverPreviewOverlayActive && <UserCoverImageViewModalComponent />}
+
+      {isUserInfoEditOverlayActive && <UserInfoEditModalComponent />}
     </section>
   );
 }

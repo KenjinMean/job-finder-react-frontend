@@ -10,7 +10,7 @@ export const useOverlaysStatesStore = create(
       [userOverlays.userAboutEditOverlay]: false,
       [userOverlays.userSkillAddOverlay]: false,
       [userOverlays.userProfileImagePreviewOverlay]: false,
-      [userOverlays.userCoverImagePreviewOverlay]: false,
+      [userOverlays.userInfoEditOverlay]: false,
     },
 
     setUserModalStates: (modalStates) =>

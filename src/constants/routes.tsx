@@ -18,6 +18,9 @@ type AuthRoutes = {
 type UserOverlays = {
   userAboutEditOverlay: string;
   userSkillAddOverlay: string;
+  userProfileImagePreviewOverlay: string;
+  userCoverImagePreviewOverlay: string;
+  userInfoEditOverlay: string;
 };
 
 type UserRoutes = {
@@ -68,9 +71,12 @@ const user: UserRoutes = {
   userCoverImageUpdatePreviewPage: "/overlay/cover-image-update/preview",
 };
 
-const user_Overlays: UserOverlays = {
-  userAboutEditOverlay: "editAboutModal",
-  userSkillAddOverlay: "addSkillModal",
+const user_Overlays = {
+  userAboutEditOverlay: "editAboutModalnew",
+  userSkillAddOverlay: "addSkillModalnew",
+  userProfileImagePreviewOverlay: "previewProfileImage",
+  userCoverImagePreviewOverlay: "previewCoverImage",
+  userInfoEditOverlay: "editUserInfo",
 };
 
 export const authRoutes: Record<keyof AuthRoutes, string> = Object.fromEntries(
