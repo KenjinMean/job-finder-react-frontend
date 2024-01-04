@@ -38,6 +38,17 @@ const user = {
   userCoverImageUpdatePreviewPage: "/overlay/cover-image-update/preview",
 };
 
+const user_Overlays = {
+  userAboutEditOverlay: "editAboutModalnew",
+  userSkillAddOverlay: "addSkillModalnew",
+  userProfileImagePreviewOverlay: "previewProfileImage",
+  userCoverImagePreviewOverlay: "previewCoverImage",
+};
+
+export const userOverlays = Object.fromEntries(
+  Object.entries(user_Overlays).map(([key, value]) => [key, value])
+);
+
 export const authRoutes = Object.fromEntries(
   Object.entries(auth).map(([key, value]) => [
     key,

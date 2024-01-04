@@ -1,15 +1,21 @@
+// SOURCE of reusability using variants: https://youtu.be/eXRlVpw1SIQ?si=ccH914EaOGqEGgp1
+// SOURCE of animation: https://youtu.be/SuqU904ZHA4?si=CeDPmFmCDPzY6Bnf
+
 import React, { Fragment } from "react";
 import { cn } from "../../utils/cn";
+import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { ModalVariants } from "../../constants/variants";
 
 import { useModalScrollLock } from "../../hooks/useModalScrollLock";
+import { useOverlaysStatesStore } from "../../services/state/OverlaysStatesStore";
+
+import { useClearOverlayParamUrl } from "../../hooks/useOverlay";
 
 import BackdropUtil from "./Backdrop.Util";
 import DialogConfirmationUtil from "./DialogConfirmation.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
-import { useOverlaysStatesStore } from "../../services/state/ModalStatesStore";
 
 const ModalUtil = ({
   size,
@@ -17,7 +23,6 @@ const ModalUtil = ({
   position,
   className,
   modalTitle,
-  navigateToUrlOnClose,
   isInputChanged = false,
   ...props
 }) => {
@@ -35,7 +40,7 @@ const ModalUtil = ({
     if (isInputChanged) {
       setConfirmDialogState(true);
     } else {
-      navigate(navigateToUrlOnClose);
+      navigate(useClearOverlayParamUrl());
     }
   };
 
@@ -45,11 +50,32 @@ const ModalUtil = ({
 
   const handleDialogConfirm = () => {
     setConfirmDialogState(false);
-    navigate(navigateToUrlOnClose);
+    navigate(useClearOverlayParamUrl());
   };
 
   const handleDialogReject = () => {
     setConfirmDialogState(false);
+  };
+
+  const dropIn = {
+    hidden: {
+      y: "-100vh",
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      trasnsition: {
+        duration: 0.1,
+        type: "spring",
+        damping: 25,
+        stiffness: 500,
+      },
+    },
+    exit: {
+      y: "100vh",
+      opacity: 0,
+    },
   };
 
   return createPortal(
@@ -61,7 +87,11 @@ const ModalUtil = ({
         />
       )}
 
-      <div
+      <motion.div
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
         className={cn(ModalVariants({ size, position, className }))}
         {...props}
       >
@@ -75,7 +105,7 @@ const ModalUtil = ({
           </div>
           {children}
         </div>
-      </div>
+      </motion.div>
       <BackdropUtil onClick={() => handleOverlayClick()} />
     </Fragment>,
     mountElement

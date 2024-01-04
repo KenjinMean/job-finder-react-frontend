@@ -5,23 +5,39 @@ import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Component";
 
-import { userRoutes } from "../../constants/routes";
+import { userOverlays, userRoutes } from "../../constants/routes";
+import {
+  useCreateOverlayParamUrl,
+  useOverlayParamDetector,
+} from "../../hooks/useOverlay";
+
+import UserCoverImageViewModalComponent from "../modals/user/UserCoverImageView.Modal.Component";
+import UserProfileImageViewModalComponent from "../modals/user/UserProfileImageView.Modal.Component";
 
 export default function UserInfoComponent() {
   const { data: userInfo } = useFetchtUserInfo();
 
-  const defauletProfileUrl = "storage/user_profile_images/default-avatar.png";
+  // User Profile Image Modal Overlay Dectector
+  const isUserProfilePreviewOverlayActive = useOverlayParamDetector(
+    userOverlays.userProfileImagePreviewOverlay
+  );
+  // User Cover Image Modal Overlay Dectector
+  const isUserCoverPreviewOverlayActive = useOverlayParamDetector(
+    userOverlays.userCoverImagePreviewOverlay
+  );
 
   return (
     <section className="relative w-full overflow-hidden sm:rounded-lg bg-slate-200">
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.cover_image}
-        to={userRoutes.userCoverImageViewPage}
+        to={useCreateOverlayParamUrl(userOverlays.userCoverImagePreviewOverlay)}
         className="block w-full h-36 sm:h-48 "
       />
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.profile_image}
-        to={userRoutes.userProfileViewPage}
+        to={useCreateOverlayParamUrl(
+          userOverlays.userProfileImagePreviewOverlay
+        )}
         className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-slate-200"
       />
       <div className="relative p-5 border">
@@ -40,6 +56,12 @@ export default function UserInfoComponent() {
           preventScrollReset={true}
         />
       </div>
+
+      {isUserProfilePreviewOverlayActive && (
+        <UserProfileImageViewModalComponent />
+      )}
+
+      {isUserCoverPreviewOverlayActive && <UserCoverImageViewModalComponent />}
     </section>
   );
 }
