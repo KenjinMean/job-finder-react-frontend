@@ -11,23 +11,36 @@ import { useFileUploadStore } from "../services/state/FileUploadStore";
 
 const useFileHandling = (previewPage) => {
   const navigate = useNavigate();
-  const { setFromViewPage, setImageFile, setImageDataURL } =
-    useFileUploadStore();
+  const {
+    setFromViewPage,
+    setImageFile,
+    setImageDataURL,
+    imageFile,
+    imageDataURL,
+    fromViewPage,
+  } = useFileUploadStore();
 
   const handleImageSelect = (file) => {
+    // Set values in the store
     setFromViewPage(true);
+    setImageFile(file);
+
+    // Read the file and set the image data URL
     const reader = new FileReader();
     reader.onloadend = () => {
-      navigate(previewPage);
       setImageDataURL(reader.result);
     };
     reader.readAsDataURL(file);
 
-    setImageFile(file);
+    // Navigate to the specified preview page
+    navigate(previewPage);
   };
 
   return {
     handleImageSelect,
+    imageFile,
+    imageDataURL,
+    fromViewPage,
   };
 };
 
