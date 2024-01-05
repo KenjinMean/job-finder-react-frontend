@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-import ModalUtil from "../../utils/Modal.Util";
-import { userRoutes } from "../../../constants/routes";
 import {
   useAsyncUpdateUserInfo,
   useFetchtUserInfo,
 } from "../../../services/api/useProfileRequesthandler";
-import { toast } from "react-toastify";
+
+import ModalUtil from "../../utils/Modal.Util";
+import UserAboutForm from "../../forms/auth/UserAbout.Form";
 
 export default function UserAboutEditModalComponent() {
   const { data: userInfo } = useFetchtUserInfo();
-  const updateUserInfo = useAsyncUpdateUserInfo();
-
   const [payload, setPayload] = useState();
   const [infoChanged, setInfoChanged] = useState(false);
+
+  const updateUserInfo = useAsyncUpdateUserInfo();
 
   const handleInputChange = (e) => {
     setInfoChanged(true);
@@ -41,35 +42,16 @@ export default function UserAboutEditModalComponent() {
   };
 
   useEffect(() => {
-    const updatedPayload = {};
-    Object.assign(updatedPayload, userInfo);
-    setPayload(updatedPayload);
+    setPayload({ ...userInfo });
   }, [userInfo]);
 
   return (
-    <ModalUtil
-      isInputChanged={infoChanged}
-      modalTitle="Edit User About"
-      navigateToUrlOnClose={userRoutes.userProfilePage}
-    >
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col p-5 overflow-y-auto">
-          <span className="text-sm"> * indicates required</span>
-          <textarea
-            autoFocus
-            name="about"
-            id=""
-            value={payload?.about}
-            cols="30"
-            rows="10"
-            className="border"
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div className="flex flex-row-reverse p-5">
-          <button>Save</button>
-        </div>
-      </form>
+    <ModalUtil isInputChanged={infoChanged} modalTitle="Edit User About">
+      <UserAboutForm
+        handleSubmit={handleSubmit}
+        payload={payload}
+        handleInputChange={handleInputChange}
+      />
     </ModalUtil>
   );
 }
