@@ -3,15 +3,16 @@
 
 import React, { Fragment } from "react";
 import { cn } from "../../utils/cn";
-import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
-import { ModalVariants } from "../../constants/variants";
+import { AnimatePresence, motion } from "framer-motion";
+import { ModalVariants } from "../../constants/classVariants";
+
+import { fadeIn } from "../../constants/animationVariants";
+import { useClearOverlayParamUrl } from "../../hooks/useOverlay";
 
 import { useModalScrollLock } from "../../hooks/useModalScrollLock";
 import { useOverlaysStatesStore } from "../../services/state/OverlaysStatesStore";
-
-import { useClearOverlayParamUrl } from "../../hooks/useOverlay";
 
 import BackdropUtil from "./Backdrop.Util";
 import DialogConfirmationUtil from "./DialogConfirmation.Util";
@@ -27,10 +28,10 @@ const ModalUtil = ({
   ...props
 }) => {
   const navigate = useNavigate();
-  const { setScrollLockActive } = useModalScrollLock();
   const mountElement = document.getElementById("overlays");
 
-  // lock scrolling when moda active
+  // lock scrolling when modal active
+  const { setScrollLockActive } = useModalScrollLock();
   setScrollLockActive();
 
   const { confirmDialogState, setConfirmDialogState } =
@@ -57,38 +58,10 @@ const ModalUtil = ({
     setConfirmDialogState(false);
   };
 
-  const dropIn = {
-    hidden: {
-      y: "-100vh",
-      opacity: 0,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      trasnsition: {
-        duration: 0.1,
-        type: "spring",
-        damping: 25,
-        stiffness: 500,
-      },
-    },
-    exit: {
-      y: "100vh",
-      opacity: 0,
-    },
-  };
-
   return createPortal(
     <Fragment>
-      {confirmDialogState && (
-        <DialogConfirmationUtil
-          onReject={handleDialogReject}
-          onConfirm={handleDialogConfirm}
-        />
-      )}
-
       <motion.div
-        variants={dropIn}
+        variants={fadeIn}
         initial="hidden"
         animate="visible"
         exit="exit"
@@ -106,7 +79,19 @@ const ModalUtil = ({
           {children}
         </div>
       </motion.div>
+
+      {/* Backdrop */}
       <BackdropUtil onClick={() => handleOverlayClick()} />
+
+      {/* Confirmation Dialog Pop Up */}
+      <AnimatePresence mode="wait">
+        {confirmDialogState && (
+          <DialogConfirmationUtil
+            onReject={handleDialogReject}
+            onConfirm={handleDialogConfirm}
+          />
+        )}
+      </AnimatePresence>
     </Fragment>,
     mountElement
   );

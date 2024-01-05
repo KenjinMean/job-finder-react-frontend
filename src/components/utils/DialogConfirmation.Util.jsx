@@ -1,5 +1,9 @@
 import React, { Fragment } from "react";
+import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
+
+import { dropIn } from "../../constants/animationVariants";
+
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";
 
@@ -8,7 +12,13 @@ export default function DialogConfirmationUtil({ onConfirm, onReject }) {
 
   return createPortal(
     <Fragment>
-      <div className="fixed left-0 right-0 top-28 z-[60] flex items-center justify-center max-w-md mx-auto">
+      <motion.div
+        className="fixed left-0 right-0 top-28 z-[60] flex items-center justify-center max-w-md mx-auto"
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
         <div className="flex flex-col w-full gap-5 p-5 bg-white rounded-lg shadow-lg">
           <div className="flex justify-between">
             <h3>Discard Changes</h3>
@@ -26,7 +36,7 @@ export default function DialogConfirmationUtil({ onConfirm, onReject }) {
             </ButtonActionPrimaryUiComponent>
           </div>
         </div>
-      </div>
+      </motion.div>
       <div className="fixed inset-0 z-50 bg-black opacity-25"></div>
     </Fragment>,
     mountElement
