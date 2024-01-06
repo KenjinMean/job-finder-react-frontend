@@ -2,25 +2,22 @@ import React from "react";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
-import { userRoutes } from "../../../constants/routes";
-
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useFileUploadStore } from "../../../services/state/FileUploadStore";
+import { userModalOverlayRoutes, userRoutes } from "../../../constants/routes";
+import { useOpenOverlay } from "../../../hooks/useOverlay";
 import { useAsyncUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
 
-import ModalContainerUtil from "../../utils/ModalContainer.Util";
-import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
+import ModalUtil from "../../utils/Modal.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import ModalUtil from "../../utils/Modal.Util";
 
 // ENHANCE: create a modal component the handles user update preview and
 //    user cover update preview because they got the same functionality but different sizes only
 export default function UserProfileImageUpdatePreviewModalComponent() {
-  const { imageFile, imageDataURL, fromViewPage } = useFileUploadStore();
-  const { handleImageSelect } = useFileHandling(
-    userRoutes.userProfileImagePreviewPage
-  );
+  const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
+    useFileHandling(
+      useOpenOverlay(userModalOverlayRoutes.userProfileImageUpdatePreviewModal)
+    );
 
   const asyncUpdateUserProfileImage = useAsyncUpdateUserProfileImage();
 
@@ -44,10 +41,7 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
   }
 
   return (
-    <ModalUtil
-      modalTitle="Profile Image Update Preview"
-      navigateToUrlOnClose={userRoutes.userProfilePage}
-    >
+    <ModalUtil modalTitle="Profile Image Update Preview">
       {/* body */}
       <div className="flex justify-center">
         <div className="w-64 h-64 overflow-hidden rounded-full">

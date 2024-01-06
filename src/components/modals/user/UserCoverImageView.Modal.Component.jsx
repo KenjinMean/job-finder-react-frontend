@@ -3,26 +3,25 @@ import React from "react";
 // NOTE: rename this to UserCoverImageView.Modal.Component.jsx to clearly convey component purpose
 // and also the USerProfileOverlay
 
-import { userRoutes } from "../../../constants/routes";
+import { userModalOverlayRoutes, userRoutes } from "../../../constants/routes";
 
 import useFileHandling from "../../../hooks/useFileHandling";
+import { useOpenOverlay } from "../../../hooks/useOverlay";
 import {
   useFetchtUserInfo,
   useUpdateUserCoverImage,
 } from "../../../services/api/useProfileRequesthandler";
 
-import ModalContainerUtil from "../../utils/ModalContainer.Util";
+import ModalUtil from "../../utils/Modal.Util";
 import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
-
-import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import ModalUtil from "../../utils/Modal.Util";
 
 export default function UserCoverImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    userRoutes.userCoverImageUpdatePreviewPage
+    useOpenOverlay(userModalOverlayRoutes.userCoverImageUpdatePreviewModal)
   );
+
   const { mutate: updateuserCoverMutation } = useUpdateUserCoverImage();
   const { data: userInfo } = useFetchtUserInfo();
 
@@ -36,11 +35,7 @@ export default function UserCoverImageViewModalComponent() {
   };
 
   return (
-    <ModalUtil
-      size="large"
-      modalTitle="Cover Photo"
-      navigateToUrlOnClose={userRoutes.userProfilePage}
-    >
+    <ModalUtil size="large" modalTitle="Cover Photo">
       {/* body */}
       <div className="flex justify-center p-5">
         <div className="w-full h-64 overflow-hidden ">

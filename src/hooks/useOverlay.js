@@ -1,48 +1,89 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useOverlaysStatesStore } from "../services/state/OverlaysStatesStore";
 
 /**
- * Custom hook to detect changes in the "overlay" parameter in the URL
- * and update the corresponding overlay state in the global store.
+ * Custom hook to detect "overlay" parameter in the URL
+ * then return a boolean value for the specified overlay name
+ * that can be used to conditionally render overlays
+ * triggers the showing/hiding of modal
  *
  * @param {string} OverlayName - The name of the overlay to detect.
  * @returns {boolean} - Whether the specified overlay is active.
  *
+ * @example
+ *
+ * // import useOverlayParamDetector
+ * import useOverlayParamDetector from "path to useOverlayParamDetector"
+ *
+ * function App() {
+ *
+ * // use useOpenOverlay() to append "overlay" param to current url
+ * const navigate = useNavigate()
+ * <button onClick={() => navigate(useOpenOverlay("example-modal"))}>Open Example Modal</button>
+ *
+ * //detect if there is "example-modal" overlay parameter int the URL and conditionally render  <ExampleModal />
+ * const isExampleModalActive = useOverlayParamDetector("overlay="example-modal")
+ *
+ *   return (
+ *
+ *     // app content
+ *
+ *     // make sure your modal is rendered on a react-portal
+ *     {
+ *       isExampleModalActive && <ExampleModal />
+ *     }
+ *   );
+ * }
  */
 
 export const useOverlayParamDetector = (OverlayName) => {
-  const { setUserModalStates, userModalStates } = useOverlaysStatesStore();
   const location = useLocation();
+
+  const [isOverlayActive, setOverlayActive] = useState(false);
 
   useEffect(() => {
     const overlayParam = new URLSearchParams(location.search).get("overlay");
     const newIsOverlayActive = overlayParam === OverlayName;
 
-    setUserModalStates({ [OverlayName]: newIsOverlayActive });
-  }, [location, location.search, setUserModalStates, OverlayName]);
+    setOverlayActive(newIsOverlayActive);
+  }, [location, location.search, OverlayName]);
 
-  return userModalStates[OverlayName];
+  return isOverlayActive;
 };
 
 /**
- * Generates a URL with an overlay parameter based on the provided overlay name.
- * The resulting URL includes the current pathname and the specified overlay parameter.
- * This URl is used to toggle modal components based on the overlay name
+ * Appends "overlay" parameter and value(overlay name) to current url and return the generated URL
+ * This URl is used to toggle open/close modal
  *
  * @param {string} overlayName - The name of the overlay to include in the URL.
  * @returns {string} The generated URL with the overlay parameter.
  * @example
- * // Returns "http://example.com/current-path?overlay=exampleOverlay"
- * useCreateOverlayParamUrl("exampleOverlay");
+ * // Returns "http://example.com/current-path?overlay=example-overlay"
+ *
+ * // using anchor tags
+ * <a href={useOpenOverlay("example-overlay")}>Open Example Modal</a>
+ *
+ * // using button click
+ * const navigate = useNavigate()
+ * <button onClick={() => navigate(useOpenOverlay("example-overlay"))}>Open Example Modal</button>
  */
-export const useCreateOverlayParamUrl = (overlayName) => {
-  return `${window.location.pathname}?overlay=${overlayName}`;
+export const useOpenOverlay = (overlayName, additionalParams) => {
+  const overlayParam = `overlay=${overlayName}`;
+
+  if (additionalParams) {
+    const additionalQueryParam = Object.entries(additionalParams)
+      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+      .join("&");
+
+    return `${window.location.pathname}?${overlayParam}&${additionalQueryParam}`;
+  }
+
+  return `${window.location.pathname}?${overlayParam}`;
 };
 
 /**
  * Removes the "overlay" parameter (both key and value) from the current URL
- * and returns the updated URL without it.
+ * clears the "overlay" parameter from the url and returning the URL resulting in  closing of the specified modal
  *
  * @returns {string} The updated URL without the "overlay" parameter.
  */

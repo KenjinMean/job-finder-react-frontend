@@ -2,10 +2,11 @@ import axiosClient from "../../axios-client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useNavigate } from "react-router-dom";
-import { userRoutes } from "../../constants/routes.tsx";
+import { userModalOverlayRoutes, userRoutes } from "../../constants/routes.tsx";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
 
 import { toMilliseconds } from "../../utils/toMilliseconds.js";
+import { useOpenOverlay } from "../../hooks/useOverlay.js";
 
 const searchSkill = (keyword) => {
   return axiosClient.get(`/search-skills?keyword=${keyword}`);
@@ -41,14 +42,14 @@ export const useUserAddSkill = () => {
   return useMutation(addUserSkill, {
     onSuccess: async () => {
       queryClient.invalidateQueries("searchskill");
-      navigate(userRoutes.userAddSkillSuccessPage);
+      navigate(useOpenOverlay(userModalOverlayRoutes.userAddSkillSuccessModal));
     },
     onError: (error) => {
       const errorMessage = error.response.data.error || "An error occurred";
       navigate(
-        `${userRoutes.userAddSkillErrorPage}?error=${encodeURIComponent(
-          errorMessage
-        )}`
+        useOpenOverlay(userModalOverlayRoutes.userAddSkillErrorModal, {
+          error: errorMessage,
+        })
       );
     },
   });

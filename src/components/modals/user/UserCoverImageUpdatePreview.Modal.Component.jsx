@@ -1,25 +1,23 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
-import { userRoutes } from "../../../constants/routes";
+import { userModalOverlayRoutes, userRoutes } from "../../../constants/routes";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useFileUploadStore } from "../../../services/state/FileUploadStore";
 import { useAsyncUpdateUserCoverImage } from "../../../services/api/useProfileRequesthandler";
 
-import ModalContainerUtil from "../../utils/ModalContainer.Util";
-import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
+import ModalUtil from "../../utils/Modal.Util";
+import { useOpenOverlay } from "../../../hooks/useOverlay";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import ModalUtil from "../../utils/Modal.Util";
 
 export default function UserCoverImageUpdatePreviewModalComponent() {
-  const { handleImageSelect } = useFileHandling(
-    userRoutes.userCoverImageUpdatePreviewPage
-  );
+  const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
+    useFileHandling(
+      useOpenOverlay(userModalOverlayRoutes.userCoverImageUpdatePreviewModal)
+    );
 
   const asyncUpdateUserCoverImage = useAsyncUpdateUserCoverImage();
-  const { imageFile, imageDataURL, fromViewPage } = useFileUploadStore();
 
   const handleSubmit = () => {
     const formData = new FormData();
@@ -41,11 +39,7 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
   }
 
   return (
-    <ModalUtil
-      size="large"
-      modalTitle="Cover Image Preview"
-      navigateToUrlOnClose={userRoutes.userProfilePage}
-    >
+    <ModalUtil size="large" modalTitle="Cover Image Preview">
       {/* body */}
       <div className="flex justify-center">
         <div className="w-full p-5 overflow-hidden h-80">

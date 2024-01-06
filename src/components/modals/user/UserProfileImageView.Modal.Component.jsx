@@ -1,24 +1,22 @@
 import React from "react";
 
-import { userRoutes } from "../../../constants/routes";
-
+import { userRoutes, userModalOverlayRoutes } from "../../../constants/routes";
 import useFileHandling from "../../../hooks/useFileHandling";
+import { useOpenOverlay } from "../../../hooks/useOverlay";
 import {
   useFetchtUserInfo,
   useUpdateUserProfileImage,
 } from "../../../services/api/useProfileRequesthandler";
 
-import ModalContainerUtil from "../../utils/ModalContainer.Util";
+import ModalUtil from "../../utils/Modal.Util";
 import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 
-import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import ModalUtil from "../../utils/Modal.Util";
 
 export default function UserProfileImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    userRoutes.userProfileImagePreviewPage
+    useOpenOverlay(userModalOverlayRoutes.userProfileImageUpdatePreviewModal)
   );
 
   const { data: userInfo } = useFetchtUserInfo();
@@ -34,10 +32,7 @@ export default function UserProfileImageViewModalComponent() {
   };
 
   return (
-    <ModalUtil
-      modalTitle="Profile Photo"
-      navigateToUrlOnClose={userRoutes.userProfilePage}
-    >
+    <ModalUtil modalTitle="Profile Photo">
       {/* body */}
       <div className="flex justify-center">
         <div className="w-64 h-64 mt-5 overflow-hidden rounded-full">

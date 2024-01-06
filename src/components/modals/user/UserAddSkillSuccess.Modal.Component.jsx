@@ -2,13 +2,14 @@ import React from "react";
 
 import { successIcon } from "../../../assets/icons/index.js";
 
-import { userRoutes } from "../../../constants/routes.tsx";
+import {
+  userModalOverlayRoutes,
+  userRoutes,
+} from "../../../constants/routes.tsx";
+import { useOpenOverlay } from "../../../hooks/useOverlay.js";
 
-import ModalContainerUtil from "../../utils/ModalContainer.Util.jsx";
-
-import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
-import LinkClosePrimaryUiComponent from "../../UI/LinkClosePrimay.Ui.Component.jsx";
 import ModalUtil from "../../utils/Modal.Util.jsx";
+import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
 
 export default function UserAddSkillSuccessModalComponent() {
   return (
@@ -27,7 +28,7 @@ export default function UserAddSkillSuccessModalComponent() {
       </div>
       <div className="flex items-center justify-end p-5">
         <LinkActionPrimaryUiComponent
-          to={userRoutes.userAddSkillPage}
+          to={useOpenOverlay(userModalOverlayRoutes.userAddSkillModal)}
           preventScrollReset={true}
         >
           Add more

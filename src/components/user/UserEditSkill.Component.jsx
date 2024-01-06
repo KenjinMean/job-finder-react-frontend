@@ -1,21 +1,15 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { AnimatePresence } from "framer-motion";
-import { Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import {
-  useCreateOverlayParamUrl,
-  useOverlayParamDetector,
-} from "../../hooks/useOverlay";
+import { useOpenOverlay } from "../../hooks/useOverlay";
+import { userModalOverlayRoutes, userRoutes } from "../../constants/routes";
 import {
   useAsyncRemoveUserSkill,
   useFetchUserSkills,
 } from "../../services/api/useSkillRequestHandler";
 
-import { userOverlays, userRoutes } from "../../constants/routes";
-
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
-import UserAddSkillModalComponent from "../modals/user/UserAddSkill.Modal.Component";
 
 export default function UserEditSkillComponent() {
   const navigate = useNavigate();
@@ -30,10 +24,6 @@ export default function UserEditSkillComponent() {
     });
   };
 
-  const isOverlayOpen = useOverlayParamDetector(
-    userOverlays.userSkillAddOverlay
-  );
-
   return (
     <div className="p-5 ">
       <div className="flex justify-between">
@@ -41,7 +31,7 @@ export default function UserEditSkillComponent() {
           Go back
         </button>{" "}
         <LinkAddUiComponent
-          to={useCreateOverlayParamUrl(userOverlays.userSkillAddOverlay)}
+          to={useOpenOverlay(userModalOverlayRoutes.userAddSkillModal)}
           preventScrollReset={true}
         />
       </div>
@@ -57,10 +47,6 @@ export default function UserEditSkillComponent() {
           );
         })}
       </ul>
-      <AnimatePresence initial={false} mode="wait">
-        {isOverlayOpen && <UserAddSkillModalComponent />}
-      </AnimatePresence>
-      <Outlet />
     </div>
   );
 }

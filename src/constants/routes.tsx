@@ -15,26 +15,21 @@ type AuthRoutes = {
   authProviderCallbackPage: string;
 };
 
-type UserOverlays = {
-  userAboutEditOverlay: string;
-  userSkillAddOverlay: string;
-  userProfileImagePreviewOverlay: string;
-  userCoverImagePreviewOverlay: string;
-  userInfoEditOverlay: string;
+type userModalOverlayRoutes = {
+  userInfoEditModal: string;
+  userAddSkillModal: string;
+  userAboutEditModal: string;
+  userAddSkillErrorModal: string;
+  userCoverImageViewModal: string;
+  userAddSkillSuccessModal: string;
+  userProfileImageViewModal: string;
+  userCoverImageUpdatePreviewModal: string;
+  userProfileImageUpdatePreviewModal: string;
 };
 
 type UserRoutes = {
   userProfilePage: string;
   userEditSkillPage: string;
-  userAddSkillPage: string;
-  userAboutEditPage: string;
-  useUserInfoEditPage: string;
-  userAddSkillErrorPage: string;
-  userProfileViewPage: string;
-  userCoverImageViewPage: string;
-  userAddSkillSuccessPage: string;
-  userProfileImagePreviewPage: string;
-  userCoverImageUpdatePreviewPage: string;
 };
 
 type JobRoutes = {
@@ -60,23 +55,18 @@ const job: JobRoutes = {
 const user: UserRoutes = {
   userProfilePage: "",
   userEditSkillPage: "/edit-skills",
-  userAddSkillPage: "/overlay/add-skill",
-  userAboutEditPage: "/overlay/edit-about",
-  useUserInfoEditPage: "/overlay/edit-user-info",
-  userAddSkillErrorPage: "/overlay/add-skill-error",
-  userProfileViewPage: "/overlay/profile-image/view",
-  userCoverImageViewPage: "/overlay/cover-image/view",
-  userAddSkillSuccessPage: "/overlay/add-skill-success",
-  userProfileImagePreviewPage: "/overlay/profile-image-update/preview",
-  userCoverImageUpdatePreviewPage: "/overlay/cover-image-update/preview",
 };
 
-const user_Overlays = {
-  userAboutEditOverlay: "editAboutModalnew",
-  userSkillAddOverlay: "addSkillModalnew",
-  userProfileImagePreviewOverlay: "previewProfileImage",
-  userCoverImagePreviewOverlay: "previewCoverImage",
-  userInfoEditOverlay: "editUserInfo",
+const user_overlays = {
+  userInfoEditModal: "edit-info",
+  userAddSkillModal: "add-skill",
+  userAboutEditModal: "edit-about",
+  userAddSkillErrorModal: "add-skill-error",
+  userCoverImageViewModal: "view-cover-image",
+  userAddSkillSuccessModal: "add-skill-success",
+  userProfileImageViewModal: "view-profile-image",
+  userCoverImageUpdatePreviewModal: "preview-cover-image",
+  userProfileImageUpdatePreviewModal: "preview-profile-image",
 };
 
 export const authRoutes: Record<keyof AuthRoutes, string> = Object.fromEntries(
@@ -100,10 +90,12 @@ export const userRoutes: Record<keyof UserRoutes, string> = Object.fromEntries(
   ])
 ) as Record<keyof UserRoutes, string>;
 
-export const userOverlays: Record<keyof UserOverlays, string> =
-  Object.fromEntries(
-    Object.entries(user_Overlays).map(([key, value]) => [
-      key as keyof UserOverlays,
-      value,
-    ])
-  ) as Record<keyof UserOverlays, string>;
+export const userModalOverlayRoutes: Record<
+  keyof userModalOverlayRoutes,
+  string
+> = Object.fromEntries(
+  Object.entries(user_overlays).map(([key, value]) => [
+    key as keyof userModalOverlayRoutes,
+    value,
+  ])
+) as Record<keyof userModalOverlayRoutes, string>;
