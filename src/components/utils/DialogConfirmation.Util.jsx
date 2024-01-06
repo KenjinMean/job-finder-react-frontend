@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 
@@ -7,8 +7,25 @@ import { dropIn } from "../../constants/animationVariants";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";
 
+import { useCloseModalOverlay } from "../../hooks/useOverlay";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useOverlaysStatesStore } from "../../services/state/OverlaysStatesStore";
+
 export default function DialogConfirmationUtil({ onConfirm, onReject }) {
   const mountElement = document.getElementById("dialog");
+
+  const navigate = useNavigate();
+
+  const { setConfirmDialogState } = useOverlaysStatesStore();
+
+  const handleConfirm = () => {
+    navigate(useCloseModalOverlay);
+    setConfirmDialogState(false);
+  };
+
+  const handleReject = () => {
+    setConfirmDialogState(false);
+  };
 
   return createPortal(
     <Fragment>
@@ -28,10 +45,10 @@ export default function DialogConfirmationUtil({ onConfirm, onReject }) {
             <p>Are you sure you want to discard the changes you made?</p>
           </div>
           <div className="flex justify-end gap-5">
-            <ButtonActionPrimaryUiComponent onClick={onReject}>
+            <ButtonActionPrimaryUiComponent onClick={handleReject}>
               No thanks
             </ButtonActionPrimaryUiComponent>
-            <ButtonActionPrimaryUiComponent onClick={onConfirm}>
+            <ButtonActionPrimaryUiComponent onClick={handleConfirm}>
               Discard
             </ButtonActionPrimaryUiComponent>
           </div>

@@ -3,19 +3,16 @@
 
 import React, { Fragment } from "react";
 import { cn } from "../../utils/cn";
+import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import { useNavigate } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import { ModalVariants } from "../../constants/classVariants";
 
 import { fadeIn } from "../../constants/animationVariants";
-import { useClearOverlayParamUrl } from "../../hooks/useOverlay";
 
+import { useModalExitHandler } from "../../hooks/useOverlay";
 import { useModalScrollLock } from "../../hooks/useModalScrollLock";
-import { useOverlaysStatesStore } from "../../services/state/OverlaysStatesStore";
 
 import BackdropUtil from "./Backdrop.Util";
-import DialogConfirmationUtil from "./DialogConfirmation.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
 
 const ModalUtil = ({
@@ -27,36 +24,13 @@ const ModalUtil = ({
   isInputChanged = false,
   ...props
 }) => {
-  const navigate = useNavigate();
   const mountElement = document.getElementById("overlays");
 
   // lock scrolling when modal active
   const { setScrollLockActive } = useModalScrollLock();
   setScrollLockActive();
 
-  const { confirmDialogState, setConfirmDialogState } =
-    useOverlaysStatesStore();
-
-  const handleModalClose = () => {
-    if (isInputChanged) {
-      setConfirmDialogState(true);
-    } else {
-      navigate(useClearOverlayParamUrl());
-    }
-  };
-
-  const handleOverlayClick = () => {
-    handleModalClose();
-  };
-
-  const handleDialogConfirm = () => {
-    setConfirmDialogState(false);
-    navigate(useClearOverlayParamUrl());
-  };
-
-  const handleDialogReject = () => {
-    setConfirmDialogState(false);
-  };
+  const handleModalClose = useModalExitHandler(isInputChanged);
 
   return createPortal(
     <Fragment>
@@ -81,17 +55,7 @@ const ModalUtil = ({
       </motion.div>
 
       {/* Backdrop */}
-      <BackdropUtil onClick={() => handleOverlayClick()} />
-
-      {/* Confirmation Dialog Pop Up */}
-      <AnimatePresence mode="wait">
-        {confirmDialogState && (
-          <DialogConfirmationUtil
-            onReject={handleDialogReject}
-            onConfirm={handleDialogConfirm}
-          />
-        )}
-      </AnimatePresence>
+      <BackdropUtil onClick={handleModalClose} />
     </Fragment>,
     mountElement
   );

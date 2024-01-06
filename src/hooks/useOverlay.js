@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useOverlaysStatesStore } from "../services/state/OverlaysStatesStore";
 
 /**
  * Custom hook to detect "overlay" parameter in the URL
@@ -77,7 +78,6 @@ export const useOpenOverlay = (overlayName, additionalParams) => {
 
     return `${window.location.pathname}?${overlayParam}&${additionalQueryParam}`;
   }
-
   return `${window.location.pathname}?${overlayParam}`;
 };
 
@@ -87,7 +87,8 @@ export const useOpenOverlay = (overlayName, additionalParams) => {
  *
  * @returns {string} The updated URL without the "overlay" parameter.
  */
-export const useClearOverlayParamUrl = () => {
+// rename to useClose Modal Overlay
+export const useCloseModalOverlay = () => {
   const currentUrl = new URL(window.location.href);
   const searchParams = new URLSearchParams(currentUrl.search);
 
@@ -98,4 +99,28 @@ export const useClearOverlayParamUrl = () => {
     currentUrl.pathname +
     (searchParams.toString() ? `?${searchParams.toString()}` : "")
   );
+};
+
+/**
+ * A custom hook for managing the exit behavior of a modal within the ModalUtil component.
+ * Checks if the user has modified data on a modal form (if the modal has an editable form).
+ * If data has been changed, it shows an exit confirmation dialog; otherwise, it closes the modal.
+ *
+ * @param {boolean} isInputChanged - A boolean value that indicates whether data on the modal form (if editable) has been changed.
+ * If true, it triggers an exit confirmation dialog.
+ * @returns {function} - The handleModalClose function to be used as an event handler for modal closure.
+ */
+export const useModalExitHandler = (isInputChanged) => {
+  const navigate = useNavigate();
+  const { setConfirmDialogState } = useOverlaysStatesStore();
+
+  const handleModalClose = () => {
+    if (isInputChanged) {
+      setConfirmDialogState(true);
+    } else {
+      navigate(useCloseModalOverlay());
+    }
+  };
+
+  return handleModalClose;
 };

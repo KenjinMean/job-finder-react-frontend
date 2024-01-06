@@ -1,11 +1,11 @@
 import React from "react";
 
-import { userRoutes, userModalOverlayRoutes } from "../../../constants/routes";
-import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenOverlay } from "../../../hooks/useOverlay";
+import useFileHandling from "../../../hooks/useFileHandling";
+import { userModalOverlayRoutes } from "../../../constants/routes";
 import {
+  useAsyncUpdateUserProfileImage,
   useFetchtUserInfo,
-  useUpdateUserProfileImage,
 } from "../../../services/api/useProfileRequesthandler";
 
 import ModalUtil from "../../utils/Modal.Util";
@@ -13,6 +13,7 @@ import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
+import { toast } from "react-toastify";
 
 export default function UserProfileImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
@@ -20,7 +21,8 @@ export default function UserProfileImageViewModalComponent() {
   );
 
   const { data: userInfo } = useFetchtUserInfo();
-  const { mutate: updateUserProfileMutation } = useUpdateUserProfileImage();
+
+  const asyncUpdateUserProfileImage = useAsyncUpdateUserProfileImage();
 
   const handleProfileDelete = () => {
     const formData = new FormData();
@@ -28,7 +30,11 @@ export default function UserProfileImageViewModalComponent() {
     formData.append("_method", "PATCH");
     formData.append("profile_image", "");
 
-    updateUserProfileMutation(formData);
+    toast.promise(asyncUpdateUserProfileImage(formData), {
+      pending: "Deleting User Profile Image",
+      success: "User Profile image Deleted sucessfully",
+      error: "Error Deleting User profile image",
+    });
   };
 
   return (

@@ -1,15 +1,16 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 // NOTE: rename this to UserCoverImageView.Modal.Component.jsx to clearly convey component purpose
 // and also the USerProfileOverlay
 
-import { userModalOverlayRoutes, userRoutes } from "../../../constants/routes";
+import { userModalOverlayRoutes } from "../../../constants/routes";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenOverlay } from "../../../hooks/useOverlay";
 import {
+  useAsyncUpdateUserCoverImage,
   useFetchtUserInfo,
-  useUpdateUserCoverImage,
 } from "../../../services/api/useProfileRequesthandler";
 
 import ModalUtil from "../../utils/Modal.Util";
@@ -22,8 +23,9 @@ export default function UserCoverImageViewModalComponent() {
     useOpenOverlay(userModalOverlayRoutes.userCoverImageUpdatePreviewModal)
   );
 
-  const { mutate: updateuserCoverMutation } = useUpdateUserCoverImage();
   const { data: userInfo } = useFetchtUserInfo();
+
+  const asyncUpdateUserCoverImage = useAsyncUpdateUserCoverImage();
 
   const handleCoverDelete = () => {
     const formData = new FormData();
@@ -31,7 +33,11 @@ export default function UserCoverImageViewModalComponent() {
     formData.append("_method", "PATCH");
     formData.append("cover_image", "");
 
-    updateuserCoverMutation(formData);
+    toast.promise(asyncUpdateUserCoverImage(formData), {
+      pending: "Deleting User Cover Image",
+      success: "User Cover image Deleted sucessfully",
+      error: "Error Deleting User Cover image",
+    });
   };
 
   return (

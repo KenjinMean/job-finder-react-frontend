@@ -15,7 +15,12 @@ type AuthRoutes = {
   authProviderCallbackPage: string;
 };
 
-type userModalOverlayRoutes = {
+type UserRoutes = {
+  userProfilePage: string;
+  userEditSkillPage: string;
+};
+
+type UserModalOverlayRoutes = {
   userInfoEditModal: string;
   userAddSkillModal: string;
   userAboutEditModal: string;
@@ -25,11 +30,6 @@ type userModalOverlayRoutes = {
   userProfileImageViewModal: string;
   userCoverImageUpdatePreviewModal: string;
   userProfileImageUpdatePreviewModal: string;
-};
-
-type UserRoutes = {
-  userProfilePage: string;
-  userEditSkillPage: string;
 };
 
 type JobRoutes = {
@@ -57,7 +57,7 @@ const user: UserRoutes = {
   userEditSkillPage: "/edit-skills",
 };
 
-const user_overlays = {
+const user_overlays: UserModalOverlayRoutes = {
   userInfoEditModal: "edit-info",
   userAddSkillModal: "add-skill",
   userAboutEditModal: "edit-about",
@@ -91,11 +91,11 @@ export const userRoutes: Record<keyof UserRoutes, string> = Object.fromEntries(
 ) as Record<keyof UserRoutes, string>;
 
 export const userModalOverlayRoutes: Record<
-  keyof userModalOverlayRoutes,
+  keyof UserModalOverlayRoutes,
   string
 > = Object.fromEntries(
   Object.entries(user_overlays).map(([key, value]) => [
-    key as keyof userModalOverlayRoutes,
+    key as keyof UserModalOverlayRoutes,
     value,
   ])
-) as Record<keyof userModalOverlayRoutes, string>;
+) as Record<keyof UserModalOverlayRoutes, string>;

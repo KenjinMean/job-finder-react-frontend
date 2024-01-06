@@ -5,6 +5,7 @@ import { userRoutes } from "../constants/routes.tsx";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
 import usePreserveScrollPositionForRoute from "../hooks/usePreserveScrollForRoute";
+import DialogProvider from "../services/providers/DialogProvider.jsx";
 
 export default function AppLayout() {
   // lock app scrolling when a modal is active
@@ -31,6 +32,7 @@ export default function AppLayout() {
       />
 
       <Outlet />
+      <DialogProvider />
     </div>
   );
 }
