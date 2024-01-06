@@ -1,1 +1,0 @@
-import{j as t,L as r}from"./index-5e69d25d.js";import{a as o}from"./index-43c0e1d5.js";function c({to:n,className:s,...a}){const{...i}=a;return t.jsx(r,{className:`p-2 transition-all rounded-full hover:bg-slate-300 ${s}`,to:n,...i,children:t.jsx("img",{className:"block w-5 h-5",src:o.path,alt:`Add Icon. Attribution: ${o.attribution}`})})}export{c as L};
