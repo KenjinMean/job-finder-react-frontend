@@ -1,8 +1,10 @@
 import React from "react";
+import { toast } from "react-toastify";
+
+import { userModalNames } from "../../../constants/ModalNames.Constants";
 
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
 import useFileHandling from "../../../hooks/useFileHandling";
-import { userModalOverlayRoutes } from "../../../constants/routes";
 import {
   useAsyncUpdateUserProfileImage,
   useFetchtUserInfo,
@@ -13,11 +15,10 @@ import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import { toast } from "react-toastify";
 
 export default function UserProfileImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    useOpenOverlay(userModalOverlayRoutes.userProfileImageUpdatePreviewModal)
+    useOpenOverlay(userModalNames.userProfileImageUpdatePreviewModal)
   );
 
   const { data: userInfo } = useFetchtUserInfo();

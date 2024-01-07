@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 
 import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
-import { userModalOverlayRoutes } from "../../constants/routes";
 import { useTruncatedElement } from "../../hooks/useTruncatedElement";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
+import { userModalNames } from "../../constants/ModalNames.Constants";
 
 export default function UserAboutComponent() {
   const { data: userInfo } = useFetchtUserInfo();
@@ -20,7 +20,7 @@ export default function UserAboutComponent() {
 
       <div className="absolute flex items-center gap-1 right-5 top-5">
         <LinkEditUiComponent
-          to={useOpenOverlay(userModalOverlayRoutes.userAboutEditModal)}
+          to={useOpenOverlay(userModalNames.userAboutEditModal)}
           preventScrollReset={true}
         />
       </div>

@@ -2,8 +2,10 @@ import React from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
+import { userModalNames } from "../../constants/ModalNames.Constants";
+
 import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
-import { userModalOverlayRoutes, userRoutes } from "../../constants/routes";
+import { userRoutes } from "../../constants/RoutesPath.Constants";
 import {
   useAsyncRemoveUserSkill,
   useFetchUserSkills,
@@ -31,7 +33,7 @@ export default function UserEditSkillComponent() {
           Go back
         </button>{" "}
         <LinkAddUiComponent
-          to={useOpenOverlay(userModalOverlayRoutes.userAddSkillModal)}
+          to={useOpenOverlay(userModalNames.userAddSkillModal)}
           preventScrollReset={true}
         />
       </div>

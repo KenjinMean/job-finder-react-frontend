@@ -4,7 +4,11 @@ import { Menu } from "@headlessui/react";
 import { Link } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import { jobRoutes, userRoutes, authRoutes } from "../../constants/routes.tsx";
+import {
+  jobRoutes,
+  userRoutes,
+  authRoutes,
+} from "../../constants/RoutesPath.Constants";
 
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";

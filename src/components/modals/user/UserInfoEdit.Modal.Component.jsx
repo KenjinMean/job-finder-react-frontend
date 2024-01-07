@@ -4,7 +4,7 @@ import {
   useAsyncUpdateUserInfo,
   useFetchtUserInfo,
 } from "../../../services/api/useProfileRequesthandler";
-import { userRoutes } from "../../../constants/routes";
+import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
 import UserInfoEditForm from "../../forms/auth/UserInfoEdit.Form";
 

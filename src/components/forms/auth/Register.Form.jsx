@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { authRoutes } from "../../../constants/routes.tsx";
+import { authRoutes } from "../../../constants/RoutesPath.Constants";
 
 import TermsServices from "../../auth/TermsServices";
 import AuthSubmitButtonComponent from "../../auth/AuthSubmitButton.Component";

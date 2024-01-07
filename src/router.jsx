@@ -8,7 +8,7 @@ import {
   jobSubpath,
   userRoutes,
   userSubpath,
-} from "./constants/routes.tsx";
+} from "./constants/RoutesPath.Constants";
 
 import AppLayout from "./layouts/App.Layout.jsx";
 import JobsLayout from "./layouts/Jobs.Layout.jsx";

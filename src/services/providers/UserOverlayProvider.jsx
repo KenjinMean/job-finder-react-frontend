@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import { userModalOverlayRoutes } from "../../constants/routes";
+import { userModalNames } from "../../constants/ModalNames.Constants";
 import { useOverlayParamDetector } from "../../hooks/useOverlayFunctions";
 
 import UserInfoEditModalComponent from "../../components/modals/user/UserInfoEdit.Modal.Component";
@@ -24,7 +24,7 @@ const {
   userProfileImageViewModal,
   userCoverImageUpdatePreviewModal,
   userProfileImageUpdatePreviewModal,
-} = userModalOverlayRoutes;
+} = userModalNames;
 
 // NOTE: when defining new overlayComponents, The keys in overlayComponents
 // should match the names in overlayDetectionMap for consistency.

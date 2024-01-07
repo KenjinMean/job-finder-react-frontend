@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import { jobRoutes } from "../../constants/routes.tsx";
+import { jobRoutes } from "../../constants/RoutesPath.Constants";
 
 import { useLogin } from "../../services/api/useAuthRequestHandler";
 import { useGithubAuthLogin } from "../../services/api/useAuthRequestHandler";

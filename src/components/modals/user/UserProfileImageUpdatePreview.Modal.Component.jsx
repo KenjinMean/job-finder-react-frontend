@@ -2,21 +2,23 @@ import React from "react";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
+import { userRoutes } from "../../../constants/RoutesPath.Constants";
+import { userModalNames } from "../../../constants/ModalNames.Constants";
+
 import useFileHandling from "../../../hooks/useFileHandling";
-import { userModalOverlayRoutes, userRoutes } from "../../../constants/routes";
+import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
 import { useAsyncUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
 
 import ModalUtil from "../../utils/Modal.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
 
 // ENHANCE: create a modal component the handles user update preview and
 //    user cover update preview because they got the same functionality but different sizes only
 export default function UserProfileImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
     useFileHandling(
-      useOpenOverlay(userModalOverlayRoutes.userProfileImageUpdatePreviewModal)
+      useOpenOverlay(userModalNames.userProfileImageUpdatePreviewModal)
     );
 
   const asyncUpdateUserProfileImage = useAsyncUpdateUserProfileImage();

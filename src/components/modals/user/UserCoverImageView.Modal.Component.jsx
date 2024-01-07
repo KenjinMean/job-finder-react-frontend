@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 // NOTE: rename this to UserCoverImageView.Modal.Component.jsx to clearly convey component purpose
 // and also the USerProfileOverlay
 
-import { userModalOverlayRoutes } from "../../../constants/routes";
+import { userModalNames } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
@@ -20,7 +20,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 
 export default function UserCoverImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    useOpenOverlay(userModalOverlayRoutes.userCoverImageUpdatePreviewModal)
+    useOpenOverlay(userModalNames.userCoverImageUpdatePreviewModal)
   );
 
   const { data: userInfo } = useFetchtUserInfo();

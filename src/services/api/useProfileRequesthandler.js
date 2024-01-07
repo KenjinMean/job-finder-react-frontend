@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toMilliseconds } from "../../utils/toMilliseconds";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
 
-import { userRoutes } from "../../constants/routes";
+import { userRoutes } from "../../constants/RoutesPath.Constants";
 
 const fetchUserInfo = () => {
   return axiosClient.get("/user-infos/show");

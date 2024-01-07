@@ -1,11 +1,9 @@
 import React from "react";
-
 import { successIcon } from "../../../assets/icons/index.js";
 
-import {
-  userModalOverlayRoutes,
-  userRoutes,
-} from "../../../constants/routes.tsx";
+import { userRoutes } from "../../../constants/RoutesPath.Constants";
+import { userModalNames } from "../../../constants/ModalNames.Constants";
+
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions.js";
 
 import ModalUtil from "../../utils/Modal.Util.jsx";
@@ -28,7 +26,7 @@ export default function UserAddSkillSuccessModalComponent() {
       </div>
       <div className="flex items-center justify-end p-5">
         <LinkActionPrimaryUiComponent
-          to={useOpenOverlay(userModalOverlayRoutes.userAddSkillModal)}
+          to={useOpenOverlay(userModalNames.userAddSkillModal)}
           preventScrollReset={true}
         >
           Add more

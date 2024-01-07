@@ -1,6 +1,6 @@
 import React from "react";
 
-import { userModalOverlayRoutes } from "../../constants/routes";
+import { userModalNames } from "../../constants/ModalNames.Constants";
 
 import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
 import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
@@ -16,7 +16,7 @@ export default function UserInfoComponent() {
     userCoverImageViewModal,
     userProfileImageViewModal,
     userInfoEditModal,
-  } = userModalOverlayRoutes;
+  } = userModalNames;
 
   return (
     <section className="relative w-full overflow-hidden sm:rounded-lg bg-slate-200">

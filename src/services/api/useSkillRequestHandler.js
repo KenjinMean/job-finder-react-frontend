@@ -2,8 +2,9 @@ import axiosClient from "../../axios-client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useNavigate } from "react-router-dom";
-import { userModalOverlayRoutes, userRoutes } from "../../constants/routes.tsx";
+import { userRoutes } from "../../constants/RoutesPath.Constants";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
+import { userModalNames } from "../../constants/ModalNames.Constants";
 
 import { toMilliseconds } from "../../utils/toMilliseconds.js";
 import { useOpenOverlay } from "../../hooks/useOverlayFunctions.js";
@@ -42,12 +43,12 @@ export const useUserAddSkill = () => {
   return useMutation(addUserSkill, {
     onSuccess: async () => {
       queryClient.invalidateQueries("searchskill");
-      navigate(useOpenOverlay(userModalOverlayRoutes.userAddSkillSuccessModal));
+      navigate(useOpenOverlay(userModalNames.userAddSkillSuccessModal));
     },
     onError: (error) => {
       const errorMessage = error.response.data.error || "An error occurred";
       navigate(
-        useOpenOverlay(userModalOverlayRoutes.userAddSkillErrorModal, {
+        useOpenOverlay(userModalNames.userAddSkillErrorModal, {
           error: errorMessage,
         })
       );

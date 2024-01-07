@@ -20,24 +20,13 @@ type UserRoutes = {
   userEditSkillPage: string;
 };
 
-type UserModalOverlayRoutes = {
-  userInfoEditModal: string;
-  userAddSkillModal: string;
-  userAboutEditModal: string;
-  userAddSkillErrorModal: string;
-  userCoverImageViewModal: string;
-  userAddSkillSuccessModal: string;
-  userProfileImageViewModal: string;
-  userCoverImageUpdatePreviewModal: string;
-  userProfileImageUpdatePreviewModal: string;
-};
-
 type JobRoutes = {
   jobListingPage: string;
   jobDetailsPage: string;
   jobSearchResultPage: string;
 };
 
+// AUTH Routes
 const auth: AuthRoutes = {
   authLoginPage: "/login",
   authRegisterPage: "/register",
@@ -55,18 +44,6 @@ const job: JobRoutes = {
 const user: UserRoutes = {
   userProfilePage: "",
   userEditSkillPage: "/edit-skills",
-};
-
-const user_overlays: UserModalOverlayRoutes = {
-  userInfoEditModal: "edit-info",
-  userAddSkillModal: "add-skill",
-  userAboutEditModal: "edit-about",
-  userAddSkillErrorModal: "add-skill-error",
-  userCoverImageViewModal: "view-cover-image",
-  userAddSkillSuccessModal: "add-skill-success",
-  userProfileImageViewModal: "view-profile-image",
-  userCoverImageUpdatePreviewModal: "preview-cover-image",
-  userProfileImageUpdatePreviewModal: "preview-profile-image",
 };
 
 export const authRoutes: Record<keyof AuthRoutes, string> = Object.fromEntries(
@@ -89,13 +66,3 @@ export const userRoutes: Record<keyof UserRoutes, string> = Object.fromEntries(
     prependBaseUrl(prependUserSubpath(value)),
   ])
 ) as Record<keyof UserRoutes, string>;
-
-export const userModalOverlayRoutes: Record<
-  keyof UserModalOverlayRoutes,
-  string
-> = Object.fromEntries(
-  Object.entries(user_overlays).map(([key, value]) => [
-    key as keyof UserModalOverlayRoutes,
-    value,
-  ])
-) as Record<keyof UserModalOverlayRoutes, string>;

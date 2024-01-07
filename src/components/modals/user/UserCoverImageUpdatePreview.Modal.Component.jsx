@@ -1,10 +1,11 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
-import { userModalOverlayRoutes, userRoutes } from "../../../constants/routes";
+import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
-import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
 import useFileHandling from "../../../hooks/useFileHandling";
+import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
+import { userModalNames } from "../../../constants/ModalNames.Constants";
 import { useAsyncUpdateUserCoverImage } from "../../../services/api/useProfileRequesthandler";
 
 import ModalUtil from "../../utils/Modal.Util";
@@ -14,7 +15,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 export default function UserCoverImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
     useFileHandling(
-      useOpenOverlay(userModalOverlayRoutes.userCoverImageUpdatePreviewModal)
+      useOpenOverlay(userModalNames.userCoverImageUpdatePreviewModal)
     );
 
   const asyncUpdateUserCoverImage = useAsyncUpdateUserCoverImage();
