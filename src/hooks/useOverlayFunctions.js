@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useOverlayStateStore } from "../services/state/OverlaysStatesStore";
+import { dialogNames } from "../constants/DialogNames.Constants";
 
 /**
  * Custom hook to detect "overlay" parameter in the URL
@@ -36,7 +37,6 @@ import { useOverlayStateStore } from "../services/state/OverlaysStatesStore";
  *   );
  * }
  */
-
 export const useOverlayParamDetector = (OverlayName) => {
   const location = useLocation();
 
@@ -87,7 +87,6 @@ export const useOpenOverlay = (overlayName, additionalParams) => {
  *
  * @returns {string} The updated URL without the "overlay" parameter.
  */
-// rename to useClose Modal Overlay
 export const useCloseModalOverlay = () => {
   const currentUrl = new URL(window.location.href);
   const searchParams = new URLSearchParams(currentUrl.search);
@@ -112,15 +111,59 @@ export const useCloseModalOverlay = () => {
  */
 export const useModalExitHandler = (isInputChanged) => {
   const navigate = useNavigate();
-  const { setConfirmDialogState } = useOverlayStateStore();
+  const openExitConfirmationDialog = useOpenDialog(
+    dialogNames.exitConfirmationDialog.name
+  );
 
   const handleModalClose = () => {
     if (isInputChanged) {
-      setConfirmDialogState(true);
+      openExitConfirmationDialog();
     } else {
       navigate(useCloseModalOverlay());
     }
   };
 
   return handleModalClose;
+};
+
+/**
+ * Custom hook to manage the state of opening a specific dialog.
+ *
+ * @param {string} dialogKey - The key identifying the dialog in the dialogStates store.
+ * @returns {function} openDialog - A function that, when called, sets the state of the specified dialog to true.
+ * Example usage:
+ * ```jsx
+ * const openExitConfirmationDialog = useOpenDialog("exitConfirmationDialog");
+ * // ...
+ * // Call openExitConfirmationDialog() to set the state of "exitConfirmationDialog" to true.
+ * ```
+ */
+export const useOpenDialog = (dialogKey) => {
+  const { setDialogStates } = useOverlayStateStore();
+  const openDialog = () => {
+    setDialogStates(dialogKey, true);
+  };
+
+  return openDialog;
+};
+
+/**
+ * Custom hook to manage the state of closing a specific dialog.
+ *
+ * @param {string} dialogKey - The key identifying the dialog in the dialogStates store.
+ * @returns {function} openDialog - A function that, when called, sets the state of the specified dialog to true.
+ * Example usage:
+ * ```jsx
+ * const openExitConfirmationDialog = useCloseDialog("exitConfirmationDialog");
+ * // ...
+ * // Call openExitConfirmationDialog() to set the state of "exitConfirmationDialog" to false.
+ * ```
+ */
+export const useCloseDialog = (dialogKey) => {
+  const { setDialogStates } = useOverlayStateStore();
+  const closeDialog = () => {
+    setDialogStates(dialogKey, false);
+  };
+
+  return closeDialog;
 };

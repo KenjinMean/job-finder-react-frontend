@@ -1,15 +1,25 @@
 import React, { Fragment } from "react";
 import { AnimatePresence } from "framer-motion";
-import DialogConfirmationUtil from "../../components/utils/DialogConfirmation.Util";
-import { useOverlayStateStore } from "../state/OverlaysStatesStore";
+import { useOverlayStateStore as useDialogStateStore } from "../state/OverlaysStatesStore";
+import { dialogNames } from "../../constants/DialogNames.Constants";
+
+const dialogKeys = Object.keys(dialogNames);
 
 const DialogProvider = () => {
-  const { confirmDialogState } = useOverlayStateStore();
+  const { dialogStates } = useDialogStateStore();
 
   return (
     <Fragment>
       <AnimatePresence mode="wait">
-        {confirmDialogState && <DialogConfirmationUtil />}
+        {dialogKeys.map((key) => {
+          const dialog = dialogNames[key];
+          const DialogComponent = dialog.component;
+
+          return (
+            dialogStates[key] &&
+            React.createElement(DialogComponent, { key: dialog.name })
+          );
+        })}
       </AnimatePresence>
     </Fragment>
   );

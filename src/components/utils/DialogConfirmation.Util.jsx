@@ -1,30 +1,32 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 
 import { dropIn } from "../../constants/animationVariants";
-import { useOverlayStateStore } from "../../services/state/OverlaysStatesStore";
 
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";
 
-import { useCloseModalOverlay } from "../../hooks/useOverlayFunctions";
+import {
+  useCloseDialog,
+  useCloseModalOverlay,
+} from "../../hooks/useOverlayFunctions";
+import { dialogNames } from "../../constants/DialogNames.Constants";
 
 export default function DialogConfirmationUtil({ onConfirm, onReject }) {
   const mountElement = document.getElementById("dialog");
 
   const navigate = useNavigate();
-
-  const { setConfirmDialogState } = useOverlayStateStore();
+  const closeDialog = useCloseDialog(dialogNames.exitConfirmationDialog.name);
 
   const handleConfirm = () => {
     navigate(useCloseModalOverlay);
-    setConfirmDialogState(false);
+    closeDialog();
   };
 
   const handleReject = () => {
-    setConfirmDialogState(false);
+    closeDialog();
   };
 
   return createPortal(
@@ -39,7 +41,7 @@ export default function DialogConfirmationUtil({ onConfirm, onReject }) {
         <div className="flex flex-col w-full gap-5 p-5 bg-white rounded-lg shadow-lg">
           <div className="flex justify-between">
             <h3>Discard Changes</h3>
-            <ButtonClosePrimaryUiComponent onClick={onReject} />
+            <ButtonClosePrimaryUiComponent onClick={handleReject} />
           </div>
           <div>
             <p>Are you sure you want to discard the changes you made?</p>
