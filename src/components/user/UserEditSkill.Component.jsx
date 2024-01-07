@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-import { useOpenOverlay } from "../../hooks/useOverlay";
+import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
 import { userModalOverlayRoutes, userRoutes } from "../../constants/routes";
 import {
   useAsyncRemoveUserSkill,

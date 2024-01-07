@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-import { useOpenOverlay } from "../../hooks/useOverlay";
+import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
 import { userModalOverlayRoutes } from "../../constants/routes";
 import { useTruncatedElement } from "../../hooks/useTruncatedElement";
 

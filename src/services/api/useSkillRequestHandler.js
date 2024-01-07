@@ -6,7 +6,7 @@ import { userModalOverlayRoutes, userRoutes } from "../../constants/routes.tsx";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
 
 import { toMilliseconds } from "../../utils/toMilliseconds.js";
-import { useOpenOverlay } from "../../hooks/useOverlay.js";
+import { useOpenOverlay } from "../../hooks/useOverlayFunctions.js";
 
 const searchSkill = (keyword) => {
   return axiosClient.get(`/search-skills?keyword=${keyword}`);

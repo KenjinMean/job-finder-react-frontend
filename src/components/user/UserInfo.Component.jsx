@@ -2,7 +2,7 @@ import React from "react";
 
 import { userModalOverlayRoutes } from "../../constants/routes";
 
-import { useOpenOverlay } from "../../hooks/useOverlay";
+import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
 import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";

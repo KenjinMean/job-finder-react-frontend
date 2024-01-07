@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useOpenOverlay } from "../../../hooks/useOverlay";
+import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
 import useFileHandling from "../../../hooks/useFileHandling";
 import { userModalOverlayRoutes } from "../../../constants/routes";
 import {

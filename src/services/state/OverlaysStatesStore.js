@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-export const useOverlaysStatesStore = create(
+export const useOverlayStateStore = create(
   devtools((set) => ({
     confirmDialogState: false,
 

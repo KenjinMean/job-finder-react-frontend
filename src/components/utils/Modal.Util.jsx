@@ -9,11 +9,11 @@ import { ModalVariants } from "../../constants/classVariants";
 
 import { fadeIn } from "../../constants/animationVariants";
 
-import { useModalExitHandler } from "../../hooks/useOverlay";
 import { useModalScrollLock } from "../../hooks/useModalScrollLock";
 
 import BackdropUtil from "./Backdrop.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
+import { useModalExitHandler } from "../../hooks/useOverlayFunctions";
 
 const ModalUtil = ({
   size,

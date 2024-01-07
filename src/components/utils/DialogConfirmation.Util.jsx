@@ -1,22 +1,22 @@
 import React, { Fragment, useState } from "react";
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 import { dropIn } from "../../constants/animationVariants";
+import { useOverlayStateStore } from "../../services/state/OverlaysStatesStore";
 
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";
 
-import { useCloseModalOverlay } from "../../hooks/useOverlay";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useOverlaysStatesStore } from "../../services/state/OverlaysStatesStore";
+import { useCloseModalOverlay } from "../../hooks/useOverlayFunctions";
 
 export default function DialogConfirmationUtil({ onConfirm, onReject }) {
   const mountElement = document.getElementById("dialog");
 
   const navigate = useNavigate();
 
-  const { setConfirmDialogState } = useOverlaysStatesStore();
+  const { setConfirmDialogState } = useOverlayStateStore();
 
   const handleConfirm = () => {
     navigate(useCloseModalOverlay);

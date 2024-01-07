@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useOpenOverlay } from "../../hooks/useOverlay.js";
+import { useOpenOverlay } from "../../hooks/useOverlayFunctions.js";
 import { useFetchUserSkills } from "../../services/api/useSkillRequestHandler.js";
 
 import { userModalOverlayRoutes, userRoutes } from "../../constants/routes.tsx";

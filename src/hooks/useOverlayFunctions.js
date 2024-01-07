@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useOverlaysStatesStore } from "../services/state/OverlaysStatesStore";
+import { useOverlayStateStore } from "../services/state/OverlaysStatesStore";
 
 /**
  * Custom hook to detect "overlay" parameter in the URL
@@ -112,7 +112,7 @@ export const useCloseModalOverlay = () => {
  */
 export const useModalExitHandler = (isInputChanged) => {
   const navigate = useNavigate();
-  const { setConfirmDialogState } = useOverlaysStatesStore();
+  const { setConfirmDialogState } = useOverlayStateStore();
 
   const handleModalClose = () => {
     if (isInputChanged) {

@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import { AnimatePresence } from "framer-motion";
 import DialogConfirmationUtil from "../../components/utils/DialogConfirmation.Util";
-import { useOverlaysStatesStore } from "../state/OverlaysStatesStore";
+import { useOverlayStateStore } from "../state/OverlaysStatesStore";
 
 const DialogProvider = () => {
-  const { confirmDialogState } = useOverlaysStatesStore();
+  const { confirmDialogState } = useOverlayStateStore();
 
   return (
     <Fragment>

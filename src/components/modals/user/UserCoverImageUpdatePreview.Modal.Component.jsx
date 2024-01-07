@@ -3,11 +3,11 @@ import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 import { userModalOverlayRoutes, userRoutes } from "../../../constants/routes";
 
+import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useAsyncUpdateUserCoverImage } from "../../../services/api/useProfileRequesthandler";
 
 import ModalUtil from "../../utils/Modal.Util";
-import { useOpenOverlay } from "../../../hooks/useOverlay";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 

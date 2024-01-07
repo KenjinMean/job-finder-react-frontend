@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import { userModalOverlayRoutes } from "../../constants/routes";
-import { useOverlayParamDetector } from "../../hooks/useOverlay";
+import { useOverlayParamDetector } from "../../hooks/useOverlayFunctions";
 
 import UserInfoEditModalComponent from "../../components/modals/user/UserInfoEdit.Modal.Component";
 import UserAddSkillModalComponent from "../../components/modals/user/UserAddSkill.Modal.Component";

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { userModalOverlayRoutes } from "../../../constants/routes";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useOpenOverlay } from "../../../hooks/useOverlay";
+import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
 import {
   useAsyncUpdateUserCoverImage,
   useFetchtUserInfo,
