@@ -8,7 +8,7 @@ export default function BackdropUtil({ onClick }) {
       animate={{ opacity: 0.5 }}
       exit={{ opacity: 0 }}
       onClick={onClick}
-      className="fixed inset-0 z-40 bg-black opacity-25"
+      className="fixed inset-0 z-10 bg-black opacity-25"
     ></motion.div>
   );
 }

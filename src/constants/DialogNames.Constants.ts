@@ -1,19 +1,19 @@
-import DialogConfirmationUtil from "../components/utils/DialogConfirmation.Util"
-import UserInfoEditModalComponent from "../components/modals/user/UserInfoEdit.Modal.Component";
+import PopUpExampleDialogComponent from "../components/dialogs/PopUpExampleDialog.Component";
+import ExitConfirmationDialogComponent from "../components/dialogs/ExitConfirmationDialog.Component";
 
 type DialogName = {
   exitConfirmationDialog: { name: string; component: React.ComponentType<any> };
-  anotherDialog: { name: string; component: React.ComponentType<any> };
+  PopUpExampleDialog: { name: string; component: React.ComponentType<any> };
 };
 
 const dialogs: DialogName = {
   exitConfirmationDialog: {
     name: "exitConfirmationDialog",
-    component: DialogConfirmationUtil,
+    component: ExitConfirmationDialogComponent,
   },
-  anotherDialog: {
-    name: "anotherDialog",
-    component: UserInfoEditModalComponent,
+  PopUpExampleDialog: {
+    name: "PopUpExampleDialog",
+    component: PopUpExampleDialogComponent,
   },
 };
 
