@@ -33,10 +33,7 @@ export default function UserAddSkillErrorModalComponent() {
   }, [location.search, error]);
 
   return (
-    <ModalUtil
-      navigateToUrlOnClose={userRoutes.userProfilePage}
-      modalTitle="Add Skill Error"
-    >
+    <ModalUtil modalTitle="Add Skill Error">
       {/* body */}
       <div className="flex flex-col items-center p-5 border-b">
         <img className="block w-20 h-20 mb-5" src={error} alt="red x error" />

@@ -62,11 +62,7 @@ export default function UserInfoEditModalComponent() {
   }, [userInfo]);
 
   return (
-    <ModalUtil
-      modalTitle="Edit User Info"
-      isInputChanged={isUserInfoChanged}
-      navigateToUrlOnClose={userRoutes.userProfilePage}
-    >
+    <ModalUtil modalTitle="Edit User Info" isInputChanged={isUserInfoChanged}>
       {/* add height to enable scroll */}
       {/* FIX: make auto adjust height using clamp or any*/}
       <div className="p-5 overflow-y-auto">

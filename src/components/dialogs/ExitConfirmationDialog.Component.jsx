@@ -17,8 +17,8 @@ export default function ExitConfirmationDialogComponent() {
   const closeDialog = useCloseDialog(dialogNames.exitConfirmationDialog.name);
 
   const handleConfirm = () => {
-    navigate(useCloseModalOverlay);
     closeDialog();
+    navigate(useCloseModalOverlay);
   };
 
   const handleReject = () => {

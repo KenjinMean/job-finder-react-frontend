@@ -4,10 +4,12 @@ import { useOverlayStateStore } from "../services/state/OverlaysStatesStore";
 import { dialogNames } from "../constants/DialogNames.Constants";
 
 /**
- * Custom hook to detect "overlay" parameter in the URL
+ * Custom hook to detect "overlay" parameter in the URL,
  * then return a boolean value for the specified overlay name
  * that can be used to conditionally render overlays
- * triggers the showing/hiding of modal
+ * triggers the showing/hiding of modal.
+ * The opening of the modal functionality is handled by the
+ * specific "OverlayProvider" (e.g., UserOverlayProvider).
  *
  * @param {string} OverlayName - The name of the overlay to detect.
  * @returns {boolean} - Whether the specified overlay is active.
@@ -53,39 +55,84 @@ export const useOverlayParamDetector = (OverlayName) => {
 };
 
 /**
- * Appends "overlay" parameter and value(overlay name) to current url and return the generated URL
- * This URl is used to toggle open/close modal
+ * A custom hook to open a modal that's triggered by a URL parameter (overlay parameter).
+ * Appends the "overlay" parameter and its value (overlay name from "ModalNames.Constants")
+ * to the current URL and returns the generated URL. If navigated into, it results in opening
+ * the specified modal. The opening of the modal functionality is handled by the
+ * specific "OverlayProvider" (e.g., UserOverlayProvider).
+ * NOTE: NOT really a usehook XD. for centralization purpose only
+ *
  *
  * @param {string} overlayName - The name of the overlay to include in the URL.
+ * @param {Object} additionalParams - Additional parameters to include in the URL.
  * @returns {string} The generated URL with the overlay parameter.
  * @example
- * // Returns "http://example.com/current-path?overlay=example-overlay"
+ * // import useOpenOverlay
+ * import { useOpenOverlay } from "path-to-useOpenOverlay"
  *
- * // using anchor tags
- * <a href={useOpenOverlay("example-overlay")}>Open Example Modal</a>
+ * function App() {
+ * const navigate = useNavigate();
  *
- * // using button click
- * const navigate = useNavigate()
- * <button onClick={() => navigate(useOpenOverlay("example-overlay"))}>Open Example Modal</button>
+ * const handleOpenExampleModal = () => {
+ *    const newUrl = useOpenOverlay("exampleModal");
+ *    navigate(newUrl);
+ * };
+ *
+ * return (
+ *   <a href="#" onClick={handleOpenExampleModal}>
+ *     Open Modal Dialog
+ *   </a>
+ *  );
+ * }
  */
 export const useOpenOverlay = (overlayName, additionalParams) => {
-  const overlayParam = `overlay=${overlayName}`;
+  const overlayParam = `overlay=${encodeURIComponent(overlayName)}`;
+  const currentSearchParams = new URLSearchParams(window.location.search);
 
+  // Add additional parameters
   if (additionalParams) {
-    const additionalQueryParam = Object.entries(additionalParams)
-      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-      .join("&");
-
-    return `${window.location.pathname}?${overlayParam}&${additionalQueryParam}`;
+    Object.entries(additionalParams).forEach(([key, value]) => {
+      currentSearchParams.set(key, encodeURIComponent(value));
+    });
   }
-  return `${window.location.pathname}?${overlayParam}`;
-};
 
+  const existingSearchParams = currentSearchParams.toString();
+  const separator = existingSearchParams ? "&" : "?";
+
+  return (
+    `${window.location.pathname}` +
+    (existingSearchParams ? `${window.location.search}${separator}` : `?`) +
+    `${overlayParam}`
+  );
+};
 /**
- * Removes the "overlay" parameter (both key and value) from the current URL
- * clears the "overlay" parameter from the url and returning the URL resulting in  closing of the specified modal
+ * A custom hook to close Modal that's closed using a URL parameter(overlay paramter).
+ * Removes the "overlay" parameter (both key and value) from the current URL and returning the URL
+ * and if navigated into result's in closing of the specified modal.
+ * The closing of the modal functionality is handled by the
+ * specific "OverlayProvider" e.g.(UserOverlayProvider).
+ * NOTE: NOT really a usehook XD. for centralization purpose only
  *
  * @returns {string} The updated URL without the "overlay" parameter.
+ *
+ * @example
+ * // import useCloseModalOverlay
+ * import { useCloseModalOverlay } from "path-to-useCloseModalOverlay"
+ *
+ * function App() {
+ * const navigate = useNavigate();
+ *
+ * const handleCloseModal = () => {
+ *    const newUrl = useCloseModalOverlay("exampleModal");
+ *    navigate(newUrl);
+ * };
+ *
+ * return (
+ *   <a href="#" onClick={handleCloseModal}>
+ *     Close Modal Dialog
+ *   </a>
+ *  );
+ * }
  */
 export const useCloseModalOverlay = () => {
   const currentUrl = new URL(window.location.href);
@@ -101,11 +148,11 @@ export const useCloseModalOverlay = () => {
 };
 
 /**
- * A custom hook for managing the exit behavior of a modal within the ModalUtil component.
- * Checks if the user has modified data on a modal form (if the modal has an editable form).
- * If data has been changed, it shows an exit confirmation dialog; otherwise, it closes the modal.
+ * A custom hook for showing "ExitConfirmationDialog" when
+ * closing a modal without saving otherwise, it closes the modal.
  *
- * @param {boolean} isInputChanged - A boolean value that indicates whether data on the modal form (if editable) has been changed.
+ * @param {boolean} isInputChanged - A boolean value that indicates whether
+ * data on the modal form (if editable) has been changed.
  * If true, it triggers an exit confirmation dialog.
  * @returns {function} - The handleModalClose function to be used as an event handler for modal closure.
  */
@@ -127,17 +174,29 @@ export const useModalExitHandler = (isInputChanged) => {
 };
 
 /**
- * Custom hook to manage the state of opening a specific dialog.
+ * A custom hook to Open a dialog.
+ * this hook set the state of a specific dialog from "dialogStates" on "OverlyStateStore" to true
+ * triggering the opening of a dialog on "DialogProvider"
  *
- * @param {string} dialogKey - The key identifying the dialog in the dialogStates store.
- * @returns {function} openDialog - A function that, when called, sets the state of the specified dialog to true.
- * Example usage:
- * ```jsx
- * const openExitConfirmationDialog = useOpenDialog("exitConfirmationDialog");
- * // ...
- * // Call openExitConfirmationDialog() to set the state of "exitConfirmationDialog" to true.
- * ```
+ * @param {string} dialogKey - The key(dialogName) identifying the dialog in the "dialogStates" on "OverlyStateStore".
+ * @returns {function} openDialog() - A function that, when called, sets the state of the specified dialog to true.
+ *
+ * @example
+ * // import useOpenDialog
+ * import useOpenDialog from "path-to-useOpenDialog"
+ *
+ * function App() {
+ *
+ * const openDialog = useOpenDialog("exitConfirmationDialog");
+ *
+ *   return (
+ *     <button onClick={openDialog}>
+ *        Open Example Dialog
+ *     </button>
+ *   );
+ * }
  */
+
 export const useOpenDialog = (dialogKey) => {
   const { setDialogStates } = useOverlayStateStore();
   const openDialog = () => {
@@ -148,16 +207,26 @@ export const useOpenDialog = (dialogKey) => {
 };
 
 /**
- * Custom hook to manage the state of closing a specific dialog.
+ * A custom hook to Close a dialog.
+ * this hook set the state of a specific dialog from "dialogStates" on "OverlyStateStore" to false
+ * triggering the closing of a dialog on "DialogProvider"
  *
- * @param {string} dialogKey - The key identifying the dialog in the dialogStates store.
- * @returns {function} openDialog - A function that, when called, sets the state of the specified dialog to true.
- * Example usage:
- * ```jsx
- * const openExitConfirmationDialog = useCloseDialog("exitConfirmationDialog");
- * // ...
- * // Call openExitConfirmationDialog() to set the state of "exitConfirmationDialog" to false.
- * ```
+ * @param {string} dialogKey - The key(dialogName) identifying the dialog in the "dialogStates" on "OverlyStateStore".
+ * @returns {function} closeDialog() - A function that, when called, sets the state of the specified dialog to false.
+ * @example
+ * // import useCloseDialog
+ * import useCloseDialog from "path-to-useCloseDialog"
+ *
+ * function App() {
+ *
+ * const closeDialog = useCloseDialog("exitConfirmationDialog");
+ *
+ *   return (
+ *     <button onClick={closeDialog}>
+ *        Close Example Dialog
+ *     </button>
+ *   );
+ * }
  */
 export const useCloseDialog = (dialogKey) => {
   const { setDialogStates } = useOverlayStateStore();

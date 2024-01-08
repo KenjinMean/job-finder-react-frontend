@@ -11,10 +11,7 @@ import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Componen
 
 export default function UserAddSkillSuccessModalComponent() {
   return (
-    <ModalUtil
-      navigateToUrlOnClose={userRoutes.userProfilePage}
-      modalTitle="Add Skill Success"
-    >
+    <ModalUtil modalTitle="Add Skill Success">
       {/* body */}
       <div className="flex flex-col items-center p-5 border-b">
         <img
