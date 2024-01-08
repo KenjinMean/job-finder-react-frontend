@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 
-import { dropIn } from "../../constants/animationVariants";
+import { dropIn } from "../../constants/animationVariants.Constants";
 
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";

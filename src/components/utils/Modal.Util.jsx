@@ -5,15 +5,15 @@ import React, { Fragment } from "react";
 import { cn } from "../../utils/cn";
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import { ModalVariants } from "../../constants/classVariants";
 
-import { fadeIn } from "../../constants/animationVariants";
+import { fadeIn } from "../../constants/animationVariants.Constants";
+import { ModalVariants } from "../../constants/classVariants.Constants";
 
 import { useModalScrollLock } from "../../hooks/useModalScrollLock";
+import { useModalExitHandler } from "../../hooks/useOverlayFunctions";
 
 import BackdropUtil from "./Backdrop.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
-import { useModalExitHandler } from "../../hooks/useOverlayFunctions";
 
 const ModalUtil = ({
   size,
