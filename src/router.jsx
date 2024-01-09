@@ -29,16 +29,7 @@ import JobListingPage from "./pages/JobListing.Page.jsx";
 import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
 
 import UserProfilePage from "./pages/UserProfile.Page";
-import UserAddSkillPage from "./pages/UserAddSkill.Page.jsx";
-import UserInfoEditPage from "./pages/UserInfoEdit.Page.jsx";
 import UserSkillEditPage from "./pages/UserSkillEdit.Page.jsx";
-import UserAboutEditPage from "./pages/UserAboutEdit.Page.jsx";
-import UserAddSkillErrorPage from "./pages/UserAddSkillError.Page.jsx";
-import UserCoverImageViewPage from "./pages/UserCoverImageView.Page.jsx";
-import UserAddSkillSuccessPage from "./pages/UserAddSkillSuccess.Page.jsx";
-import UserProfileImageViewPage from "./pages/UserProfileImageView.Page.jsx";
-import UserCoverImageUpdatePreviewPage from "./pages/UserCoverImageUpdatePreview.Page.jsx";
-import UserProfileImageUpdatePreviewPage from "./pages/UserProfileImageUpdatePreview.Page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,44 +65,6 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <UserProfilePage />,
-            children: [
-              {
-                path: userRoutes.userAddSkillPage,
-                element: <UserAddSkillPage />,
-              },
-              {
-                path: userRoutes.userAddSkillSuccessPage,
-                element: <UserAddSkillSuccessPage />,
-              },
-              {
-                path: userRoutes.userAddSkillErrorPage,
-                element: <UserAddSkillErrorPage />,
-              },
-              {
-                path: userRoutes.useUserInfoEditPage,
-                element: <UserInfoEditPage />,
-              },
-              {
-                path: userRoutes.userProfileViewPage,
-                element: <UserProfileImageViewPage />,
-              },
-              {
-                path: userRoutes.userProfileImagePreviewPage,
-                element: <UserProfileImageUpdatePreviewPage />,
-              },
-              {
-                path: userRoutes.userCoverImageViewPage,
-                element: <UserCoverImageViewPage />,
-              },
-              {
-                path: userRoutes.userCoverImageUpdatePreviewPage,
-                element: <UserCoverImageUpdatePreviewPage />,
-              },
-              {
-                path: userRoutes.userAboutEditPage,
-                element: <UserAboutEditPage />,
-              },
-            ],
           },
           {
             path: userRoutes.userEditSkillPage,
