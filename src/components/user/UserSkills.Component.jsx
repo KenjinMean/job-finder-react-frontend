@@ -1,6 +1,6 @@
 import React from "react";
 
-import { userModalNames } from "../../constants/ModalNames.Constants";
+import { UserModals } from "../../constants/ModalNames.Constants";
 
 import { useOpenOverlay } from "../../hooks/useOverlayFunctions.js";
 import { useFetchUserSkills } from "../../services/api/useSkillRequestHandler.js";
@@ -26,8 +26,9 @@ export default function UserSkillsComponent() {
         })}
       </ul>
       <div className="absolute flex items-center gap-1 right-5 top-5">
+        {/* add skill link */}
         <LinkAddUiComponent
-          to={useOpenOverlay(userModalNames.userAddSkillModal)}
+          to={useOpenOverlay(UserModals.userAddSkillModal.name)}
           preventScrollReset={true}
         />
         <LinkEditUiComponent to={userRoutes.userEditSkillPage} />

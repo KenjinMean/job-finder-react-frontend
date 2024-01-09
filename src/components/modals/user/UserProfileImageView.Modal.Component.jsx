@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-import { userModalNames } from "../../../constants/ModalNames.Constants";
+import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
 import useFileHandling from "../../../hooks/useFileHandling";
@@ -18,7 +18,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 
 export default function UserProfileImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    useOpenOverlay(userModalNames.userProfileImageUpdatePreviewModal)
+    useOpenOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
   );
 
   const { data: userInfo } = useFetchtUserInfo();
@@ -51,6 +51,7 @@ export default function UserProfileImageViewModalComponent() {
       </div>
       {/* footer */}
       <div className="flex justify-between p-5">
+        {/* select file button */}
         <ButtonFileUploadUiComponent
           title="Add Photo"
           accept="image/*"

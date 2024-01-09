@@ -4,7 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { userRoutes } from "../../constants/RoutesPath.Constants";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
-import { userModalNames } from "../../constants/ModalNames.Constants";
+import { UserModals } from "../../constants/ModalNames.Constants";
 
 import { toMilliseconds } from "../../utils/toMilliseconds.js";
 import { useOpenOverlay } from "../../hooks/useOverlayFunctions.js";
@@ -43,12 +43,12 @@ export const useUserAddSkill = () => {
   return useMutation(addUserSkill, {
     onSuccess: async () => {
       queryClient.invalidateQueries("searchskill");
-      navigate(useOpenOverlay(userModalNames.userAddSkillSuccessModal));
+      navigate(useOpenOverlay(UserModals.userAddSkillSuccessModal.name));
     },
     onError: (error) => {
       const errorMessage = error.response.data.error || "An error occurred";
       navigate(
-        useOpenOverlay(userModalNames.userAddSkillErrorModal, {
+        useOpenOverlay(UserModals.userAddSkillErrorModal.name, {
           error: errorMessage,
         })
       );

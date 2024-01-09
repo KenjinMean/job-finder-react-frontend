@@ -5,7 +5,7 @@ import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
-import { userModalNames } from "../../../constants/ModalNames.Constants";
+import { UserModals } from "../../../constants/ModalNames.Constants";
 import { useAsyncUpdateUserCoverImage } from "../../../services/api/useProfileRequesthandler";
 
 import ModalUtil from "../../utils/Modal.Util";
@@ -15,7 +15,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 export default function UserCoverImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
     useFileHandling(
-      useOpenOverlay(userModalNames.userCoverImageUpdatePreviewModal)
+      useOpenOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
     );
 
   const asyncUpdateUserCoverImage = useAsyncUpdateUserCoverImage();
@@ -53,6 +53,7 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
       </div>
       {/* footer */}
       <div className="flex justify-between p-5">
+        {/* select file button */}
         <ButtonFileUploadUiComponent
           title="Add Photo"
           accept="image/*"

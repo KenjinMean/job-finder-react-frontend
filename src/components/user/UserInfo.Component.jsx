@@ -1,6 +1,6 @@
 import React from "react";
 
-import { userModalNames } from "../../constants/ModalNames.Constants";
+import { UserModals } from "../../constants/ModalNames.Constants";
 
 import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
 import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
@@ -12,22 +12,18 @@ export default function UserInfoComponent() {
   // fetch User Info
   const { data: userInfo } = useFetchtUserInfo();
 
-  const {
-    userCoverImageViewModal,
-    userProfileImageViewModal,
-    userInfoEditModal,
-  } = userModalNames;
-
   return (
     <section className="relative w-full overflow-hidden sm:rounded-lg bg-slate-200">
+      {/* view Cover Image */}
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.cover_image}
-        to={useOpenOverlay(userCoverImageViewModal)}
+        to={useOpenOverlay(UserModals.userCoverImageViewModal.name)}
         className="block w-full h-36 sm:h-48 "
       />
+      {/* view Profile Image */}
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.profile_image}
-        to={useOpenOverlay(userProfileImageViewModal)}
+        to={useOpenOverlay(UserModals.userProfileImageViewModal.name)}
         className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-slate-200"
       />
       <div className="relative p-5 border">
@@ -40,9 +36,10 @@ export default function UserInfoComponent() {
         </div>
         <p className="max-w-xl">{userInfo?.headline}</p>
         <span>{userInfo?.location}</span>
+        {/* edit link */}
         <LinkEditUiComponent
           className="absolute right-5 top-5"
-          to={useOpenOverlay(userInfoEditModal)}
+          to={useOpenOverlay(UserModals.userInfoEditModal.name)}
           preventScrollReset={true}
         />
       </div>

@@ -1,10 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-// NOTE: rename this to UserCoverImageView.Modal.Component.jsx to clearly convey component purpose
-// and also the USerProfileOverlay
-
-import { userModalNames } from "../../../constants/ModalNames.Constants";
+import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
@@ -20,7 +17,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 
 export default function UserCoverImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    useOpenOverlay(userModalNames.userCoverImageUpdatePreviewModal)
+    useOpenOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
   );
 
   const { data: userInfo } = useFetchtUserInfo();
@@ -53,6 +50,7 @@ export default function UserCoverImageViewModalComponent() {
       </div>
       {/* footer */}
       <div className="flex justify-between p-5">
+        {/* select file */}
         <ButtonFileUploadUiComponent
           title="Add Photo"
           accept="image/*"

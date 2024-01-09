@@ -3,16 +3,14 @@ import { useLocation } from "react-router-dom";
 
 import error from "../../../assets/icons/error.png";
 
-import { userRoutes } from "../../../constants/RoutesPath.Constants";
+import { UserModals } from "../../../constants/ModalNames.Constants";
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions.js";
-import { userModalNames } from "../../../constants/ModalNames.Constants";
 
 import ModalUtil from "../../utils/Modal.Util.jsx";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
 
 export default function UserAddSkillErrorModalComponent() {
   const [errorMessage, setErrorMessage] = useState(null);
-
   const location = useLocation();
 
   useEffect(() => {
@@ -30,7 +28,7 @@ export default function UserAddSkillErrorModalComponent() {
     return () => {
       setErrorMessage(null);
     };
-  }, [location.search, error]);
+  }, [location.search]);
 
   return (
     <ModalUtil modalTitle="Add Skill Error">
@@ -41,8 +39,9 @@ export default function UserAddSkillErrorModalComponent() {
         <p>{errorMessage}</p>
       </div>
       <div className="flex items-center justify-end p-5">
+        {/* go back to add skill modal button */}
         <LinkActionPrimaryUiComponent
-          to={useOpenOverlay(userModalNames.userAddSkillModal)}
+          to={useOpenOverlay(UserModals.userAddSkillModal.name)}
           preventScrollReset={true}
         >
           Go Back

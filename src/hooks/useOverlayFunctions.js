@@ -85,26 +85,55 @@ export const useOverlayParamDetector = (OverlayName) => {
  *  );
  * }
  */
+// export const useOpenOverlay = (overlayName, additionalParams) => {
+//   const overlayParam = `overlay=${encodeURIComponent(overlayName)}`;
+//   const currentSearchParams = new URLSearchParams(window.location.search);
+
+//   // Add additional parameters
+//   if (additionalParams) {
+//     Object.entries(additionalParams).forEach(([key, value]) => {
+//       currentSearchParams.set(key, encodeURIComponent(value));
+//     });
+//   }
+
+//   const existingSearchParams = currentSearchParams.toString();
+//   const separator = existingSearchParams ? "&" : "?";
+
+//   return (
+//     `${window.location.pathname}` +
+//     (existingSearchParams ? `${window.location.search}${separator}` : `?`) +
+//     `${overlayParam}`
+//   );
+// };
+
 export const useOpenOverlay = (overlayName, additionalParams) => {
-  const overlayParam = `overlay=${encodeURIComponent(overlayName)}`;
   const currentSearchParams = new URLSearchParams(window.location.search);
+
+  // remove error parameter
+  currentSearchParams.delete("error");
+
+  // Check if the "overlay" parameter already exists
+  if (currentSearchParams.has("overlay")) {
+    // Replace the existing "overlay" parameter with the new one
+    currentSearchParams.set("overlay", encodeURIComponent(overlayName));
+  } else {
+    // Add the "overlay" parameter if it doesn't exist
+    currentSearchParams.append("overlay", encodeURIComponent(overlayName));
+  }
 
   // Add additional parameters
   if (additionalParams) {
     Object.entries(additionalParams).forEach(([key, value]) => {
-      currentSearchParams.set(key, encodeURIComponent(value));
+      currentSearchParams.set(key, value);
     });
   }
 
   const existingSearchParams = currentSearchParams.toString();
-  const separator = existingSearchParams ? "&" : "?";
+  const separator = existingSearchParams ? "?" : "&";
 
-  return (
-    `${window.location.pathname}` +
-    (existingSearchParams ? `${window.location.search}${separator}` : `?`) +
-    `${overlayParam}`
-  );
+  return `${window.location.pathname}${separator}${existingSearchParams}`;
 };
+
 /**
  * A custom hook to close Modal that's closed using a URL parameter(overlay paramter).
  * Removes the "overlay" parameter (both key and value) from the current URL and returning the URL
@@ -138,8 +167,9 @@ export const useCloseModalOverlay = () => {
   const currentUrl = new URL(window.location.href);
   const searchParams = new URLSearchParams(currentUrl.search);
 
-  // Remove the "overlay" parameter
+  // Remove the "overlay" and "error" parameters
   searchParams.delete("overlay");
+  searchParams.delete("error");
 
   return (
     currentUrl.pathname +

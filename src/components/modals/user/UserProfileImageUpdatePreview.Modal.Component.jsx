@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
 import { userRoutes } from "../../../constants/RoutesPath.Constants";
-import { userModalNames } from "../../../constants/ModalNames.Constants";
+import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
@@ -13,12 +13,10 @@ import ModalUtil from "../../utils/Modal.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 
-// ENHANCE: create a modal component the handles user update preview and
-//    user cover update preview because they got the same functionality but different sizes only
 export default function UserProfileImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
     useFileHandling(
-      useOpenOverlay(userModalNames.userProfileImageUpdatePreviewModal)
+      useOpenOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
     );
 
   const asyncUpdateUserProfileImage = useAsyncUpdateUserProfileImage();
@@ -56,6 +54,7 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
       </div>
       {/* footer */}
       <div className="flex justify-between p-5">
+        {/* select file button */}
         <ButtonFileUploadUiComponent
           title="Add Photo"
           accept="image/*"

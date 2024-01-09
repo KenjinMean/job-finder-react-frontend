@@ -1,67 +1,8 @@
 import React, { Fragment } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import { userModalNames } from "../../constants/ModalNames.Constants";
+import { UserModals } from "../../constants/ModalNames.Constants";
 import { useOverlayParamDetector } from "../../hooks/useOverlayFunctions";
-
-import UserInfoEditModalComponent from "../../components/modals/user/UserInfoEdit.Modal.Component";
-import UserAddSkillModalComponent from "../../components/modals/user/UserAddSkill.Modal.Component";
-import UserAboutEditModalComponent from "../../components/modals/user/UserAboutEdit.Modal.Component";
-import UserAddSkillErrorModalComponent from "../../components/modals/user/UserAddSkillError.Modal.Component";
-import UserCoverImageViewModalComponent from "../../components/modals/user/UserCoverImageView.Modal.Component";
-import UserAddSkillSuccessModalComponent from "../../components/modals/user/UserAddSkillSuccess.Modal.Component";
-import UserProfileImageViewModalComponent from "../../components/modals/user/UserProfileImageView.Modal.Component";
-import UserCoverImageUpdatePreviewModalComponent from "../../components/modals/user/UserCoverImageUpdatePreview.Modal.Component";
-import UserProfileImageUpdatePreviewModalComponent from "../../components/modals/user/UserProfileImageUpdatePreview.Modal.Component";
-
-const {
-  userInfoEditModal,
-  userAddSkillModal,
-  userAboutEditModal,
-  userAddSkillErrorModal,
-  userCoverImageViewModal,
-  userAddSkillSuccessModal,
-  userProfileImageViewModal,
-  userCoverImageUpdatePreviewModal,
-  userProfileImageUpdatePreviewModal,
-} = userModalNames;
-
-// NOTE: when defining new overlayComponents, The keys in overlayComponents
-// should match the names in overlayDetectionMap for consistency.
-
-// ADD THE ADD SKILL SUCCESS AND ERROR MODALS
-const overlayComponents = [
-  {
-    key: "userProfileImageView",
-    component: UserProfileImageViewModalComponent,
-  },
-  { key: "userCoverImageView", component: UserCoverImageViewModalComponent },
-  { key: "userInfoEdit", component: UserInfoEditModalComponent },
-  {
-    key: "userProfileImageUpdatePreview",
-    component: UserProfileImageUpdatePreviewModalComponent,
-  },
-  {
-    key: "userCoverImageUpdatePreview",
-    component: UserCoverImageUpdatePreviewModalComponent,
-  },
-  {
-    key: "userAboutEdit",
-    component: UserAboutEditModalComponent,
-  },
-  {
-    key: "userAddSkill",
-    component: UserAddSkillModalComponent,
-  },
-  {
-    key: "userAddSkillSuccess",
-    component: UserAddSkillSuccessModalComponent,
-  },
-  {
-    key: "userAddSkillError",
-    component: UserAddSkillErrorModalComponent,
-  },
-];
 
 /**
  * React component for displaying user related overlays or modals,
@@ -83,29 +24,26 @@ const overlayComponents = [
  * @returns {ReactNode} - Rendered React node.
  */
 const UserOverlayProvider = () => {
-  const overlayDetectionMap = {
-    userProfileImageView: useOverlayParamDetector(userProfileImageViewModal),
-    userCoverImageView: useOverlayParamDetector(userCoverImageViewModal),
-    userInfoEdit: useOverlayParamDetector(userInfoEditModal),
-    userProfileImageUpdatePreview: useOverlayParamDetector(
-      userProfileImageUpdatePreviewModal
-    ),
-    userCoverImageUpdatePreview: useOverlayParamDetector(
-      userCoverImageUpdatePreviewModal
-    ),
-    userAboutEdit: useOverlayParamDetector(userAboutEditModal),
-    userAddSkill: useOverlayParamDetector(userAddSkillModal),
-    userAddSkillSuccess: useOverlayParamDetector(userAddSkillSuccessModal),
-    userAddSkillError: useOverlayParamDetector(userAddSkillErrorModal),
-  };
+  const overlayComponents = Object.keys(UserModals);
+
+  const overlayDetectionMap = overlayComponents.reduce((acc, key) => {
+    acc[key] = useOverlayParamDetector(UserModals[key].name);
+    return acc;
+  }, {});
 
   return (
     <Fragment>
       <AnimatePresence mode="wait">
-        {overlayComponents.map(
-          ({ key, component }) =>
-            overlayDetectionMap[key] && React.createElement(component, { key })
-        )}
+        {overlayComponents.map((key) => {
+          const isOverlayActive = overlayDetectionMap[key];
+
+          return (
+            isOverlayActive &&
+            React.createElement(UserModals[key].component, {
+              key: UserModals[key].name,
+            })
+          );
+        })}
       </AnimatePresence>
     </Fragment>
   );

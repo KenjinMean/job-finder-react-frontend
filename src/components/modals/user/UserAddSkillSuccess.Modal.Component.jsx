@@ -1,9 +1,7 @@
 import React from "react";
 import { successIcon } from "../../../assets/icons/index.js";
 
-import { userRoutes } from "../../../constants/RoutesPath.Constants";
-import { userModalNames } from "../../../constants/ModalNames.Constants";
-
+import { UserModals } from "../../../constants/ModalNames.Constants";
 import { useOpenOverlay } from "../../../hooks/useOverlayFunctions.js";
 
 import ModalUtil from "../../utils/Modal.Util.jsx";
@@ -22,8 +20,9 @@ export default function UserAddSkillSuccessModalComponent() {
         <span className="text-lg font-secondary">Add skill success</span>
       </div>
       <div className="flex items-center justify-end p-5">
+        {/* add more skill button */}
         <LinkActionPrimaryUiComponent
-          to={useOpenOverlay(userModalNames.userAddSkillModal)}
+          to={useOpenOverlay(UserModals.userAddSkillModal.name)}
           preventScrollReset={true}
         >
           Add more

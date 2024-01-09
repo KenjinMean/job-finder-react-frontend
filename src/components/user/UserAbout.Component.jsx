@@ -4,8 +4,8 @@ import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
 import { useTruncatedElement } from "../../hooks/useTruncatedElement";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
+import { UserModals } from "../../constants/ModalNames.Constants";
 import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
-import { userModalNames } from "../../constants/ModalNames.Constants";
 
 export default function UserAboutComponent() {
   const { data: userInfo } = useFetchtUserInfo();
@@ -19,8 +19,9 @@ export default function UserAboutComponent() {
       <h2 className="text-2xl font-semibold">About</h2>
 
       <div className="absolute flex items-center gap-1 right-5 top-5">
+        {/* edit about link */}
         <LinkEditUiComponent
-          to={useOpenOverlay(userModalNames.userAboutEditModal)}
+          to={useOpenOverlay(UserModals.userAboutEditModal.name)}
           preventScrollReset={true}
         />
       </div>

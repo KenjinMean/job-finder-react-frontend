@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-import { userModalNames } from "../../constants/ModalNames.Constants";
+import { UserModals } from "../../constants/ModalNames.Constants";
 
 import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
 import { userRoutes } from "../../constants/RoutesPath.Constants";
@@ -32,8 +32,9 @@ export default function UserEditSkillComponent() {
         <button onClick={() => navigate(userRoutes.userProfilePage)}>
           Go back
         </button>{" "}
+        {/* add skill link */}
         <LinkAddUiComponent
-          to={useOpenOverlay(userModalNames.userAddSkillModal)}
+          to={useOpenOverlay(UserModals.userAddSkillModal.name)}
           preventScrollReset={true}
         />
       </div>
