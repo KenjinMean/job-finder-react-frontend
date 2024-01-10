@@ -1,12 +1,14 @@
-import UserAboutEditModalComponent from "../components/modals/user/UserAboutEdit.Modal.Component"
-import UserAddSkillModalComponent from "../components/modals/user/UserAddSkill.Modal.Component" 
-import UserInfoEditModalComponent from "../components/modals/user/UserInfoEdit.Modal.Component"
-import UserAddSkillErrorModalComponent from "../components/modals/user/UserAddSkillError.Modal.Component"
+import UserInfoEditPage from "../pages/UserInfoEdit.Page"
+import UserAddSkillPage from "../pages/UserAddSkill.Page"
+import UserAboutEditPage from "../pages/UserAboutEdit.Page"
+
+import UserAddSkillErrorModaComponent from "../components/modals/user/UserAddSkillError.Modal.Component"
 import UserCoverImageViewModalComponent from "../components/modals/user/UserCoverImageView.Modal.Component"
 import UserAddSkillSuccessModalComponent from "../components/modals/user/UserAddSkillSuccess.Modal.Component"
 import UserProfileImageViewModalComponent from "../components/modals/user/UserProfileImageView.Modal.Component"
 import UserCoverImageUpdatePreviewModalComponent from "../components/modals/user/UserCoverImageUpdatePreview.Modal.Component"
 import UserProfileImageUpdatePreviewModalComponent from "../components/modals/user/UserProfileImageUpdatePreview.Modal.Component"
+
 
   const createModal = (
     name: string,
@@ -30,10 +32,10 @@ import UserProfileImageUpdatePreviewModalComponent from "../components/modals/us
   };
   
   const Modals: UserModal = {
-    userAboutEditModal: createModal("userAboutEditModal",UserAboutEditModalComponent),
-    userInfoEditModal: createModal("userInfoEditModal",UserInfoEditModalComponent),
-    userAddSkillModal: createModal("userAddSkillModal", UserAddSkillModalComponent),
-    userAddSkillErrorModal: createModal("userAddSkillErrorModal", UserAddSkillErrorModalComponent),
+    userAboutEditModal: createModal("userAboutEditModal",UserAboutEditPage),
+    userInfoEditModal: createModal("userInfoEditModal",UserInfoEditPage),
+    userAddSkillModal: createModal("userAddSkillModal", UserAddSkillPage),
+    userAddSkillErrorModal: createModal("userAddSkillErrorModal", UserAddSkillErrorModaComponent),
     userCoverImageViewModal: createModal("userCoverImageViewModal", UserCoverImageViewModalComponent),
     userAddSkillSuccessModal: createModal("userAddSkillSuccessModal", UserAddSkillSuccessModalComponent),
     userProfileImageViewModal: createModal("userProfileImageViewModal", UserProfileImageViewModalComponent),

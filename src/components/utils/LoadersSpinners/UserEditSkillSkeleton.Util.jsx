@@ -18,71 +18,46 @@ export default function UserEditSkillSkeletonUtil() {
       animate="animate"
       variants={containerAnimation}
     >
-      <div className="flex flex-col gap-5 p-5 mt-5 bg-white border rounded-md border-background-400">
-        <div className="flex justify-between">
-          <div className={"w-28 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
+      <div
+        role="status"
+        className="p-4 space-y-4 divide-y divide-gray-200 rounded shadow animate-pulse md:p-6 sm:mt-10"
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="h-4 pulse  rounded-full  w-24 mb-2.5"></div>
+            <div className="w-32 h-2 rounded-full pulse"></div>
+          </div>
+          <div className="w-12 h-4 rounded-full pulse"></div>
         </div>
-        <div className="flex justify-between">
-          <div className={"w-44 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
+        <div className="flex items-center justify-between pt-4">
+          <div>
+            <div className="h-4 pulse  rounded-full  w-24 mb-2.5"></div>
+            <div className="w-32 h-2 rounded-full pulse"></div>
+          </div>
+          <div className="w-12 h-4 rounded-full pulse"></div>
         </div>
-        <div className="flex justify-between">
-          <div className={"w-36 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
+        <div className="flex items-center justify-between pt-4">
+          <div>
+            <div className="h-4 pulse  rounded-full  w-24 mb-2.5"></div>
+            <div className="w-32 h-2 rounded-full pulse"></div>
+          </div>
+          <div className="w-12 h-4 rounded-full pulse"></div>
         </div>
-        <div className="flex justify-between">
-          <div className={"w-28 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
+        <div className="flex items-center justify-between pt-4">
+          <div>
+            <div className="h-4 pulse  rounded-full  w-24 mb-2.5"></div>
+            <div className="w-32 h-2 rounded-full pulse"></div>
+          </div>
+          <div className="w-12 h-4 rounded-full pulse"></div>
         </div>
-        <div className="flex justify-between">
-          <div className={`w-40 h-5 rounded-md pulse`}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
+        <div className="flex items-center justify-between pt-4">
+          <div>
+            <div className="h-4 pulse  rounded-full  w-24 mb-2.5"></div>
+            <div className="w-32 h-2 rounded-full pulse"></div>
+          </div>
+          <div className="w-12 h-4 rounded-full pulse"></div>
         </div>
-        <div className="flex justify-between">
-          <div className={"w-28 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-16 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-20 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-28 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-44 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-36 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-28 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={`w-40 h-5 rounded-md pulse`}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-28 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-16 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
-        <div className="flex justify-between">
-          <div className={"w-20 h-5 rounded-md pulse"}></div>
-          <div className={"w-10 h-5 rounded-md pulse"}></div>
-        </div>
+        <span className="sr-only">Loading...</span>
       </div>
     </motion.div>
   );
