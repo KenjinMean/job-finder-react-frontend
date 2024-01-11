@@ -1,9 +1,11 @@
-import PopUpExampleDialogComponent from "../components/dialogs/PopUpExampleDialog.Component";
+import PopUpExampleDialogComponent from "../components/dialogs/popUpExampleDialog.Component";
+import NotImplementedDialogComponent from "../components/dialogs/NotImplementedDialog.Component";
 import ExitConfirmationDialogComponent from "../components/dialogs/ExitConfirmationDialog.Component";
 
 type DialogName = {
   exitConfirmationDialog: { name: string; component: React.ComponentType<any> };
-  PopUpExampleDialog: { name: string; component: React.ComponentType<any> };
+  popUpExampleDialog: { name: string; component: React.ComponentType<any> };
+  notImplementedDialog: { name: string; component: React.ComponentType<any> };
 };
 
 const dialogs: DialogName = {
@@ -11,10 +13,14 @@ const dialogs: DialogName = {
     name: "exitConfirmationDialog",
     component: ExitConfirmationDialogComponent,
   },
-  PopUpExampleDialog: {
-    name: "PopUpExampleDialog",
+  popUpExampleDialog: {
+    name: "popUpExampleDialog",
     component: PopUpExampleDialogComponent,
   },
+  notImplementedDialog : {
+    name: "notImplementedDialog", 
+    component: NotImplementedDialogComponent,
+  }
 };
 
 type DialogNamesType = {

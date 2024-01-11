@@ -14,7 +14,7 @@ import DialogUtil from "../utils/Dialog.Util";
 
 export default function PopUpExampleDialogComponent() {
   const navigate = useNavigate();
-  const closeDialog = useCloseDialog(dialogNames.PopUpExampleDialog.name);
+  const closeDialog = useCloseDialog(dialogNames.popUpExampleDialog.name);
 
   const handleConfirm = () => {
     navigate(useCloseModalOverlay);
