@@ -21,9 +21,9 @@ export default function NotImplementedDialogComponent() {
         </div>
         <div>
           <p>
-            We're sorry, but this feature is currently not implemented. Our team
-            is working hard to bring you new and exciting functionalities.
-            Please check back later! :-)
+            I'm sorry, but this feature is currently not implemented. I am
+            working hard to bring you new and exciting functionalities. Please
+            check back later! :-)
           </p>
         </div>
         <div className="flex justify-end gap-5">
