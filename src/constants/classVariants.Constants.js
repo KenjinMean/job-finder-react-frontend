@@ -1,16 +1,13 @@
 import { cva } from "class-variance-authority";
 
 export const ModalVariants = cva(
-  "fixed top-16 left-0 right-0 z-20 flex items-center justify-center mx-auto w-full sm:rounded-md overflow-hidden",
+  "w-full shadow-lg overflow-y-auto modal-backdrop bg-white sm:rounded-md h-screen sm:h-auto",
   {
     variants: {
       size: {
-        default: "max-w-3xl",
-        small: "max-w-lg",
-        large: "max-w-6xl",
-      },
-      position: {
-        center: "top-[50%] transform translate-y-[-50%]",
+        default: "sm:max-w-3xl",
+        small: "sm:max-w-lg",
+        large: "sm:max-w-6xl",
       },
     },
     defaultVariants: {
@@ -21,12 +18,12 @@ export const ModalVariants = cva(
 );
 
 export const DialogVariants = cva(
-  "fixed top-16 left-0 right-0 z-40 flex items-center justify-center mx-auto w-full sm:rounded-md overflow-hidden",
+  "fixed inset-0 z-40 flex items-center justify-center mx-auto w-full sm:rounded-md overflow-hidden",
   {
     variants: {
       size: {
         default: "max-w-md",
-        small: "max-w-sm",
+        small: "max-w-sm,",
         large: "max-w-lg",
       },
       position: {
