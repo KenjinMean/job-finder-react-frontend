@@ -8,10 +8,10 @@ export default function UserAddSkillSkeletonUtil() {
         <div className="flex items-center justify-between p-5 border-b">
           <div className="w-32 h-8 rounded-full pulse"></div>
         </div>
-        <div classNameName="p-5">
+        <div className="p-5">
           <div className="w-48 h-8 mb-5 rounded-full pulse"></div>
 
-          <div classNameName="flex flex-col flex-grow gap-3 rounded-md sm:p-5 sm:border">
+          <div className="flex flex-col flex-grow gap-3 rounded-md sm:p-5 sm:border">
             <div className="flex items-center w-full">
               <div className="w-32 h-6 rounded-full pulse"></div>
               <div className="w-24 h-6 rounded-full ms-2 pulse"></div>
