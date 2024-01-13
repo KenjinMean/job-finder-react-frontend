@@ -1,4 +1,4 @@
-import PopUpExampleDialogComponent from "../components/dialogs/popUpExampleDialog.Component";
+import PopUpExampleDialogComponent from "../components/dialogs/NotImplementedDialog.Component";
 import NotImplementedDialogComponent from "../components/dialogs/NotImplementedDialog.Component";
 import ExitConfirmationDialogComponent from "../components/dialogs/ExitConfirmationDialog.Component";
 
