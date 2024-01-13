@@ -63,10 +63,11 @@ export default function UserInfoEditModalComponent() {
 
   return (
     <ModalUtil modalTitle="Edit User Info" isInputChanged={isUserInfoChanged}>
-      {/* add height to enable scroll */}
-      {/* FIX: make auto adjust height using clamp or any*/}
-      <div className="p-5 overflow-y-auto">
-        <span className="text-sm"> * indicates required</span>
+      <div className="p-5">
+        <span className="block mb-5 text-sm font-medium text-gray-900">
+          {" "}
+          * indicates required
+        </span>
         <UserInfoEditForm
           payload={payload}
           handleSubmit={handleSubmit}

@@ -1,11 +1,16 @@
 import React from "react";
-import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 import { Link } from "react-router-dom";
-import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
-import { useOpenDialog } from "../../../hooks/useOverlayFunctions";
+
 import { dialogNames } from "../../../constants/DialogNames.Constants";
-import LabeledInputUiCoponent from "../../UI/LabeledInput.Ui.Coponent";
+
 import { prefixHandler } from "../../../utils/prefixHandler";
+import { useOpenDialog } from "../../../hooks/useOverlayFunctions";
+import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
+
+import LabeledTextInputUiCoponent from "../../UI/LabeledTextInput.Ui.Component";
+import LabeledDateInputUiComponent from "../../UI/LabeledDateInput.Ui.Component";
+import LabeledPhoneInputUiComponent from "../../UI/LabeledPhoneInput.Ui.Component";
+import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 
 export default function UserContactEditForm({
   payload,
@@ -35,32 +40,17 @@ export default function UserContactEditForm({
           </Link>
         </div>
 
-        <div class="flex items-center relative">
-          <span class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg ">
-            +63{" "}
-          </span>
+        <LabeledPhoneInputUiComponent
+          name="phone"
+          id="phone"
+          label="Phone number"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="123-456-7890"
+          value={prefixHandler("remove", payload?.phone, "+63-") || ""}
+          onChange={handleInputChange}
+        />
 
-          <label
-            for="phone-input"
-            class="mb-2 text-sm font-medium text-gray-900 sr-only "
-          >
-            Phone number:
-          </label>
-          <div class="relative w-full">
-            <input
-              type="phone"
-              id="phone-input"
-              name="phone"
-              class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-0 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-              placeholder="123-456-7890"
-              value={prefixHandler("remove", payload?.phone, "+63-") || ""}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
-
-        <LabeledInputUiCoponent
+        <LabeledTextInputUiCoponent
           name="city"
           id="city"
           label="City/Municipality"
@@ -70,7 +60,7 @@ export default function UserContactEditForm({
           autoComplete="off"
         />
 
-        <LabeledInputUiCoponent
+        <LabeledTextInputUiCoponent
           name="province"
           id="province"
           label="Province"
@@ -80,7 +70,7 @@ export default function UserContactEditForm({
           autoComplete="off"
         />
 
-        <LabeledInputUiCoponent
+        <LabeledTextInputUiCoponent
           name="zip_code"
           id="zipCoce"
           label="Zip Code"
@@ -90,7 +80,7 @@ export default function UserContactEditForm({
           autoComplete="off"
         />
 
-        <LabeledInputUiCoponent
+        <LabeledTextInputUiCoponent
           name="country"
           id="country"
           label="Country"
@@ -100,25 +90,14 @@ export default function UserContactEditForm({
           autoComplete="off"
         />
 
-        <div>
-          <label
-            htmlFor="country"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
-            Birth Date
-          </label>
-          <input
-            type="date"
-            id="birthday"
-            name="birth_date"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            placeholder="yyyy-mm-dd"
-            required
-            value={payload?.birth_date || ""}
-            onChange={handleInputChange}
-            autoComplete="off"
-          />
-        </div>
+        <LabeledDateInputUiComponent
+          name="birth_date"
+          id="birtDate"
+          label="Birth Date"
+          value={payload?.birth_date || ""}
+          onChange={handleInputChange}
+          autoComplete="off"
+        />
       </div>
 
       <div className="flex flex-row-reverse mt-5">

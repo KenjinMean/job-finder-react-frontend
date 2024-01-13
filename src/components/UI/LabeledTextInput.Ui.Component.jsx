@@ -1,22 +1,32 @@
 import React from "react";
 
-export default function LabeledTextInputUiComponent({
+export default function LabeledTextInputUiCoponent({
+  name,
+  id,
   label,
-  value,
+  placeholder,
   ...inputProps
 }) {
-  const sanitizedValue = value || "";
-
   return (
-    <div className="flex flex-col mt-5">
+    <div>
       {label && (
-        <label htmlFor={inputProps.name || inputProps.id}>{label}</label>
+        <label
+          htmlFor={id}
+          className="block mb-2 text-sm font-medium text-gray-900"
+        >
+          {label}
+        </label>
       )}
-      <input
-        className="p-1 mt-1 border rounded-sm border-slate-300 outline-offset-1"
-        value={sanitizedValue}
-        {...inputProps}
-      />
+      <div className="relative">
+        <input
+          type="text"
+          id={id}
+          name={name}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+          placeholder={placeholder}
+          {...inputProps}
+        />
+      </div>
     </div>
   );
 }
