@@ -27,6 +27,7 @@ export default function SkillSearchInputComponent({
       <input
         autoFocus
         type="text"
+        name="search"
         placeholder="Skill"
         value={keyword}
         onChange={(event) => handleInputChange(event)}

@@ -26,12 +26,9 @@ export default function UserContactEditForm({
     >
       <div className="flex flex-col gap-5">
         <div>
-          <label
-            htmlFor="Email"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
+          <span className="block mb-2 text-sm font-medium text-gray-900">
             Email
-          </label>
+          </span>
           <Link
             onClick={useOpenDialog(dialogNames.notImplementedDialog.name)}
             className="mb-2 font-medium text-blue-500"
@@ -48,6 +45,7 @@ export default function UserContactEditForm({
           placeholder="123-456-7890"
           value={prefixHandler("remove", payload?.phone, "+63-") || ""}
           onChange={handleInputChange}
+          autoComplete="off"
         />
 
         <LabeledTextInputUiCoponent

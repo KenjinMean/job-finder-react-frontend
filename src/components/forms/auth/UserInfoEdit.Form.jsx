@@ -19,6 +19,7 @@ export default function UserInfoEditForm({
           required
           value={payload?.first_name || ""}
           onChange={handleInputChange}
+          autoComplete="off"
         />
 
         <LabeledTextInputUiCoponent
@@ -28,6 +29,7 @@ export default function UserInfoEditForm({
           required
           value={payload?.last_name || ""}
           onChange={handleInputChange}
+          autoComplete="off"
         />
 
         <LabeledTextInputUiCoponent
@@ -36,6 +38,7 @@ export default function UserInfoEditForm({
           label="Additional Name"
           value={payload?.additional_name || ""}
           onChange={handleInputChange}
+          autoComplete="off"
         />
 
         <LabeledTextAreaInputUiComponent
