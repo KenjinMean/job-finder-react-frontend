@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import LabeledTextAreaInputUiComponent from "../../UI/LabeledTextAreaInput.Ui.Component";
+import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 
 export default function UserAboutForm({
   handleSubmit,
@@ -20,30 +22,27 @@ export default function UserAboutForm({
   }, [payload]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex flex-col p-5 overflow-y-auto">
-        <span className="text-sm"> * indicates required</span>
-        <textarea
-          maxLength={maxLength}
-          autoFocus
-          name="about"
-          id=""
-          value={payload?.about}
-          cols="30"
-          rows="10"
-          className="p-2 border outline-offset-1"
-          onChange={(e) => {
-            handleInputChange(e);
-            updateCharCount(e.target.value);
-          }}
-        ></textarea>{" "}
-        <div className="flex flex-row-reverse mt-2 text-slate-500">
-          {charCount}/{maxLength} characters
-        </div>
+    <form onSubmit={handleSubmit} className="p-5">
+      <LabeledTextAreaInputUiComponent
+        name="about"
+        id="about"
+        label="About"
+        cols="30"
+        rows="10"
+        autoFocus
+        maxLength={maxLength}
+        value={payload?.about}
+        onChange={(e) => {
+          handleInputChange(e);
+          updateCharCount(e.target.value);
+        }}
+      />
+      <div className="flex flex-row-reverse mt-2 text-slate-500">
+        {charCount}/{maxLength} characters
       </div>
 
-      <div className="flex flex-row-reverse p-5">
-        <button>Save</button>
+      <div className="flex flex-row-reverse mt-5">
+        <ButtonActionPrimaryUiComponent>Save</ButtonActionPrimaryUiComponent>
       </div>
     </form>
   );
