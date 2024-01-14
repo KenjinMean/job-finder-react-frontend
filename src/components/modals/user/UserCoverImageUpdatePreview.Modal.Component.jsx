@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 import { UserModals } from "../../../constants/ModalNames.Constants";
 import { useAsyncUpdateUserCoverImage } from "../../../services/api/useProfileRequesthandler";
 
@@ -15,7 +15,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 export default function UserCoverImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
     useFileHandling(
-      useOpenOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
+      useOpenModalOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
     );
 
   const asyncUpdateUserCoverImage = useAsyncUpdateUserCoverImage();

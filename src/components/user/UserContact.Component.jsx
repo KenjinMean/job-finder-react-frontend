@@ -9,7 +9,7 @@ import {
 } from "../../assets/icons";
 import { useFetchUserContact } from "../../services/api/useContactRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
-import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import { UserModals } from "../../constants/ModalNames.Constants";
 
 export default function UserContactComponent() {
@@ -55,7 +55,7 @@ export default function UserContactComponent() {
       </div>
       <div className="absolute flex items-center gap-1 right-5 top-5">
         <LinkEditUiComponent
-          to={useOpenOverlay(UserModals.userContactEditModal.name)}
+          to={useOpenModalOverlay(UserModals.userContactEditModal.name)}
           // preventScrollReset={true}
         />
       </div>

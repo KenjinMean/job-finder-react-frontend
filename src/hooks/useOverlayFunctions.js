@@ -21,9 +21,9 @@ import { dialogNames } from "../constants/DialogNames.Constants";
  *
  * function App() {
  *
- * // use useOpenOverlay() to append "overlay" param to current url
+ * // use useOpenModalOverlay() to append "overlay" param to current url
  * const navigate = useNavigate()
- * <button onClick={() => navigate(useOpenOverlay("example-modal"))}>Open Example Modal</button>
+ * <button onClick={() => navigate(useOpenModalOverlay("example-modal"))}>Open Example Modal</button>
  *
  * //detect if there is "example-modal" overlay parameter int the URL and conditionally render  <ExampleModal />
  * const isExampleModalActive = useOverlayParamDetector("overlay="example-modal")
@@ -67,14 +67,14 @@ export const useOverlayParamDetector = (OverlayName) => {
  * @param {Object} additionalParams - Additional parameters to include in the URL.
  * @returns {string} The generated URL with the overlay parameter.
  * @example
- * // import useOpenOverlay
- * import { useOpenOverlay } from "path-to-useOpenOverlay"
+ * // import useOpenModalOverlay
+ * import { useOpenModalOverlay } from "path-to-useOpenModalOverlay"
  *
  * function App() {
  * const navigate = useNavigate();
  *
  * const handleOpenExampleModal = () => {
- *    const newUrl = useOpenOverlay("exampleModal");
+ *    const newUrl = useOpenModalOverlay("exampleModal");
  *    navigate(newUrl);
  * };
  *
@@ -85,7 +85,7 @@ export const useOverlayParamDetector = (OverlayName) => {
  *  );
  * }
  */
-// export const useOpenOverlay = (overlayName, additionalParams) => {
+// export const useOpenModalOverlay = (overlayName, additionalParams) => {
 //   const overlayParam = `overlay=${encodeURIComponent(overlayName)}`;
 //   const currentSearchParams = new URLSearchParams(window.location.search);
 
@@ -106,7 +106,7 @@ export const useOverlayParamDetector = (OverlayName) => {
 //   );
 // };
 
-export const useOpenOverlay = (overlayName, additionalParams) => {
+export const useOpenModalOverlay = (overlayName, additionalParams) => {
   const currentSearchParams = new URLSearchParams(window.location.search);
 
   // remove error parameter

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import { useTruncatedElement } from "../../hooks/useTruncatedElement";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
@@ -21,7 +21,7 @@ export default function UserAboutComponent() {
       <div className="absolute flex items-center gap-1 right-5 top-5">
         {/* edit about link */}
         <LinkEditUiComponent
-          to={useOpenOverlay(UserModals.userAboutEditModal.name)}
+          to={useOpenModalOverlay(UserModals.userAboutEditModal.name)}
           preventScrollReset={true}
         />
       </div>

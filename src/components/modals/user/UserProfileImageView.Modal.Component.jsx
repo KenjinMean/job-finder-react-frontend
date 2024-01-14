@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
 
-import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 import useFileHandling from "../../../hooks/useFileHandling";
 import {
   useAsyncUpdateUserProfileImage,
@@ -18,7 +18,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 
 export default function UserProfileImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    useOpenOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
+    useOpenModalOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
   );
 
   const { data: userInfo } = useFetchtUserInfo();

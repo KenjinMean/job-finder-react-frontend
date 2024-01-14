@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
 
-import { useOpenOverlay } from "../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import { userRoutes } from "../../constants/RoutesPath.Constants";
 import {
   useAsyncRemoveUserSkill,
@@ -34,7 +34,7 @@ export default function UserEditSkillComponent() {
         </button>{" "}
         {/* add skill link */}
         <LinkAddUiComponent
-          to={useOpenOverlay(UserModals.userAddSkillModal.name)}
+          to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
           preventScrollReset={true}
         />
       </div>

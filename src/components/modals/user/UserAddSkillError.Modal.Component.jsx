@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import error from "../../../assets/icons/error.png";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
-import { useOpenOverlay } from "../../../hooks/useOverlayFunctions.js";
+import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions.js";
 
 import ModalUtil from "../../utils/Modal.Util.jsx";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
@@ -41,7 +41,7 @@ export default function UserAddSkillErrorModalComponent() {
       <div className="flex items-center justify-end p-5">
         {/* go back to add skill modal button */}
         <LinkActionPrimaryUiComponent
-          to={useOpenOverlay(UserModals.userAddSkillModal.name)}
+          to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
           preventScrollReset={true}
         >
           Go Back

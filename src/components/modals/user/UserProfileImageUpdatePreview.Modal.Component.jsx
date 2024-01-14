@@ -6,7 +6,7 @@ import { userRoutes } from "../../../constants/RoutesPath.Constants";
 import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 import { useAsyncUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
 
 import ModalUtil from "../../utils/Modal.Util";
@@ -16,7 +16,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 export default function UserProfileImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
     useFileHandling(
-      useOpenOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
+      useOpenModalOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
     );
 
   const asyncUpdateUserProfileImage = useAsyncUpdateUserProfileImage();

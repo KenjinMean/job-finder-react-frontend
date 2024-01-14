@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useOpenOverlay } from "../../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 import {
   useAsyncUpdateUserCoverImage,
   useFetchtUserInfo,
@@ -17,7 +17,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 
 export default function UserCoverImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    useOpenOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
+    useOpenModalOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
   );
 
   const { data: userInfo } = useFetchtUserInfo();

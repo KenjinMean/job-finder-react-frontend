@@ -7,7 +7,7 @@ import { useAuthenticationStore } from "../state/AuthenticationStore";
 import { UserModals } from "../../constants/ModalNames.Constants";
 
 import { toMilliseconds } from "../../utils/toMilliseconds.js";
-import { useOpenOverlay } from "../../hooks/useOverlayFunctions.js";
+import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions.js";
 
 const searchSkill = (keyword) => {
   return axiosClient.get(`/search-skills?keyword=${keyword}`);
@@ -43,12 +43,12 @@ export const useUserAddSkill = () => {
   return useMutation(addUserSkill, {
     onSuccess: async () => {
       queryClient.invalidateQueries("searchskill");
-      navigate(useOpenOverlay(UserModals.userAddSkillSuccessModal.name));
+      navigate(useOpenModalOverlay(UserModals.userAddSkillSuccessModal.name));
     },
     onError: (error) => {
       const errorMessage = error.response.data.error || "An error occurred";
       navigate(
-        useOpenOverlay(UserModals.userAddSkillErrorModal.name, {
+        useOpenModalOverlay(UserModals.userAddSkillErrorModal.name, {
           error: errorMessage,
         })
       );
