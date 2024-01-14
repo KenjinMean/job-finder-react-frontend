@@ -1,3 +1,5 @@
+// UNUSED HOOK
+
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 

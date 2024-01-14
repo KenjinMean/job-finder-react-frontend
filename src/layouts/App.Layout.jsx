@@ -13,11 +13,6 @@ export default function AppLayout() {
   const { setElementToScrollLockRef } = useModalScrollLock();
   setElementToScrollLockRef(elementToScrollLockRef);
 
-  usePreserveScrollPositionForRoute([
-    userRoutes.userAddSkillErrorPage,
-    userRoutes.userAddSkillSuccessPage,
-  ]);
-
   return (
     <div ref={elementToScrollLockRef}>
       {/*  SOURCE https://reactrouter.com/en/main/components/scroll-restoration */}
