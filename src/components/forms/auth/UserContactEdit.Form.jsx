@@ -20,13 +20,10 @@ export default function UserContactEditForm({
   const { authenticatedUser } = useAuthenticationStore();
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="p-5 overflow-y-auto bg-white rounded-md"
-    >
+    <form onSubmit={handleSubmit} className="p-5 overflow-y-auto rounded-md">
       <div className="flex flex-col gap-5">
         <div>
-          <span className="block mb-2 text-sm font-medium text-gray-900">
+          <span className="block mb-2 font-medium text-content-black">
             Email
           </span>
           <Link

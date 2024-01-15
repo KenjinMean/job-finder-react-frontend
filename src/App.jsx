@@ -4,8 +4,11 @@ import { RouterProvider } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 
 import cspConfig from "./config/cspConfig.js";
+import { useThemeStore } from "./services/state/ThemeStore.js";
 
 function App() {
+  const { isLight, setIsLight } = useThemeStore();
+
   return (
     <HelmetProvider>
       <Fragment>
@@ -32,7 +35,13 @@ function App() {
           <meta property="og:type" content="website" />
           <meta http-equiv="Content-Security-Policy" content={cspConfig} />
         </Helmet>
-        <div className="font-primary">
+        <div
+          data-theme={isLight ? "light" : "dark"}
+          className="relative bg-background-white font-primary"
+        >
+          <button className="fixed top-5 right-5" onClick={() => setIsLight()}>
+            Toggle Theme
+          </button>
           <RouterProvider router={router} />
         </div>
       </Fragment>

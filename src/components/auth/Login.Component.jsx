@@ -66,7 +66,7 @@ export default function LoginComponent() {
               getGoogleAuthURL={getGoogleAuthURL}
             />
             <div className="my-12 text-center border-b">
-              <div className="inline-block px-2 text-sm font-medium leading-none tracking-wide text-gray-600 transform translate-y-1/2 bg-white">
+              <div className="inline-block px-2 text-sm font-medium leading-none tracking-wide transform translate-y-1/2 text-content-gray bg-background-gray300">
                 Or sign up with e-mail
               </div>
             </div>

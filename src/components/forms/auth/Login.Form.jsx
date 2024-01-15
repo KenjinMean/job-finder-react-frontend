@@ -5,6 +5,7 @@ import { authRoutes } from "../../../constants/RoutesPath.Constants";
 
 import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
 import TermsServices from "../../auth/TermsServices";
+import LabeledTextInputUiCoponent from "../../UI/LabeledTextInput.Ui.Component";
 
 export default function LoginForm({
   loginMutation,
@@ -29,7 +30,7 @@ export default function LoginForm({
     <form onSubmit={handleLogin}>
       <div className="max-w-xs mx-auto mt-5">
         <input
-          className="w-full px-8 py-4 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
+          className="w-full px-8 py-4 text-sm font-medium placeholder-gray-500 border rounded-lg text-content-black border-border-100 bg-input-gray focus:outline-none focus:border-gray-400 "
           type="email"
           ref={emailRef}
           placeholder="Email"
@@ -39,7 +40,7 @@ export default function LoginForm({
           required
         />
         <input
-          className="w-full px-8 py-4 mt-5 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
+          className="w-full px-8 py-4 mt-5 text-sm font-medium placeholder-gray-500 border rounded-lg text-content-black border-border-100 bg-input-gray focus:outline-none focus:border-gray-400 "
           type="password"
           ref={passwordRef}
           placeholder="Password"
@@ -73,7 +74,7 @@ export default function LoginForm({
             </>
           )}
         </button>
-        <p className="px-2 mt-5 text-sm font-medium leading-none tracking-wide text-center text-gray-600 transform translate-y-1/2 bg-white ">
+        <p className="px-2 mt-5 text-sm font-medium leading-none tracking-wide text-center transform translate-y-1/2 text-content-gray">
           Don't have an account yet?{" "}
           <Link to={authRoutes.authRegisterPage} className="text-indigo-500">
             Register

@@ -65,7 +65,7 @@ export default function HeaderNavComponent() {
         >
           {token && (
             <>
-              <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full border-foreground-300 md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+              <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                 {user_info && (
                   <ImageUrlLoaderUtil
                     imageUrl={user_info?.profile_image}
@@ -75,14 +75,14 @@ export default function HeaderNavComponent() {
               </Menu.Button>
               <Menu.Items
                 as="div"
-                className="absolute right-0 z-50 w-full max-w-xs p-5 my-4 overflow-hidden text-base list-none bg-white border rounded-md border-foreground-300 top-14"
+                className="absolute right-0 z-50 w-full max-w-xs p-5 my-4 overflow-hidden text-base list-none border rounded-md border-border-100 text-content-black bg-background-gray300 border-foreground-300 top-14"
                 id="user-dropdown"
               >
                 <div className="">
-                  <span className="block text-lg font-semibold text-gray-900 ">
+                  <span className="block text-lg font-semibold">
                     {user_info?.first_name} {user_info?.last_name}
                   </span>
-                  <span className="flex-wrap block text-gray-500 empty:hidden">
+                  <span className="flex-wrap block text-content-gray empty:hidden">
                     {user_info?.headline}
                   </span>
                 </div>
@@ -90,14 +90,14 @@ export default function HeaderNavComponent() {
                 <Menu.Item
                   as={Link}
                   to={userRoutes.userProfilePage}
-                  className="block px-5 py-1 mt-5 text-lg font-semibold text-center transition-all border rounded-full hover:bg-indigo-500 text-foreground-300 hover:text-white border-foreground-300"
+                  className="block px-4 py-2 mt-5 text-xl font-medium text-center transition-all rounded-full text-content-black hover:text-content-black_inverted bg-accent-310 hover:bg-accent-300 focus:ring-4 focus:outline-none focus:ring-blue-300 "
                 >
                   View Profile
                 </Menu.Item>
 
                 <Menu.Item
                   as="button"
-                  className="w-full px-5 py-1 mt-5 text-lg text-left hover:text-foreground-100 hover:underline"
+                  className="w-full px-5 py-1 mt-5 text-lg text-left text-content-black hover:text-accent-200 hover:underline"
                   onClick={handleLogout}
                 >
                   Logout
@@ -141,15 +141,15 @@ export default function HeaderNavComponent() {
           }`}
           id="navbar-user"
         >
-          <ul className="flex flex-col items-center w-full py-5 text-2xl font-medium text-center bg-white rounded-sm md:gap-0 md:text-lg md:p-0 md:flex-row md:mt-0 md:border-0 md:bg-transparent ">
-            <li className="w-full p-2 font-semibold text-foreground-300 hover:text-purple-500">
+          <ul className="flex flex-col items-center w-full py-5 text-2xl font-medium text-center bg-white rounded-sm text-accent-200 md:gap-0 md:text-lg md:p-0 md:flex-row md:mt-0 md:border-0 md:bg-transparent ">
+            <li className="w-full p-2 font-semibold ">
               <a href="#">About</a>
             </li>
-            <li className="w-full p-2 font-semibold text-foreground-300 hover:text-purple-500">
+            <li className="w-full p-2 font-semibold ">
               <a href="#">Services</a>
             </li>
             {!token && (
-              <li className="w-full p-2 font-semibold text-foreground-300 hover:text-purple-500">
+              <li className="w-full p-2 font-semibold ">
                 <Link to={authRoutes.authLoginPage}>login</Link>
               </li>
             )}

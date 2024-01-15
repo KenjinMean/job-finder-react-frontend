@@ -21,7 +21,7 @@ export default function JobDetailsComponent() {
   } = jobDetails ?? {};
   return (
     <Fragment>
-      <div className="mx-auto">
+      <div className="mx-auto text-content-black">
         <button onClick={() => navigate(-1)}>Go back</button>
         <div className="py-5 ">
           <h1 className="text-2xl font-bold">{title}</h1>
@@ -42,7 +42,7 @@ export default function JobDetailsComponent() {
                   return (
                     <span
                       key={skill.id}
-                      className="p-1 border rounded-lg bg-background-400"
+                      className="p-1 border rounded-lg bg-accent-100"
                     >
                       {skill.name}
                     </span>

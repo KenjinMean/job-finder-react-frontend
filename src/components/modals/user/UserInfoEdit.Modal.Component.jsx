@@ -64,7 +64,7 @@ export default function UserInfoEditModalComponent() {
   return (
     <ModalUtil modalTitle="Edit User Info" isInputChanged={isUserInfoChanged}>
       <div className="p-5">
-        <span className="block mb-5 text-sm font-medium text-gray-900">
+        <span className="block mb-5 text-sm font-medium text-content-black">
           {" "}
           * indicates required
         </span>

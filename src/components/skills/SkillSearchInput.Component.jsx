@@ -7,6 +7,9 @@ export default function SkillSearchInputComponent({
   className,
   keyword,
   setKeyword,
+  placeholder,
+  name,
+  id,
 }) {
   const debouncedSearchSkillFn = useDebouncedCallback(() => {
     searchFn();
@@ -27,8 +30,10 @@ export default function SkillSearchInputComponent({
       <input
         autoFocus
         type="text"
-        name="search"
-        placeholder="Skill"
+        id={id}
+        name={name}
+        autoComplete="off"
+        placeholder={placeholder}
         value={keyword}
         onChange={(event) => handleInputChange(event)}
         className={className}

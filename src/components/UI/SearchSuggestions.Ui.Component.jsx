@@ -26,7 +26,7 @@ export default function SearchSuggestionsUiComponent({
   return (
     <Menu.Items
       static
-      className="flex flex-col absolute z-20 w-full bg-white border top-[105%] left-0 rounded-b-md max-h-100 sm:max-h-60 overflow-y-scroll small-thumb-scrollbar empty:hidden"
+      className="flex flex-col absolute z-20 w-full bg-background-gray100 text-content-black border top-[105%] left-0 rounded-b-md max-h-100 sm:max-h-60 overflow-y-scroll small-thumb-scrollbar empty:hidden shadow-lg"
     >
       {searchSuggestions.map((suggestion, index) => {
         return (
@@ -45,8 +45,10 @@ export default function SearchSuggestionsUiComponent({
               return (
                 <a
                   onClick={() => handleSuggestionClick(suggestion)}
-                  className={`block px-4 py-2 ${
-                    active || isSuggestionActive ? "bg-indigo-100" : ""
+                  className={`block px-4 py-2 hover:text-content-black_inverted ${
+                    active || isSuggestionActive
+                      ? "bg-accent-300 text-content-black_inverted"
+                      : ""
                   }`}
                 >
                   {suggestion}

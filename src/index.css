@@ -6,6 +6,101 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* background */
+    --color-white: 255 255 255; /* white to flowbite-dark. used on: app */
+    --color-white-inverted: 17 24 39;
+
+    --color-gray100: 218 221 228;
+    --color-gray100-inverted: 55 65 95;
+    --color-gray100-hoover: 55 65 95;
+
+    --color-gray200: 241 242 246;
+    --color-gray200-inverted: 55 65 81;
+
+    --color-gray300: 249 250 251; /* gray-50 to gray-800. used on: jobContainer */
+    --color-gray300-inverted: 55 65 81; /* inverted */
+    --color-gray300-hoover: 229 231 235; /* gray-300 to gray-700 hover */
+
+    /* input */
+    --color-input-gray: 249 250 251; /* gray-50 to gray-700. used on: inputs */
+
+    /* Content/text */
+    --color-content-black: 17 24 39;
+    --color-content-black-inverted: 255 255 255;
+
+    --color-content-gray: 107 114 128;
+    --color-content-gray-inverted: 209 213 219;
+
+    /* Accent */
+    --color-accent-1: 224 237 253; /* light blue to indigo. used on: jobTypes */
+
+    --color-accent-2: 67 56 202; /* indigo-500 to indigo-700 */
+    --color-accent-201: 224 237 253;
+
+    --color-accent-300: 79 70 229; /* indigo-700 to indigo-100 */
+    --color-accent-310: 224 231 255;
+
+    /* Border */
+    --color-border-1: 209 213 219;
+  }
+
+  /* @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg-1: 00 00 00;
+      --color-bg-2: 218 221 228;
+      --color-content-1: 255 255 255;
+      --color-content-2: 78 28 149;
+      --color-accent-1: 107 43 217;
+      --color-accent-2: 78 28 149;
+    }
+  } */
+
+  [data-theme="dark"] {
+    /* background */
+    --color-white: 17 24 39;
+    --color-white-inverted: 255 255 255;
+
+    --color-gray300: 31 41 55;
+    --color-gray300-inverted: 249 250 251;
+    --color-gray300-hoover: 55 65 81;
+
+    --color-gray200: 55 65 81;
+    --color-gray200-inverted: 241 242 246;
+    --color-gray200-hover: 241 242 246;
+
+    --color-gray100: 55 65 95;
+    --color-gray100-inverted: 218 221 228;
+    --color-gray100-hoover: 55 65 95;
+
+    /* Input */
+    --color-input-gray: 55 65 81;
+
+    /* Content */
+    --color-content-black: 255 255 255;
+    --color-content-black-inverted: 17 24 39;
+
+    --color-content-gray: 209 213 219;
+    --color-content-gray-inverted: 107 114 128;
+
+    --color-content-3: 147 197 253;
+
+    /* Accent */
+    --color-accent-1: 107 43 217;
+
+    --color-accent-2: 224 237 253;
+    --color-accent-201: 99 102 241;
+    --color-accent-210: 99 102 241;
+
+    --color-accent-300: 224 231 255;
+    --color-accent-301: 224 231 255;
+    --color-accent-310: 79 70 229;
+
+    --color-border-1: 75 85 99;
+  }
+}
+
 /* Josh Comeau custom css reset */
 *,
 *::before,

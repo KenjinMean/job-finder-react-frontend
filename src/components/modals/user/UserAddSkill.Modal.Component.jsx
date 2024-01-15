@@ -26,18 +26,21 @@ export default function UserAddSkillModalComponent() {
       {/*content*/}
 
       {/* body */}
-      <div className="p-5">
+      <div className="p-5 ">
         <div className="relative w-full mx-auto mb-5 rounded-sm sm:mb-10">
-          <div className="flex items-center bg-white rounded-md sm:rounded-none">
+          <div className="flex items-center rounded-md sm:rounded-none">
             <div className="flex-grow">
               {addSkillLoading ? (
                 <LoadingSpinnerUtil />
               ) : (
                 <SkillSearchInputComponent
+                  name="search"
+                  id="search"
+                  placeholder="Search Skill"
                   keyword={keyword}
                   setKeyword={setKeyword}
                   searchFn={searchSkillFn}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                  className="bg-input-gray border border-border-100 text-content-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                 />
               )}
             </div>
@@ -45,7 +48,7 @@ export default function UserAddSkillModalComponent() {
         </div>
 
         <p className="mb-5 text-lg font-secondary">Skill Suggestions</p>
-        <div className="p-5 border rounded-md bg-background-100">
+        <div className="p-5 border rounded-md border-border-100 bg-background-gray300">
           <SkillSuggestionsGridComponent
             skills={skills}
             keyword={keyword}

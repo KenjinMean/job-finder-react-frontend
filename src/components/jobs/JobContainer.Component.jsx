@@ -19,18 +19,25 @@ export default function JobContainerComponent({
   }, [company.company_logo]);
 
   return (
-    <div className="relative w-full gap-5 p-5 mt-5 transition-colors bg-white border rounded-md border-background-400 sm:flex xl:mt-5 hover:bg-zinc-100">
+    <div
+      className={
+        "relative w-full gap-5 p-5 mt-5 transition-colors border border-border-100 rounded-md text-content-black bg-background-gray300 sm:flex xl:mt-5 hover:bg-background-gray300_hoover"
+      }
+    >
+      {/* Company Image */}
       <div className="flex-shrink-0 mb-5 overflow-hidden rounded-full w-14 h-14">
         <Suspense fallback={<div>loading...</div>}>
           {memoizedCompanyLogo}
         </Suspense>
       </div>
-      <div className="flex flex-col w-full gap-1">
-        <h2 className="text-xl font-bold sm:text-xl font-primary">{title}</h2>
-        <p className="font-semibold ">
+      <div className="flex flex-col w-full gap-1 text-sm font-medium text-content-gray">
+        <h2 className="text-2xl font-bold sm:text-2xl text-content-black font-primary">
+          {title}
+        </h2>
+        <p className="">
           <span>{company.name}</span>
         </p>
-        <p className="flex flex-wrap items-center font-semibold text-foreground-300 empty:hidden">
+        <p className="flex flex-wrap items-center text-foreground-300 empty:hidden">
           <span className="flex gap-1 mr-3">
             <img
               src={memberIcon}
@@ -51,21 +58,18 @@ export default function JobContainerComponent({
           )}
 
           {location && (
-            <span className="flex items-center ">
+            <span className="flex items-center">
               <img src={locationIcon} alt="Location icon" className="w-4 h-4" />
               {location}
             </span>
           )}
         </p>
 
-        <div className="sm:flex sm:items-baseline sm:justify-between">
-          <div className="flex flex-wrap gap-1 text-sm font-bold text-gray-500">
+        <div className="text-sm font-semibold sm:flex sm:items-baseline sm:justify-between">
+          <div className="flex flex-wrap gap-1 text-content-black">
             {job_types.map((jobType, index) => (
               <Fragment key={index}>
-                <span
-                  key={index}
-                  className="px-2 border rounded-full bg-background-blue text-foreground-400"
-                >
+                <span key={index} className="px-2 rounded-full bg-accent-100">
                   {jobType.job_type}
                 </span>
                 {index !== job_types.length - 1 && (

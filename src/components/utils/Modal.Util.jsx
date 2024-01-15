@@ -12,6 +12,7 @@ import { ModalVariants } from "../../constants/classVariants.Constants";
 
 import { useModalScrollLock } from "../../hooks/useModalScrollLock";
 import { useModalExitHandler } from "../../hooks/useOverlayFunctions";
+import { useThemeStore } from "../../services/state/ThemeStore";
 
 import BackdropUtil from "./Backdrop.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
@@ -25,6 +26,7 @@ const ModalUtil = ({
   handleCloseModal,
   ...props
 }) => {
+  const { isLight } = useThemeStore();
   const mountElement = document.getElementById("overlays");
 
   // lock scrolling when modal active
@@ -51,6 +53,7 @@ const ModalUtil = ({
         onClick={handleBackdropClick}
         {...props}
         className="fixed inset-0 z-20 flex items-start justify-center overflow-y-auto sm:p-5 modal-backdrop"
+        data-theme={isLight ? "light" : "dark"}
       >
         <div className={cn(ModalVariants({ size, className }))}>
           {modalTitle && (

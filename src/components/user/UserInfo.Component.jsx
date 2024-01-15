@@ -13,7 +13,7 @@ export default function UserInfoComponent() {
   const { data: userInfo } = useFetchtUserInfo();
 
   return (
-    <section className="relative w-full overflow-hidden sm:rounded-lg bg-slate-200">
+    <section className="relative w-full overflow-hidden border border-border-100 sm:rounded-lg bg-background-gray200 text-content-black">
       {/* view Cover Image */}
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.cover_image}
@@ -26,7 +26,7 @@ export default function UserInfoComponent() {
         to={useOpenModalOverlay(UserModals.userProfileImageViewModal.name)}
         className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-slate-200"
       />
-      <div className="relative p-5 border">
+      <div className="relative p-5">
         <div className="flex gap-1 mt-10 text-xl font-bold">
           <p>
             {`${userInfo?.first_name} 

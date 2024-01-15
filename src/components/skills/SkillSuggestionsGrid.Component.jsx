@@ -24,7 +24,7 @@ export default function SkillSuggestionsGridComponent({
               skills.map((skill) => (
                 <li key={skill.id}>
                   <button
-                    className="px-3 py-1 transition-all border border-gray-500 rounded-full hover:bg-indigo-500 hover:text-white"
+                    className="px-3 py-1 transition-all border rounded-full bg-background-gray100 border-border-100 hover:bg-accent-100 hover:text-content-black"
                     onClick={() => handleSuggestionClick(skill.id)}
                   >
                     {skill.name}

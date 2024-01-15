@@ -38,7 +38,7 @@ export default function JobListingComponent() {
                 >
                   <button
                     onClick={() => console.log("clicked")}
-                    className="absolute z-10 p-1 transition-all duration-300 bg-white border rounded-full right-5 top-5 hover:bg-background-200 "
+                    className="absolute z-10 p-1 transition-all duration-300 bg-white border rounded-full right-5 top-5 "
                   >
                     <img src={menuIcon} alt="Menu icon" className="w-5 h-5" />
                   </button>
