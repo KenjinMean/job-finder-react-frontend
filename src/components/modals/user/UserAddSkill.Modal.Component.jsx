@@ -1,19 +1,25 @@
 // MODAL SOURCE: https://www.creative-tim.com/learning-lab/tailwind-starter-kit/documentation/react/modals/regular
 import React, { useState } from "react";
 
-import { useUserAddSkill } from "../../../services/api/useSkillRequestHandler.js";
+import {
+  useFetchUserSkills,
+  useUserAddSkill,
+} from "../../../services/api/useSkillRequestHandler.js";
 import { useSearchSkill } from "../../../services/api/useSkillRequestHandler.js";
 
-import SkillSearchInputComponent from "../../skills/SkillSearchInput.Component.jsx";
-import SkillSuggestionsGridComponent from "../../skills/SkillSuggestionsGrid.Component.jsx";
-import LoadingSpinnerUtil from "../../utils/LoadersSpinners/LoadingSpinnder.Util.jsx";
 import ModalUtil from "../../utils/Modal.Util.jsx";
+import LinkEditUiComponent from "../../UI/LinkEdit.Ui.Component.jsx";
+import SkillSearchInputComponent from "../../skills/SkillSearchInput.Component.jsx";
+import LoadingSpinnerUtil from "../../utils/LoadersSpinners/LoadingSpinnder.Util.jsx";
+import SkillSuggestionsGridComponent from "../../skills/SkillSuggestionsGrid.Component.jsx";
+
+import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
 export default function UserAddSkillModalComponent() {
   const [keyword, setKeyword] = useState("");
 
   const {
-    data: skills,
+    data: skillSuggestions,
     isFetching: fetchingSkill,
     refetch: searchSkillFn,
   } = useSearchSkill(keyword, setKeyword);
@@ -21,40 +27,49 @@ export default function UserAddSkillModalComponent() {
   const { isLoading: addSkillLoading, mutate: addSkillMutation } =
     useUserAddSkill();
 
+  const { data: userSkills } = useFetchUserSkills();
+
   return (
     <ModalUtil modalTitle="Add Skill">
       {/*content*/}
 
       {/* body */}
       <div className="p-5 ">
-        <div className="relative w-full mx-auto mb-5 rounded-sm sm:mb-10">
-          <div className="flex items-center rounded-md sm:rounded-none">
-            <div className="flex-grow">
-              {addSkillLoading ? (
-                <LoadingSpinnerUtil />
-              ) : (
-                <SkillSearchInputComponent
-                  name="search"
-                  id="search"
-                  placeholder="Search Skill"
-                  keyword={keyword}
-                  setKeyword={setKeyword}
-                  searchFn={searchSkillFn}
-                  className="bg-input-gray border border-border-100 text-content-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                />
-              )}
-            </div>
-          </div>
+        <div className="flex items-center mb-5 rounded-md sm:rounded-none sm:mb-10">
+          {addSkillLoading ? (
+            <LoadingSpinnerUtil />
+          ) : (
+            <SkillSearchInputComponent
+              name="search"
+              id="search"
+              placeholder="Search Skill"
+              keyword={keyword}
+              setKeyword={setKeyword}
+              searchFn={searchSkillFn}
+              className="bg-input-gray border border-border-100 text-content-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+            />
+          )}
         </div>
 
-        <p className="mb-5 text-lg font-secondary">Skill Suggestions</p>
+        <h2 className="mb-2 text-lg font-secondary">Skill Suggestions</h2>
         <div className="p-5 border rounded-md border-border-100 bg-background-gray300">
           <SkillSuggestionsGridComponent
-            skills={skills}
+            skills={skillSuggestions}
             keyword={keyword}
             addSkillFn={addSkillMutation}
             isFetchingSuggestions={fetchingSkill}
           />
+        </div>
+
+        <h2 className="mt-5 mb-2 text-lg sm:mt-10 font-secondary">My Skills</h2>
+        <div className="relative flex flex-col p-5 border rounded-md bg-background-gray200 text-md border-border-100">
+          <LinkEditUiComponent
+            className="absolute top-5 right-5"
+            to={userRoutes.userEditSkillPage}
+          />
+          {userSkills.map((skill) => {
+            return <span key={skill.id}>{skill.name}</span>;
+          })}
         </div>
       </div>
     </ModalUtil>

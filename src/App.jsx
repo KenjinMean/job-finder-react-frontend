@@ -32,7 +32,7 @@ function App() {
           <meta property="og:type" content="website" />
           <meta http-equiv="Content-Security-Policy" content={cspConfig} />
         </Helmet>
-        <div className="bg-background-white font-primary">
+        <div className="bg-background-white font-primary text-content-black">
           <RouterProvider router={router} />
         </div>
       </Fragment>

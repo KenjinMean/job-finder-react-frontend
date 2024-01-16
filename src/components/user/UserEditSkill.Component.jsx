@@ -3,9 +3,9 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
+import { userRoutes } from "../../constants/RoutesPath.Constants";
 
 import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
-import { userRoutes } from "../../constants/RoutesPath.Constants";
 import {
   useAsyncRemoveUserSkill,
   useFetchUserSkills,
@@ -27,7 +27,7 @@ export default function UserEditSkillComponent() {
   };
 
   return (
-    <div className="p-5 ">
+    <div className="p-5 text-content-black">
       <div className="flex justify-between">
         <button onClick={() => navigate(userRoutes.userProfilePage)}>
           Go back

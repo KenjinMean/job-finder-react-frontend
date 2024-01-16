@@ -15,7 +15,7 @@ export default function UserAboutComponent() {
     useTruncatedElement(ref);
 
   return (
-    <section className="relative w-full p-5 overflow-hidden border rounded-lg text-content-black border-border-100 bg-background-gray200">
+    <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg text-content-black border-border-100 bg-background-gray200">
       <h2 className="text-2xl font-semibold">About</h2>
 
       <div className="absolute flex items-center gap-1 right-5 top-5">
@@ -32,7 +32,7 @@ export default function UserAboutComponent() {
         {isTruncated && (
           <button
             onClick={toggleIsShowingMore}
-            className="text-sm text-slate-600 hover:text-indigo-500"
+            className="text-sm text-content-gray hover:text-indigo-500"
           >
             {isShowingMore ? "...see less" : "...see more"}
           </button>

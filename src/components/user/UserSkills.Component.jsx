@@ -14,7 +14,7 @@ export default function UserSkillsComponent() {
   const { data: userSkills } = useFetchUserSkills();
 
   return (
-    <section className="relative w-full p-5 overflow-hidden border rounded-lg bg-background-gray200 border-border-100 text-content-black">
+    <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg bg-background-gray200 border-border-100 text-content-black">
       <h2 className="text-2xl font-semibold">Skills</h2>
       <ul className="flex flex-col">
         {userSkills?.map((skill) => {

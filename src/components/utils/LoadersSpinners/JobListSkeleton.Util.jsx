@@ -16,8 +16,9 @@ export default function JobListSkeletonUtil() {
       initial="initial"
       animate="animate"
       variants={containerAnimation}
+      className="mt-5 overflow-hidden border rounded-md bg-background-gray200 border-border-100 "
     >
-      <div className="flex flex-col gap-2 p-5 mt-5 border rounded-md bg-background-gray300 border-border-100">
+      <div className="flex flex-col gap-2 p-5 ">
         <div className={`w-${getRandomWidth()} h-10 rounded-md pulse`}></div>
         <div className={`w-${getRandomWidth()} h-3 rounded-md pulse`}></div>
         <div className={`w-${getRandomWidth()} h-3 rounded-md pulse`}></div>

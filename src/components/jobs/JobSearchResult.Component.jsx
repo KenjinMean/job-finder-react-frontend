@@ -91,7 +91,7 @@ export default function JobSearchResultComponent() {
       )}
 
       {!hasNextPage && !isFetching && !isFetchingNextPage && (
-        <div className="w-full mt-5 text-lg font-semibold text-center text-foreground-300">
+        <div className="w-full mt-5 text-lg font-semibold text-center text-content-black">
           No more jobs available for the search: {params.query}
         </div>
       )}

@@ -31,12 +31,16 @@ export default function JobContainerComponent({
         </Suspense>
       </div>
       <div className="flex flex-col w-full gap-1 text-sm font-medium text-content-gray">
+        {/* Job Title */}
         <h2 className="text-2xl font-bold sm:text-2xl text-content-black font-primary">
           {title}
         </h2>
+        {/* Company Name */}
         <p className="">
           <span>{company.name}</span>
         </p>
+
+        {/* Job Partial Details */}
         <p className="flex flex-wrap items-center text-foreground-300 empty:hidden">
           <span className="flex gap-1 mr-3">
             <img
@@ -56,7 +60,6 @@ export default function JobContainerComponent({
               {formatSalary(salary)}
             </span>
           )}
-
           {location && (
             <span className="flex items-center">
               <img src={locationIcon} alt="Location icon" className="w-4 h-4" />
@@ -65,6 +68,7 @@ export default function JobContainerComponent({
           )}
         </p>
 
+        {/* Job Types */}
         <div className="text-sm font-semibold sm:flex sm:items-baseline sm:justify-between">
           <div className="flex flex-wrap gap-1 text-content-black">
             {job_types.map((jobType, index) => (
@@ -78,6 +82,8 @@ export default function JobContainerComponent({
               </Fragment>
             ))}
           </div>
+
+          {/* Time Created */}
           <p className="mt-2 font-bold text-foreground-300">
             {getElapsedTime(created_at)}
           </p>
