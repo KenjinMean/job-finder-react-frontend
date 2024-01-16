@@ -11,7 +11,7 @@ export default function RegisterPasswordConfirmationInputComponent({
   return (
     <div>
       <input
-        className="w-full px-8 py-4 mt-5 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
+        className="w-full px-8 py-4 mt-5 text-sm font-medium border rounded-lg border-border-100 bg-input-gray placeholder-content-gray focus:ring-blue-500 focus:border-blue-500"
         type={showPassword ? "text" : "password"}
         name="password_confirmation"
         placeholder="Confirm Password"

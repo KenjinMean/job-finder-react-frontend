@@ -31,17 +31,17 @@ export default function RegisterComponent() {
   return (
     <Fragment>
       <PageTitleUtil title="Register | JobFinder" />
-      <div className="p-6 sm:p-12">
+      <div className="p-12 text-content-black">
         <Link to={jobRoutes.jobListingPage}>
           <div className="flex justify-center">
             <img src={appLogo} alt="" />
           </div>
         </Link>
-        <div className="flex flex-col items-center mt-12">
+        <div className="flex flex-col items-center mt-6 sm:mt-12">
           <h1 className="text-2xl font-extrabold xl:text-3xl">
             Sign up for Job Finder
           </h1>
-          <div className="flex-1 w-full mt-8">
+          <div className="flex-1 w-full mt-2 sm:mt-8">
             <div className="max-w-xs mx-auto">
               <AuthErrorUiComponent
                 error={isError}

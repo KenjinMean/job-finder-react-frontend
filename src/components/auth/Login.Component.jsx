@@ -45,14 +45,14 @@ export default function LoginComponent() {
   return (
     <Fragment>
       <PageTitleUtil title="Login" />
-      <div className="p-6 sm:p-12 ">
+      <div className="p-12">
         <Link to={jobRoutes.jobListingPage}>
           <div className="flex justify-center">
             <img src={appLogo} alt="" />
           </div>
         </Link>
 
-        <div className="flex flex-col items-center mt-12">
+        <div className="flex flex-col items-center mt-6 sm:mt-12">
           <AuthErrorComponent
             error={socialServiceLoginError}
             errorMessage={socialServiceLoginError}
@@ -65,7 +65,7 @@ export default function LoginComponent() {
               getGithubAuthURL={getGithubAuthURL}
               getGoogleAuthURL={getGoogleAuthURL}
             />
-            <div className="my-12 text-center border-b">
+            <div className="my-6 text-center border-b sm:my-12">
               <div className="inline-block px-2 text-sm font-medium leading-none tracking-wide transform translate-y-1/2 text-content-gray bg-background-gray300">
                 Or sign up with e-mail
               </div>

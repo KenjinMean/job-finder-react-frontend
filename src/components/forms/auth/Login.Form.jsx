@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 
 import { authRoutes } from "../../../constants/RoutesPath.Constants";
 
-import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
 import TermsServices from "../../auth/TermsServices";
-import LabeledTextInputUiCoponent from "../../UI/LabeledTextInput.Ui.Component";
+import LoadingSpinnerUtil from "../../../components/utils/LoadersSpinners/LoadingSpinnder.Util";
 
 export default function LoginForm({
   loginMutation,
@@ -30,7 +29,7 @@ export default function LoginForm({
     <form onSubmit={handleLogin}>
       <div className="max-w-xs mx-auto mt-5">
         <input
-          className="w-full px-8 py-4 text-sm font-medium placeholder-gray-500 border rounded-lg text-content-black border-border-100 bg-input-gray focus:outline-none focus:border-gray-400 "
+          className="w-full px-8 py-4 text-sm font-medium placeholder-gray-500 border rounded-lg text-content-black border-border-100 bg-input-gray focus:ring-blue-500 focus:border-blue-500 "
           type="email"
           ref={emailRef}
           placeholder="Email"
@@ -40,7 +39,7 @@ export default function LoginForm({
           required
         />
         <input
-          className="w-full px-8 py-4 mt-5 text-sm font-medium placeholder-gray-500 border rounded-lg text-content-black border-border-100 bg-input-gray focus:outline-none focus:border-gray-400 "
+          className="w-full px-8 py-4 mt-5 text-sm font-medium placeholder-gray-500 border rounded-lg text-content-black border-border-100 bg-input-gray focus:ring-blue-500 focus:border-blue-500 "
           type="password"
           ref={passwordRef}
           placeholder="Password"

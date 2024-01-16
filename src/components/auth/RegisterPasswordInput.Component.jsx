@@ -20,7 +20,7 @@ export default function RegisterPasswordInputComponent({
     <div className="relative">
       <input
         className={
-          "w-full px-8 py-4 mt-5 text-sm font-medium placeholder-gray-500 bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-400 focus:bg-white"
+          "w-full px-8 py-4 mt-5 text-sm font-medium placeholder-content-gray bg-input-gray border border-border-100 rounded-lg focus:ring-blue-500 focus:border-blue-500 "
         }
         type={showPassword ? "text" : "password"}
         name="password"

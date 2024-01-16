@@ -113,7 +113,7 @@ export default function RegisterForm({
           <path d="M20 8v6M23 11h-6" />
         </svg>
       </AuthSubmitButtonComponent>
-      <p className="px-2 mt-5 font-medium leading-none tracking-wide text-center text-gray-600 transform translate-y-1/2 bg-white ">
+      <p className="px-2 mt-5 font-medium leading-none tracking-wide text-center transform translate-y-1/ text-content-gray ">
         Alrady have an account?{" "}
         <Link
           to={authRoutes.authLoginPage}
