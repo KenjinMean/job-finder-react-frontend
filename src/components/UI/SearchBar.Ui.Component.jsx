@@ -46,17 +46,17 @@ export default function SearchBarUiComponent({
         />
       </div>
 
-      <div className="sm:absolute end-2.5 bottom-2.5 flex flex-col gap-2 mt-5 sm:flex-row">
+      <div className="sm:absolute end-2.5 bottom-2.5 flex flex-col gap-2 mt-2 sm:flex-row">
         <button
           type="submit"
-          className="px-4 py-2 text-sm font-medium transition-all rounded-lg text-content-black_inverted hover:text-content-black bg-accent-300 hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-300 hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-blue-300 "
           onClick={handleButtonClear}
         >
           Clear
         </button>
         <button
           type="submit"
-          className="px-4 py-2 text-sm font-medium transition-all rounded-lg text-content-black_inverted hover:text-content-black bg-accent-purple hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-purple hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-blue-300 "
           onClick={handleSearch}
         >
           Search
