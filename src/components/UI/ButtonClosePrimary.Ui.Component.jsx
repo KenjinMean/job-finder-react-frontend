@@ -9,7 +9,7 @@ export default function ButtonClosePrimaryUiComponent({
 }) {
   return (
     <button
-      className="p-1 transition-all bg-transparent rounded-full hover:bg-slate-200"
+      className="p-1 transition-all bg-transparent border rounded-full hover:bg-slate-200 border-border-100"
       {...restProps}
     >
       <img className="block w-5 h-5" src={close} alt="close" />
