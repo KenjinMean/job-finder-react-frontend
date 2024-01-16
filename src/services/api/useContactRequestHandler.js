@@ -1,9 +1,10 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import axiosClient from "../../axios-client";
-import { useAuthenticationStore } from "../state/AuthenticationStore";
-import { toMilliseconds } from "../../utils/toMilliseconds";
 import { useNavigate } from "react-router-dom";
+import axiosClient from "../../axios-client";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
+import { toMilliseconds } from "../../utils/toMilliseconds";
 import { userRoutes } from "../../constants/RoutesPath.Constants";
+import { useAuthenticationStore } from "../state/AuthenticationStore";
 
 const fetchUserContact = () => {
   return axiosClient.get("/user-contact/show");
@@ -15,13 +16,11 @@ const updateUserContact = (payload) => {
 
 export const useFetchUserContact = () => {
   const { authenticatedUser } = useAuthenticationStore();
-  const { setAuthenticatedUserUserInfo } = useAuthenticationStore();
 
   return useQuery({
     queryKey: ["fetchUserContact", authenticatedUser.id],
     queryFn: async () => {
       const response = await fetchUserContact();
-      setAuthenticatedUserUserInfo(response.data);
       return response;
     },
     select: (data) => data?.data,
