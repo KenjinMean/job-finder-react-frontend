@@ -46,17 +46,6 @@
     --color-border-1: 209 213 219;
   }
 
-  /* @media (prefers-color-scheme: dark) {
-    :root {
-      --color-bg-1: 00 00 00;
-      --color-bg-2: 218 221 228;
-      --color-content-1: 255 255 255;
-      --color-content-2: 78 28 149;
-      --color-accent-1: 107 43 217;
-      --color-accent-2: 78 28 149;
-    }
-  } */
-
   [data-theme="dark"] {
     /* background */
     --color-white: 17 24 39;

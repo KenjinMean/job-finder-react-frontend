@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Menu } from "@headlessui/react";
 import { Link } from "react-router-dom";
 
+import { closeIcon } from "../../assets/icons";
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 import {
   jobRoutes,
@@ -10,10 +11,14 @@ import {
   authRoutes,
 } from "../../constants/RoutesPath.Constants";
 
+import { GlobalModals } from "../../constants/ModalNames.Constants";
+
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
+import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import ImageUrlLoaderUtil from "../../components/utils/ImageUrlLoader.Util";
+import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
 
 export default function HeaderNavComponent() {
   const mainMenuRef = useRef(null);
@@ -61,11 +66,11 @@ export default function HeaderNavComponent() {
 
         <Menu
           as="div"
-          className={`flex items-center  ${token ? "md:order-2" : ""}`}
+          className={`flex items-center  ${token ? "sm:order-2" : ""}`}
         >
           {token && (
             <>
-              <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+              <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full sm:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                 {user_info && (
                   <ImageUrlLoaderUtil
                     imageUrl={user_info?.profile_image}
@@ -75,10 +80,24 @@ export default function HeaderNavComponent() {
               </Menu.Button>
               <Menu.Items
                 as="div"
-                className="absolute right-0 z-50 w-full max-w-xs p-5 my-4 overflow-hidden text-base list-none border rounded-md border-border-100 text-content-black bg-background-gray300 border-foreground-300 top-14"
+                className="fixed inset-0 z-50 p-5 overflow-hidden text-base list-none border rounded-sm sm:h-max sm:left-auto sm:absolute sm:max-w-xs border-border-100 text-content-black bg-background-gray300 border-foreground-300 sm:top-14"
                 id="user-dropdown"
               >
-                <div className="">
+                <Menu.Item className="absolute sm:hidden top-5 right-5">
+                  {({ close }) => (
+                    <button
+                      onClick={close}
+                      className="p-1 transition-all bg-transparent border rounded-full hover:bg-slate-200 border-border-100"
+                    >
+                      <img
+                        className="block w-5 h-5"
+                        src={closeIcon.path}
+                        alt={closeIcon.attribution}
+                      />
+                    </button>
+                  )}
+                </Menu.Item>
+                <div className="mt-16">
                   <span className="block text-lg font-semibold">
                     {user_info?.first_name} {user_info?.last_name}
                   </span>
@@ -111,7 +130,7 @@ export default function HeaderNavComponent() {
             type="button"
             ref={mainMenuButtonRef}
             onClick={() => setIsMainMenuOpen((prev) => !prev)}
-            className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-user"
             aria-expanded="false"
           >
@@ -136,18 +155,25 @@ export default function HeaderNavComponent() {
 
         <div
           ref={mainMenuRef}
-          className={` ml-0 md:ml-auto mt-16 md:mt-0 w-full md:flex md:w-auto md:order-1 ${
+          className={`fixed inset-0 z-50 flex items-center sm:order-1 sm:flex h-screen bg-background-gray300 sm:relative sm:bg-transparent sm:h-auto sm:ml-auto ${
             isMainMenuOpen ? "" : "hidden"
           }`}
           id="navbar-user"
         >
-          <ul className="flex flex-col items-center w-full py-5 text-2xl font-medium text-center bg-white rounded-sm text-accent-200 md:gap-0 md:text-lg md:p-0 md:flex-row md:mt-0 md:border-0 md:bg-transparent ">
+          <div className="absolute top-5 right-5 sm:hidden">
+            <ButtonClosePrimaryUiComponent onClick={() => closeMainMenu()} />
+          </div>
+
+          <ul className="flex flex-col items-center w-full py-5 text-2xl font-medium text-center rounded-sm bg-background-gray300 text-accent-200 sm:gap-0 sm:text-lg sm:p-0 sm:flex-row sm:mt-0 sm:border-0 sm:bg-transparent ">
             <li className="w-full p-2 font-semibold ">
               <a href="#">About</a>
             </li>
             <li className="w-full p-2 font-semibold ">
-              <a href="#">Services</a>
+              <Link to={useOpenModalOverlay(GlobalModals.settingsModal.name)}>
+                Options
+              </Link>
             </li>
+
             {!token && (
               <li className="w-full p-2 font-semibold ">
                 <Link to={authRoutes.authLoginPage}>login</Link>

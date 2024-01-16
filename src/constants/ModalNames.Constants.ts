@@ -2,6 +2,7 @@ import UserInfoEditPage from "../pages/UserInfoEdit.Page"
 import UserAddSkillPage from "../pages/UserAddSkill.Page"
 import UserAboutEditPage from "../pages/UserAboutEdit.Page"
 
+import SettingsModalComponent from "../components/modals/Settings.Modal.Component"
 import UserContactEditModalComponent from "../components/modals/user/UserContactEdit.Modal.Component"
 import UserAddSkillErrorModaComponent from "../components/modals/user/UserAddSkillError.Modal.Component"
 import UserCoverImageViewModalComponent from "../components/modals/user/UserCoverImageView.Modal.Component"
@@ -50,5 +51,21 @@ import UserProfileImageUpdatePreviewModalComponent from "../components/modals/us
   };
 
   const UserModals: ModalNamesType = Modals;
-  
   export { UserModals };
+
+
+
+  type GlobalModalsType = {
+    settingsModal: { name: string; component: React.ComponentType<any> };
+  };
+
+  const globalModals: GlobalModalsType = {
+    settingsModal: createModal("settingsModal", SettingsModalComponent),
+   };
+
+  type GlobalModalNamesType = {
+    [key in keyof GlobalModalsType]: { name: string; component: React.ComponentType<any> };
+  }
+
+  const GlobalModals: GlobalModalNamesType = globalModals;
+  export {GlobalModals}
