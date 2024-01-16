@@ -11,8 +11,12 @@ import JobContainerComponent from "./JobContainer.Component";
 
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
+import { useOpenDialog } from "../../hooks/useOverlayFunctions";
+import { dialogNames } from "../../constants/DialogNames.Constants";
 
 export default function JobListingComponent() {
+  const openDialog = useOpenDialog();
+
   const { data, hasNextPage, fetchNextPage, isFetching, isFetchingNextPage } =
     useFetchJobsInfinite();
 
@@ -37,7 +41,9 @@ export default function JobListingComponent() {
                   ref={isLastJob ? latJobRef : null}
                 >
                   <button
-                    onClick={() => console.log("clicked")}
+                    onClick={() =>
+                      openDialog(dialogNames.notImplementedDialog.name)
+                    }
                     className="absolute z-10 p-1 transition-all duration-300 bg-white border rounded-full right-5 top-5 "
                   >
                     <img src={menuIcon} alt="Menu icon" className="w-5 h-5" />
@@ -55,7 +61,7 @@ export default function JobListingComponent() {
       {isFetchingNextPage && <JobListSkeletonUtil />}
 
       {!hasNextPage && !isFetching && !isFetchingNextPage && (
-        <div className="w-full mt-5 text-lg font-semibold text-center text-foreground-300">
+        <div className="w-full mt-5 text-lg font-semibold text-center text-content-black">
           No more jobs available
         </div>
       )}

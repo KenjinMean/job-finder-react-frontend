@@ -227,9 +227,9 @@ export const useModalExitHandler = (isInputChanged) => {
  * }
  */
 
-export const useOpenDialog = (dialogKey) => {
+export const useOpenDialog = () => {
   const { setDialogStates } = useOverlayStateStore();
-  const openDialog = () => {
+  const openDialog = (dialogKey) => {
     setDialogStates(dialogKey, true);
   };
 

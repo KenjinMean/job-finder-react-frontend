@@ -17,6 +17,7 @@ export default function UserContactEditForm({
   handleSubmit,
   handleInputChange,
 }) {
+  const openDialog = useOpenDialog();
   const { authenticatedUser } = useAuthenticationStore();
 
   return (
@@ -27,7 +28,7 @@ export default function UserContactEditForm({
             Email
           </span>
           <Link
-            onClick={useOpenDialog(dialogNames.notImplementedDialog.name)}
+            onClick={() => openDialog(dialogNames.notImplementedDialog.name)}
             className="mb-2 font-medium text-blue-500"
           >
             {authenticatedUser.email}
