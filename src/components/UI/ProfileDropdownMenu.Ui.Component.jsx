@@ -21,7 +21,7 @@ export default function ProfileDropdownMenuUiComponent() {
 
   return (
     <Menu>
-      <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full sm:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+      <Menu.Button className="flex w-12 h-12 mr-3 overflow-hidden text-sm border rounded-full sm:mr-0 focus:ring-4 focus:outline-none focus:ring-accent-blue500">
         {authenticatedUser?.user_info && (
           <ImageUrlLoaderUtil
             imageUrl={authenticatedUser?.user_info?.profile_image}
@@ -61,7 +61,7 @@ export default function ProfileDropdownMenuUiComponent() {
         <Menu.Item
           as={Link}
           to={userRoutes.userProfilePage}
-          className="block px-4 py-2 mt-5 text-xl font-medium text-center transition-all rounded-full text-content-black hover:text-content-black_inverted bg-accent-310 hover:bg-accent-300 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+          className="block px-4 py-2 mt-5 text-xl font-medium text-center transition-all rounded-full text-content-black hover:text-content-black_inverted bg-accent-310 hover:bg-accent-300 focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
         >
           View Profile
         </Menu.Item>

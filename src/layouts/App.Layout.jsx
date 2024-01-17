@@ -4,7 +4,6 @@ import { Outlet, ScrollRestoration } from "react-router-dom";
 import { userRoutes } from "../constants/RoutesPath.Constants";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
-import usePreserveScrollPositionForRoute from "../hooks/usePreserveScrollForRoute";
 import DialogProvider from "../services/providers/DialogProvider.jsx";
 import GlobalModalProvider from "../services/providers/GlobalModalProvider.jsx";
 

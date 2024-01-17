@@ -13,7 +13,7 @@ export default function HeaderComponent() {
   const location = useLocation();
 
   return (
-    <header className="p-5 py-8 bg-gradient-to-r from-background-gray100 to-background-gray200 lg:px-10">
+    <header className="p-5 py-8 bg-gradient-to-r from-background-gray300 to-background-gray200 lg:px-10">
       <MaxWidthWrapperUtil>
         <HeaderNavComponent />
         {location.pathname === `${baseUrl}jobs` ||

@@ -46,7 +46,10 @@ export default function LoginComponent() {
     <Fragment>
       <PageTitleUtil title="Login" />
       <div className="p-12">
-        <Link to={jobRoutes.jobListingPage}>
+        <Link
+          to={jobRoutes.jobListingPage}
+          className="block focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
+        >
           <div className="flex justify-center">
             <img src={appLogo} alt="" />
           </div>

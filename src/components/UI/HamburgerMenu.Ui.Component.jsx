@@ -8,7 +8,7 @@ const HamburgerMenuUiComponent = React.forwardRef(
         type="button"
         data-collapse-toggle={ariaControls}
         onClick={onClick}
-        className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm rounded-lg sm:hidden text-content-gray hover:bg-background-gray200_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
         aria-controls={ariaControls}
         aria-expanded={ariaExpanded}
       >

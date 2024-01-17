@@ -40,7 +40,7 @@ export default function SearchBarUiComponent({
           type="search"
           id={id}
           name={name}
-          className="block w-full p-4 text-sm border rounded-lg border-border-100 text-content-black ps-10 bg-background-gray300 focus:ring-blue-500 focus:border-blue-500"
+          className="block w-full p-4 text-sm border rounded-lg border-border-100 text-content-black ps-10 bg-background-gray300 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           placeholder={placeholder || "Search"}
           {...inputProps}
         />
@@ -49,14 +49,14 @@ export default function SearchBarUiComponent({
       <div className="sm:absolute end-2.5 bottom-2.5 flex flex-col gap-2 mt-2 sm:flex-row">
         <button
           type="submit"
-          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-300 hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-300 hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           onClick={handleButtonClear}
         >
           Clear
         </button>
         <button
           type="submit"
-          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-purple hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-blue-300 "
+          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-purple hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           onClick={handleSearch}
         >
           Search

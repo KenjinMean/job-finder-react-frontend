@@ -29,7 +29,7 @@ export default function LoginForm({
     <form onSubmit={handleLogin}>
       <div className="max-w-xs mx-auto mt-5">
         <input
-          className="w-full px-8 py-4 text-sm font-medium placeholder-gray-500 border rounded-lg text-content-black border-border-100 bg-input-gray focus:ring-blue-500 focus:border-blue-500 "
+          className="w-full px-8 py-4 text-sm font-medium border rounded-lg placeholder-content-gray text-content-black border-border-100 bg-input-gray focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
           type="email"
           ref={emailRef}
           placeholder="Email"
@@ -39,7 +39,7 @@ export default function LoginForm({
           required
         />
         <input
-          className="w-full px-8 py-4 mt-5 text-sm font-medium placeholder-gray-500 border rounded-lg text-content-black border-border-100 bg-input-gray focus:ring-blue-500 focus:border-blue-500 "
+          className="w-full px-8 py-4 mt-5 text-sm font-medium border rounded-lg placeholder-content-gray text-content-black border-border-100 bg-input-gray focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
           type="password"
           ref={passwordRef}
           placeholder="Password"
@@ -51,7 +51,7 @@ export default function LoginForm({
         <button
           type="submit"
           disabled={isLoginButtonDisabled}
-          className="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide text-gray-100 transition-all duration-300 ease-in-out bg-indigo-500 rounded-lg hover:bg-indigo-700 focus:shadow-outline focus:outline-none disabled:bg-slate-300"
+          className="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide transition-all duration-300 ease-in-out bg-indigo-500 rounded-lg text-content-white_stable hover:bg-indigo-700 focus:shadow-outline focus:ring-4 focus:outline-none focus:ring-accent-blue500 disabled:bg-slate-300"
         >
           {loginLoading ? (
             <LoadingSpinnerUtil size={6} />

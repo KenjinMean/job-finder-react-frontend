@@ -9,7 +9,7 @@ export default function RegisterEmailInputComponent({
   return (
     <div>
       <input
-        className="w-full px-8 py-4 mt-5 text-sm font-medium border rounded-lg border-border-100 placeholder-content-gray bg-input-gray focus:ring-blue-500 focus:border-blue-500"
+        className="w-full px-8 py-4 mt-5 text-sm font-medium border rounded-lg border-border-100 placeholder-content-gray bg-input-gray focus:outline-none focus:ring-4 focus:ring-accent-blue500"
         type="email"
         name="email"
         id="email"

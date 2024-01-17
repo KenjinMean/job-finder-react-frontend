@@ -42,10 +42,13 @@ export default function HeaderNavComponent() {
   }, []);
 
   return (
-    <nav className="relative bg-transparent border-gray-200">
+    <nav className="relative bg-transparent">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl gap-5 mx-auto">
         {/* App Logo */}
-        <Link to={jobRoutes.jobListingPage} className="flex items-center">
+        <Link
+          to={jobRoutes.jobListingPage}
+          className="flex items-center focus:ring-4 focus:outline-none focus:ring-accent-blue500"
+        >
           <img src={appLogo} className="h-14" alt="Flowbite Logo" />
         </Link>
 

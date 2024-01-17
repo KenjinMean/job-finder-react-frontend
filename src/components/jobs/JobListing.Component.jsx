@@ -44,11 +44,14 @@ export default function JobListingComponent() {
                     onClick={() =>
                       openDialog(dialogNames.notImplementedDialog.name)
                     }
-                    className="absolute z-10 p-1 transition-all duration-300 bg-white border rounded-full right-5 top-5 "
+                    className="absolute z-10 p-1 transition-all duration-300 bg-transparent border rounded-full hover:bg-background-gray_stable right-5 top-5 focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
                   >
                     <img src={menuIcon} alt="Menu icon" className="w-5 h-5" />
                   </button>
-                  <Link to={`${jobRoutes.jobDetailsPage}${job.slug}`}>
+                  <Link
+                    to={`${jobRoutes.jobDetailsPage}${job.slug}`}
+                    className="block rounded-md focus:ring-4 focus:outline-none focus:ring-accent-blue500 ring-offset-1"
+                  >
                     <JobContainerComponent job={job} />
                   </Link>
                 </div>

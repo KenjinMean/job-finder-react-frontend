@@ -21,18 +21,18 @@ export default function JobContainerComponent({
   return (
     <div
       className={
-        "relative w-full gap-5 p-5 mt-5 transition-colors border border-border-100 rounded-md text-content-black bg-background-gray300 sm:flex xl:mt-5 hover:bg-background-gray300_hoover"
+        "relative w-full gap-5 p-5 mt-2 transition-colors border border-border-100 rounded-md text-content-black bg-background-white200 sm:flex xl:mt-5 hover:bg-background-gray300_hoover"
       }
     >
       {/* Company Image */}
-      <div className="flex-shrink-0 mb-5 overflow-hidden rounded-full w-14 h-14">
+      <div className="flex-shrink-0 mb-2 overflow-hidden rounded-full sm:mb-5 w-14 h-14">
         <Suspense fallback={<div>loading...</div>}>
           {memoizedCompanyLogo}
         </Suspense>
       </div>
       <div className="flex flex-col w-full gap-1 text-sm font-medium text-content-gray">
         {/* Job Title */}
-        <h2 className="text-2xl font-bold sm:text-2xl text-content-black font-primary">
+        <h2 className="text-xl font-bold sm:text-2xl text-content-black font-primary">
           {title}
         </h2>
         {/* Company Name */}
@@ -41,8 +41,8 @@ export default function JobContainerComponent({
         </p>
 
         {/* Job Partial Details */}
-        <p className="flex flex-wrap items-center text-foreground-300 empty:hidden">
-          <span className="flex gap-1 mr-3">
+        <p className="flex flex-wrap items-center gap-2 text-content-black empty:hidden">
+          <span className="flex gap-1 px-2 py-1 border rounded-md bg-input-gray">
             <img
               src={memberIcon}
               alt="members count icon"
@@ -51,7 +51,7 @@ export default function JobContainerComponent({
             {company.company_size}
           </span>
           {salary && (
-            <span className="flex items-center mr-3">
+            <span className="flex gap-1 px-2 py-1 border rounded-md">
               <img
                 src={pesoIcon}
                 alt="Philippine peso icon"
@@ -61,7 +61,7 @@ export default function JobContainerComponent({
             </span>
           )}
           {location && (
-            <span className="flex items-center">
+            <span className="flex gap-1 px-2 py-1 border rounded-md">
               <img src={locationIcon} alt="Location icon" className="w-4 h-4" />
               {location}
             </span>
