@@ -34,13 +34,13 @@ export default function UserInfoComponent() {
               ${userInfo?.last_name}`}
           </p>
         </div>
-        <p className="max-w-xl">{userInfo?.headline}</p>
+        <p className="max-w-xl whitespace-pre-line">{userInfo?.headline}</p>
         <span>{userInfo?.location}</span>
+
         {/* edit link */}
         <LinkEditUiComponent
           className="absolute right-5 top-5"
           to={useOpenModalOverlay(UserModals.userInfoEditModal.name)}
-          preventScrollReset={true}
         />
       </div>
     </section>

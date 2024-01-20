@@ -35,7 +35,6 @@ export default function UserEditSkillComponent() {
         {/* add skill link */}
         <LinkAddUiComponent
           to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
-          preventScrollReset={true}
         />
       </div>
       <ul className="flex flex-col">

@@ -42,7 +42,6 @@ export default function UserAddSkillErrorModalComponent() {
         {/* go back to add skill modal button */}
         <LinkActionPrimaryUiComponent
           to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
-          preventScrollReset={true}
         >
           Go Back
         </LinkActionPrimaryUiComponent>

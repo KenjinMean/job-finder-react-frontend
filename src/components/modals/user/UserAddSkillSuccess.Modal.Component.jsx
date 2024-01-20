@@ -23,7 +23,6 @@ export default function UserAddSkillSuccessModalComponent() {
         {/* add more skill button */}
         <LinkActionPrimaryUiComponent
           to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
-          preventScrollReset={true}
         >
           Add more
         </LinkActionPrimaryUiComponent>

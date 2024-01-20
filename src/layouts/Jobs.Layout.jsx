@@ -9,7 +9,7 @@ export default function JobsLayout() {
   return (
     <Fragment>
       <HeaderComponent />
-      <main className="min-h-screen p-5 lg:px-10">
+      <main className="min-h-screen p-5">
         <MaxWidthWrapperUtil>
           <Outlet />
         </MaxWidthWrapperUtil>

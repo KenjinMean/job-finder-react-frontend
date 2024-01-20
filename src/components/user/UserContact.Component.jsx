@@ -56,7 +56,6 @@ export default function UserContactComponent() {
       <div className="absolute flex items-center gap-1 right-5 top-5">
         <LinkEditUiComponent
           to={useOpenModalOverlay(UserModals.userContactEditModal.name)}
-          // preventScrollReset={true}
         />
       </div>
     </section>

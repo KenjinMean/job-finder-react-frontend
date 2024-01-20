@@ -58,10 +58,7 @@ const ModalUtil = ({
           {modalTitle && (
             <div className="flex items-center justify-between p-5 overflow-hidden border-b border-border-100">
               <h2 className="text-xl">{modalTitle}</h2>
-              <ButtonClosePrimaryUiComponent
-                onClick={handleModalClose}
-                preventScrollReset={false}
-              />
+              <ButtonClosePrimaryUiComponent onClick={handleModalClose} />
             </div>
           )}
           {children}

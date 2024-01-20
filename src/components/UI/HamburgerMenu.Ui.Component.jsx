@@ -1,16 +1,15 @@
 import React from "react";
 
 const HamburgerMenuUiComponent = React.forwardRef(
-  ({ title, ariaControls, ariaExpanded, onClick }, ref) => {
+  ({ title, onClick, id, ...restProps }, ref) => {
     return (
       <button
         ref={ref}
         type="button"
-        data-collapse-toggle={ariaControls}
+        id={id}
         onClick={onClick}
-        className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm rounded-lg sm:hidden text-content-gray hover:bg-background-gray200_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
-        aria-controls={ariaControls}
-        aria-expanded={ariaExpanded}
+        className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm rounded-lg text-content-gray hover:bg-background-gray200_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
+        {...restProps}
       >
         <span className="sr-only">{title}</span>
         <svg

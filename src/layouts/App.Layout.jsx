@@ -14,6 +14,7 @@ export default function AppLayout() {
   setElementToScrollLockRef(elementToScrollLockRef);
 
   return (
+    // TRY Transfering this to the app and replace with fragment to remove unneccesarry dom node
     <div ref={elementToScrollLockRef}>
       {/*  SOURCE https://reactrouter.com/en/main/components/scroll-restoration */}
       {/* BUG: after sometime on the page the scroll reset do not work, solution is to open a new page */}

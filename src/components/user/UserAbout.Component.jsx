@@ -22,10 +22,12 @@ export default function UserAboutComponent() {
         {/* edit about link */}
         <LinkEditUiComponent
           to={useOpenModalOverlay(UserModals.userAboutEditModal.name)}
-          preventScrollReset={true}
         />
       </div>
-      <p ref={ref} className={`${!isShowingMore && "line-clamp-3"}`}>
+      <p
+        ref={ref}
+        className={`whitespace-pre-line ${!isShowingMore && "line-clamp-3"}`}
+      >
         {userInfo.about}
       </p>
       <div className="flex flex-row-reverse mt-2">

@@ -5,15 +5,15 @@ import { baseUrl } from "../../constants/RoutesPath.Constants";
 
 import MaxWidthWrapperUtil from "../../components/utils/MaxWidthWrapper.Util";
 
-import AutoCompleteSearchBarUiComponent from "../UI/AutoCompleteSearchBar.Ui.Component";
-import HeaderHeroBannerComponent from "./HeaderHeroBanner.Component";
 import HeaderNavComponent from "./HeaderNav.Component";
+import HeaderHeroBannerComponent from "./HeaderHeroBanner.Component";
+import AutoCompleteSearchBarUiComponent from "../UI/AutoCompleteSearchBar.Ui.Component";
 
 export default function HeaderComponent() {
   const location = useLocation();
 
   return (
-    <header className="p-5 py-8 bg-gradient-to-r from-background-gray300 to-background-gray200 lg:px-10">
+    <header className="p-5 py-8 bg-background-gray_50">
       <MaxWidthWrapperUtil>
         <HeaderNavComponent />
         {location.pathname === `${baseUrl}jobs` ||

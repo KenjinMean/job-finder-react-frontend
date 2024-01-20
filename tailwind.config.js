@@ -12,6 +12,16 @@ export default {
           white: "rgb(var(--color-white) / <alpha-value>)",
           white_inverted: "rgb(var(--color-white-inverted) / <alpha-value>)",
 
+          white200: "rgb(var(--color-white-200) / <alpha-value>)",
+          white200_inverted:
+            "rgb(var(--color-white-200-inverted) / <alpha-value>)",
+
+          gray_stable: "rgb(var(--gray-stable) / <alpha-value>)",
+
+          gray_50: "rgb(var(--color-gray-50) / <alpha-value>)",
+          gray_50_inverted:
+            "rgb(var(--color-gray-50-inverted) / <alpha-value>)",
+
           gray100: "rgb(var(--color-gray100) / <alpha-value>)",
           gray100_inverted:
             "rgb(var(--color-gray100-inverted) / <alpha-value>)",
@@ -35,6 +45,11 @@ export default {
           black_inverted:
             "rgb(var(--color-content-black-inverted) / <alpha-value>)",
 
+          black_stable:
+            "rgb(var(--color-content-black-stable) / <alpha-value>)",
+          white_stable:
+            "rgb(var(--color-content-white-stable) / <alpha-value>)",
+
           gray: "rgb(var(--color-content-gray) / <alpha-value>)",
           gray_inverted:
             "rgb(var(--color-content-gray-inverted) / <alpha-value>)",
@@ -52,6 +67,14 @@ export default {
           300: "rgb(var(--color-accent-300) / <alpha-value>)",
           301: "rgb(var(--color-accent-301) / <alpha-value>)",
           310: "rgb(var(--color-accent-310) / <alpha-value>)",
+
+          blue500: "rgb(var(--color-accent-blue-500) / <alpha-value>)",
+          blue600: "rgb(var(--color-accent-blue-600) / <alpha-value>)",
+          blue700: "rgb(var(--color-accent-blue-700) / <alpha-value>)",
+
+          light_indigo: "rgb(var(--color-accent-lightIndigo) / <alpha-value>)",
+          light_indigo_hover:
+            "rgb(var(--color-accent-lightIndigo_hoover) / <alpha-value>)",
         },
         border: {
           100: "rgb(var(--color-border-1) / <alpha-value>)",

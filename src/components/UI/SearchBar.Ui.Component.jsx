@@ -29,10 +29,7 @@ export default function SearchBarUiComponent({
             />
           </svg>
         </div>{" "}
-        <label
-          htmlFor={id}
-          className="mb-2 text-sm font-medium text-gray-900 sr-only"
-        >
+        <label htmlFor={id} className="mb-2 text-sm font-medium sr-only">
           Search
         </label>
         <input
@@ -40,7 +37,7 @@ export default function SearchBarUiComponent({
           type="search"
           id={id}
           name={name}
-          className="block w-full p-4 text-sm border rounded-lg border-border-100 text-content-black ps-10 bg-background-gray300 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
+          className="block w-full p-4 text-sm border rounded-lg border-border-100 text-content-black ps-10 bg-input-gray focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           placeholder={placeholder || "Search"}
           {...inputProps}
         />
@@ -49,14 +46,14 @@ export default function SearchBarUiComponent({
       <div className="sm:absolute end-2.5 bottom-2.5 flex flex-col gap-2 mt-2 sm:flex-row">
         <button
           type="submit"
-          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-300 hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
+          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-blue500 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           onClick={handleButtonClear}
         >
           Clear
         </button>
         <button
           type="submit"
-          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-purple hover:bg-accent-310 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
+          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-blue500 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           onClick={handleSearch}
         >
           Search

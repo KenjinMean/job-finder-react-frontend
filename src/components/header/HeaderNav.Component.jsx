@@ -7,7 +7,7 @@ import { jobRoutes } from "../../constants/RoutesPath.Constants";
 
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
-import MainMenuUiComponent from "../UI/MainMenu.Ui.Component";
+import MainMenuUiComponent from "../UI/MainMenu.Ui.Component.jsx";
 import HamburgerMenuUiComponent from "../UI/HamburgerMenu.Ui.Component";
 import ProfileDropdownMenuUiComponent from "../UI/ProfileDropdownMenu.Ui.Component";
 
@@ -22,6 +22,7 @@ export default function HeaderNavComponent() {
     setIsMainMenuOpen(false);
   };
 
+  // Close Main Menu if clicked outside
   useEffect(() => {
     const handleDocumentClick = (event) => {
       if (
@@ -49,29 +50,38 @@ export default function HeaderNavComponent() {
           to={jobRoutes.jobListingPage}
           className="flex items-center focus:ring-4 focus:outline-none focus:ring-accent-blue500"
         >
-          <img src={appLogo} className="h-14" alt="Flowbite Logo" />
+          <img src={appLogo} className="h-14" alt="Flowbite Logo/Home Page" />
         </Link>
 
         {/* Sub Navigations */}
-        <div className={`flex items-center  ${token ? "sm:order-2" : ""}`}>
+        <ul className={`flex items-center  ${token ? "sm:order-2" : ""}`}>
           {/* Profile Dropdown menu */}
-          {token && <ProfileDropdownMenuUiComponent />}
+          {token && (
+            <li>
+              <ProfileDropdownMenuUiComponent />
+            </li>
+          )}
+          <li className="sm:hidden">
+            <HamburgerMenuUiComponent
+              ref={mainMenuButtonRef}
+              id="menu-button"
+              title="Open Main Menu"
+              aria-controls="navbar-user"
+              data-collapse-toggle="navbar-user"
+              aria-expanded={isMainMenuOpen}
+              onClick={() => setIsMainMenuOpen((prev) => !prev)}
+            />
+          </li>
+        </ul>
 
-          <HamburgerMenuUiComponent
-            ref={mainMenuButtonRef}
-            title="Open Main Menu"
-            ariaControls="navbar-user"
-            ariaExpanded={isMainMenuOpen}
-            onClick={() => setIsMainMenuOpen((prev) => !prev)}
-          />
-        </div>
-
+        {/* TRANSFER THE ARIA ON THE RESTPROPS <</> */}
         {/* Main Navigation */}
         <MainMenuUiComponent
           id="navbar-user"
           ref={mainMenuRef}
           isMenuOpen={isMainMenuOpen}
           closeMenu={closeMainMenu}
+          role="menu"
         />
       </div>
     </nav>

@@ -23,37 +23,35 @@ export default function AutoCompleteSearchBarUiComponent() {
   } = useAutoCompleteSearchBarFunctions();
 
   return (
-    <div className="relative mx-auto mt-10 mb-5 rounded-sm sm:mb-10">
-      <div className="flex items-center gap-5 rounded-md sm:rounded-none">
-        <Menu
-          as="div"
-          ref={suggestionsDropdownRef}
-          className="flex-grow "
-          open={isSuggestionDropdownActive}
-        >
-          <SearchBarUiComponent
-            id="search"
-            name="name"
-            placeholder="Search Jobs"
-            inputRef={inputRef}
-            handleButtonClear={handleButtonClear}
-            handleSearch={handleSearch}
-            required
-            onFocus={handleInputFocus}
-            onKeyDown={handleSearchBarKeyDown}
-            onChange={(event) => handleInputChange(event)}
-            autoComplete="off"
-          />
+    <div className="relative flex items-center gap-5 mx-auto mt-10 rounded-md sm:rounded-none">
+      <Menu
+        as="div"
+        ref={suggestionsDropdownRef}
+        className="flex-grow"
+        open={isSuggestionDropdownActive}
+      >
+        <SearchBarUiComponent
+          id="search"
+          name="name"
+          placeholder="Search Jobs"
+          inputRef={inputRef}
+          handleButtonClear={handleButtonClear}
+          handleSearch={handleSearch}
+          required
+          onFocus={handleInputFocus}
+          onKeyDown={handleSearchBarKeyDown}
+          onChange={(event) => handleInputChange(event)}
+          autoComplete="off"
+        />
 
-          <Transition show={isSuggestionDropdownActive}>
-            <SearchSuggestionsUiComponent
-              searchSuggestions={searchSuggestions || []}
-              handleSuggestionClick={handleSuggestionClick}
-              selectedSuggestionIndex={selectedSuggestionIndex}
-            />
-          </Transition>
-        </Menu>
-      </div>
+        <Transition show={isSuggestionDropdownActive}>
+          <SearchSuggestionsUiComponent
+            searchSuggestions={searchSuggestions || []}
+            handleSuggestionClick={handleSuggestionClick}
+            selectedSuggestionIndex={selectedSuggestionIndex}
+          />
+        </Transition>
+      </Menu>
     </div>
   );
 }

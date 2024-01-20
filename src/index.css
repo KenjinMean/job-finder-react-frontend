@@ -8,85 +8,146 @@
 
 @layer base {
   :root {
+    --white: 255 255 255;
+    --black: 00 00 00;
+
+    --gray-50: 249 250 251;
+    --gray-100: 243 244 246;
+    --gray-200: 229 231 235;
+    --gray-300: 209 213 219;
+    --gray-400: 156 163 175;
+    --gray-500: 107 114 128;
+    --gray-600: 75 85 99;
+    --gray-700: 55 65 81;
+    --gray-800: 31 41 55;
+    --gray-900: 17 24 39;
+
+    --indigo-100: 224 231 255;
+    --indigo-200: 199 210 254;
+    --indigo-400: 129 140 248;
+    --indigo-500: 99 102 241;
+    --indigo-600: 79 70 229;
+    --indigo-700: 67 56 202;
+
+    --blue-200: 191 219 254;
+    --blue-300: 147 197 253;
+    --blue-400: 96 165 250;
+    --blue-500: 59 130 246;
+    --blue-600: 37 99 235;
+    --blue-700: 29 78 216;
+
+    --flowbite-gray-100: 241 242 246;
+
+    --custom-gray-100: 218 221 228;
+    --custom-gray-500: 55 65 95;
+
+    --lightBlue-100: 224 237 253;
+
     /* background */
-    --color-white: 255 255 255; /* white to flowbite-dark. used on: app */
-    --color-white-inverted: 17 24 39;
 
-    --color-gray100: 218 221 228;
-    --color-gray100-inverted: 55 65 95;
-    --color-gray100-hoover: 55 65 95;
+    --color-white: var(--white); /* to gray-900 */
+    --color-white-inverted: var(--gray-900); /* to white*/
 
-    --color-gray200: 241 242 246;
-    --color-gray200-inverted: 55 65 81;
+    --color-white-200: var(--gray-50);
+    --color-white-200-inverted: var(--gray-800);
 
-    --color-gray300: 249 250 251; /* gray-50 to gray-800. used on: jobContainer */
-    --color-gray300-inverted: 55 65 81; /* inverted */
-    --color-gray300-hoover: 229 231 235; /* gray-300 to gray-700 hover */
+    --gray-stable: var(--gray-500);
+
+    --color-gray-50: var(--gray-50);
+    --color-gray-50-inverted: var(--gray-800);
+
+    --color-gray100: var(--gray-50); /* custom-gray-500 */
+    --color-gray100-inverted: var(--custom-gray-500); /* custom-gray-100 */
+
+    --color-gray200: var(--flowbite-gray-100); /* to gray-700*/
+    --color-gray200-inverted: var(--gray-700); /* to flowbite-gray-100 */
+
+    --color-gray300: var(--gray-100); /* to gray-800 */
+    --color-gray300-inverted: var(--gray-800); /* to gray-50 */
+    --color-gray300-hoover: var(--gray-200); /* to gray-700 */
 
     /* input */
-    --color-input-gray: 249 250 251; /* gray-50 to gray-700. used on: inputs */
+    --color-input-gray: var(--gray-100); /* gray-700 */
 
     /* Content/text */
-    --color-content-black: 17 24 39;
-    --color-content-black-inverted: 255 255 255;
+    --color-content-black: var(--gray-900); /* to white */
+    --color-content-black-inverted: var(--white); /* gray-900 */
 
-    --color-content-gray: 107 114 128;
-    --color-content-gray-inverted: 209 213 219;
+    --color-content-black-stable: var(--gray-900); /* to gray-900 */
+    --color-content-white-stable: var(--white); /* white to white */
+
+    --color-content-gray: var(--gray-600); /* to gray-300*/
+    --color-content-gray-inverted: var(--gray-300); /* to gray-500*/
 
     /* Accent */
-    --color-accent-1: 224 237 253; /* light blue to indigo. used on: jobTypes */
+    --color-accent-lightIndigo: var(--indigo-100); /* indigo-200 */
+    --color-accent-lightIndigo_hoover: var(--indigo-200); /* to indigo-400 */
 
-    --color-accent-2: 67 56 202; /* indigo-500 to indigo-700 */
-    --color-accent-201: 224 237 253;
+    --color-accent-blue-500: var(--blue-500);
+    --color-accent-blue-600: var(--blue-600);
+    --color-accent-blue-700: var(--blue-700);
 
-    --color-accent-300: 79 70 229; /* indigo-700 to indigo-100 */
-    --color-accent-310: 224 231 255;
+    --color-accent-1: var(--lightBlue-100); /*  to indigo */
+
+    --color-accent-2: var(--indigo-500); /* indigo-500 to indigo-700 */
+    --color-accent-201: var(--lightBlue-100);
+
+    --color-accent-300: var(--indigo-700); /* to indigo-100 */
+    --color-accent-310: var(--indigo-100); /*  to indigo-700 */
 
     /* Border */
-    --color-border-1: 209 213 219;
+    --color-border-1: var(--gray-300);
   }
 
   [data-theme="dark"] {
     /* background */
-    --color-white: 17 24 39;
-    --color-white-inverted: 255 255 255;
+    --color-white: var(--gray-900);
+    --color-white-inverted: var(--white);
 
-    --color-gray300: 31 41 55;
-    --color-gray300-inverted: 249 250 251;
-    --color-gray300-hoover: 55 65 81;
+    --color-gray-50: var(--gray-800);
+    --color-gray-50-inverted: var(--gray-50);
 
-    --color-gray200: 55 65 81;
-    --color-gray200-inverted: 241 242 246;
-    --color-gray200-hover: 241 242 246;
+    --color-gray100: var(--custom-gray-500);
+    --color-gray100-inverted: var(--custom-gray-100);
 
-    --color-gray100: 55 65 95;
-    --color-gray100-inverted: 218 221 228;
-    --color-gray100-hoover: 55 65 95;
+    --color-gray200: var(--gray-700);
+    --color-gray200-inverted: var(--flowbite-gray-100);
+
+    --color-gray300: var(--gray-800);
+    --color-gray300-inverted: var(--gray-50);
+    --color-gray300-hoover: var(--gray-700);
 
     /* Input */
-    --color-input-gray: 55 65 81;
+    --color-input-gray: var(--gray-700);
 
     /* Content */
-    --color-content-black: 255 255 255;
-    --color-content-black-inverted: 17 24 39;
+    --color-content-black: var(--white);
+    --color-content-black-inverted: var(--gray-900);
 
-    --color-content-gray: 209 213 219;
-    --color-content-gray-inverted: 107 114 128;
+    --color-content-gray: var(--gray-300);
+    --color-content-gray-inverted: var(--gray-500);
 
     --color-content-3: 147 197 253;
 
     /* Accent */
+    --color-accent-lightIndigo: var(--indigo-200);
+    --color-accent-lightIndigo_hoover: var(--indigo-400);
+
+    --color-accent-blue-500: var(--blue-400);
+    --color-accent-blue-600: var(--blue-300);
+    --color-accent-blue-700: var(--blue-200);
+
     --color-accent-1: 107 43 217;
 
-    --color-accent-2: 224 237 253;
-    --color-accent-201: 99 102 241;
-    --color-accent-210: 99 102 241;
+    --color-accent-2: var(--lightBlue-100);
+    --color-accent-201: var(--indigo-500);
+    --color-accent-210: var(--indigo-500);
 
-    --color-accent-300: 224 231 255;
-    --color-accent-301: 224 231 255;
-    --color-accent-310: 79 70 229;
+    --color-accent-300: var(--indigo-100);
+    --color-accent-310: var(--indigo-600);
 
-    --color-border-1: 75 85 99;
+    /* Border */
+    --color-border-1: var(--gray-700);
   }
 }
 

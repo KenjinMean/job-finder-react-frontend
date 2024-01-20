@@ -26,7 +26,7 @@ export default function SearchSuggestionsUiComponent({
   return (
     <Menu.Items
       static
-      className="flex flex-col absolute z-20 w-full bg-background-gray100 text-content-black border top-[105%] left-0 rounded-b-md max-h-100 sm:max-h-60 overflow-y-scroll small-thumb-scrollbar empty:hidden shadow-lg"
+      className="flex flex-col absolute z-20 w-full bg-background-gray100 text-content-black border top-[105%] left-0 rounded-md max-h-100 sm:max-h-60 overflow-y-scroll small-thumb-scrollbar empty:hidden shadow-lg"
     >
       {searchSuggestions.map((suggestion, index) => {
         return (

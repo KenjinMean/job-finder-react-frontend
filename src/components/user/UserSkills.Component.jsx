@@ -29,7 +29,6 @@ export default function UserSkillsComponent() {
         {/* add skill link */}
         <LinkAddUiComponent
           to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
-          preventScrollReset={true}
         />
         <LinkEditUiComponent to={userRoutes.userEditSkillPage} />
       </div>

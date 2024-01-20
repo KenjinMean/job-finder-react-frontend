@@ -1,43 +1,76 @@
 import React from "react";
-import { authRoutes } from "../../constants/RoutesPath.Constants";
-import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
-import { GlobalModals } from "../../constants/ModalNames.Constants";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import ButtonClosePrimaryUiComponent from "./ButtonClosePrimary.Ui.Component";
+
+import { authRoutes } from "../../constants/RoutesPath.Constants";
+import { grow } from "../../constants/animationVariants.Constants";
+import { GlobalModals } from "../../constants/ModalNames.Constants";
+
+import useGetDeviceWidth from "../../hooks/useGetDeviceWidth";
+import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
+import ButtonClosePrimaryUiComponent from "./ButtonClosePrimary.Ui.Component";
+
 const MainMenuUiComponent = React.forwardRef(
-  ({ id, isMenuOpen, closeMenu }, ref) => {
+  ({ id, isMenuOpen, closeMenu, ...restProps }, ref) => {
     const { token } = useAuthenticationStore();
+
+    const deviceWidth = useGetDeviceWidth();
+
+    // 640 tailwind css small device breakpoint
+    const isMobile = deviceWidth <= 640;
+
     return (
-      <div
-        id={id}
-        ref={ref}
-        className={`fixed inset-0 z-50 flex items-center sm:order-1 sm:flex h-screen bg-background-gray300 sm:relative sm:bg-transparent sm:h-auto sm:ml-auto ${
-          isMenuOpen ? "" : "hidden"
-        }`}
-      >
-        <div className="absolute top-5 right-5 sm:hidden">
-          <ButtonClosePrimaryUiComponent onClick={closeMenu} />
-        </div>
-
-        <ul className="flex flex-col items-center w-full py-5 text-2xl font-medium text-center rounded-sm bg-background-gray300 text-accent-200 sm:gap-0 sm:text-lg sm:p-0 sm:flex-row sm:mt-0 sm:border-0 sm:bg-transparent ">
-          <li className="w-full p-2 font-semibold ">
-            <a href="#">About</a>
-          </li>
-          <li className="w-full p-2 font-semibold ">
-            <Link to={useOpenModalOverlay(GlobalModals.settingsModal.name)}>
-              Options
-            </Link>
-          </li>
-
-          {!token && (
-            <li className="w-full p-2 font-semibold ">
-              <Link to={authRoutes.authLoginPage}>login</Link>
-            </li>
-          )}
-        </ul>
-      </div>
+      <AnimatePresence>
+        {(isMenuOpen || !isMobile) && (
+          <motion.ul
+            variants={grow}
+            initial={`${isMobile ? "hidden" : ""}`}
+            animate="visible"
+            exit="hidden"
+            id={id}
+            ref={ref}
+            {...restProps}
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center font-medium text-center bg-background-gray_50 text-content-black sm:relative sm:ml-auto sm:flex-row"
+          >
+            {/* close main menu on mobile */}
+            <motion.li className="absolute top-5 right-5 sm:hidden">
+              <ButtonClosePrimaryUiComponent
+                onClick={closeMenu}
+                aria-label="Close menu"
+                aria-controls={id}
+              />
+            </motion.li>
+            <motion.li
+              role="menuitem"
+              className="w-full p-2 font-semibold hover:text-accent-blue500"
+              whileHover={{ scale: 1.1 }}
+            >
+              <a href="#">About</a>
+            </motion.li>
+            <motion.li
+              className="w-full p-2 font-semibold hover:text-accent-blue500"
+              whileHover={{ scale: 1.1 }}
+              role="menuitem"
+            >
+              <Link to={useOpenModalOverlay(GlobalModals.settingsModal.name)}>
+                Options
+              </Link>
+            </motion.li>
+            {!token && (
+              <motion.li
+                className="w-full p-2 font-semibold hover:text-accent-blue500"
+                whileHover={{ scale: 1.1 }}
+                role="menuitem"
+              >
+                <Link to={authRoutes.authLoginPage}>login</Link>
+              </motion.li>
+            )}
+            {/* </ul> */}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     );
   }
 );
