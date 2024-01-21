@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 import { userRoutes } from "../../../constants/RoutesPath.Constants";
@@ -8,7 +8,6 @@ import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 import { UserModals } from "../../../constants/ModalNames.Constants";
 import { useAsyncUpdateUserCoverImage } from "../../../services/api/useProfileRequesthandler";
 
-import ModalUtil from "../../utils/Modal.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 
@@ -40,7 +39,7 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
   }
 
   return (
-    <ModalUtil size="large" modalTitle="Cover Image Preview">
+    <Fragment>
       {/* body */}
       <div className="flex justify-center">
         <div className="w-full p-5 overflow-hidden h-80">
@@ -64,6 +63,6 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
           Save
         </ButtonActionPrimaryUiComponent>
       </div>
-    </ModalUtil>
+    </Fragment>
   );
 }

@@ -33,6 +33,8 @@ export const useSearchSkill = (keyword, setKeyword) => {
       return response;
     },
     select: (data) => data?.data?.skills,
+    cacheTime: toMilliseconds(30, "mins"),
+    staleTime: toMilliseconds(10, "mins"),
   });
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
@@ -41,7 +41,7 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
   }
 
   return (
-    <ModalUtil modalTitle="Profile Image Update Preview">
+    <Fragment>
       {/* body */}
       <div className="flex justify-center">
         <div className="w-64 h-64 overflow-hidden rounded-full">
@@ -64,6 +64,6 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
           Save
         </ButtonActionPrimaryUiComponent>
       </div>
-    </ModalUtil>
+    </Fragment>
   );
 }

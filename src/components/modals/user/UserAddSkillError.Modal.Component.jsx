@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import error from "../../../assets/icons/error.png";
@@ -6,7 +6,6 @@ import error from "../../../assets/icons/error.png";
 import { UserModals } from "../../../constants/ModalNames.Constants";
 import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions.js";
 
-import ModalUtil from "../../utils/Modal.Util.jsx";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
 
 export default function UserAddSkillErrorModalComponent() {
@@ -31,9 +30,9 @@ export default function UserAddSkillErrorModalComponent() {
   }, [location.search]);
 
   return (
-    <ModalUtil modalTitle="Add Skill Error">
+    <Fragment>
       {/* body */}
-      <div className="flex flex-col items-center p-5 border-b">
+      <div className="flex flex-col items-center p-5 border-b border-border-100">
         <img className="block w-20 h-20 mb-5" src={error} alt="red x error" />
         <span className="text-lg font-secondary">Error </span>
         <p>{errorMessage}</p>
@@ -46,6 +45,6 @@ export default function UserAddSkillErrorModalComponent() {
           Go Back
         </LinkActionPrimaryUiComponent>
       </div>
-    </ModalUtil>
+    </Fragment>
   );
 }

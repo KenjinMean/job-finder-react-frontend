@@ -188,13 +188,11 @@ export const useCloseModalOverlay = () => {
  */
 export const useModalExitHandler = (isInputChanged) => {
   const navigate = useNavigate();
-  const openExitConfirmationDialog = useOpenDialog(
-    dialogNames.exitConfirmationDialog.name
-  );
+  const openExitConfirmationDialog = useOpenDialog();
 
   const handleModalClose = () => {
     if (isInputChanged) {
-      openExitConfirmationDialog();
+      openExitConfirmationDialog(dialogNames.exitConfirmationDialog.name);
     } else {
       navigate(useCloseModalOverlay());
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { toast } from "react-toastify";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
@@ -38,7 +38,7 @@ export default function UserCoverImageViewModalComponent() {
   };
 
   return (
-    <ModalUtil size="large" modalTitle="Cover Photo">
+    <Fragment>
       {/* body */}
       <div className="flex justify-center p-5">
         <div className="w-full h-64 overflow-hidden ">
@@ -60,6 +60,6 @@ export default function UserCoverImageViewModalComponent() {
           Delete
         </ButtonActionPrimaryUiComponent>
       </div>
-    </ModalUtil>
+    </Fragment>
   );
 }

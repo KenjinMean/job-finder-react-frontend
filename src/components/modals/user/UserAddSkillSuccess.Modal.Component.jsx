@@ -11,7 +11,7 @@ export default function UserAddSkillSuccessModalComponent() {
   return (
     <ModalUtil modalTitle="Add Skill Success">
       {/* body */}
-      <div className="flex flex-col items-center p-5 border-b">
+      <div className="flex flex-col items-center p-5 border-b border-border-100">
         <img
           className="block w-20 h-20 mb-5"
           src={successIcon.path}

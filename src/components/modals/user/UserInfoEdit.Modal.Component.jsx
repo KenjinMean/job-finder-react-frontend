@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+import { toast } from "react-toastify";
 
 import {
   useAsyncUpdateUserInfo,
   useFetchtUserInfo,
 } from "../../../services/api/useProfileRequesthandler";
-import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
 import UserInfoEditForm from "../../forms/auth/UserInfoEdit.Form";
 
-import { toast } from "react-toastify";
-import ModalUtil from "../../utils/Modal.Util";
-
-export default function UserInfoEditModalComponent() {
+export default function UserInfoEditModalComponent({ setIsUserInfoChanged }) {
   const { data: userInfo } = useFetchtUserInfo();
   const updateUserInfo = useAsyncUpdateUserInfo();
 
   const [payload, setPayload] = useState(null);
-  const [formData, setFormData] = useState(new FormData());
-  const [isUserInfoChanged, setIsUserInfoChanged] = useState(false);
 
   const handleInputChange = (e) => {
     setIsUserInfoChanged(true);
@@ -29,6 +24,7 @@ export default function UserInfoEditModalComponent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData();
     // method spoofing: appending patch method to simulate patch request
     formData.append("_method", "PATCH");
     for (const key in payload) {
@@ -42,19 +38,6 @@ export default function UserInfoEditModalComponent() {
     });
   };
 
-  const handleGenderChange = (e) => {
-    const genderValue = e.target.value;
-
-    setSelectedGender(genderValue);
-
-    setPayload({
-      ...payload,
-      gender: genderValue,
-    });
-
-    setIsUserInfoChanged(true);
-  };
-
   useEffect(() => {
     const updatedPayload = {};
     Object.assign(updatedPayload, userInfo);
@@ -62,7 +45,7 @@ export default function UserInfoEditModalComponent() {
   }, [userInfo]);
 
   return (
-    <ModalUtil modalTitle="Edit User Info" isInputChanged={isUserInfoChanged}>
+    <Fragment>
       <div className="p-5">
         <span className="block mb-5 text-sm font-medium text-content-black">
           {" "}
@@ -72,9 +55,8 @@ export default function UserInfoEditModalComponent() {
           payload={payload}
           handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}
-          handleGenderChange={handleGenderChange}
         />
       </div>
-    </ModalUtil>
+    </Fragment>
   );
 }

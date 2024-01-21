@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { toast } from "react-toastify";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
@@ -39,7 +39,7 @@ export default function UserProfileImageViewModalComponent() {
   };
 
   return (
-    <ModalUtil modalTitle="Profile Photo">
+    <Fragment>
       {/* body */}
       <div className="flex justify-center">
         <div className="w-64 h-64 mt-5 overflow-hidden rounded-full">
@@ -61,6 +61,6 @@ export default function UserProfileImageViewModalComponent() {
           Delete
         </ButtonActionPrimaryUiComponent>
       </div>
-    </ModalUtil>
+    </Fragment>
   );
 }

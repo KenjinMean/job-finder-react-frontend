@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import {
@@ -6,23 +6,21 @@ import {
   useFetchUserContact,
 } from "../../../services/api/useContactRequestHandler";
 
-import ModalUtil from "../../utils/Modal.Util";
-import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
 import { prefixHandler } from "../../../utils/prefixHandler";
+import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
 
-export default function UserContactEditModalComponent() {
+export default function UserContactEditModalComponent({ setInputChanged }) {
   const { data: userContact } = useFetchUserContact();
 
   const [payload, setPayload] = useState({});
-  const [isInfoChanged, setInfoChanged] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    setInfoChanged(true);
+    setInputChanged(true);
     setPayload({
       ...payload,
-      [name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -46,7 +44,6 @@ export default function UserContactEditModalComponent() {
       success: "User contact updated sucessfully",
       error: "Error Updating User contact",
     });
-    // console.log(formData);
   };
 
   useEffect(() => {
@@ -54,16 +51,12 @@ export default function UserContactEditModalComponent() {
   }, [userContact]);
 
   return (
-    <ModalUtil
-      size="small"
-      modalTitle="Edit Contact"
-      isInputChanged={isInfoChanged}
-    >
+    <Fragment>
       <UserContactEditForm
         payload={payload}
         handleSubmit={handleSubmit}
         handleInputChange={handleInputChange}
       />
-    </ModalUtil>
+    </Fragment>
   );
 }

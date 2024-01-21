@@ -10,6 +10,7 @@ import TagListUiComponent from "../UI/TagList.Ui.Component";
 import { jobRoutes } from "../../constants/RoutesPath.Constants";
 import ButtonMenuUiComponent from "../UI/ButtonMenu.Ui.Component";
 import JobPartialDetailsComponent from "./JobPartialDetails.Component";
+import ImageSkeletonUtil from "../utils/LoadersSpinners/ImageSkeleton.Util";
 
 const JobContainerComponent = forwardRef(
   (
@@ -36,7 +37,7 @@ const JobContainerComponent = forwardRef(
         >
           {/* Company Image */}
           <div className="flex-shrink-0 mb-2 overflow-hidden rounded-full sm:mb-5 w-14 h-14">
-            <Suspense fallback={<div>loading...</div>}>
+            <Suspense fallback={<ImageSkeletonUtil />}>
               {memoizedCompanyLogo}
             </Suspense>
           </div>

@@ -6,18 +6,16 @@ import {
   useFetchtUserInfo,
 } from "../../../services/api/useProfileRequesthandler";
 
-import ModalUtil from "../../utils/Modal.Util";
 import UserAboutForm from "../../forms/auth/UserAbout.Form";
 
-export default function UserAboutEditModalComponent() {
+export default function UserAboutEditModalComponent({ setIsInputChanged }) {
   const { data: userInfo } = useFetchtUserInfo();
   const [payload, setPayload] = useState();
-  const [infoChanged, setInfoChanged] = useState(false);
 
   const updateUserInfo = useAsyncUpdateUserInfo();
 
   const handleInputChange = (e) => {
-    setInfoChanged(true);
+    setIsInputChanged(true);
     setPayload({
       ...payload,
       [e.target.name]: e.target.value,
@@ -46,12 +44,10 @@ export default function UserAboutEditModalComponent() {
   }, [userInfo]);
 
   return (
-    <ModalUtil isInputChanged={infoChanged} modalTitle="Edit User About">
-      <UserAboutForm
-        handleSubmit={handleSubmit}
-        payload={payload}
-        handleInputChange={handleInputChange}
-      />
-    </ModalUtil>
+    <UserAboutForm
+      handleSubmit={handleSubmit}
+      payload={payload}
+      handleInputChange={handleInputChange}
+    />
   );
 }

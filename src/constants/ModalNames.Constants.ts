@@ -1,15 +1,15 @@
-import UserInfoEditPage from "../pages/UserInfoEdit.Page"
-import UserAddSkillPage from "../pages/UserAddSkill.Page"
-import UserAboutEditPage from "../pages/UserAboutEdit.Page"
+import UserAboutEditPage from "../pages/UserAboutEdit.Modal.Page"
+import UserInfoEditModalPage from "../pages/UserInfoEdit.Modal.Page"
+import UserAddSkillModalPage from "../pages/UserAddSkill.Modal.Page"
+import UserContactEditModalPage from "../pages/UserContactEdit.Modal.Page"
+import UserAddSkillErrorModalPage from "../pages/UserAddSkillError.Modal.Page"
+import UserCoverImageViewModalPage from "../pages/UserCoverImageView.Modal.Page"
+import UserAddSkillSuccessModalPage from "../pages/UserAddSkillSuccess.modal.Page"
+import UserProfileImageViewModalPage from "../pages/UserProfileImageView.Modal.Page"
+import UserCoverImageUpdatePreviewModalPage from "../pages/UserCoverImageUpdatePreview.Modal.Page"
+import UserProfileImageUpdatePreviewModalPage from "../pages/UserProfileImageUpdatePreview.Modal.Page"
 
 import SettingsModalComponent from "../components/modals/Settings.Modal.Component"
-import UserContactEditModalComponent from "../components/modals/user/UserContactEdit.Modal.Component"
-import UserAddSkillErrorModaComponent from "../components/modals/user/UserAddSkillError.Modal.Component"
-import UserCoverImageViewModalComponent from "../components/modals/user/UserCoverImageView.Modal.Component"
-import UserAddSkillSuccessModalComponent from "../components/modals/user/UserAddSkillSuccess.Modal.Component"
-import UserProfileImageViewModalComponent from "../components/modals/user/UserProfileImageView.Modal.Component"
-import UserCoverImageUpdatePreviewModalComponent from "../components/modals/user/UserCoverImageUpdatePreview.Modal.Component"
-import UserProfileImageUpdatePreviewModalComponent from "../components/modals/user/UserProfileImageUpdatePreview.Modal.Component"
 
 
   const createModal = (
@@ -34,16 +34,16 @@ import UserProfileImageUpdatePreviewModalComponent from "../components/modals/us
   };
   
   const Modals: UserModal = {
-    userInfoEditModal: createModal("userInfoEditModal",UserInfoEditPage),
-    userAddSkillModal: createModal("userAddSkillModal", UserAddSkillPage),
     userAboutEditModal: createModal("userAboutEditModal",UserAboutEditPage),
-    userContactEditModal: createModal("userContactEditModal",UserContactEditModalComponent ),
-    userAddSkillErrorModal: createModal("userAddSkillErrorModal", UserAddSkillErrorModaComponent),
-    userCoverImageViewModal: createModal("userCoverImageViewModal", UserCoverImageViewModalComponent),
-    userAddSkillSuccessModal: createModal("userAddSkillSuccessModal", UserAddSkillSuccessModalComponent),
-    userProfileImageViewModal: createModal("userProfileImageViewModal", UserProfileImageViewModalComponent),
-    userCoverImageUpdatePreviewModal: createModal("userCoverImageUpdatePreviewModal", UserCoverImageUpdatePreviewModalComponent),
-    userProfileImageUpdatePreviewModal: createModal("userProfileImageUpdatePreviewModal", UserProfileImageUpdatePreviewModalComponent),
+    userInfoEditModal: createModal("userInfoEditModal",UserInfoEditModalPage),
+    userAddSkillModal: createModal("userAddSkillModal", UserAddSkillModalPage),
+    userContactEditModal: createModal("userContactEditModal",UserContactEditModalPage ),
+    userAddSkillErrorModal: createModal("userAddSkillErrorModal", UserAddSkillErrorModalPage),
+    userCoverImageViewModal: createModal("userCoverImageViewModal", UserCoverImageViewModalPage),
+    userAddSkillSuccessModal: createModal("userAddSkillSuccessModal", UserAddSkillSuccessModalPage),
+    userProfileImageViewModal: createModal("userProfileImageViewModal", UserProfileImageViewModalPage),
+    userCoverImageUpdatePreviewModal: createModal("userCoverImageUpdatePreviewModal", UserCoverImageUpdatePreviewModalPage),
+    userProfileImageUpdatePreviewModal: createModal("userProfileImageUpdatePreviewModal", UserProfileImageUpdatePreviewModalPage),
   };
 
   type ModalNamesType = {
