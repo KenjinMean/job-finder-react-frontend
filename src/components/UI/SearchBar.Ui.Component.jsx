@@ -14,7 +14,7 @@ export default function SearchBarUiComponent({
       <div className="relative">
         <div className="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
           <svg
-            className="w-4 h-4 text-gray-500"
+            className="w-4 h-4 text-content-gray"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -46,14 +46,14 @@ export default function SearchBarUiComponent({
       <div className="sm:absolute end-2.5 bottom-2.5 flex flex-col gap-2 mt-2 sm:flex-row">
         <button
           type="submit"
-          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-blue500 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500"
+          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-blue600 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           onClick={handleButtonClear}
         >
           Clear
         </button>
         <button
           type="submit"
-          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-blue500 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500"
+          className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-blue600 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           onClick={handleSearch}
         >
           Search
