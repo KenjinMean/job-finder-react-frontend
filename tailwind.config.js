@@ -12,10 +12,6 @@ export default {
           white: "rgb(var(--color-white) / <alpha-value>)",
           white_inverted: "rgb(var(--color-white-inverted) / <alpha-value>)",
 
-          white200: "rgb(var(--color-white-200) / <alpha-value>)",
-          white200_inverted:
-            "rgb(var(--color-white-200-inverted) / <alpha-value>)",
-
           gray_stable: "rgb(var(--gray-stable) / <alpha-value>)",
 
           gray_50: "rgb(var(--color-gray-50) / <alpha-value>)",
@@ -34,6 +30,8 @@ export default {
           gray300_inverted:
             "rgb(var(--color-gray300-inverted) / <alpha-value>)",
           gray300_hoover: "rgb(var(--color-gray300-hoover) / <alpha-value>)",
+
+          slate300: "rgb(var(--color-slate300) / <alpha-value>)",
         },
 
         input: {

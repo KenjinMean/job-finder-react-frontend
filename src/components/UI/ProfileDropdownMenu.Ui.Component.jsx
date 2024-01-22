@@ -11,6 +11,7 @@ import { grow } from "../../constants/animationVariants.Constants";
 
 import { useLogout } from "../../services/api/useAuthRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+import ImageUrlLoaderUtil from "../utils/ImageUrlLoader.Util";
 
 export default function ProfileDropdownMenuUiComponent() {
   const { authenticatedUser } = useAuthenticationStore();
@@ -33,11 +34,14 @@ export default function ProfileDropdownMenuUiComponent() {
             className="flex w-12 h-12 mr-3 overflow-hidden text-sm rounded-full sm:mr-0 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           >
             {authenticatedUser?.user_info && (
-              <img
-                className="block object-cover w-full h-full"
-                src={authenticatedUser?.user_info?.profile_image}
-                alt="User Profile image"
+              <ImageUrlLoaderUtil
+                imageUrl={authenticatedUser?.user_info?.profile_image}
               />
+              // <img
+              //   className="block object-cover w-full h-full"
+              //   src={authenticatedUser?.user_info?.profile_image}
+              //   alt="User Profile image"
+              // />
             )}
           </Menu.Button>{" "}
           <AnimatePresence mode="wait">

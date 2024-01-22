@@ -45,9 +45,9 @@ export default function SearchSuggestionsUiComponent({
               return (
                 <a
                   onClick={() => handleSuggestionClick(suggestion)}
-                  className={`block px-4 py-2 hover:text-content-black_inverted ${
+                  className={`block px-4 py-2 hover:text-content-black_stable ${
                     active || isSuggestionActive
-                      ? "bg-accent-300 text-content-black_inverted"
+                      ? "bg-accent-light_indigo text-content-black_stable"
                       : ""
                   }`}
                 >

@@ -13,7 +13,7 @@ export default function UserInfoComponent() {
   const { data: userInfo } = useFetchtUserInfo();
 
   return (
-    <section className="relative w-full overflow-hidden border border-border-100 sm:rounded-lg bg-background-gray200 text-content-black">
+    <section className="relative w-full overflow-hidden border border-border-100 sm:rounded-lg bg-background-gray_50 text-content-black">
       {/* view Cover Image */}
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.cover_image}
