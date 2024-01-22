@@ -20,7 +20,7 @@ export default function UserEditSkillSkeletonUtil() {
     >
       <div
         role="status"
-        className="p-4 space-y-4 divide-y divide-gray-200 rounded shadow animate-pulse md:p-6 sm:mt-10"
+        className="p-4 space-y-4 divide-y rounded shadow divide-border-100 animate-pulse md:p-6 sm:mt-10"
       >
         <div className="flex items-center justify-between">
           <div>

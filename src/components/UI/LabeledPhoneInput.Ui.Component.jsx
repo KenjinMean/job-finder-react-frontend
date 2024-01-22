@@ -21,7 +21,7 @@ export default function LabeledPhoneInputUiComponent({
             type="phone"
             id={id}
             name={name}
-            className="block p-2.5 w-full z-20 text-content-black bg-input-gray rounded-e-lg border-s-0 border border-border-100 focus:ring-blue-500 focus:border-blue-500 "
+            className="block p-2.5 w-full z-20 text-content-black bg-input-gray rounded-e-lg border-s-0 border border-border-100 focus:ring-accent-blue500 focus:border-accent-blue500 "
             {...inputProps}
           />
         </div>

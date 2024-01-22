@@ -37,7 +37,7 @@ export default function RegisterPasswordInputComponent({
       <button
         type="button"
         tabIndex="-1"
-        className="absolute right-5 top-[33px] p-1 rounded-full hover:bg-slate-300 transition-colors"
+        className="absolute right-5 top-[33px] p-1 rounded-full hover:bg-background-slate300 transition-colors"
         onClick={() => setShowpassword((prev) => !prev)}
       >
         <img
@@ -48,7 +48,7 @@ export default function RegisterPasswordInputComponent({
       </button>
 
       {!checkPasswordUtil(payload.password, "validate") && (
-        <div className="text-sm font-medium text-slate-500 input-error">
+        <div className="text-sm font-medium text-content-gray input-error">
           <span>
             <PasswordChecklistUiComponent
               payload={payload}

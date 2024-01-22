@@ -60,7 +60,7 @@ export default function ProfileDropdownMenuUiComponent() {
                   {({ close }) => (
                     <button
                       onClick={close}
-                      className="p-1 transition-all bg-transparent border rounded-full hover:bg-slate-200 border-border-100"
+                      className="p-1 transition-all bg-transparent border rounded-full hover:bg-background-slate300 border-border-100"
                     >
                       <img
                         className="block w-5 h-5"

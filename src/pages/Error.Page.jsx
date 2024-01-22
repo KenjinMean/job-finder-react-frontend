@@ -7,14 +7,14 @@ import ErrorServerUnavailableUiComponent from "../components/UI/error/ErrorServe
 export default function ErrorPage({ error, resetErrorBoundary }) {
   if (error.code === "404") {
     return (
-      <div className="flex items-center justify-center min-h-screen text-gray-900 border">
+      <div className="flex items-center justify-center min-h-screen border text-content-black">
         <ErrorNotFoundUiComponent />
       </div>
     );
   }
 
   if (error.code === "ERR_NETWORK") {
-    <div className="flex items-center justify-center min-h-screen text-gray-900 border">
+    <div className="flex items-center justify-center min-h-screen border text-content-black">
       <ErrorServerUnavailableUiComponent
         resetErrorBoundary={resetErrorBoundary}
       />
@@ -22,7 +22,7 @@ export default function ErrorPage({ error, resetErrorBoundary }) {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen text-gray-900 border">
+    <div className="flex items-center justify-center min-h-screen border text-content-black">
       <ErrorServerErrorUiComponent resetErrorBoundary={resetErrorBoundary} />
     </div>
   );

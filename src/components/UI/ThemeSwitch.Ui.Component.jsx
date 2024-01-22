@@ -7,7 +7,7 @@ export default function ThemeSwitchUiComponent({ theme, toggleTheme }) {
       checked={theme}
       onChange={toggleTheme}
       className={`${
-        theme === "dark" ? "bg-green-500" : "bg-gray-300"
+        theme === "dark" ? "bg-accent-blue500" : "bg-background-slate300"
       } relative inline-flex h-6 w-11 items-center rounded-full border border-border-100`}
     >
       <span className="sr-only">Dark Mode</span>

@@ -8,7 +8,7 @@ export default function TermsServices() {
         Terms of Service
       </a>{" "}
       and its{" "}
-      <a href="#" className="border-b border-gray-500 border-dotted">
+      <a href="#" className="border-b border-dotted border-border-100">
         Privacy Policy
       </a>
     </p>

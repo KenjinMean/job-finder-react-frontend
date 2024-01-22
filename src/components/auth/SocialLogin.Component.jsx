@@ -22,7 +22,7 @@ export default function SocilaLoginComponent({
         onClick={() => {
           handleProviderLogin("google");
         }}
-        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold transition-all duration-300 ease-in-out border rounded-lg shadow-sm bg-accent-light_indigo hover:bg-accent-light_indigo_hover border-border-100 text-content-black_stable h-14 hover:text-content-black_stable_hover focus:outline-none focus:ring-4 focus:ring-accent-blue500 disabled:bg-slate-300"
+        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold transition-all duration-300 ease-in-out border rounded-lg shadow-sm bg-accent-light_indigo hover:bg-accent-light_indigo_hover border-border-100 text-content-black_stable h-14 hover:text-content-black_stable_hover focus:outline-none focus:ring-4 focus:ring-accent-blue500 disabled:bg-background-slate300"
         disabled={isLoginButtonDisabled}
       >
         {googleLoading ? (
@@ -57,7 +57,7 @@ export default function SocilaLoginComponent({
         onClick={() => {
           handleProviderLogin("github");
         }}
-        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold transition-all duration-300 ease-in-out border rounded-lg shadow-sm bg-accent-light_indigo hover:bg-accent-light_indigo_hover border-border-100 text-content-black_stable h-14 hover:text-content-black_stable_hover focus:outline-none focus:ring-4 focus:ring-accent-blue500 disabled:bg-slate-300"
+        className="relative flex items-center justify-center w-full max-w-xs py-3 mt-5 font-bold transition-all duration-300 ease-in-out border rounded-lg shadow-sm bg-accent-light_indigo hover:bg-accent-light_indigo_hover border-border-100 text-content-black_stable h-14 hover:text-content-black_stable_hover focus:outline-none focus:ring-4 focus:ring-accent-blue500 disabled:bg-background-slate300"
         disabled={isLoginButtonDisabled}
       >
         {githubLoading ? (

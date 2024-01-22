@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ErrorServerErrorUiComponent({ resetErrorBoundary }) {
   return (
-    <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-white">
+    <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-background-white">
       <div className="text-center">
         <div className="inline-flex p-4 bg-red-100 rounded-full">
           <div className="p-4 bg-red-200 rounded-full stroke-red-600">
@@ -27,13 +27,13 @@ export default function ErrorServerErrorUiComponent({ resetErrorBoundary }) {
             </svg>
           </div>
         </div>
-        <h1 className="mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]">
+        <h1 className="mt-5 text-[36px] font-bold text-content-black lg:text-[50px]">
           500 - Server error
         </h1>
-        <p className="mt-5 text-slate-600 lg:text-lg">
+        <p className="mt-5 text-content-gray lg:text-lg">
           Oops something went wrong. Try to{" "}
           <button
-            className="inline-block text-blue-500 hover:text-blue-700"
+            className="inline-block text-accent-blue500 hover:text-accent-blue700"
             onClick={resetErrorBoundary}
           >
             refresh

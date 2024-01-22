@@ -7,7 +7,7 @@ export default function ErrorNotFoundUiComponent() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 bg-white w-full">
+    <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 bg-background-white w-full">
       <div className="text-center">
         <div className="inline-flex p-4 bg-yellow-100 rounded-full">
           <div className="p-4 bg-yellow-200 rounded-full stroke-yellow-600">
@@ -26,21 +26,21 @@ export default function ErrorNotFoundUiComponent() {
             </svg>
           </div>
         </div>
-        <h1 className="mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]">
+        <h1 className="mt-5 text-[36px] font-bold text-content-black lg:text-[50px]">
           404 - Page not found
         </h1>
-        <p className="mt-5 text-slate-600 lg:text-lg">
+        <p className="mt-5 text-content-gray lg:text-lg">
           The page you are looking for doesn't exist or <br />
           has been removed. You can return to the{" "}
           <Link
             to={jobRoutes.jobListingPage}
-            className="text-blue-500 hover:text-blue-700"
+            className="text-accent-blue500 hover:text-accent-blue700"
           >
             Home page
           </Link>{" "}
           or{" "}
           <button
-            className="text-blue-500 hover:text-blue-700"
+            className="text-accent-blue500 hover:text-accent-blue700"
             onClick={() => navigate(-1)}
           >
             {" "}

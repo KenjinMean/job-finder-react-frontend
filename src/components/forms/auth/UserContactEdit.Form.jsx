@@ -29,7 +29,7 @@ export default function UserContactEditForm({
           </span>
           <Link
             onClick={() => openDialog(dialogNames.notImplementedDialog.name)}
-            className="mb-2 font-medium text-blue-500"
+            className="mb-2 font-medium text-accent-blue500"
           >
             {authenticatedUser.email}
           </Link>

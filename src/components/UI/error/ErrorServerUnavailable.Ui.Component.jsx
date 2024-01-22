@@ -3,7 +3,7 @@ export default function ErrorServerUnavailableUiComponent({
   resetErrorBoundary,
 }) {
   return (
-    <div class="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-white">
+    <div class="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-background-white">
       <div class="text-center">
         <div class="inline-flex rounded-full bg-sky-100 p-4">
           <div class="rounded-full stroke-sky-600 bg-sky-200 p-4">
@@ -22,13 +22,13 @@ export default function ErrorServerUnavailableUiComponent({
             </svg>
           </div>
         </div>
-        <h1 class="mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]">
+        <h1 class="mt-5 text-[36px] font-bold text-content-black lg:text-[50px]">
           503 - Server error
         </h1>
-        <p class="text-slate-600 mt-5 lg:text-lg">
+        <p class="text-content-gray mt-5 lg:text-lg">
           Oops something went wrong. Try to{" "}
           <button
-            className="inline-block text-blue-500 hover:text-blue-700"
+            className="inline-block text-accent-blue500 hover:text-accent-blue700"
             onClick={resetErrorBoundary}
           >
             refresh

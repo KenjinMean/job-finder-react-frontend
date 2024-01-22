@@ -12,7 +12,7 @@ export default function LinkClosePrimaryUiComponent({
 
   return (
     <Link
-      className={`p-2 transition-all rounded-full hover:bg-slate-300 ${className}`}
+      className={`p-2 transition-all rounded-full hover:bg-background-slate300 ${className}`}
       to={to}
       {...linkProps}
     >

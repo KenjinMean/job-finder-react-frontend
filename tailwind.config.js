@@ -66,7 +66,7 @@ export default {
           301: "rgb(var(--color-accent-301) / <alpha-value>)",
           310: "rgb(var(--color-accent-310) / <alpha-value>)",
 
-          blue500: "rgb(var(--color-accent-blue-500) / <alpha-value>)",
+          blue500: "rgb(var(--color-accent-accent-blue500) / <alpha-value>)",
           blue600: "rgb(var(--color-accent-blue-600) / <alpha-value>)",
           blue700: "rgb(var(--color-accent-blue-700) / <alpha-value>)",
 

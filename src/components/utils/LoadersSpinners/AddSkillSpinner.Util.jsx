@@ -9,7 +9,7 @@ export default function AddSkillSpinnerUtil() {
       <svg
         aria-hidden="true"
         className={
-          "w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-300 fill-indigo-500"
+          "w-10 h-10 mr-2 text-content-gray animate-spin fill-indigo-500"
         }
         viewBox="0 0 100 101"
         fill="none"

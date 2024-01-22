@@ -37,7 +37,7 @@ export default function UserAboutForm({
           updateCharCount(e.target.value);
         }}
       />
-      <div className="flex flex-row-reverse mt-2 text-slate-500">
+      <div className="flex flex-row-reverse mt-2 text-content-gray">
         {charCount}/{maxLength} characters
       </div>
 

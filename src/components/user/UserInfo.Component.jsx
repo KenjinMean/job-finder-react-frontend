@@ -24,7 +24,7 @@ export default function UserInfoComponent() {
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.profile_image}
         to={useOpenModalOverlay(UserModals.userProfileImageViewModal.name)}
-        className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-slate-200"
+        className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-border-100"
       />
       <div className="relative p-5">
         <div className="flex gap-1 mt-10 text-xl font-bold">

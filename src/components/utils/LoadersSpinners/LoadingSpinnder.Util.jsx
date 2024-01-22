@@ -5,7 +5,7 @@ export default function LoadingSpinnerUtil({ size = 10 }) {
     <div role="status" className="flex justify-center">
       <svg
         aria-hidden="true"
-        className={`w-${size} h-${size} mr-2 text-gray-200 animate-spin dark:text-gray-300 fill-indigo-500`}
+        className={`w-${size} h-${size} mr-2 text-content-gray animate-spin  fill-indigo-500`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

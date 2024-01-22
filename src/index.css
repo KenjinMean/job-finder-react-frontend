@@ -32,7 +32,7 @@
     --blue-200: 191 219 254;
     --blue-300: 147 197 253;
     --blue-400: 96 165 250;
-    --blue-500: 59 130 246;
+    --accent-blue500: 59 130 246;
     --blue-600: 37 99 235;
     --blue-700: 29 78 216;
 
@@ -85,7 +85,7 @@
     --color-accent-lightIndigo: var(--indigo-100); /* indigo-200 */
     --color-accent-lightIndigo_hoover: var(--indigo-200); /* to indigo-400 */
 
-    --color-accent-blue-500: var(--blue-500);
+    --color-accent-accent-blue500: var(--accent-blue500);
     --color-accent-blue-600: var(--blue-600);
     --color-accent-blue-700: var(--blue-700);
 
@@ -135,7 +135,7 @@
     --color-accent-lightIndigo: var(--indigo-200);
     --color-accent-lightIndigo_hoover: var(--indigo-400);
 
-    --color-accent-blue-500: var(--blue-400);
+    --color-accent-accent-blue500: var(--blue-400);
     --color-accent-blue-600: var(--blue-300);
     --color-accent-blue-700: var(--blue-200);
 

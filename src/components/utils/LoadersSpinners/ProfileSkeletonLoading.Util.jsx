@@ -4,10 +4,10 @@ export default function ProfileSkeletonLoadingUtil() {
   return (
     <div className="overflow-hidden rounded-md">
       <div className="relative">
-        <div className="block w-full h-48 bg-gray-300">
+        <div className="block w-full h-48 bg-background-gray300">
           <img src="" alt="" />
         </div>
-        <div className="absolute w-40 h-40 overflow-hidden border-4 rounded-full pulse top-20 left-5 border-slate-200 bg-slate-300">
+        <div className="absolute w-40 h-40 overflow-hidden border-4 rounded-full pulse top-20 left-5 border-border-100 bg-background-slate300">
           <img src="" alt="" />
         </div>
       </div>

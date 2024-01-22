@@ -51,7 +51,7 @@ export default function LoginForm({
         <button
           type="submit"
           disabled={isLoginButtonDisabled}
-          className="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide transition-all duration-300 ease-in-out bg-indigo-500 rounded-lg text-content-white_stable hover:bg-indigo-700 focus:shadow-outline focus:ring-4 focus:outline-none focus:ring-accent-blue500 disabled:bg-slate-300"
+          className="flex items-center justify-center w-full py-4 mt-5 font-semibold tracking-wide transition-all duration-300 ease-in-out bg-indigo-500 rounded-lg text-content-white_stable hover:bg-indigo-700 focus:shadow-outline focus:ring-4 focus:outline-none focus:ring-accent-blue500 disabled:bg-background-slate300"
         >
           {loginLoading ? (
             <LoadingSpinnerUtil size={6} />
