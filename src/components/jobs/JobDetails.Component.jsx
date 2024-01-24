@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { useFetchJobdetails } from "../../services/api/useJobRequestHandler";
 
-import JobSkillComponent from "./JobSkill.Component";
+import JobSkillsComponent from "./JobSkills.Component";
 import JobInformationComponent from "./JobInformation.Component";
 import ButtonBackUiComponent from "../UI/ButtonBack.Ui.Component";
 import JobSpecificationComponent from "./JobSpecification.Component";
@@ -34,7 +34,7 @@ export default function JobDetailsComponent() {
         </div>
 
         {/* skills */}
-        <JobSkillComponent jobSkills={jobDetails.skills} />
+        <JobSkillsComponent jobSkills={jobDetails.skills} />
 
         {/* company details */}
         {jobDetails?.company && (

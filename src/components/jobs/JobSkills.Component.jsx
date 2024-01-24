@@ -4,7 +4,7 @@ import { useAuthenticationStore } from "../../services/state/AuthenticationStore
 import { useSkillMatching } from "../../hooks/useSkillMatching";
 import { Link } from "react-router-dom";
 
-export default function JobSkillComponent({ jobSkills }) {
+export default function JobSkillsComponent({ jobSkills }) {
   const { token } = useAuthenticationStore();
   const { refetch } = useFetchUserSkills(false);
 
@@ -76,11 +76,13 @@ export default function JobSkillComponent({ jobSkills }) {
         </p>
       </div>
 
-      <div className="border-t border-border-100">
-        <Link className="block w-full py-3 text-xl text-center text-accent-blue500 hover:text-content-black">
-          Manage Skills
-        </Link>
-      </div>
+      {token && (
+        <div className="border-t border-border-100">
+          <Link className="block w-full py-3 text-xl text-center text-accent-blue500 hover:text-content-black">
+            Manage Skills
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
