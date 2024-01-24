@@ -7,7 +7,6 @@ import { getElapsedTime } from "../../utils/getElapsedTime";
 import { useOpenDialog } from "../../hooks/useOverlayFunctions";
 
 import TagListUiComponent from "../UI/TagList.Ui.Component";
-import SkillListUiComponent from "../UI/SkillList.ui.Component";
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";
 
 export default function JobSpecificationComponent({ jobDetails }) {
