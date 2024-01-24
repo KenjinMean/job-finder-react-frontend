@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { useFetchJobdetails } from "../../services/api/useJobRequestHandler";
 
-import JobSkillComponent from "./jobSkill.Component";
+import JobSkillComponent from "./JobSkill.Component";
 import JobInformationComponent from "./JobInformation.Component";
 import ButtonBackUiComponent from "../UI/ButtonBack.Ui.Component";
 import JobSpecificationComponent from "./JobSpecification.Component";
