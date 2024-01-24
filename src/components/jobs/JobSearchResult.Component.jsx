@@ -1,9 +1,6 @@
 import React, { Fragment, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import menuIcon from "../../assets/icons/option.png";
-import { jobRoutes } from "../../constants/RoutesPath.Constants";
-
 import { extractUrlParams } from "../../utils/extractUrlParams";
 import { useSearchJobsInfinite } from "../../services/api/useJobRequestHandler";
 
@@ -11,6 +8,7 @@ import JobContainerComponent from "./JobContainer.Component";
 
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 export default function JobSearchResultComponent() {
   const location = useLocation();
@@ -19,12 +17,17 @@ export default function JobSearchResultComponent() {
 
   const {
     data,
-    hasNextPage,
     refetch,
+    hasNextPage,
     fetchNextPage,
     isFetching,
     isFetchingNextPage,
   } = useSearchJobsInfinite(params);
+
+  // const lastJobRef = useIntersectionObserver(
+  //   () => fetchNextPage(),
+  //   [hasNextPage, !isFetchingNextPage]
+  // );
 
   const handleIntersect = () => {
     if (lastJobResultRef.current && hasNextPage && !isFetchingNextPage) {
@@ -55,7 +58,7 @@ export default function JobSearchResultComponent() {
   }, [location]);
 
   return (
-    <Fragment>
+    <div className="flex flex-col gap-5 sm:gap-3">
       <PageTitleUtil title="Job Search Results" />
       {data?.pages?.map((group, index) => {
         return (
@@ -63,21 +66,11 @@ export default function JobSearchResultComponent() {
             {group.data?.data?.map((job, jobIndex, array) => {
               const isLastJob = jobIndex === array.length - 1;
               return (
-                <div
-                  key={job.id}
-                  className="relative"
+                <JobContainerComponent
+                  job={job}
                   ref={isLastJob ? lastJobResultRef : null}
-                >
-                  <button
-                    onClick={() => console.log("clicked")}
-                    className="absolute z-10 p-1 transition-all duration-300 border rounded-full right-5 top-5"
-                  >
-                    <img src={menuIcon} alt="Menu icon" className="w-5 h-5" />
-                  </button>
-                  <Link to={`${jobRoutes.jobDetailsPage}${job.slug}`}>
-                    <JobContainerComponent job={job} />
-                  </Link>
-                </div>
+                  key={job.id}
+                />
               );
             })}
           </Fragment>
@@ -95,6 +88,6 @@ export default function JobSearchResultComponent() {
           No more jobs available for the search: {params.query}
         </div>
       )}
-    </Fragment>
+    </div>
   );
 }

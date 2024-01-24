@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 
 export default function TagListUiComponent({ tags }) {
   return (
-    <div className="flex flex-wrap gap-1 text-content-black">
+    <span className="">
       {tags.map((jobType, index) => (
         <Fragment key={index}>
           <span
@@ -12,10 +12,10 @@ export default function TagListUiComponent({ tags }) {
             {jobType.job_type}
           </span>
           {index !== tags.length - 1 && (
-            <span className="text-foreground-100">•</span>
+            <span className="text-foreground-100"> • </span>
           )}
         </Fragment>
       ))}
-    </div>
+    </span>
   );
 }

@@ -14,7 +14,7 @@ export default function NotImplementedDialogComponent() {
 
   return (
     <DialogUtil>
-      <div className="flex flex-col w-full gap-5 p-5 bg-white rounded-lg shadow-lg">
+      <div className="flex flex-col w-full gap-5 p-5 border rounded-lg shadow-lg border-border-100 bg-background-white text-content-black">
         <div className="flex justify-between">
           <h3>Oops! feature not yet implemented</h3>
           <ButtonClosePrimaryUiComponent onClick={handleClose} />

@@ -27,7 +27,7 @@ export default function ExitConfirmationDialogComponent() {
 
   return (
     <DialogUtil>
-      <div className="flex flex-col w-full gap-5 p-5 bg-white rounded-lg shadow-lg">
+      <div className="flex flex-col w-full gap-5 p-5 rounded-lg shadow-lg text-content-black bg-background-white">
         <div className="flex justify-between">
           <h3>Discard Changes</h3>
           <ButtonClosePrimaryUiComponent onClick={handleReject} />

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 
-import { userRoutes } from "../constants/RoutesPath.Constants";
+import { jobRoutes, userRoutes } from "../constants/RoutesPath.Constants";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
 import DialogProvider from "../services/providers/DialogProvider.jsx";
@@ -20,7 +20,7 @@ export default function AppLayout() {
       {/* BUG: after sometime on the page the scroll reset do not work, solution is to open a new page */}
       <ScrollRestoration
         getKey={(location, matches) => {
-          const paths = [userRoutes.userProfilePage];
+          const paths = [userRoutes.userProfilePage, jobRoutes.jobListingPage];
           return paths.includes(location.pathname)
             ? location.pathname
             : location.key;

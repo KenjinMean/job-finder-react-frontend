@@ -51,6 +51,8 @@ export default {
           gray: "rgb(var(--color-content-gray) / <alpha-value>)",
           gray_inverted:
             "rgb(var(--color-content-gray-inverted) / <alpha-value>)",
+
+          slate_500: "rgb(var(--color-content-slate-500) / <alpha-value>)",
         },
 
         accent: {

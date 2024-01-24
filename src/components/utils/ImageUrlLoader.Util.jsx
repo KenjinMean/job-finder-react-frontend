@@ -9,12 +9,6 @@ export default function ImageUrlLoaderUtil({ imageUrl, alt = "" }) {
     : fallBackCompanyImage;
 
   return (
-    <div className="relative w-full h-full">
-      <img
-        src={url}
-        alt={alt}
-        className={`block object-cover w-full h-full `}
-      />
-    </div>
+    <img src={url} alt={alt} className={`block object-cover w-full h-full `} />
   );
 }

@@ -37,6 +37,8 @@
     --blue-700: 29 78 216;
 
     --slate-300: 203 213 225;
+    --slate-400: 148 163 184;
+    --slate-500: 100 116 139;
     --slate-800: 30 41 59;
 
     --flowbite-gray-100: 241 242 246;
@@ -78,8 +80,10 @@
     --color-content-black-stable: var(--gray-900); /* to gray-900 */
     --color-content-white-stable: var(--white); /* white to white */
 
-    --color-content-gray: var(--gray-600); /* to gray-300*/
+    --color-content-gray: var(--gray-700); /* to gray-300*/
     --color-content-gray-inverted: var(--gray-300); /* to gray-500*/
+
+    --color-content-slate-500: var(--slate-500);
 
     /* Accent */
     --color-accent-lightIndigo: var(--indigo-100); /* indigo-200 */
@@ -130,6 +134,8 @@
     --color-content-gray-inverted: var(--gray-500);
 
     --color-content-3: 147 197 253;
+
+    --color-content-slate-500: var(--slate-400);
 
     /* Accent */
     --color-accent-lightIndigo: var(--indigo-200);
@@ -199,6 +205,10 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+/* html {
+  scroll-behavior: smooth;
+} */
 
 /* Skeletom Loader Pulse Animation */
 /* .pulse {

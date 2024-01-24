@@ -11,7 +11,7 @@ export default function JobListingComponent() {
   const { data, hasNextPage, fetchNextPage, isFetching, isFetchingNextPage } =
     useFetchJobsInfinite();
 
-  const latJobRef = useIntersectionObserver(
+  const lastJobRef = useIntersectionObserver(
     () => fetchNextPage(),
     [hasNextPage, !isFetchingNextPage]
   );
@@ -27,7 +27,7 @@ export default function JobListingComponent() {
               return (
                 <JobContainerComponent
                   job={job}
-                  ref={isLastJob ? latJobRef : null}
+                  ref={isLastJob ? lastJobRef : null}
                   key={job.id}
                 />
               );

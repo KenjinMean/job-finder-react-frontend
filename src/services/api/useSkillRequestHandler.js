@@ -99,7 +99,7 @@ export const useAsyncRemoveUserSkill = () => {
   };
 };
 
-export const useFetchUserSkills = (userId) => {
+export const useFetchUserSkills = (enabled = true) => {
   const { authenticatedUser } = useAuthenticationStore();
   return useQuery({
     queryKey: ["fetchUserSkills", authenticatedUser.id],
@@ -108,6 +108,7 @@ export const useFetchUserSkills = (userId) => {
       return response;
     },
     select: (data) => data?.data?.skills,
+    enabled: enabled,
     suspense: true,
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(10, "mins"),
