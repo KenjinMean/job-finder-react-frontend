@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useApiFetchUserSkills } from "../../hooks/useSkillApi";
+import { useApiFetchUserSkills } from "../../hooks/useApiSkill";
 import { useSkillMatching } from "../../hooks/useSkillMatching";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 

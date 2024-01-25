@@ -9,7 +9,7 @@ import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import {
   useApiFetchUserSkills,
   useApiAsyncRemoveUserSkill,
-} from "../../hooks/useSkillApi";
+} from "../../hooks/useApiSkill";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
 

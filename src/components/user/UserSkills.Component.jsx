@@ -8,7 +8,7 @@ import { userRoutes } from "../../constants/RoutesPath.Constants";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component.jsx";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component.jsx";
-import { useApiFetchUserSkills } from "../../hooks/useSkillApi.js";
+import { useApiFetchUserSkills } from "../../hooks/useApiSkill.js";
 
 export default function UserSkillsComponent() {
   const { data: userSkills } = useApiFetchUserSkills();

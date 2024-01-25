@@ -6,7 +6,7 @@ import {
   useApiSearchSkill,
   useApiUserAddSkill,
   useApiFetchUserSkills,
-} from "../../../hooks/useSkillApi.js";
+} from "../../../hooks/useApiSkill.js";
 
 import LinkEditUiComponent from "../../UI/LinkEdit.Ui.Component.jsx";
 import SkillSearchInputComponent from "../../skills/SkillSearchInput.Component.jsx";
