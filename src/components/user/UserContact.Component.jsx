@@ -1,16 +1,10 @@
 import React from "react";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 
-import {
-  telephoneIcon,
-  emailIcon,
-  locationIcon,
-  birthDayIcon,
-} from "../../assets/icons";
-import { useFetchUserContact } from "../../services/api/useContactRequestHandler";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import { UserModals } from "../../constants/ModalNames.Constants";
+import { useFetchUserContact } from "../../hooks/useUserContactApi";
 
 export default function UserContactComponent() {
   const { authenticatedUser } = useAuthenticationStore();
