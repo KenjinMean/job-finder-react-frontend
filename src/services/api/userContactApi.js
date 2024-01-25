@@ -1,6 +1,6 @@
 import axiosClient from "../../axios-client";
 
-export const fetchUserContact = async () => {
+export const apiFetchUserContact = async () => {
   try {
     const response = await axiosClient.get("/user-contact/show");
     return response.data;
@@ -10,7 +10,7 @@ export const fetchUserContact = async () => {
   }
 };
 
-export const updateUserContact = async (payload) => {
+export const apiUpdateUserContact = async (payload) => {
   try {
     const response = await axiosClient.post("/user-contact/update", payload);
     return response;

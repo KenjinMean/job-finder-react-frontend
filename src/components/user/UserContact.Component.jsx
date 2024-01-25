@@ -1,14 +1,14 @@
 import React from "react";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 
-import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
-import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import { UserModals } from "../../constants/ModalNames.Constants";
-import { useFetchUserContact } from "../../hooks/useUserContactApi";
+import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
+import { useApiFetchUserContact } from "../../hooks/useApiUserContact";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 export default function UserContactComponent() {
   const { authenticatedUser } = useAuthenticationStore();
-  const { data: userContact } = useFetchUserContact();
+  const { data: userContact } = useApiFetchUserContact();
 
   return (
     <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg border-border-100 bg-background-gray_50 text-content-black">

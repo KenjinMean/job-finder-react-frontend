@@ -7,31 +7,30 @@ import { toMilliseconds } from "../utils/toMilliseconds";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 import {
-  fetchUserContact,
-  updateUserContact,
+  apiFetchUserContact,
+  apiUpdateUserContact,
 } from "../services/api/userContactApi";
 
-export const useFetchUserContact = () => {
+export const useApiFetchUserContact = () => {
   const { authenticatedUser } = useAuthenticationStore();
 
   return useQuery({
     queryKey: ["fetchUserContact", authenticatedUser.id],
-    queryFn: () => fetchUserContact(),
+    queryFn: () => apiFetchUserContact(),
     suspense: true,
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(10, "mins"),
   });
 };
 
-export const useAsyncUpdateUserContact = () => {
+export const useApiAsyncUpdateUserContact = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();
 
   return async (payload) => {
     navigate(userRoutes.userProfilePage);
-
-    const response = await updateUserContact(payload);
+    const response = await apiUpdateUserContact(payload);
 
     if (response.status === 200) {
       queryClient.refetchQueries(["fetchUserContact", authenticatedUser.id]);

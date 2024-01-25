@@ -3,14 +3,13 @@ import { toast } from "react-toastify";
 
 import { prefixHandler } from "../../../utils/prefixHandler";
 import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
-
 import {
-  useAsyncUpdateUserContact,
-  useFetchUserContact,
-} from "../../../hooks/useUserContactApi";
+  useApiAsyncUpdateUserContact,
+  useApiFetchUserContact,
+} from "../../../hooks/useApiUserContact";
 
 export default function UserContactEditModalComponent({ setInputChanged }) {
-  const { data: userContact } = useFetchUserContact();
+  const { data: userContact } = useApiFetchUserContact();
 
   const [payload, setPayload] = useState({});
 
@@ -24,8 +23,9 @@ export default function UserContactEditModalComponent({ setInputChanged }) {
     });
   };
 
-  const asyncUpdateUserContact = useAsyncUpdateUserContact();
+  const asyncUpdateUserContact = useApiAsyncUpdateUserContact();
 
+  // update: can inject the error message on toast error
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
