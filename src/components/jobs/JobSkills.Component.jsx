@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useApiFetchUserSkills } from "../../hooks/useApiSkill";
+import { useApiUserSkillsFetch } from "../../hooks/useApiSkill";
 import { useSkillMatching } from "../../hooks/useSkillMatching";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 export default function JobSkillsComponent({ jobSkills }) {
   const { token } = useAuthenticationStore();
-  const { refetch } = useApiFetchUserSkills(false);
+  const { refetch } = useApiUserSkillsFetch(false);
 
   const [userSkillArray, setUserSkillArray] = useState([]);
 

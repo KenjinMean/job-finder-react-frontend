@@ -11,7 +11,7 @@ import {
   apiUpdateUserContact,
 } from "../services/api/userContactApi";
 
-export const useApiFetchUserContact = () => {
+export const useApiUserContactFetch = () => {
   const { authenticatedUser } = useAuthenticationStore();
 
   return useQuery({
@@ -23,7 +23,7 @@ export const useApiFetchUserContact = () => {
   });
 };
 
-export const useApiAsyncUpdateUserContact = () => {
+export const useApiUserContactUpdateAsync = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();

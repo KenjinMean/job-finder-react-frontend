@@ -3,9 +3,9 @@ import React, { useState } from "react";
 
 import { userRoutes } from "../../../constants/RoutesPath.Constants";
 import {
-  useApiSearchSkill,
-  useApiUserAddSkill,
-  useApiFetchUserSkills,
+  useApiSkillSearch,
+  useApiUserSkillAdd,
+  useApiUserSkillsFetch,
 } from "../../../hooks/useApiSkill.js";
 
 import LinkEditUiComponent from "../../UI/LinkEdit.Ui.Component.jsx";
@@ -21,12 +21,12 @@ export default function UserAddSkillModalComponent() {
     data: skillSuggestions,
     isFetching: fetchingSkill,
     refetch: searchSkillFn,
-  } = useApiSearchSkill(keyword, setKeyword);
+  } = useApiSkillSearch(keyword, setKeyword);
 
   const { isLoading: addSkillLoading, mutate: addSkillMutation } =
-    useApiUserAddSkill();
+    useApiUserSkillAdd();
 
-  const { data: userSkills } = useApiFetchUserSkills();
+  const { data: userSkills } = useApiUserSkillsFetch();
 
   return (
     <div className="p-5 ">

@@ -7,16 +7,16 @@ import { userRoutes } from "../../constants/RoutesPath.Constants";
 
 import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import {
-  useApiFetchUserSkills,
-  useApiAsyncRemoveUserSkill,
+  useApiUserSkillsFetch,
+  useApiUserSkillRemoveAsync,
 } from "../../hooks/useApiSkill";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
 
 export default function UserEditSkillComponent() {
   const navigate = useNavigate();
-  const { data: userSkills } = useApiFetchUserSkills();
-  const asyncRemoveUserSkill = useApiAsyncRemoveUserSkill();
+  const { data: userSkills } = useApiUserSkillsFetch();
+  const asyncRemoveUserSkill = useApiUserSkillRemoveAsync();
 
   const handleRemoveSkill = (skillId) => {
     toast.promise(asyncRemoveUserSkill(skillId), {

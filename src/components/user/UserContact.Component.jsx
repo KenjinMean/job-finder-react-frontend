@@ -3,12 +3,12 @@ import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
 import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
-import { useApiFetchUserContact } from "../../hooks/useApiUserContact";
+import { useApiUserContactFetch } from "../../hooks/useApiUserContact";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 export default function UserContactComponent() {
   const { authenticatedUser } = useAuthenticationStore();
-  const { data: userContact } = useApiFetchUserContact();
+  const { data: userContact } = useApiUserContactFetch();
 
   return (
     <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg border-border-100 bg-background-gray_50 text-content-black">

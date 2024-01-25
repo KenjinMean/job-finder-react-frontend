@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 import {
-  apiSearchSkill,
+  apiSkillSearch,
   apiUserAddSkill,
   apiUserFetchSkill,
   apiUserRemoveSkill,
@@ -18,10 +18,10 @@ import { toMilliseconds } from "../utils/toMilliseconds";
  *
  * @param {string} keyword - The search keyword for skills.
  */
-export const useApiSearchSkill = (keyword) => {
+export const useApiSkillSearch = (keyword) => {
   return useQuery({
-    queryKey: ["searchskill"],
-    queryFn: () => apiSearchSkill(keyword),
+    queryKey: ["searchSkill"],
+    queryFn: () => apiSkillSearch(keyword),
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(10, "mins"),
   });
@@ -33,13 +33,13 @@ export const useApiSearchSkill = (keyword) => {
  * @returns {Object} - The mutation object provided by react-query.
  * @property {Function} mutate - The function to trigger the mutation. accepts skillID parameter
  */
-export const useApiUserAddSkill = () => {
+export const useApiUserSkillAdd = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   return useMutation((skillId) => apiUserAddSkill(skillId), {
     onSuccess: async () => {
-      queryClient.invalidateQueries("searchskill");
+      queryClient.invalidateQueries("searchSkill");
       navigate(useOpenModalOverlay(UserModals.userAddSkillSuccessModal.name));
     },
     onError: (error) => {
@@ -63,7 +63,7 @@ export const useApiUserAddSkill = () => {
  * @param {Object} skillId - The skillId to be removed
  */
 
-export const useApiAsyncRemoveUserSkill = () => {
+export const useApiUserSkillRemoveAsync = () => {
   const { authenticatedUser } = useAuthenticationStore();
   const queryClient = useQueryClient();
 
@@ -81,7 +81,7 @@ export const useApiAsyncRemoveUserSkill = () => {
  * Uses user token to retrieve user skills on the backend
  *
  */
-export const useApiFetchUserSkills = (enabled = true) => {
+export const useApiUserSkillsFetch = (enabled = true) => {
   const { authenticatedUser } = useAuthenticationStore();
   return useQuery({
     queryKey: ["fetchUserSkills", authenticatedUser.id],

@@ -1,6 +1,6 @@
 import axiosClient from "../../axios-client";
 
-export const apiSearchSkill = async (keyword) => {
+export const apiSkillSearch = async (keyword) => {
   try {
     const response = await axiosClient.get(`/search-skills?keyword=${keyword}`);
     return response.data.skills;

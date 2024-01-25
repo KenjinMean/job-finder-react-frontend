@@ -8,10 +8,10 @@ import { userRoutes } from "../../constants/RoutesPath.Constants";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component.jsx";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component.jsx";
-import { useApiFetchUserSkills } from "../../hooks/useApiSkill.js";
+import { useApiUserSkillsFetch } from "../../hooks/useApiSkill.js";
 
 export default function UserSkillsComponent() {
-  const { data: userSkills } = useApiFetchUserSkills();
+  const { data: userSkills } = useApiUserSkillsFetch();
 
   return (
     <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg bg-background-gray_50 border-border-100 text-content-black">
