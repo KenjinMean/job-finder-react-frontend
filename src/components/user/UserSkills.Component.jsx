@@ -3,15 +3,15 @@ import React from "react";
 import { UserModals } from "../../constants/ModalNames.Constants";
 
 import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions.js";
-import { useFetchUserSkills } from "../../services/api/useSkillRequestHandler.js";
 
 import { userRoutes } from "../../constants/RoutesPath.Constants";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component.jsx";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component.jsx";
+import { useApiFetchUserSkills } from "../../hooks/useSkillApi.js";
 
 export default function UserSkillsComponent() {
-  const { data: userSkills } = useFetchUserSkills();
+  const { data: userSkills } = useApiFetchUserSkills();
 
   return (
     <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg bg-background-gray_50 border-border-100 text-content-black">

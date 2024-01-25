@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useFetchUserSkills } from "../../services/api/useSkillRequestHandler";
-import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
-import { useSkillMatching } from "../../hooks/useSkillMatching";
 import { Link } from "react-router-dom";
+import { useApiFetchUserSkills } from "../../hooks/useSkillApi";
+import { useSkillMatching } from "../../hooks/useSkillMatching";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 export default function JobSkillsComponent({ jobSkills }) {
   const { token } = useAuthenticationStore();
-  const { refetch } = useFetchUserSkills(false);
+  const { refetch } = useApiFetchUserSkills(false);
 
   const [userSkillArray, setUserSkillArray] = useState([]);
 
@@ -37,6 +37,7 @@ export default function JobSkillsComponent({ jobSkills }) {
             matchedSkills.length ? matchedSkills.length : "No"
           } ${matchedSkills.length === 1 ? "skill" : "skills"} matched`}</p>
         )}
+        {/* refactor to be single resposibility component */}
         <p className="flex flex-wrap gap-1 text-sm">
           {jobSkills.map((skill) => {
             const isMatched = userSkillArray.some(
