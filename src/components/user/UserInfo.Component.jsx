@@ -2,19 +2,18 @@ import React from "react";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
 
+import { useApiUserInfoFetch } from "../../hooks/useApiUserInfo";
 import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
-import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Component";
 
 export default function UserInfoComponent() {
   // fetch User Info
-  const { data: userInfo } = useFetchtUserInfo();
+  const { data: userInfo } = useApiUserInfoFetch();
 
   return (
     <section className="relative w-full overflow-hidden border border-border-100 sm:rounded-lg bg-background-gray_50 text-content-black">
-      {/* view Cover Image */}
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.cover_image}
         to={useOpenModalOverlay(UserModals.userCoverImageViewModal.name)}

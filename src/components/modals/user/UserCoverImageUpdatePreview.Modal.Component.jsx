@@ -4,9 +4,9 @@ import { Navigate } from "react-router-dom";
 import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 import { UserModals } from "../../../constants/ModalNames.Constants";
-import { useAsyncUpdateUserCoverImage } from "../../../services/api/useProfileRequesthandler";
+import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
+import { useApiUserCoverImageUpdateAsync } from "../../../hooks/useApiUserInfo";
 
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
@@ -17,7 +17,7 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
       useOpenModalOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
     );
 
-  const asyncUpdateUserCoverImage = useAsyncUpdateUserCoverImage();
+  const asyncUpdateUserCoverImage = useApiUserCoverImageUpdateAsync();
 
   const handleSubmit = () => {
     const formData = new FormData();

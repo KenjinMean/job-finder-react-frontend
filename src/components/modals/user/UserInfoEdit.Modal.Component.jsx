@@ -2,15 +2,15 @@ import React, { useState, useEffect, Fragment } from "react";
 import { toast } from "react-toastify";
 
 import {
-  useAsyncUpdateUserInfo,
-  useFetchtUserInfo,
-} from "../../../services/api/useProfileRequesthandler";
+  useApiUserInfoFetch,
+  useApiUserInfoUpdateAsync,
+} from "../../../hooks/useApiUserInfo";
 
 import UserInfoEditForm from "../../forms/auth/UserInfoEdit.Form";
 
 export default function UserInfoEditModalComponent({ setIsUserInfoChanged }) {
-  const { data: userInfo } = useFetchtUserInfo();
-  const updateUserInfo = useAsyncUpdateUserInfo();
+  const { data: userInfo } = useApiUserInfoFetch();
+  const updateUserInfo = useApiUserInfoUpdateAsync();
 
   const [payload, setPayload] = useState(null);
 

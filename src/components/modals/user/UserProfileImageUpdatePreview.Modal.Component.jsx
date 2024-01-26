@@ -7,11 +7,10 @@ import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
-import { useAsyncUpdateUserProfileImage } from "../../../services/api/useProfileRequesthandler";
 
-import ModalUtil from "../../utils/Modal.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
+import { useApiUserProfileImageUpdateAsync } from "../../../hooks/useApiUserInfo";
 
 export default function UserProfileImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
@@ -19,7 +18,7 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
       useOpenModalOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
     );
 
-  const asyncUpdateUserProfileImage = useAsyncUpdateUserProfileImage();
+  const asyncUpdateUserProfileImage = useApiUserProfileImageUpdateAsync();
 
   const handleSubmit = () => {
     const formData = new FormData();

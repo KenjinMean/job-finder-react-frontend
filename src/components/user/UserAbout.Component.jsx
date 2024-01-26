@@ -1,14 +1,15 @@
 import React, { useRef } from "react";
 
+import { UserModals } from "../../constants/ModalNames.Constants";
+
+import { useApiUserInfoFetch } from "../../hooks/useApiUserInfo";
 import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
 import { useTruncatedElement } from "../../hooks/useTruncatedElement";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
-import { UserModals } from "../../constants/ModalNames.Constants";
-import { useFetchtUserInfo } from "../../services/api/useProfileRequesthandler";
 
 export default function UserAboutComponent() {
-  const { data: userInfo } = useFetchtUserInfo();
+  const { data: userInfo } = useApiUserInfoFetch();
 
   const ref = useRef(null);
   const { isTruncated, isShowingMore, toggleIsShowingMore } =

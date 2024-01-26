@@ -7,22 +7,45 @@ import { toMilliseconds } from "../utils/toMilliseconds";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 import {
-  apiFetchUserContact,
-  apiUpdateUserContact,
+  apiUserContactFetch,
+  apiUserContactUpdate,
 } from "../services/api/userContactApi";
 
+/* ----------------------------------------------------------- */
+/**
+ * A custom hook for fetching user contact using the react-query library.
+ *
+ * @param {string} keyword - The search keyword for skills.
+ */
 export const useApiUserContactFetch = () => {
   const { authenticatedUser } = useAuthenticationStore();
 
   return useQuery({
     queryKey: ["fetchUserContact", authenticatedUser.id],
-    queryFn: () => apiFetchUserContact(),
+    queryFn: async () => {
+      try {
+        const response = await apiUserContactFetch();
+        return response;
+      } catch (error) {
+        console.error(
+          "Handling user Contact Fetch Response Failed in useApiUserInfoFetch hook:",
+          error.message
+        );
+        throw new Error("Failed to fetch user contact information");
+      }
+    },
     suspense: true,
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(10, "mins"),
   });
 };
 
+/* ----------------------------------------------------------- */
+/**
+ * A custom hook for updating user contact using the react-query library.
+ *
+ * @param {string} keyword - The search keyword for skills.
+ */
 export const useApiUserContactUpdateAsync = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -30,10 +53,20 @@ export const useApiUserContactUpdateAsync = () => {
 
   return async (payload) => {
     navigate(userRoutes.userProfilePage);
-    const response = await apiUpdateUserContact(payload);
+    try {
+      const response = await apiUserContactUpdate(payload);
 
-    if (response.status === 200) {
-      queryClient.refetchQueries(["fetchUserContact", authenticatedUser.id]);
+      if (response.status === 200) {
+        queryClient.refetchQueries(["fetchUserContact", authenticatedUser.id]);
+      }
+    } catch (error) {
+      console.error(
+        "Handling user Contact Update Failed in useApiUserInfoFetch hook:",
+        error.message
+      );
+      throw new Error(
+        "Handling user Contact Update Failed in useApiUserInfoFetch hook"
+      );
     }
   };
 };

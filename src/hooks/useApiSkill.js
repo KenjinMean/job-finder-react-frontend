@@ -13,6 +13,7 @@ import {
 
 import { toMilliseconds } from "../utils/toMilliseconds";
 
+/* ----------------------------------------------------------- */
 /**
  * A custom hook for searching skills using the react-query library.
  *
@@ -21,12 +22,27 @@ import { toMilliseconds } from "../utils/toMilliseconds";
 export const useApiSkillSearch = (keyword) => {
   return useQuery({
     queryKey: ["searchSkill"],
-    queryFn: () => apiSkillSearch(keyword),
-    cacheTime: toMilliseconds(30, "mins"),
-    staleTime: toMilliseconds(10, "mins"),
+    queryFn: async () => {
+      try {
+        const response = await apiSkillSearch(keyword);
+        return response;
+      } catch (error) {
+        console.error(
+          "Handling fetchSkill Response Failed in useApiSkill hook:",
+          error.message
+        );
+        throw new Error(
+          "Handling fetchSkill Response Failed in useApiSkill hook"
+        );
+      }
+    },
+
+    cacheTime: toMilliseconds(60, "mins"),
+    staleTime: toMilliseconds(60, "mins"),
   });
 };
 
+/* ----------------------------------------------------------- */
 /**
  * A custom hook for adding a skill to the user using the react-query useMutation.
  *
@@ -53,6 +69,7 @@ export const useApiUserSkillAdd = () => {
   });
 };
 
+/* ----------------------------------------------------------- */
 /**
  * Asynchronous function for removing user skill using an API request.
  * This function is designed for use with react-toast notifications, which require
@@ -67,15 +84,24 @@ export const useApiUserSkillRemoveAsync = () => {
   const { authenticatedUser } = useAuthenticationStore();
   const queryClient = useQueryClient();
 
-  return async (skillId) => {
-    const response = await apiUserRemoveSkill(skillId);
+  try {
+    return async (skillId) => {
+      const response = await apiUserRemoveSkill(skillId);
 
-    if (response.status === 200) {
-      queryClient.refetchQueries(["fetchUserSkills", authenticatedUser.id]);
-    }
-  };
+      if (response.status === 200) {
+        queryClient.refetchQueries(["fetchUserSkills", authenticatedUser.id]);
+      }
+    };
+  } catch (error) {
+    console.error(
+      "Handling User Skill Remove Response Failed on useHook:",
+      error
+    );
+    throw new Error("Failed to update user information");
+  }
 };
 
+/* ----------------------------------------------------------- */
 /**
  * A custom hook for fetching user skills using the react-query library.
  * Uses user token to retrieve user skills on the backend

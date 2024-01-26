@@ -6,11 +6,10 @@ import { UserModals } from "../../../constants/ModalNames.Constants";
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 import {
-  useAsyncUpdateUserCoverImage,
-  useFetchtUserInfo,
-} from "../../../services/api/useProfileRequesthandler";
+  useApiUserCoverImageUpdateAsync,
+  useApiUserInfoFetch,
+} from "../../../hooks/useApiUserInfo";
 
-import ModalUtil from "../../utils/Modal.Util";
 import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
@@ -20,9 +19,9 @@ export default function UserCoverImageViewModalComponent() {
     useOpenModalOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
   );
 
-  const { data: userInfo } = useFetchtUserInfo();
+  const { data: userInfo } = useApiUserInfoFetch();
 
-  const asyncUpdateUserCoverImage = useAsyncUpdateUserCoverImage();
+  const asyncUpdateUserCoverImage = useApiUserCoverImageUpdateAsync();
 
   const handleCoverDelete = () => {
     const formData = new FormData();

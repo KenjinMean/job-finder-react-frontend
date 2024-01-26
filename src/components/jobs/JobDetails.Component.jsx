@@ -18,6 +18,7 @@ export default function JobDetailsComponent() {
 
   return (
     <div className="relative grid grid-cols-1 gap-5 mx-auto md:grid-cols-2 text-content-gray">
+      {/* Refactor this to jobDetilsColLeftCol and JobDetailsRightCol */}
       {/* row 1 */}
       <div className="flex flex-col max-w-md gap-5 md:max-w-none">
         <ButtonBackUiComponent onClick={() => navigate(-1)} />

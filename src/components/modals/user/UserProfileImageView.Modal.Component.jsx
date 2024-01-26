@@ -3,16 +3,14 @@ import { toast } from "react-toastify";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
 
-import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 import useFileHandling from "../../../hooks/useFileHandling";
 import {
-  useAsyncUpdateUserProfileImage,
-  useFetchtUserInfo,
-} from "../../../services/api/useProfileRequesthandler";
+  useApiUserInfoFetch,
+  useApiUserProfileImageUpdateAsync,
+} from "../../../hooks/useApiUserInfo";
+import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
 
-import ModalUtil from "../../utils/Modal.Util";
 import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
-
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 
@@ -21,9 +19,9 @@ export default function UserProfileImageViewModalComponent() {
     useOpenModalOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
   );
 
-  const { data: userInfo } = useFetchtUserInfo();
+  const { data: userInfo } = useApiUserInfoFetch();
 
-  const asyncUpdateUserProfileImage = useAsyncUpdateUserProfileImage();
+  const asyncUpdateUserProfileImage = useApiUserProfileImageUpdateAsync();
 
   const handleProfileDelete = () => {
     const formData = new FormData();
