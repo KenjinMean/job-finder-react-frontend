@@ -2,22 +2,21 @@ import { useNavigate } from "react-router-dom";
 
 import { jobRoutes } from "../constants/RoutesPath.Constants";
 
-import { useDebouncedCallback } from "./UseDebounceCallback";
-import { useFetchSearchSuggestions } from "../services/api/useJobRequestHandler";
 import { useEffect, useRef, useState } from "react";
+import { useDebouncedCallback } from "./UseDebounceCallback";
+import { useApiJobSearchSuggestionsFetch } from "./useApiJob";
 
 export const useAutoCompleteSearchBarFunctions = () => {
   const inputRef = useRef();
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const suggestionsDropdownRef = useRef(null);
-  const [filters, setFilter] = useState({ job_type: "", skills: "" });
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
   const [isSuggestionDropdownActive, setIsSuggestionDropdownActive] =
     useState(false);
 
   const { data: searchSuggestions, refetch: fetchSearchSuggestions } =
-    useFetchSearchSuggestions(keyword);
+    useApiJobSearchSuggestionsFetch(keyword);
 
   const debouncedFetchSearchSuggestions = useDebouncedCallback((value) => {
     fetchSearchSuggestions(value);
@@ -36,16 +35,17 @@ export const useAutoCompleteSearchBarFunctions = () => {
 
   const handleSearch = () => {
     const queryParams = [];
-    if (inputRef.current.value) {
+    if (inputRef.current && inputRef.current.value) {
       queryParams.push(`query=${inputRef.current.value}`);
     }
-    if (filters.job_type) {
-      queryParams.push(`job_type=${filters.job_type}`);
-    }
-    const searchParams = queryParams.join("&");
 
+    const searchParams = queryParams.join("&");
     setIsSuggestionDropdownActive(false);
-    navigate(`${jobRoutes.jobSearchResultPage}?${searchParams}`);
+
+    // Check if there are query parameters before navigating
+    if (searchParams) {
+      navigate(`${jobRoutes.jobSearchResultPage}?${searchParams}`);
+    }
   };
 
   const navigateToJobsPage = () => {

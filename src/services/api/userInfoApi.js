@@ -1,4 +1,5 @@
 import axiosClient from "../../axios-client";
+import { devError } from "../../utils/devError";
 import { logAxiosError } from "../../utils/LogAxiosError";
 
 /* ----------------------------------------------------------- */
@@ -7,14 +8,11 @@ export const apiUserInfoFetch = async () => {
     const response = await axiosClient.get("/user-infos/show");
     return response.data;
   } catch (error) {
-    console.error(
-      "Failed to fetch UserInfo on userApi fetch request:",
-      error.message
-    );
+    devError("Failed to fetch UserInfo. API request failed:", error.message);
 
     logAxiosError(error);
 
-    throw new Error("Failed to fetch UserInfo on userApi fetch request");
+    throw new Error("Failed to fetch UserInfo. API request failed");
   }
 };
 
@@ -24,14 +22,11 @@ export const apiUserInfoUpdate = async (payload) => {
     const response = await axiosClient.post("/user-infos/update", payload);
     return response;
   } catch (error) {
-    console.error(
-      "Failed to Update UserInfo on userApi update request:",
-      error.message
-    );
+    devError("Failed to Update UserInfo. API request failed:", error.message);
 
     logAxiosError(error);
 
-    throw new Error("Failed to Update UserInfo on userApi update request");
+    throw new Error("Failed to Update UserInfo. API request failed");
   }
 };
 
@@ -44,14 +39,14 @@ export const apiUserProfileImageUpdate = async (payload) => {
     );
     return response;
   } catch (error) {
-    console.error(
-      "Failed to Update Profile Image on userApi update request:",
+    devError(
+      "Failed to Update Profile Image. API request failed:",
       error.message
     );
 
     logAxiosError(error);
 
-    throw new Error("Failed to Update Profile Image on userApi update request");
+    throw new Error("Failed to Update Profile Image. API request failed");
   }
 };
 
@@ -64,13 +59,13 @@ export const apiUserCoverImageUpdate = async (payload) => {
     );
     return response;
   } catch (error) {
-    console.error(
-      "Failed to Update Cover Image on userApi update request:",
+    devError(
+      "Failed to Update Cover Image. API request failed:",
       error.message
     );
 
     logAxiosError(error);
 
-    throw new Error("Failed to Update Cover Image on userApi update request:");
+    throw new Error("Failed to Update Cover Image. API request failed:");
   }
 };

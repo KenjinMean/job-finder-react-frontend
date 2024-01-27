@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { userRoutes } from "../constants/RoutesPath.Constants";
 
+import { devError } from "../utils/devError";
 import { toMilliseconds } from "../utils/toMilliseconds";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
@@ -27,11 +28,11 @@ export const useApiUserContactFetch = () => {
         const response = await apiUserContactFetch();
         return response;
       } catch (error) {
-        console.error(
-          "Handling user Contact Fetch Response Failed in useApiUserInfoFetch hook:",
+        devError(
+          "Handling fetchUserContact Response Failed on useApiUserContact hook:",
           error.message
         );
-        throw new Error("Failed to fetch user contact information");
+        throw new Error("Handling fetchUserContact Response Failed");
       }
     },
     suspense: true,
@@ -60,13 +61,11 @@ export const useApiUserContactUpdateAsync = () => {
         queryClient.refetchQueries(["fetchUserContact", authenticatedUser.id]);
       }
     } catch (error) {
-      console.error(
-        "Handling user Contact Update Failed in useApiUserInfoFetch hook:",
+      devError(
+        "Handling updateUserContact response Failed on useApiUserContact hook:",
         error.message
       );
-      throw new Error(
-        "Handling user Contact Update Failed in useApiUserInfoFetch hook"
-      );
+      throw new Error("Handling updateUserContact response Failed");
     }
   };
 };

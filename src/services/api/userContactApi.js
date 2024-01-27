@@ -1,4 +1,6 @@
 import axiosClient from "../../axios-client";
+import { logAxiosError } from "../../utils/LogAxiosError";
+import { devError } from "../../utils/devError";
 
 /* ----------------------------------------------------------- */
 export const apiUserContactFetch = async () => {
@@ -6,11 +8,14 @@ export const apiUserContactFetch = async () => {
     const response = await axiosClient.get("/user-contact/show");
     return response.data;
   } catch (error) {
-    console.error("Failed to fetch user contact:", error.message);
+    devError(
+      "Failed to fetch user contact. API request failed:",
+      error.message
+    );
 
     logAxiosError(error);
 
-    throw new Error("failed to fetch user contact");
+    throw new Error("Failed to fetch user contact. API request failed");
   }
 };
 
@@ -20,10 +25,13 @@ export const apiUserContactUpdate = async (payload) => {
     const response = await axiosClient.post("/user-contact/update", payload);
     return response;
   } catch (error) {
-    console.error("Failed to update user contact:", error.message);
+    devError(
+      "Failed to update user contact. API request failed:",
+      error.message
+    );
 
     logAxiosError(error);
 
-    throw new Error("Failed to update user contact. See console for details.");
+    throw new Error("Failed to update user contact. API request failed");
   }
 };

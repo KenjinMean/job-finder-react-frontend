@@ -1,15 +1,20 @@
 import React, { Fragment } from "react";
 
+import { useApiJobsInfiniteFetch } from "../../hooks/useApiJob";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
-import { useFetchJobsInfinite } from "../../services/api/useJobRequestHandler";
 
 import JobContainerComponent from "./JobContainer.Component";
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
 
 export default function JobListingComponent() {
-  const { data, hasNextPage, fetchNextPage, isFetching, isFetchingNextPage } =
-    useFetchJobsInfinite();
+  const {
+    data: jobs,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useApiJobsInfiniteFetch();
 
   const lastJobRef = useIntersectionObserver(
     () => fetchNextPage(),
@@ -19,7 +24,7 @@ export default function JobListingComponent() {
   return (
     <div className="flex flex-col gap-5 sm:gap-3">
       <PageTitleUtil title="Job Listings" />
-      {data?.pages?.map((group, index) => {
+      {jobs?.pages?.map((group, index) => {
         return (
           <Fragment key={index}>
             {group.data?.data?.map((job, jobIndex, array) => {
@@ -27,8 +32,8 @@ export default function JobListingComponent() {
               return (
                 <JobContainerComponent
                   job={job}
-                  ref={isLastJob ? lastJobRef : null}
                   key={job.id}
+                  ref={isLastJob ? lastJobRef : null}
                 />
               );
             })}

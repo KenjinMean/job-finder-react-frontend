@@ -4,6 +4,7 @@ import {
   apiUserCoverImageUpdate,
   apiUserProfileImageUpdate,
 } from "../services/api/userInfoApi";
+import { devError } from "../utils/devError";
 import { useNavigate } from "react-router-dom";
 import { toMilliseconds } from "../utils/toMilliseconds";
 import { userRoutes } from "../constants/RoutesPath.Constants";
@@ -16,18 +17,18 @@ export const useApiUserInfoFetch = () => {
     useAuthenticationStore();
 
   return useQuery({
-    queryKey: ["userInfo", authenticatedUser.id],
+    queryKey: ["fetchUserInfo", authenticatedUser.id],
     queryFn: async () => {
       try {
         const response = await apiUserInfoFetch();
         setAuthenticatedUserUserInfo(response);
         return response;
       } catch (error) {
-        console.error(
-          "Handling UserInfo Fetch Response Failed in useApiUserInfoFetch hook:",
+        devError(
+          "Handling fetchUserInfo Response Failed in useApiUserInfo hook:",
           error.message
         );
-        throw new Error("Failed to fetch user information");
+        throw new Error("Handling fetchUserInfo Response Failed");
       }
     },
     suspense: true,
@@ -83,14 +84,14 @@ export const useApiUserInfoUpdateAsync = () => {
       const response = await apiUserInfoUpdate(payload);
 
       if (response.status === 200) {
-        queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
+        queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
       }
     } catch (error) {
-      console.error(
-        "Handling UserInfoUpdate Response Failed on useHook:",
-        error
+      devError(
+        "Handling updateUserInfo Response Failed on useApiUserInfo:",
+        error.message
       );
-      throw new Error("Failed to update user information");
+      throw new Error("Handling updateUserInfo Response Failed");
     }
   };
 };
@@ -143,14 +144,14 @@ export const useApiUserProfileImageUpdateAsync = () => {
       const response = await apiUserProfileImageUpdate(image);
 
       if (response.status === 200) {
-        queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
+        queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
       }
     } catch (error) {
-      console.error(
-        "Handling UserProfileImageUpdate Response Failed on useHook:",
-        error
+      devError(
+        "Handling UserProfileImageUpdate Response Failed on useApiUserInfo:",
+        error.message
       );
-      throw new Error("Failed to update user profile image");
+      throw new Error("Handling UserProfileImageUpdate Response Failed");
     }
   };
 };
@@ -203,14 +204,14 @@ export const useApiUserCoverImageUpdateAsync = () => {
       const response = await apiUserCoverImageUpdate(image);
 
       if (response.status === 200) {
-        queryClient.refetchQueries(["userInfo", authenticatedUser.id]);
+        queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
       }
     } catch (error) {
-      console.error(
-        "Handling UserCoverImageUpdate Response Failed on useHook:",
-        error
+      devError(
+        "Handling UserCoverImageUpdate Response Failed on useApiUserInfo:",
+        error.message
       );
-      throw new Error("Failed to update user cover image");
+      throw new Error("Handling UserCoverImageUpdate Response Failed");
     }
   };
 };

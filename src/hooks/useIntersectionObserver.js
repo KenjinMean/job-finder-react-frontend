@@ -1,34 +1,13 @@
 // SOURCE: https://www.youtube.com/watch?v=ZsT815JRtbE
 
-// import { useCallback, useRef } from "react";
-
-// export default function useIntersectionObserver(callback, deps) {
-//   const observer = useRef(null);
-//   const ref = useCallback(
-//     (node) => {
-//       if (deps) {
-//         observer.current?.disconnect();
-//         observer.current = new IntersectionObserver((entries) => {
-//           if (entries[0].isIntersecting) {
-//             callback();
-//           }
-//         });
-//         if (node) {
-//           observer.current.observe(node);
-//         }
-//       }
-//     },
-//     [deps, callback]
-//   );
-
-//   return ref;
-// }
-
-// IMPORVED
-
-// useIntersectionObserver.js
 import { useCallback, useRef } from "react";
 
+/**
+ * Custom hook for using Intersection Observer to trigger a callback when an element is in the viewport.
+ *
+ * @param {Function} callback - The callback function to be executed when the observed element is in the viewport.
+ * @returns {Function} ref - The ref function to be attached to the element to be observed.
+ */
 export default function useIntersectionObserver(callback) {
   const observerRef = useRef(null);
 

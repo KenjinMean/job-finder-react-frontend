@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { useFetchJobdetails } from "../../services/api/useJobRequestHandler";
+import { useApiJobDetailsFetch } from "../../hooks/useApiJob";
 
 import JobSkillsComponent from "./JobSkills.Component";
 import JobInformationComponent from "./JobInformation.Component";
@@ -14,7 +14,7 @@ export default function JobDetailsComponent() {
 
   const { jobSlug } = useParams();
 
-  const { data: jobDetails } = useFetchJobdetails(jobSlug);
+  const { data: jobDetails } = useApiJobDetailsFetch(jobSlug);
 
   return (
     <div className="relative grid grid-cols-1 gap-5 mx-auto md:grid-cols-2 text-content-gray">

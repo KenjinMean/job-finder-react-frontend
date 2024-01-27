@@ -11,15 +11,15 @@ export default function AutoCompleteSearchBarUiComponent() {
   const {
     inputRef,
     searchSuggestions,
-    isSuggestionDropdownActive,
-    selectedSuggestionIndex,
     suggestionsDropdownRef,
-    handleInputChange,
-    handleSuggestionClick,
+    selectedSuggestionIndex,
+    isSuggestionDropdownActive,
     handleSearch,
-    handleSearchBarKeyDown,
     handleInputFocus,
     handleButtonClear,
+    handleInputChange,
+    handleSuggestionClick,
+    handleSearchBarKeyDown,
   } = useAutoCompleteSearchBarFunctions();
 
   return (

@@ -1,4 +1,6 @@
 import axiosClient from "../../axios-client";
+import { devError } from "../../utils/devError";
+import { logAxiosError } from "../../utils/LogAxiosError";
 
 /* ----------------------------------------------------------- */
 export const apiSkillSearch = async (keyword) => {
@@ -6,14 +8,11 @@ export const apiSkillSearch = async (keyword) => {
     const response = await axiosClient.get(`/search-skills?keyword=${keyword}`);
     return response.data.skills;
   } catch (error) {
-    console.error(
-      "Failed to Search Skill on skilLSearchApi request:",
-      error.message
-    );
+    devError("Failed to search skill. API request failed: ", error.message);
 
     logAxiosError(error);
 
-    throw new Error("Failed to Search Skill on skilLSearchApi request");
+    throw new Error("Failed to search skill. API request failed");
   }
 };
 
@@ -40,14 +39,11 @@ export const apiUserRemoveSkill = async (skillId) => {
     );
     return response;
   } catch (error) {
-    console.error(
-      "Failed to Remove Skill on skilLSearchApi request:",
-      error.message
-    );
+    devError("Failed to remove skill. API request failed:", error.message);
 
     logAxiosError(error);
 
-    throw new Error("Failed to Remove Skill on skilLSearchApi request");
+    throw new Error("Failed to remove skill. API request failed");
   }
 };
 
@@ -57,13 +53,10 @@ export const apiUserFetchSkill = async () => {
     const response = await axiosClient.get(`/get-user-skills`);
     return response.data.skills;
   } catch (error) {
-    console.error(
-      "Failed to fetch User Skill on skilLSearchApi request:",
-      error.message
-    );
+    devError("Failed to fetch user skills. API request failed:", error.message);
 
     logAxiosError(error);
 
-    throw new Error("Failed to fetch User Skill on skilLSearchApi request");
+    throw new Error("Failed to fetch user skills. API request failed");
   }
 };

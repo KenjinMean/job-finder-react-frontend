@@ -10,7 +10,7 @@ import {
   apiUserFetchSkill,
   apiUserRemoveSkill,
 } from "../services/api/skillApi";
-
+import { devError } from "../utils/devError";
 import { toMilliseconds } from "../utils/toMilliseconds";
 
 /* ----------------------------------------------------------- */
@@ -27,13 +27,11 @@ export const useApiSkillSearch = (keyword) => {
         const response = await apiSkillSearch(keyword);
         return response;
       } catch (error) {
-        console.error(
-          "Handling fetchSkill Response Failed in useApiSkill hook:",
+        devError(
+          "Handling searchSkill Response Failed on useApiSkill hook:",
           error.message
         );
-        throw new Error(
-          "Handling fetchSkill Response Failed in useApiSkill hook"
-        );
+        throw new Error("Handling searchSkill Response Failed");
       }
     },
 
@@ -93,11 +91,11 @@ export const useApiUserSkillRemoveAsync = () => {
       }
     };
   } catch (error) {
-    console.error(
-      "Handling User Skill Remove Response Failed on useHook:",
-      error
+    devError(
+      "Handling removeUserSkill Response Failed on useApiSkill hook:",
+      error.message
     );
-    throw new Error("Failed to update user information");
+    throw new Error("Handling removeUserSkill Response Failed");
   }
 };
 
@@ -106,15 +104,27 @@ export const useApiUserSkillRemoveAsync = () => {
  * A custom hook for fetching user skills using the react-query library.
  * Uses user token to retrieve user skills on the backend
  *
+ * @param {boolean} enabled - Flag indicating whether the query should be enabled.
  */
 export const useApiUserSkillsFetch = (enabled = true) => {
   const { authenticatedUser } = useAuthenticationStore();
+
   return useQuery({
     queryKey: ["fetchUserSkills", authenticatedUser.id],
-    queryFn: () => apiUserFetchSkill(),
+    queryFn: async () => {
+      try {
+        const response = await apiUserFetchSkill();
+        return response;
+      } catch (error) {
+        devError(
+          "Handling fetchUserSkills Response Failed on useApiSkill hook:",
+          error.message
+        );
+        throw new Error("Handling fetchUserSkills Response Failed");
+      }
+    },
     enabled: enabled,
     suspense: true,
-    cacheTime: toMilliseconds(30, "mins"),
-    staleTime: toMilliseconds(10, "mins"),
+    cacheTime: Infinity,
   });
 };
