@@ -28,7 +28,7 @@ const JobContainerComponent = forwardRef(
     const openDialog = useOpenDialog();
 
     return (
-      <div className="relative" ref={ref} name={`${title} container`}>
+      <article className="relative" ref={ref} name={`${title} container`}>
         <Link
           to={`${jobRoutes.jobDetailsPage}${slug}`}
           className={
@@ -79,7 +79,7 @@ const JobContainerComponent = forwardRef(
           aria-label={`menu for ${title}`}
           onClick={() => openDialog(dialogNames.notImplementedDialog.name)}
         />
-      </div>
+      </article>
     );
   }
 );

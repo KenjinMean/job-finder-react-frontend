@@ -6,10 +6,9 @@ import { useApiJobSearchInfiniteFetch } from "../../hooks/useApiJob";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 import JobContainerComponent from "./JobContainer.Component";
-
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
-import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
 import EndOfListIndicatorUiComponent from "../UI/EndOfListIndicator.Ui.Component";
+import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
 
 export default function JobSearchResultComponent() {
   const location = useLocation();
@@ -36,7 +35,7 @@ export default function JobSearchResultComponent() {
   return (
     <Fragment>
       <PageTitleUtil title="Job Search Results" />
-      <div className="flex flex-col gap-5 sm:gap-3">
+      <section className="flex flex-col gap-5 sm:gap-3">
         <h2 className="text-3xl font-bold">
           Search Results for "{params.query}"
         </h2>
@@ -64,7 +63,7 @@ export default function JobSearchResultComponent() {
             message={`No more jobs available for the search: ${params.query}`}
           />
         )}
-      </div>
+      </section>
     </Fragment>
   );
 }
