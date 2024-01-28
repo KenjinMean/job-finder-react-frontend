@@ -1,3 +1,14 @@
+import { create } from "zustand";
+import { useEffect } from "react";
+import { devtools } from "zustand/middleware";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+
+const useModalScrollLockRef = create(
+  devtools((set) => ({
+    targetElementRef: null,
+    setTargetElementRef: (ref) => set({ targetElementRef: ref }),
+  }))
+);
 // INSPIRATION https://blog.logrocket.com/building-react-modal-module-with-react-router/ on "Preventing the scroll underneath the modal" section
 
 /**
@@ -10,8 +21,8 @@
  *   setElementToScrollLockRef: (ref: React.RefObject<HTMLElement>) => void,
  *   setScrollLockActive: () => void
  * }}
- * - `setElementToScrollLockRef`: Function to set the parent ref of the modal component.
- * - `setScrollLockActive`: Function to disable body scroll when the modal is active.
+ * - `setElementToScrollLockRef`: Function to set the ref of component or element you want to disable scroll.
+ * - `setScrollLockActive`: Function to disable the scroll of the ref component set by "setElementToScrollLockRef"  when the modal is active.
  *
  * @example
  * ------- Usage in your modal component --------
@@ -36,19 +47,6 @@
  *  setElementToScrollLockRef(targetElementRef);
  *
  */
-
-import { create } from "zustand";
-import { useEffect } from "react";
-import { devtools } from "zustand/middleware";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-
-const useModalScrollLockRef = create(
-  devtools((set) => ({
-    targetElementRef: null,
-    setTargetElementRef: (ref) => set({ targetElementRef: ref }),
-  }))
-);
-
 export function useModalScrollLock() {
   const { targetElementRef, setTargetElementRef } = useModalScrollLockRef();
 

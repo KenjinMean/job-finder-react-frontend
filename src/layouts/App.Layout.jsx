@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { Outlet, ScrollRestoration } from "react-router-dom";
 
 import { jobRoutes, userRoutes } from "../constants/RoutesPath.Constants";
@@ -14,8 +14,10 @@ export default function AppLayout() {
   setElementToScrollLockRef(elementToScrollLockRef);
 
   return (
-    // TRY Transfering this to the app and replace with fragment to remove unneccesarry dom node
-    <div ref={elementToScrollLockRef}>
+    <div
+      ref={elementToScrollLockRef}
+      className="bg-background-white font-primary text-content-black"
+    >
       {/*  SOURCE https://reactrouter.com/en/main/components/scroll-restoration */}
       {/* BUG: after sometime on the page the scroll reset do not work, solution is to open a new page */}
       <ScrollRestoration
