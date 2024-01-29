@@ -25,16 +25,16 @@ export const useApiJobDetailsFetch = (id) => {
         return response;
       } catch (error) {
         devError(
-          "Handling Job Fetch Details Response Failed on useApiJobFetchDetails hook:",
-          error
+          "Handling Job Fetch Details Response Failed on useApiJobFetchDetails hook: response",
+          error.response.status
         );
-        throw new Error("Handling jobDetails Response Failed");
+        throw { code: error.response.status };
       }
     },
+    select: (data) => data?.data?.job,
     suspense: true,
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(10, "mins"),
-    useErrorBoundary: true,
   });
 };
 
@@ -58,7 +58,7 @@ export const useApiJobsInfiniteFetch = () => {
           "Handling Fetch Jobs Infinite Response Failed on useApiJobFetchDetails hook:",
           error
         );
-        throw new Error("Handling Fetch Jobs Infinite Response Failed");
+        throw { code: error.response.status };
       }
     },
     getNextPageParam: (lastPage) => {
@@ -95,7 +95,8 @@ export const useApiJobSearchInfiniteFetch = (params) => {
           "Handling Job Search Infinite Response Failed on useApiJobFetchDetails hook:",
           error.message
         );
-        throw new Error("Handling Job Search Infinite Response Failed");
+
+        throw { code: error.response.status };
       }
     },
     getNextPageParam: (lastPage) => {
@@ -132,15 +133,13 @@ export const useApiJobSearchSuggestionsFetch = (keyword) => {
         return null;
       } catch (error) {
         devError(
-          "Handling JobSearchSuggestions response Failed on useApiJobFetchDetails hook:",
-          error.message
+          "Handling Job Fetch Details Response Failed on useApiJobFetchSuggestions hook:",
+          error.response.status
         );
-
-        logAxiosError(error);
-
-        throw new Error("Handling JobSearchSuggestions response Failed");
+        throw { code: error.response.status };
       }
     },
+    select: (data) => data?.data?.suggestions,
     enabled: false,
   });
 };
