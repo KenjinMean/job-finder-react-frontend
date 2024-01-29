@@ -16,25 +16,33 @@ export const useApiUserInfoFetch = () => {
   const { authenticatedUser, setAuthenticatedUserUserInfo } =
     useAuthenticationStore();
 
+  let hasError = false;
+
   return useQuery({
     queryKey: ["fetchUserInfo", authenticatedUser.id],
     queryFn: async () => {
       try {
         const response = await apiUserInfoFetch();
-        setAuthenticatedUserUserInfo(response);
+        setAuthenticatedUserUserInfo(response.data);
         return response;
       } catch (error) {
         devError(
           "Handling fetchUserInfo Response Failed in useApiUserInfo hook:",
           error.message
         );
-        throw new Error("Handling fetchUserInfo Response Failed");
+
+        hasError = true;
+
+        throw {
+          code: error.response.status,
+          message: "Failed to fetch user info",
+        };
       }
     },
+    select: (data) => data?.data,
     suspense: true,
-    cacheTime: toMilliseconds(30, "mins"),
-    staleTime: toMilliseconds(30, "mins"),
-    useErrorBoundary: true,
+    cacheTime: hasError ? undefined : toMilliseconds(30, "mins"),
+    staleTime: hasError ? undefined : toMilliseconds(30, "mins"),
   });
 };
 
@@ -91,7 +99,7 @@ export const useApiUserInfoUpdateAsync = () => {
         "Handling updateUserInfo Response Failed on useApiUserInfo:",
         error.message
       );
-      throw new Error("Handling updateUserInfo Response Failed");
+      throw { code: error.response.status };
     }
   };
 };
@@ -151,7 +159,7 @@ export const useApiUserProfileImageUpdateAsync = () => {
         "Handling UserProfileImageUpdate Response Failed on useApiUserInfo:",
         error.message
       );
-      throw new Error("Handling UserProfileImageUpdate Response Failed");
+      throw { code: error.response.status };
     }
   };
 };
@@ -211,7 +219,7 @@ export const useApiUserCoverImageUpdateAsync = () => {
         "Handling UserCoverImageUpdate Response Failed on useApiUserInfo:",
         error.message
       );
-      throw new Error("Handling UserCoverImageUpdate Response Failed");
+      throw { code: error.response.status };
     }
   };
 };
