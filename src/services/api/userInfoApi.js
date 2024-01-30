@@ -1,31 +1,25 @@
 import axiosClient from "../../axios-client";
 
 /* ----------------------------------------------------------- */
+// fetch user info
 export const apiUserInfoFetch = async () => {
-  const response = await axiosClient.get("/user-infos/show");
-  return response;
+  return await axiosClient.get("/user-infos/show");
 };
 
 /* ----------------------------------------------------------- */
+// update user info
 export const apiUserInfoUpdate = async (payload) => {
-  const response = await axiosClient.post("/user-infos/update", payload);
-  return response;
+  return await axiosClient.post("/user-infos/update", payload);
 };
 
 /* ----------------------------------------------------------- */
+// update profile image
 export const apiUserProfileImageUpdate = async (payload) => {
-  const response = await axiosClient.post(
-    "/user-infos/update-profile-image",
-    payload
-  );
-  return response;
+  return await axiosClient.post("/user-infos/update-profile-image", payload);
 };
 
 /* ----------------------------------------------------------- */
+// update cover image
 export const apiUserCoverImageUpdate = async (payload) => {
-  const response = await axiosClient.post(
-    "/user-infos/update-cover-image",
-    payload
-  );
-  return response;
+  return await axiosClient.post("/user-infos/update-cover-image", payload);
 };

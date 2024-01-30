@@ -1,35 +1,31 @@
 import axiosClient from "../../axios-client";
 
-// FETCH JOB DETAILS
 /* ----------------------------------------------------------- */
+// fetch job details
 export const apiJobDetailsFetch = async (id) => {
-  const response = await axiosClient.get(`/jobs/${id}`);
-  return response;
+  return await axiosClient.get(`/jobs/${id}`);
 };
 
-// FETCH JOBS
 /* ----------------------------------------------------------- */
+// fetch jobs
 export const apiJobsFetch = async ({ pageParam }) => {
   const url = `/jobs/get-job-posting${pageParam ? `?page=${pageParam}` : ""}`;
 
-  const response = await axiosClient.get(url);
-  return response;
+  return await axiosClient.get(url);
 };
 
-// SEARCH JOBS
 /* ----------------------------------------------------------- */
+// search jobs
 export const apiJobsSearch = async (param, { pageParam }) => {
-  const response = await axiosClient.get(
+  return await axiosClient.get(
     `/jobs/search-jobs?keyword=${param.query}&page=${pageParam}`
   );
-  return response;
 };
 
-// FETCH JOBS SUGGESTIONS
 /* ----------------------------------------------------------- */
+// fetch search job suggestions
 export const apiJobsSuggestionsSearch = async (keyword) => {
-  const response = await axiosClient.get(
+  return await axiosClient.get(
     `/jobs/search-jobs-suggestions?keyword=${keyword}`
   );
-  return response;
 };
