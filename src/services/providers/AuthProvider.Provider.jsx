@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import { useRefreshToken } from "../api/useAuthRequestHandler";
+import React, { useEffect } from "react";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
+import { useApiAuthRefreshToken } from "../../hooks/useApiAuth";
 
 const AuthProviderProvider = ({ children }) => {
   const { token } = useAuthenticationStore();
@@ -9,7 +9,7 @@ const AuthProviderProvider = ({ children }) => {
     refreshTokenFn();
   };
 
-  const { refetch: refreshTokenFn } = useRefreshToken(refreshToken);
+  const { refetch: refreshTokenFn } = useApiAuthRefreshToken(refreshToken);
 
   useEffect(() => {
     if (token) {

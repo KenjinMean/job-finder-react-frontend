@@ -5,17 +5,17 @@ import { Link, Navigate } from "react-router-dom";
 import appLogo from "../../assets/logo/JobFinderLogo.png";
 import { jobRoutes } from "../../constants/RoutesPath.Constants";
 
-import { useLogin } from "../../services/api/useAuthRequestHandler";
-import { useGithubAuthLogin } from "../../services/api/useAuthRequestHandler";
-import { useGoogleAuthLogin } from "../../services/api/useAuthRequestHandler";
+import {
+  useApiAuthLogin,
+  useApiAuthGithubAuthLogin,
+  useApiAuthGoogleAuthLogin,
+} from "../../hooks/useApiAuth";
 import useSocialAuthErrorHandling from "../../hooks/useSocialAuthErrorHandling";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
-import LoginForm from "../../components/forms/auth/Login.Form";
-
 import AuthErrorComponent from "./AuthError.Component";
 import SocilaLoginComponent from "./SocialLogin.Component";
-
+import LoginForm from "../../components/forms/auth/Login.Form";
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function LoginComponent() {
@@ -27,13 +27,13 @@ export default function LoginComponent() {
     isError: isLoginError,
     isLoading: loginLoading,
     mutate: loginMutation,
-  } = useLogin();
+  } = useApiAuthLogin();
 
   const { isFetching: githubLoading, refetch: getGithubAuthURL } =
-    useGithubAuthLogin();
+    useApiAuthGithubAuthLogin();
 
   const { isFetching: googleLoading, refetch: getGoogleAuthURL } =
-    useGoogleAuthLogin();
+    useApiAuthGoogleAuthLogin();
 
   // social auth error comes from server as url params, so we need to extract it using this function
   useSocialAuthErrorHandling();
@@ -46,6 +46,7 @@ export default function LoginComponent() {
     <Fragment>
       <PageTitleUtil title="Login" />
       <div className="p-12">
+        {/* convert this to a component */}
         <Link
           to={jobRoutes.jobListingPage}
           className="block focus:ring-4 focus:outline-none focus:ring-accent-blue500 "

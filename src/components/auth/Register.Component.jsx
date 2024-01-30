@@ -3,15 +3,13 @@ import { Fragment } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-
 import { jobRoutes } from "../../constants/RoutesPath.Constants";
 
-import { useRegister } from "../../services/api/useAuthRequestHandler";
+import { useApiAuthRegister } from "../../hooks/useApiAuth";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 import AuthErrorUiComponent from "./AuthError.Component";
 import RegisterForm from "../../components/forms/auth/Register.Form";
-
 import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function RegisterComponent() {
@@ -22,7 +20,7 @@ export default function RegisterComponent() {
     isError,
     error,
     mutate: registerMutation,
-  } = useRegister();
+  } = useApiAuthRegister();
 
   if (token) {
     return <Navigate to={jobRoutes.jobListingPage} />;

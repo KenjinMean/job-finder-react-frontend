@@ -1,4 +1,4 @@
-// SOURCE: https://headlessui.com/react/menu
+// SOURCE for dropdown menu: https://headlessui.com/react/menu
 
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
@@ -9,14 +9,15 @@ import { closeIcon } from "../../assets/icons";
 import { userRoutes } from "../../constants/RoutesPath.Constants";
 import { grow } from "../../constants/animationVariants.Constants";
 
-import { useLogout } from "../../services/api/useAuthRequestHandler";
+import { useApiAuthLogout } from "../../hooks/useApiAuth";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+
 import ImageUrlLoaderUtil from "../utils/ImageUrlLoader.Util";
 
 export default function ProfileDropdownMenuUiComponent() {
   const { authenticatedUser } = useAuthenticationStore();
 
-  const { refetch: logoutFn } = useLogout(authenticatedUser.id);
+  const { mutate: logoutFn } = useApiAuthLogout();
 
   const handleLogout = () => {
     logoutFn();
