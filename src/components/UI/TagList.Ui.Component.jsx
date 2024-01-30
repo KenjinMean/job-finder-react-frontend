@@ -7,7 +7,7 @@ export default function TagListUiComponent({ tags }) {
         <Fragment key={index}>
           <span
             key={index}
-            className="px-2 rounded-full text-content-black_inverted bg-accent-blue600"
+            className="px-2 rounded-full text-content-black_inverted bg-accent-blue600 whitespace-nowrap"
           >
             {jobType.job_type}
           </span>
