@@ -35,9 +35,11 @@ export const useApiUserContactFetch = () => {
         throw new Error("Handling fetchUserContact Response Failed");
       }
     },
+    select: (data) => data?.data,
     suspense: true,
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(10, "mins"),
+    useErrorBoundary: true,
   });
 };
 

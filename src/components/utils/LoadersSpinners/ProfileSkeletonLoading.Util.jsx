@@ -6,7 +6,7 @@ export default function ProfileSkeletonLoadingUtil() {
       <span className="sr-only">Loading...</span>
       <div className="block w-full p-10 border-b h-36 sm:h-48 border-border-100">
         <svg
-          class="w-full h-full text-gray-200 dark:text-gray-600 animate-pulse"
+          className="w-full h-full text-gray-200 dark:text-gray-600 animate-pulse"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"

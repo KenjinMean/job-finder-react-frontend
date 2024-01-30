@@ -34,7 +34,7 @@ export const useApiSkillSearch = (keyword) => {
         throw new Error("Handling searchSkill Response Failed");
       }
     },
-
+    select: (data) => data?.data?.skills,
     cacheTime: toMilliseconds(60, "mins"),
     staleTime: toMilliseconds(60, "mins"),
   });
@@ -123,6 +123,7 @@ export const useApiUserSkillsFetch = (enabled = true) => {
         throw new Error("Handling fetchUserSkills Response Failed");
       }
     },
+    select: (data) => data?.data?.skills,
     enabled: enabled,
     suspense: true,
     cacheTime: Infinity,
