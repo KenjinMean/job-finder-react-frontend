@@ -3,7 +3,7 @@ export default function ErrorServerUnavailableUiComponent({
   resetErrorBoundary,
 }) {
   return (
-    <div class="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-background-white">
+    <div class="flex items-center justify-center w-full p-5 bg-background-white">
       <div class="text-center">
         <div class="inline-flex rounded-full bg-sky-100 p-4">
           <div class="rounded-full stroke-sky-600 bg-sky-200 p-4">

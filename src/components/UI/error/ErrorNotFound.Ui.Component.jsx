@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { jobRoutes } from "../../../constants/RoutesPath.Constants";
 
-export default function ErrorNotFoundUiComponent() {
+export default function ErrorNotFoundUiComponent({ resetErrorBoundary }) {
   const navigate = useNavigate();
 
   return (
-    <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 bg-background-white w-full">
+    <div className="flex items-center justify-center w-full p-5 bg-background-white">
       <div className="text-center">
         <div className="inline-flex p-4 bg-yellow-100 rounded-full">
           <div className="p-4 bg-yellow-200 rounded-full stroke-yellow-600">
@@ -32,12 +32,18 @@ export default function ErrorNotFoundUiComponent() {
         <p className="mt-5 text-content-gray lg:text-lg">
           The page you are looking for doesn't exist or <br />
           has been removed. You can return to the{" "}
-          <Link
+          {/* <Link
             to={jobRoutes.jobListingPage}
             className="text-accent-blue500 hover:text-accent-blue700"
           >
             Home page
-          </Link>{" "}
+          </Link>{" "} */}
+          <button
+            className="inline-block text-accent-blue500 hover:text-accent-blue700"
+            onClick={resetErrorBoundary}
+          >
+            refresh
+          </button>{" "}
           or{" "}
           <button
             className="text-accent-blue500 hover:text-accent-blue700"

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ErrorServerErrorUiComponent({ resetErrorBoundary }) {
   return (
-    <div className="flex h-[calc(100vh-80px)] items-center justify-center p-5 w-full bg-background-white">
+    <div className="flex items-center justify-center w-full p-5 bg-background-white">
       <div className="text-center">
         <div className="inline-flex p-4 bg-red-100 rounded-full">
           <div className="p-4 bg-red-200 rounded-full stroke-red-600">
