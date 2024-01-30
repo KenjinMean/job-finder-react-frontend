@@ -7,8 +7,8 @@ import { QueryBoundaries } from "../components/utils/QueryBoundaries.Util";
 export default function JobsLayout() {
   return (
     <Fragment>
-      <main className="min-h-screen p-5">
-        <MaxWidthWrapperUtil>
+      <main className="flex flex-grow p-0 sm:p-5 lg:px-10">
+        <MaxWidthWrapperUtil className="w-full">
           <QueryBoundaries>
             <Outlet />
           </QueryBoundaries>
