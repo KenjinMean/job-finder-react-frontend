@@ -10,7 +10,7 @@ import UserAboutForm from "../../forms/auth/UserAbout.Form";
 
 export default function UserAboutEditModalComponent({ setIsInputChanged }) {
   const { data: userInfo } = useApiUserInfoFetch();
-  const [payload, setPayload] = useState();
+  const [payload, setPayload] = useState({});
 
   const updateUserInfo = useApiUserInfoUpdateAsync();
 
