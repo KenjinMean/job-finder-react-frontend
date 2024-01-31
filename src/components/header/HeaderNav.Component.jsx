@@ -50,7 +50,11 @@ export default function HeaderNavComponent() {
           to={jobRoutes.jobListingPage}
           className="flex items-center focus:ring-4 focus:outline-none focus:ring-accent-blue500"
         >
-          <img src={appLogo} className="h-14" alt="Flowbite Logo/Home Page" />
+          <img
+            src={appLogo}
+            className="w-46 h-14"
+            alt="JobFinder Logo/Home Page"
+          />
         </Link>
 
         {/* Sub Navigations */}

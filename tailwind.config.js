@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         primary: ["Quicksand", "sans-serif"],
-        secondary: ["Poppins"],
+        secondary: ["Poppins", "serif"],
       },
       colors: {
         background: {
