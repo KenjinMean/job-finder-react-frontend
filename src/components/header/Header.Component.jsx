@@ -13,7 +13,7 @@ export default function HeaderComponent() {
   const location = useLocation();
 
   return (
-    <header className="p-5 py-8 bg-background-gray_50">
+    <header className="p-2 sm:p-3 md:py-5 bg-background-gray_50">
       <MaxWidthWrapperUtil>
         <HeaderNavComponent />
         {location.pathname === `${baseUrl}jobs` ||
