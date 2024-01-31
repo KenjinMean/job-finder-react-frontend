@@ -33,35 +33,33 @@ export default function JobSearchResultComponent() {
 
   return (
     <Fragment>
-      <section className="flex flex-col gap-5 sm:gap-3">
-        <h2 className="text-3xl font-bold">
-          Search Results for "{params.query}"
-        </h2>
-        {searchResult?.pages?.map((group, index) => {
-          return (
-            <Fragment key={index}>
-              {group.data?.data?.map((job, jobIndex, array) => {
-                const isLastJob = jobIndex === array.length - 1;
-                return (
-                  <JobContainerComponent
-                    job={job}
-                    ref={isLastJob ? lastJobRef : null}
-                    key={job.id}
-                  />
-                );
-              })}
-            </Fragment>
-          );
-        })}
+      <span className="text-3xl font-bold">
+        Search Results for "{params.query}"
+      </span>
+      {searchResult?.pages?.map((group, index) => {
+        return (
+          <Fragment key={index}>
+            {group.data?.data?.map((job, jobIndex, array) => {
+              const isLastJob = jobIndex === array.length - 1;
+              return (
+                <JobContainerComponent
+                  job={job}
+                  ref={isLastJob ? lastJobRef : null}
+                  key={job.id}
+                />
+              );
+            })}
+          </Fragment>
+        );
+      })}
 
-        {isFetchingNextPage && <JobListSkeletonUtil />}
+      {isFetchingNextPage && <JobListSkeletonUtil />}
 
-        {!hasNextPage && !isFetching && !isFetchingNextPage && (
-          <EndOfListIndicatorUiComponent
-            message={`No more jobs available for the search: ${params.query}`}
-          />
-        )}
-      </section>
+      {!hasNextPage && !isFetching && !isFetchingNextPage && (
+        <EndOfListIndicatorUiComponent
+          message={`No more jobs available for the search: ${params.query}`}
+        />
+      )}
     </Fragment>
   );
 }

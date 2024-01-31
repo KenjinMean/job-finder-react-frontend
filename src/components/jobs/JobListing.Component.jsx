@@ -23,30 +23,28 @@ export default function JobListingComponent() {
 
   return (
     <Fragment>
-      <section className="flex flex-col gap-5 sm:gap-3">
-        {jobs?.pages?.map((group, index) => {
-          return (
-            <Fragment key={index}>
-              {group.data?.data?.map((job, jobIndex, array) => {
-                const isLastJob = jobIndex === array.length - 1;
-                return (
-                  <JobContainerComponent
-                    job={job}
-                    key={job.id}
-                    ref={isLastJob ? lastJobRef : null}
-                  />
-                );
-              })}
-            </Fragment>
-          );
-        })}
+      {jobs?.pages?.map((group, index) => {
+        return (
+          <Fragment key={index}>
+            {group.data?.data?.map((job, jobIndex, array) => {
+              const isLastJob = jobIndex === array.length - 1;
+              return (
+                <JobContainerComponent
+                  job={job}
+                  key={job.id}
+                  ref={isLastJob ? lastJobRef : null}
+                />
+              );
+            })}
+          </Fragment>
+        );
+      })}
 
-        {isFetchingNextPage && <JobListSkeletonUtil />}
+      {isFetchingNextPage && <JobListSkeletonUtil />}
 
-        {!hasNextPage && !isFetching && !isFetchingNextPage && (
-          <EndOfListIndicatorUiComponent message={"No more jobs available"} />
-        )}
-      </section>
+      {!hasNextPage && !isFetching && !isFetchingNextPage && (
+        <EndOfListIndicatorUiComponent message={"No more jobs available"} />
+      )}
     </Fragment>
   );
 }

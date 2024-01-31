@@ -7,31 +7,31 @@ export default function JobPartialDetailsComponent({
   companySize,
 }) {
   return (
-    <p className="flex flex-col flex-wrap gap-1 sm:gap-2 md:flex-row text-content-gray empty:hidden">
+    <div className="flex flex-col flex-wrap gap-1 sm:gap-2 md:flex-row text-content-gray ">
       {location && (
-        <span className="rounded-md sm:px-2 sm:border w-max border-border-100">
+        <p className="w-full rounded-md sm:w-max sm:px-2 sm:border border-border-100 empty:hidden">
           Location: <span className="text-content-slate_500"> {location}</span>
-        </span>
+        </p>
       )}
 
       {salary && (
-        <span className="rounded-md sm:px-2 sm:border w-max border-border-100">
+        <p className="w-full rounded-md sm:w-max sm:px-2 sm:border border-border-100 empty:hidden">
           {" "}
           Salary:{" "}
           <span className="text-content-slate_500">
             PHP {formatSalary(salary)}
           </span>
-        </span>
+        </p>
       )}
 
       {companySize && (
-        <span className="rounded-md sm:px-2 sm:border w-max border-border-100">
+        <p className="w-full rounded-md sm:w-max sm:px-2 sm:border border-border-100 empty:hidden">
           Company Size:{" "}
           <span className="text-content-slate_500">
             {companySize} employee's
           </span>
-        </span>
+        </p>
       )}
-    </p>
+    </div>
   );
 }
