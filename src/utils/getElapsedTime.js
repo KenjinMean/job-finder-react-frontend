@@ -1,10 +1,8 @@
-import moment from "moment";
-
 export const getElapsedTime = (timestamp) => {
-  const currentTime = moment();
-  const postedAt = moment(timestamp);
+  const currentTime = new Date();
+  const postedAt = new Date(timestamp);
 
-  const timeDifference = currentTime.diff(postedAt, "seconds");
+  const timeDifference = Math.floor((currentTime - postedAt) / 1000); // Convert milliseconds to seconds
 
   let unit;
   let roundedDifference;
