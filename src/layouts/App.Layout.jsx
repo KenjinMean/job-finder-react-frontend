@@ -23,9 +23,10 @@ export default function AppLayout() {
 
   return (
     <AppProviders>
+      {/* this div replaces the div on the App.jsx */}
       <div
         ref={elementToScrollLockRef}
-        className="flex flex-col min-h-screen gap-2 sm:gap-5 bg-background-white font-primary text-content-black"
+        className="flex flex-col min-h-screen gap-2 overflow-hidden sm:gap-5 bg-background-white font-primary text-content-black"
       >
         {!isAuthRoute && <HeaderComponent />}
         <Outlet />

@@ -16,8 +16,9 @@ export default function JobListSkeletonUtil() {
       initial="initial"
       animate="animate"
       variants={containerAnimation}
-      className="overflow-hidden border rounded-md border-border-100"
+      className="mb-5 overflow-hidden border rounded-md border-border-100"
     >
+      <span className="sr-only">Loading</span>
       <div className="flex flex-col gap-2 p-5 ">
         <div
           className={`w-${getRandomWidth()} h-10 rounded-md animate-pulse bg-background-gray300_hoover`}
