@@ -1,7 +1,9 @@
 import React from "react";
+import { useSetPageTitle } from "../../../hooks/useSetPageTitle";
 export default function ErrorServerUnavailableUiComponent({
   resetErrorBoundary,
 }) {
+  useSetPageTitle("Server Unavailable");
   return (
     <div class="flex items-center justify-center w-full p-5 bg-background-white">
       <div class="text-center">

@@ -10,7 +10,6 @@ import { useAuthenticationStore } from "../../services/state/AuthenticationStore
 
 import AuthErrorUiComponent from "./AuthError.Component";
 import RegisterForm from "../../components/forms/auth/Register.Form";
-import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function RegisterComponent() {
   const { token } = useAuthenticationStore();
@@ -28,7 +27,6 @@ export default function RegisterComponent() {
 
   return (
     <Fragment>
-      <PageTitleUtil title="Register | JobFinder" />
       <div className="p-12 text-content-black">
         <Link to={jobRoutes.jobListingPage}>
           <div className="flex justify-center">

@@ -1,6 +1,8 @@
 import React from "react";
+import { useSetPageTitle } from "../../../hooks/useSetPageTitle";
 
 export default function ErrorServerErrorUiComponent({ resetErrorBoundary }) {
+  useSetPageTitle("Server Error");
   return (
     <div className="flex items-center justify-center w-full p-5 bg-background-white">
       <div className="text-center">

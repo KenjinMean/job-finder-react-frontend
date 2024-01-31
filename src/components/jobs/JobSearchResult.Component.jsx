@@ -6,7 +6,6 @@ import { useApiJobSearchInfiniteFetch } from "../../hooks/useApiJob";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 import JobContainerComponent from "./JobContainer.Component";
-import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 import EndOfListIndicatorUiComponent from "../UI/EndOfListIndicator.Ui.Component";
 import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
 
@@ -34,7 +33,6 @@ export default function JobSearchResultComponent() {
 
   return (
     <Fragment>
-      <PageTitleUtil title="Job Search Results" />
       <section className="flex flex-col gap-5 sm:gap-3">
         <h2 className="text-3xl font-bold">
           Search Results for "{params.query}"

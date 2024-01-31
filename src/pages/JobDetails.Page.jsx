@@ -4,13 +4,14 @@ const JobDetailsComponent = lazy(() =>
   import("../components/jobs/JobDetails.Component")
 );
 
-import { PageTitleUtil } from "../components/utils/PageTitle.Util";
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
 import JobDetailSkeletonUtil from "../components/utils/LoadersSpinners/JobDetailSkeleton.Util";
 
 export default function JobDetailsPage() {
+  useSetPageTitle("Job Details");
+
   return (
     <Fragment>
-      <PageTitleUtil title="Job Details" />
       <Suspense fallback={<JobDetailSkeletonUtil />}>
         <JobDetailsComponent />
       </Suspense>

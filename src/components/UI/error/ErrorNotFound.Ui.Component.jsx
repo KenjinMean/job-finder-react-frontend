@@ -2,8 +2,10 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { jobRoutes } from "../../../constants/RoutesPath.Constants";
+import { useSetPageTitle } from "../../../hooks/useSetPageTitle";
 
 export default function ErrorNotFoundUiComponent({ resetErrorBoundary }) {
+  useSetPageTitle("Not Found");
   const navigate = useNavigate();
 
   return (

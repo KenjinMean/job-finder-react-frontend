@@ -5,10 +5,11 @@ import { jobRoutes } from "../constants/RoutesPath.Constants";
 
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
-import { PageTitleUtil } from "../components/utils/PageTitle.Util";
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
 import MaxWidthWrapperUtil from "../components/utils/MaxWidthWrapper.Util";
 
 export default function AuthProviderCallbackPage() {
+  useSetPageTitle("Social Auth Redirect Page");
   const { token, setToken, setAuthenticatedUser } = useAuthenticationStore();
 
   const [seconds, setSeconds] = useState(5);
@@ -51,7 +52,6 @@ export default function AuthProviderCallbackPage() {
   if (token && redirecting) {
     return (
       <Fragment>
-        <PageTitleUtil title="Redirect Page" />
         <MaxWidthWrapperUtil className="min-h-screen ">
           <div className="mt-10 text-xl">
             <span className="">

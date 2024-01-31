@@ -16,7 +16,6 @@ import { useAuthenticationStore } from "../../services/state/AuthenticationStore
 import AuthErrorComponent from "./AuthError.Component";
 import SocilaLoginComponent from "./SocialLogin.Component";
 import LoginForm from "../../components/forms/auth/Login.Form";
-import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 
 export default function LoginComponent() {
   const { token, socialServiceLoginError, isLoginButtonDisabled } =
@@ -44,7 +43,6 @@ export default function LoginComponent() {
 
   return (
     <Fragment>
-      <PageTitleUtil title="Login" />
       <div className="p-12">
         {/* convert this to a component */}
         <Link

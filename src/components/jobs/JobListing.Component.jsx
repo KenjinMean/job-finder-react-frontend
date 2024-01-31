@@ -4,7 +4,6 @@ import { useApiJobsInfiniteFetch } from "../../hooks/useApiJob";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 import JobContainerComponent from "./JobContainer.Component";
-import { PageTitleUtil } from "../../components/utils/PageTitle.Util";
 import EndOfListIndicatorUiComponent from "../UI/EndOfListIndicator.Ui.Component";
 import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
 
@@ -24,7 +23,6 @@ export default function JobListingComponent() {
 
   return (
     <Fragment>
-      <PageTitleUtil title="Job Listings" />
       <section className="flex flex-col gap-5 sm:gap-3">
         {jobs?.pages?.map((group, index) => {
           return (

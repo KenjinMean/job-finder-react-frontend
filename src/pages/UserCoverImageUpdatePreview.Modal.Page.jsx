@@ -6,14 +6,15 @@ const UserCoverImageUpdatePreviewModalComponent = lazy(() =>
   )
 );
 
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
+
 import ModalUtil from "../components/utils/Modal.Util";
-import { PageTitleUtil } from "../components/utils/PageTitle.Util";
 import ImageSkeletonUtil from "../components/utils/LoadersSpinners/ImageSkeleton.Util";
 
 export default function UserCoverImageUpdatePreviewModalPage() {
+  useSetPageTitle("Update Cover Photo Preview Modal");
   return (
     <ModalUtil modalTitle="Cover Photo Update Preview" size="large">
-      <PageTitleUtil title="Update Cover Photo" />
       <Suspense fallback={<ImageSkeletonUtil />}>
         <UserCoverImageUpdatePreviewModalComponent />
       </Suspense>

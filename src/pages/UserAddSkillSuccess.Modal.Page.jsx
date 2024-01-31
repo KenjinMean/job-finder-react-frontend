@@ -4,14 +4,15 @@ const UserAddSkillSuccessModalComponent = lazy(() =>
   import("../components/modals/user/UserAddSkillSuccess.Modal.Component")
 );
 
-import { PageTitleUtil } from "../components/utils/PageTitle.Util";
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
+
 import ModalUtil from "../components/utils/Modal.Util";
 import ModalSpinnerUtil from "../components/utils/LoadersSpinners/ModalSpinner.Util";
 
 export default function UserAddSkillSuccessModalPage() {
+  useSetPageTitle("Add Skill Success Modal");
   return (
     <ModalUtil modalTitle="Add Skill Success">
-      <PageTitleUtil title="Add Skill Success" />
       <Suspense fallback={<ModalSpinnerUtil />}>
         <UserAddSkillSuccessModalComponent />
       </Suspense>

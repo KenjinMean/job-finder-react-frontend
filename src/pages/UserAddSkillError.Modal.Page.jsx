@@ -4,14 +4,15 @@ const UserAddSkillErrorModalComponent = lazy(() =>
   import("../components/modals/user/UserAddSkillError.Modal.Component")
 );
 
-import { PageTitleUtil } from "../components/utils/PageTitle.Util";
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
+
 import ModalSpinnerUtil from "../components/utils/LoadersSpinners/ModalSpinner.Util";
 import ModalUtil from "../components/utils/Modal.Util";
 
 export default function UserAddSkillErrorModalPage() {
+  useSetPageTitle("Add Skill Error Modal");
   return (
     <ModalUtil modalTitle="Add Skill Error">
-      <PageTitleUtil title="Add Skill Error" />
       <Suspense fallback={<ModalSpinnerUtil />}>
         <UserAddSkillErrorModalComponent />
       </Suspense>

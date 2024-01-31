@@ -4,11 +4,13 @@ const UserContactEditModalComponent = lazy(() =>
   import("../components/modals/user/UserContactEdit.Modal.Component")
 );
 
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
+
 import ModalUtil from "../components/utils/Modal.Util";
-import { PageTitleUtil } from "../components/utils/PageTitle.Util";
 import ModalSpinnerUtil from "../components/utils/LoadersSpinners/ModalSpinner.Util";
 
 export default function UserContactEditModalPage() {
+  useSetPageTitle("Edit User Contact Modal");
   const [inputChanged, setInputChanged] = useState(false);
 
   return (
@@ -17,7 +19,6 @@ export default function UserContactEditModalPage() {
       isInputChanged={inputChanged}
       modalTitle="Edit User Contact"
     >
-      <PageTitleUtil title="Edit User Contact" />
       <Suspense fallback={<ModalSpinnerUtil />}>
         <UserContactEditModalComponent setInputChanged={setInputChanged} />
       </Suspense>

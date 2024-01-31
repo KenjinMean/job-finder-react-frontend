@@ -5,13 +5,14 @@ const RegisterComponent = lazy(() =>
   import("../components/auth/Register.Component")
 );
 
-import { PageTitleUtil } from "../components/utils/PageTitle.Util";
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
+
 import AuthSkeletonUtil from "../components/utils/LoadersSpinners/AuthSkeleton.Util";
 
 export default function RegisterPage() {
+  useSetPageTitle("Register");
   return (
     <Fragment>
-      <PageTitleUtil title="Register | JobFinder" />
       <Suspense fallback={<AuthSkeletonUtil />}>
         <RegisterComponent />
       </Suspense>
