@@ -1,6 +1,6 @@
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { authRoutes } from "../../constants/RoutesPath.Constants";
 import { grow } from "../../constants/animationVariants.Constants";
@@ -42,32 +42,41 @@ const MainMenuUiComponent = React.forwardRef(
                 aria-controls={id}
               />
             </motion.li>
+
             <motion.li
               role="menuitem"
-              className="w-full p-2 font-semibold hover:text-accent-blue500"
+              className="w-full font-semibold hover:text-accent-blue500"
               whileHover={{ scale: 1.1 }}
             >
-              <a href="#">About</a>
+              <a href="#" className="p-2">
+                About
+              </a>
             </motion.li>
+
             <motion.li
-              className="w-full p-2 font-semibold hover:text-accent-blue500"
+              className="w-full font-semibold hover:text-accent-blue500"
               whileHover={{ scale: 1.1 }}
               role="menuitem"
             >
-              <Link to={useOpenModalOverlay(GlobalModals.settingsModal.name)}>
+              <Link
+                to={useOpenModalOverlay(GlobalModals.settingsModal.name)}
+                className="p-2"
+              >
                 Options
               </Link>
             </motion.li>
+
             {!token && (
               <motion.li
-                className="w-full p-2 font-semibold hover:text-accent-blue500"
+                className="w-full font-semibold hover:text-accent-blue500"
                 whileHover={{ scale: 1.1 }}
                 role="menuitem"
               >
-                <Link to={authRoutes.authLoginPage}>login</Link>
+                <Link to={authRoutes.authLoginPage} className="p-2">
+                  login
+                </Link>
               </motion.li>
             )}
-            {/* </ul> */}
           </motion.ul>
         )}
       </AnimatePresence>
