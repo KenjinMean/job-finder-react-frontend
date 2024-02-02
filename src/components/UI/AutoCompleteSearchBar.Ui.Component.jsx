@@ -23,7 +23,7 @@ export default function AutoCompleteSearchBarUiComponent() {
   } = useAutoCompleteSearchBarFunctions();
 
   return (
-    <div className="relative flex items-center gap-5 mx-auto mt-10 rounded-md sm:rounded-none">
+    <div className="relative flex items-center w-full gap-5 mx-auto rounded-md sm:rounded-none">
       <Menu
         as="div"
         ref={suggestionsDropdownRef}

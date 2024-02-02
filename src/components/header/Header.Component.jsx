@@ -1,12 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 import { useLocation } from "react-router-dom";
 import { baseUrl } from "../../constants/RoutesPath.Constants";
 
-import MaxWidthWrapperUtil from "../../components/utils/MaxWidthWrapper.Util";
-
 import HeaderNavComponent from "./HeaderNav.Component";
-import HeaderHeroBannerComponent from "./HeaderHeroBanner.Component";
 import AutoCompleteSearchBarUiComponent from "../UI/AutoCompleteSearchBar.Ui.Component";
 
 export default function HeaderComponent() {
@@ -14,16 +11,13 @@ export default function HeaderComponent() {
 
   return (
     <header className="p-2 sm:p-3 md:py-5 bg-background-gray_50">
-      <MaxWidthWrapperUtil>
+      <div className="flex flex-col max-w-5xl gap-5 mx-auto">
         <HeaderNavComponent />
         {location.pathname === `${baseUrl}jobs` ||
         location.pathname.startsWith(`${baseUrl}jobs/search`) ? (
-          <Fragment>
-            <HeaderHeroBannerComponent />
-            <AutoCompleteSearchBarUiComponent />
-          </Fragment>
+          <AutoCompleteSearchBarUiComponent />
         ) : null}
-      </MaxWidthWrapperUtil>
+      </div>
     </header>
   );
 }
