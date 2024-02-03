@@ -22,6 +22,8 @@ export default function AppLayout() {
     "/job-finder-react-frontend/auth"
   );
 
+  const isJobListing = location.pathname === "/job-finder-react-frontend/jobs";
+
   return (
     <AppProviders>
       {/* this div replaces the div on the App.jsx */}
@@ -31,6 +33,7 @@ export default function AppLayout() {
       >
         {!isAuthRoute && <HeaderComponent />}
         <Outlet />
+        {!isJobListing && <Footer />}
       </div>
     </AppProviders>
   );
