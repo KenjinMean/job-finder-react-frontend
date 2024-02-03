@@ -2,7 +2,7 @@ import React from "react";
 import { successIcon } from "../../../assets/icons/index.js";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
-import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions.js";
+import { useOpenModalOverlay } from "../../../hooks/useModalFunctions.js";
 
 import ModalUtil from "../../utils/Modal.Util.jsx";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";

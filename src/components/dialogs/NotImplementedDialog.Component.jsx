@@ -1,5 +1,5 @@
 import React from "react";
-import { useCloseDialog } from "../../hooks/useOverlayFunctions";
+import { useCloseDialog } from "../../hooks/useModalFunctions";
 import { dialogNames } from "../../constants/DialogNames.Constants";
 import DialogUtil from "../utils/Dialog.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";

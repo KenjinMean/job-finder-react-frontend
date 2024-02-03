@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { dialogNames } from "../../../constants/DialogNames.Constants";
 
 import { prefixHandler } from "../../../utils/prefixHandler";
-import { useOpenDialog } from "../../../hooks/useOverlayFunctions";
+import { useOpenDialog } from "../../../hooks/useModalFunctions";
 import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
 
 import LabeledTextInputUiCoponent from "../../UI/LabeledTextInput.Ui.Component";

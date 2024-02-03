@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useOpenModalOverlay } from "./useOverlayFunctions";
+import { useOpenModalOverlay } from "./useModalFunctions";
 import { UserModals } from "../constants/ModalNames.Constants";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";

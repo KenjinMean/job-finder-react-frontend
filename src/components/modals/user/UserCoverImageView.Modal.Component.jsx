@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../../hooks/useModalFunctions";
 import {
   useApiUserCoverImageUpdateAsync,
   useApiUserInfoFetch,

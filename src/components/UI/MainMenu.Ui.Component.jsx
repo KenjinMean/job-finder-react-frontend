@@ -7,7 +7,7 @@ import { grow } from "../../constants/animationVariants.Constants";
 import { GlobalModals } from "../../constants/ModalNames.Constants";
 
 import useGetDeviceWidth from "../../hooks/useGetDeviceWidth";
-import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../hooks/useModalFunctions";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 import ButtonClosePrimaryUiComponent from "./ButtonClosePrimary.Ui.Component";

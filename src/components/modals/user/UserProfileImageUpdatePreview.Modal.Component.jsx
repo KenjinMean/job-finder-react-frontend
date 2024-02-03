@@ -6,7 +6,7 @@ import { userRoutes } from "../../../constants/RoutesPath.Constants";
 import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../../hooks/useModalFunctions";
 
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";

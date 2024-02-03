@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
-import { useOverlayParamDetector } from "../../hooks/useOverlayFunctions";
+import { useOverlayParamDetector } from "../../hooks/useModalFunctions";
 
 /**
  * React component for displaying user related overlays or modals,

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { dialogNames } from "../../constants/DialogNames.Constants";
 
-import { useOpenDialog } from "../../hooks/useOverlayFunctions";
+import { useOpenDialog } from "../../hooks/useModalFunctions";
 
 import { getElapsedTime } from "../../utils/getElapsedTime";
 import TagListUiComponent from "../UI/TagList.Ui.Component";

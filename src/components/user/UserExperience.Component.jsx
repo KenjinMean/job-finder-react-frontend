@@ -1,6 +1,6 @@
 import React from "react";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
-import { useOpenDialog } from "../../hooks/useOverlayFunctions";
+import { useOpenDialog } from "../../hooks/useModalFunctions";
 import { dialogNames } from "../../constants/DialogNames.Constants";
 
 export default function UserExperienceComponent() {

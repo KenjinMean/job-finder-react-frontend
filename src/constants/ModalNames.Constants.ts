@@ -34,7 +34,7 @@ import SettingsModalComponent from "../components/modals/Settings.Modal.Componen
   };
   
   const Modals: UserModal = {
-    userAboutEditModal: createModal("userAboutEditModal",UserAboutEditPage),
+    userAboutEditModal: createModal("user-about-edit-modal",UserAboutEditPage),
     userInfoEditModal: createModal("userInfoEditModal",UserInfoEditModalPage),
     userAddSkillModal: createModal("userAddSkillModal", UserAddSkillModalPage),
     userContactEditModal: createModal("userContactEditModal",UserContactEditModalPage ),

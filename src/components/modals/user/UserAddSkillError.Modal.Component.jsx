@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import error from "../../../assets/icons/error.png";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
-import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions.js";
+import { useOpenModalOverlay } from "../../../hooks/useModalFunctions.js";
 
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
 

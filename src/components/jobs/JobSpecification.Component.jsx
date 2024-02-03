@@ -4,7 +4,7 @@ import { dialogNames } from "../../constants/DialogNames.Constants";
 
 import { formatSalary } from "../../utils/formatSalary";
 import { getElapsedTime } from "../../utils/getElapsedTime";
-import { useOpenDialog } from "../../hooks/useOverlayFunctions";
+import { useOpenDialog } from "../../hooks/useModalFunctions";
 
 import TagListUiComponent from "../UI/TagList.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";

@@ -8,7 +8,7 @@ import {
   useApiUserInfoFetch,
   useApiUserProfileImageUpdateAsync,
 } from "../../../hooks/useApiUserInfo";
-import { useOpenModalOverlay } from "../../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../../hooks/useModalFunctions";
 
 import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";

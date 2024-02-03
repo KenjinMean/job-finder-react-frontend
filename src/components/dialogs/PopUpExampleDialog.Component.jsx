@@ -7,7 +7,7 @@ import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Compone
 import {
   useCloseDialog,
   useCloseModalOverlay,
-} from "../../hooks/useOverlayFunctions";
+} from "../../hooks/useModalFunctions";
 import { dialogNames } from "../../constants/DialogNames.Constants";
 
 import DialogUtil from "../utils/Dialog.Util";

@@ -6,7 +6,7 @@ import { dialogNames } from "../../constants/DialogNames.Constants";
 import {
   useCloseDialog,
   useCloseModalOverlay,
-} from "../../hooks/useOverlayFunctions";
+} from "../../hooks/useModalFunctions";
 
 import DialogUtil from "../utils/Dialog.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";

@@ -8,6 +8,7 @@ import { useModalScrollLock } from "../hooks/useModalScrollLock";
 
 import HeaderComponent from "../components/header/Header.Component.jsx";
 import AppProviders from "../services/providers/AppProviders.jsx";
+import Footer from "../components/footer/Footer.jsx";
 
 export default function AppLayout() {
   // lock app scrolling when a modal is active

@@ -3,7 +3,7 @@ import React from "react";
 import { UserModals } from "../../constants/ModalNames.Constants";
 
 import { useApiUserInfoFetch } from "../../hooks/useApiUserInfo";
-import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../hooks/useModalFunctions";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Component";

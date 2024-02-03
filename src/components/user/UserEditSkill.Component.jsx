@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { UserModals } from "../../constants/ModalNames.Constants";
 import { userRoutes } from "../../constants/RoutesPath.Constants";
 
-import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../hooks/useModalFunctions";
 import {
   useApiUserSkillsFetch,
   useApiUserSkillRemoveAsync,

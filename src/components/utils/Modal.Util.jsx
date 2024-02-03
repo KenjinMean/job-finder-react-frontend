@@ -11,7 +11,7 @@ import { fadeIn } from "../../constants/animationVariants.Constants";
 import { ModalVariants } from "../../constants/classVariants.Constants";
 
 import { useModalScrollLock } from "../../hooks/useModalScrollLock";
-import { useModalExitHandler } from "../../hooks/useOverlayFunctions";
+import { useModalExitHandler } from "../../hooks/useModalFunctions";
 
 import BackdropUtil from "./Backdrop.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";

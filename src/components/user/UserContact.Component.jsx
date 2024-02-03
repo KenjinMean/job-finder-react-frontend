@@ -2,7 +2,7 @@ import React from "react";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
-import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions";
+import { useOpenModalOverlay } from "../../hooks/useModalFunctions";
 import { useApiUserContactFetch } from "../../hooks/useApiUserContact";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 

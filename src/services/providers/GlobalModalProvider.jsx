@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import React, { Fragment } from "react";
 import { GlobalModals } from "../../constants/ModalNames.Constants";
-import { useOverlayParamDetector } from "../../hooks/useOverlayFunctions";
+import { useOverlayParamDetector } from "../../hooks/useModalFunctions";
 
 export default function GlobalModalProvider() {
   const overlayComponents = Object.keys(GlobalModals);

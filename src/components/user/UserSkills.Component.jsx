@@ -2,7 +2,7 @@ import React from "react";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
 
-import { useOpenModalOverlay } from "../../hooks/useOverlayFunctions.js";
+import { useOpenModalOverlay } from "../../hooks/useModalFunctions.js";
 
 import { userRoutes } from "../../constants/RoutesPath.Constants";
 
