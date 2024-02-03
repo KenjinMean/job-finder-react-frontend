@@ -2,7 +2,7 @@ import React from "react";
 import { successIcon } from "../../../assets/icons/index.js";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
-import { useOpenModalOverlay } from "../../../hooks/useModalFunctions.js";
+import { useOpenModalParam } from "../../../hooks/useModalFunctions.js";
 
 import ModalUtil from "../../utils/Modal.Util.jsx";
 import LinkActionPrimaryUiComponent from "../../UI/LinkActionPrimary.Ui.Component.jsx";
@@ -22,7 +22,7 @@ export default function UserAddSkillSuccessModalComponent() {
       <div className="flex items-center justify-end p-5">
         {/* add more skill button */}
         <LinkActionPrimaryUiComponent
-          to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
+          to={useOpenModalParam(UserModals.userAddSkillModal.name)}
         >
           Add more
         </LinkActionPrimaryUiComponent>

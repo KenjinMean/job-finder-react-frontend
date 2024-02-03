@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { UserModals } from "../../constants/ModalNames.Constants";
 import { userRoutes } from "../../constants/RoutesPath.Constants";
 
-import { useOpenModalOverlay } from "../../hooks/useModalFunctions";
+import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import {
   useApiUserSkillsFetch,
   useApiUserSkillRemoveAsync,
@@ -34,7 +34,7 @@ export default function UserEditSkillComponent() {
         </button>{" "}
         {/* add skill link */}
         <LinkAddUiComponent
-          to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
+          to={useOpenModalParam(UserModals.userAddSkillModal.name)}
         />
       </div>
       <ul className="flex flex-col">

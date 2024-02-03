@@ -6,7 +6,7 @@ import { userRoutes } from "../../../constants/RoutesPath.Constants";
 import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
-import { useOpenModalOverlay } from "../../../hooks/useModalFunctions";
+import { useOpenModalParam } from "../../../hooks/useModalFunctions";
 
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
@@ -15,7 +15,7 @@ import { useApiUserProfileImageUpdateAsync } from "../../../hooks/useApiUserInfo
 export default function UserProfileImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
     useFileHandling(
-      useOpenModalOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
+      useOpenModalParam(UserModals.userProfileImageUpdatePreviewModal.name)
     );
 
   const asyncUpdateUserProfileImage = useApiUserProfileImageUpdateAsync();

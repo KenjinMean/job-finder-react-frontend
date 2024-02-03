@@ -7,7 +7,7 @@ import { grow } from "../../constants/animationVariants.Constants";
 import { GlobalModals } from "../../constants/ModalNames.Constants";
 
 import useGetDeviceWidth from "../../hooks/useGetDeviceWidth";
-import { useOpenModalOverlay } from "../../hooks/useModalFunctions";
+import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 import ButtonClosePrimaryUiComponent from "./ButtonClosePrimary.Ui.Component";
@@ -59,7 +59,7 @@ const MainMenuUiComponent = React.forwardRef(
               role="menuitem"
             >
               <Link
-                to={useOpenModalOverlay(GlobalModals.settingsModal.name)}
+                to={useOpenModalParam(GlobalModals.settingsModal.name)}
                 className="p-2"
               >
                 Options

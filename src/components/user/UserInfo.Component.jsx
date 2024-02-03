@@ -3,7 +3,7 @@ import React from "react";
 import { UserModals } from "../../constants/ModalNames.Constants";
 
 import { useApiUserInfoFetch } from "../../hooks/useApiUserInfo";
-import { useOpenModalOverlay } from "../../hooks/useModalFunctions";
+import { useOpenModalParam } from "../../hooks/useModalFunctions";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Component";
@@ -16,13 +16,13 @@ export default function UserInfoComponent() {
     <section className="relative w-full overflow-hidden border border-border-100 sm:rounded-lg bg-background-gray_50 text-content-black">
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.cover_image}
-        to={useOpenModalOverlay(UserModals.userCoverImageViewModal.name)}
+        to={useOpenModalParam(UserModals.userCoverImageViewModal.name)}
         className="block w-full h-36 sm:h-48 "
       />
       {/* view Profile Image */}
       <ClickableLinkedImageUiComponent
         imagePathUrl={userInfo?.profile_image}
-        to={useOpenModalOverlay(UserModals.userProfileImageViewModal.name)}
+        to={useOpenModalParam(UserModals.userProfileImageViewModal.name)}
         className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-border-100"
       />
       <div className="relative p-5">
@@ -39,7 +39,7 @@ export default function UserInfoComponent() {
         {/* edit link */}
         <LinkEditUiComponent
           className="absolute right-5 top-5"
-          to={useOpenModalOverlay(UserModals.userInfoEditModal.name)}
+          to={useOpenModalParam(UserModals.userInfoEditModal.name)}
         />
       </div>
     </section>

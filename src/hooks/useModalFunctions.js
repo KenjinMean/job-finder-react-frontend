@@ -3,35 +3,27 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useOverlayStateStore } from "../services/state/OverlaysStatesStore";
 import { dialogNames } from "../constants/DialogNames.Constants";
 
+/* ----------------------------------------------------------- */
 /**
- * Custom hook to detect "overlay" parameter in the URL,
- * then return a boolean value for the specified overlay name
- * that can be used to conditionally render overlays
- * triggers the showing/hiding of modal.
- * The opening of the modal functionality is handled by the
- * specific "OverlayProvider" (e.g., UserOverlayProvider).
+ * Custom hook to detect if theres a modal parameter in the URL,
+ * accepts the modal name and compares if it matches with the modal URL parameter value,
+ *  then returns the result as a boolean value.
  *
- * @param {string} OverlayName - The name of the overlay to detect.
- * @returns {boolean} - Whether the specified overlay is active.
+ * @param {string} OverlayName - The name of the modal to detect.
+ * @returns {boolean} - returns a boolean result
  *
  * @example
- *
- * // import useOverlayParamDetector
- * import useOverlayParamDetector from "path to useOverlayParamDetector"
- *
+ * import useModalParamDetector from "path to useModalParamDetector"
  * function App() {
  *
- * // use useOpenModalOverlay() to append "overlay" param to current url
- * const navigate = useNavigate()
- * <button onClick={() => navigate(useOpenModalOverlay("example-modal"))}>Open Example Modal</button>
+ * // use useOpenModalParam() to open a modal using the URL param using an anchor tag or navigate with a button
+ * <a href={useOpenModalParam("example-modal")}>Open Example Modal</a>
  *
- * //detect if there is "example-modal" overlay parameter int the URL and conditionally render  <ExampleModal />
- * const isExampleModalActive = useOverlayParamDetector("overlay="example-modal")
+ * // detect if there is a "modal" parameter with the "example-modal" value in the URL
+ * // then returns a boolean that can be assigned to a variable and used to conditionally render a modal.
+ * const isExampleModalActive = useModalParamDetector("example-modal");
  *
  *   return (
- *
- *     // app content
- *
  *     // make sure your modal is rendered on a react-portal
  *     {
  *       isExampleModalActive && <ExampleModal />
@@ -39,13 +31,13 @@ import { dialogNames } from "../constants/DialogNames.Constants";
  *   );
  * }
  */
-export const useOverlayParamDetector = (OverlayName) => {
+export const useModalParamDetector = (OverlayName) => {
   const location = useLocation();
 
   const [isOverlayActive, setOverlayActive] = useState(false);
 
   useEffect(() => {
-    const overlayParam = new URLSearchParams(location.search).get("overlay");
+    const overlayParam = new URLSearchParams(location.search).get("modal");
     const newIsOverlayActive = overlayParam === OverlayName;
 
     setOverlayActive(newIsOverlayActive);
@@ -54,27 +46,27 @@ export const useOverlayParamDetector = (OverlayName) => {
   return isOverlayActive;
 };
 
+/* ----------------------------------------------------------- */
 /**
- * A custom hook to open a modal that's triggered by a URL parameter (overlay parameter).
- * Appends the "overlay" parameter and its value (overlay name from "ModalNames.Constants")
+ * A custom hook to open a modal that's triggered by a URL parameter (modal parameter).
+ * Appends the "modal" parameter and its value (modal name from "ModalNames.Constants")
  * to the current URL and returns the generated URL. If navigated into, it results in opening
  * the specified modal. The opening of the modal functionality is handled by the
  * specific "OverlayProvider" (e.g., UserOverlayProvider).
- * NOTE: NOT really a usehook XD. for centralization purpose only
+ * NOTE: NOT really a usehook XD
  *
- *
- * @param {string} overlayName - The name of the overlay to include in the URL.
+ * @param {string} overlayName - The name of the modal to include in the URL.
  * @param {Object} additionalParams - Additional parameters to include in the URL.
- * @returns {string} The generated URL with the overlay parameter.
+ * @returns {string} The generated URL with the modal parameter.
  * @example
- * // import useOpenModalOverlay
- * import { useOpenModalOverlay } from "path-to-useOpenModalOverlay"
+ * // import useOpenModalParam
+ * import { useOpenModalParam } from "path-to-useOpenModalParam"
  *
  * function App() {
  * const navigate = useNavigate();
  *
  * const handleOpenExampleModal = () => {
- *    const newUrl = useOpenModalOverlay("exampleModal");
+ *    const newUrl = useOpenModalParam("exampleModal");
  *    navigate(newUrl);
  * };
  *
@@ -85,40 +77,20 @@ export const useOverlayParamDetector = (OverlayName) => {
  *  );
  * }
  */
-// export const useOpenModalOverlay = (overlayName, additionalParams) => {
-//   const overlayParam = `overlay=${encodeURIComponent(overlayName)}`;
-//   const currentSearchParams = new URLSearchParams(window.location.search);
 
-//   // Add additional parameters
-//   if (additionalParams) {
-//     Object.entries(additionalParams).forEach(([key, value]) => {
-//       currentSearchParams.set(key, encodeURIComponent(value));
-//     });
-//   }
-
-//   const existingSearchParams = currentSearchParams.toString();
-//   const separator = existingSearchParams ? "&" : "?";
-
-//   return (
-//     `${window.location.pathname}` +
-//     (existingSearchParams ? `${window.location.search}${separator}` : `?`) +
-//     `${overlayParam}`
-//   );
-// };
-
-export const useOpenModalOverlay = (overlayName, additionalParams) => {
+export const useOpenModalParam = (overlayName, additionalParams) => {
   const currentSearchParams = new URLSearchParams(window.location.search);
 
   // remove error parameter
   currentSearchParams.delete("error");
 
-  // Check if the "overlay" parameter already exists
-  if (currentSearchParams.has("overlay")) {
-    // Replace the existing "overlay" parameter with the new one
-    currentSearchParams.set("overlay", encodeURIComponent(overlayName));
+  // Check if the "modal" parameter already exists
+  if (currentSearchParams.has("modal")) {
+    // Replace the existing "modal" parameter with the new one
+    currentSearchParams.set("modal", encodeURIComponent(overlayName));
   } else {
-    // Add the "overlay" parameter if it doesn't exist
-    currentSearchParams.append("overlay", encodeURIComponent(overlayName));
+    // Add the "modal" parameter if it doesn't exist
+    currentSearchParams.append("modal", encodeURIComponent(overlayName));
   }
 
   // Add additional parameters
@@ -134,49 +106,58 @@ export const useOpenModalOverlay = (overlayName, additionalParams) => {
   return `${window.location.pathname}${separator}${existingSearchParams}`;
 };
 
+/* ----------------------------------------------------------- */
 /**
- * A custom hook to close Modal that's closed using a URL parameter(overlay paramter).
- * Removes the "overlay" parameter (both key and value) from the current URL and returning the URL
- * and if navigated into result's in closing of the specified modal.
- * The closing of the modal functionality is handled by the
- * specific "OverlayProvider" e.g.(UserOverlayProvider).
- * NOTE: NOT really a usehook XD. for centralization purpose only
+ * A custom hook to close Modal trigered using a URL parameter(modal paramter).
+ * Removes the "modal" parameter (both key and value) from the current URL
  *
- * @returns {string} The updated URL without the "overlay" parameter.
+ * @returns {string} The updated URL without the "modal" parameter.
  *
  * @example
- * // import useCloseModalOverlay
- * import { useCloseModalOverlay } from "path-to-useCloseModalOverlay"
+ * // import useCloseModalParam
+ * import { useCloseModalParam } from "path-to-useCloseModalParam"
  *
  * function App() {
- * const navigate = useNavigate();
  *
- * const handleCloseModal = () => {
- *    const newUrl = useCloseModalOverlay("exampleModal");
- *    navigate(newUrl);
- * };
+ * const closeModal = useCloseModalParam()
  *
  * return (
- *   <a href="#" onClick={handleCloseModal}>
- *     Close Modal Dialog
- *   </a>
+ * <button onClick={() => closeModal}>Close Modal Dialog<button />
  *  );
  * }
  */
-export const useCloseModalOverlay = () => {
-  const currentUrl = new URL(window.location.href);
-  const searchParams = new URLSearchParams(currentUrl.search);
+export const useCloseModalParam = () => {
+  const navigate = useNavigate();
 
-  // Remove the "overlay" and "error" parameters
-  searchParams.delete("overlay");
-  searchParams.delete("error");
+  // Return a function that closes the modal
+  return () => {
+    // Remove the "modal" and "error" parameters
+    const newSearchParams = new URLSearchParams(window.location.search);
+    newSearchParams.delete("modal");
+    newSearchParams.delete("error");
 
-  return (
-    currentUrl.pathname +
-    (searchParams.toString() ? `?${searchParams.toString()}` : "")
-  );
+    // Navigate to the new URL
+    navigate({
+      pathname: window.location.pathname,
+      search: newSearchParams.toString(),
+    });
+  };
 };
+// export const useCloseModalParam = () => {
+//   const currentUrl = new URL(window.location.href);
+//   const searchParams = new URLSearchParams(currentUrl.search);
 
+//   // Remove the "modal" and "error" parameters
+//   searchParams.delete("modal");
+//   searchParams.delete("error");
+
+//   return (
+//     currentUrl.pathname +
+//     (searchParams.toString() ? `?${searchParams.toString()}` : "")
+//   );
+// };
+
+/* ----------------------------------------------------------- */
 /**
  * A custom hook for showing "ExitConfirmationDialog" when
  * closing a modal without saving otherwise, it closes the modal.
@@ -187,20 +168,20 @@ export const useCloseModalOverlay = () => {
  * @returns {function} - The handleModalClose function to be used as an event handler for modal closure.
  */
 export const useModalExitHandler = (isInputChanged) => {
-  const navigate = useNavigate();
   const openExitConfirmationDialog = useOpenDialog();
-
+  const closeModal = useCloseModalParam();
   const handleModalClose = () => {
     if (isInputChanged) {
       openExitConfirmationDialog(dialogNames.exitConfirmationDialog.name);
     } else {
-      navigate(useCloseModalOverlay());
+      closeModal();
     }
   };
 
   return handleModalClose;
 };
 
+/* ----------------------------------------------------------- */
 /**
  * A custom hook to Open a dialog.
  * this hook set the state of a specific dialog from "dialogStates" on "OverlyStateStore" to true
@@ -234,6 +215,7 @@ export const useOpenDialog = () => {
   return openDialog;
 };
 
+/* ----------------------------------------------------------- */
 /**
  * A custom hook to Close a dialog.
  * this hook set the state of a specific dialog from "dialogStates" on "OverlyStateStore" to false

@@ -1,11 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import { dialogNames } from "../../constants/DialogNames.Constants";
 
 import {
   useCloseDialog,
-  useCloseModalOverlay,
+  useCloseModalParam,
 } from "../../hooks/useModalFunctions";
 
 import DialogUtil from "../utils/Dialog.Util";
@@ -13,12 +12,12 @@ import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";
 
 export default function ExitConfirmationDialogComponent() {
-  const navigate = useNavigate();
+  const closeModal = useCloseModalParam();
   const closeDialog = useCloseDialog(dialogNames.exitConfirmationDialog.name);
 
   const handleConfirm = () => {
     closeDialog();
-    navigate(useCloseModalOverlay);
+    closeModal();
   };
 
   const handleReject = () => {

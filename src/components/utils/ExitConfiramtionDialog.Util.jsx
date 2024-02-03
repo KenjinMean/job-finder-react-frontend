@@ -10,7 +10,7 @@ import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Compone
 
 import {
   useCloseDialog,
-  useCloseModalOverlay,
+  useCloseModalParam,
 } from "../../hooks/useModalFunctions";
 import { dialogNames } from "../../constants/DialogNames.Constants";
 
@@ -21,7 +21,7 @@ export default function ExitConfiramtionDialogUtil({ onConfirm, onReject }) {
   const closeDialog = useCloseDialog(dialogNames.exitConfirmationDialog.name);
 
   const handleConfirm = () => {
-    navigate(useCloseModalOverlay);
+    navigate(useCloseModalParam);
     closeDialog();
   };
 

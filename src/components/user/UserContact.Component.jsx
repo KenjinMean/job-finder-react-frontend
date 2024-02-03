@@ -2,7 +2,7 @@ import React from "react";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
-import { useOpenModalOverlay } from "../../hooks/useModalFunctions";
+import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import { useApiUserContactFetch } from "../../hooks/useApiUserContact";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
@@ -105,7 +105,7 @@ export default function UserContactComponent() {
       </div>
       <div className="absolute flex items-center gap-1 right-5 top-5">
         <LinkEditUiComponent
-          to={useOpenModalOverlay(UserModals.userContactEditModal.name)}
+          to={useOpenModalParam(UserModals.userContactEditModal.name)}
         />
       </div>
     </section>

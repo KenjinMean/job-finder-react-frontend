@@ -2,7 +2,7 @@ import React from "react";
 
 import { UserModals } from "../../constants/ModalNames.Constants";
 
-import { useOpenModalOverlay } from "../../hooks/useModalFunctions.js";
+import { useOpenModalParam } from "../../hooks/useModalFunctions.js";
 
 import { userRoutes } from "../../constants/RoutesPath.Constants";
 
@@ -28,7 +28,7 @@ export default function UserSkillsComponent() {
       <div className="absolute flex items-center gap-1 right-5 top-5">
         {/* add skill link */}
         <LinkAddUiComponent
-          to={useOpenModalOverlay(UserModals.userAddSkillModal.name)}
+          to={useOpenModalParam(UserModals.userAddSkillModal.name)}
         />
         <LinkEditUiComponent to={userRoutes.userEditSkillPage} />
       </div>

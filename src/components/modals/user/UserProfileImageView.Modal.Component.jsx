@@ -8,7 +8,7 @@ import {
   useApiUserInfoFetch,
   useApiUserProfileImageUpdateAsync,
 } from "../../../hooks/useApiUserInfo";
-import { useOpenModalOverlay } from "../../../hooks/useModalFunctions";
+import { useOpenModalParam } from "../../../hooks/useModalFunctions";
 
 import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
@@ -16,7 +16,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 
 export default function UserProfileImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
-    useOpenModalOverlay(UserModals.userProfileImageUpdatePreviewModal.name)
+    useOpenModalParam(UserModals.userProfileImageUpdatePreviewModal.name)
   );
 
   const { data: userInfo } = useApiUserInfoFetch();

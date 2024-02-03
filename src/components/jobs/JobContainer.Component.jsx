@@ -32,7 +32,7 @@ const JobContainerComponent = forwardRef(
         <Link
           to={`${jobRoutes.jobDetailsPage}${slug}`}
           className={
-            "block relative w-full gap-5 p-5 transition-colors border border-border-100 rounded-md text-content-black bg-background-gray_50 sm:flex hover:bg-background-gray300_hoover focus:ring-4 focus:outline-none focus:ring-accent-blue500"
+            "block relative w-full gap-5 p-3 transition-colors border border-border-100 rounded-md text-content-black bg-background-gray_50 sm:flex hover:bg-background-gray300_hoover focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           }
         >
           {/* Company Image */}
@@ -43,7 +43,7 @@ const JobContainerComponent = forwardRef(
           </div>
           <div className="flex flex-col w-full gap-1 text-sm font-medium text-content-gray">
             {/* Job Title */}
-            <h2 className="text-xl sm:text-2xl text-content-black font-secondary">
+            <h2 className="text-lg sm:text-xl text-content-black font-secondary">
               {title}
             </h2>
             {/* Company Name */}

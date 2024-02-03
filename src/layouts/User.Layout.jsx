@@ -1,9 +1,8 @@
 import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
+import UserModalProvider from "../services/providers/UserModalProvider";
 import { QueryBoundaries } from "../components/utils/QueryBoundaries.Util";
-import UserOverlayProvider from "../services/providers/UserOverlayProvider";
-import Footer from "../components/footer/Footer";
 
 export default function UserProfileLayout() {
   return (
@@ -13,8 +12,7 @@ export default function UserProfileLayout() {
           <Outlet />
         </QueryBoundaries>
       </main>
-      <Footer />
-      <UserOverlayProvider />
+      <UserModalProvider />
     </Fragment>
   );
 }

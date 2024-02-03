@@ -5,7 +5,7 @@ import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { UserModals } from "../../../constants/ModalNames.Constants";
-import { useOpenModalOverlay } from "../../../hooks/useModalFunctions";
+import { useOpenModalParam } from "../../../hooks/useModalFunctions";
 import { useApiUserCoverImageUpdateAsync } from "../../../hooks/useApiUserInfo";
 
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
@@ -14,7 +14,7 @@ import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Comp
 export default function UserCoverImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
     useFileHandling(
-      useOpenModalOverlay(UserModals.userCoverImageUpdatePreviewModal.name)
+      useOpenModalParam(UserModals.userCoverImageUpdatePreviewModal.name)
     );
 
   const asyncUpdateUserCoverImage = useApiUserCoverImageUpdateAsync();

@@ -6,7 +6,7 @@ import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Compone
 
 import {
   useCloseDialog,
-  useCloseModalOverlay,
+  useCloseModalParam,
 } from "../../hooks/useModalFunctions";
 import { dialogNames } from "../../constants/DialogNames.Constants";
 
@@ -17,7 +17,7 @@ export default function PopUpExampleDialogComponent() {
   const closeDialog = useCloseDialog(dialogNames.popUpExampleDialog.name);
 
   const handleConfirm = () => {
-    navigate(useCloseModalOverlay);
+    navigate(useCloseModalParam);
     closeDialog();
   };
 
