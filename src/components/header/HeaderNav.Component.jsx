@@ -10,6 +10,7 @@ import { useAuthenticationStore } from "../../services/state/AuthenticationStore
 import MainMenuUiComponent from "../UI/MainMenu.Ui.Component.jsx";
 import HamburgerMenuUiComponent from "../UI/HamburgerMenu.Ui.Component";
 import ProfileDropdownMenuUiComponent from "../UI/ProfileDropdownMenu.Ui.Component";
+import LazyImageUtil from "../utils/LazyImage.Util.jsx";
 
 export default function HeaderNavComponent() {
   const mainMenuRef = useRef(null);
@@ -50,10 +51,11 @@ export default function HeaderNavComponent() {
           to={jobRoutes.jobListingPage}
           className="flex items-center focus:ring-4 focus:outline-none focus:ring-accent-blue500"
         >
-          <img
-            src={appLogo}
-            className="w-46 h-14"
+          <LazyImageUtil
+            width="200"
+            height="66"
             alt="JobFinder Logo/Home Page"
+            src={appLogo}
           />
         </Link>
 

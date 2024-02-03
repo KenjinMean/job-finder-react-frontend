@@ -1,5 +1,6 @@
 import React from "react";
 import fallBackCompanyImage from "../../assets/icons/fallbackCompanyImage.png";
+import LazyImageUtil from "./LazyImage.Util";
 
 export default function ImageUrlLoaderUtil({ imageUrl, alt = "" }) {
   const url = imageUrl
@@ -9,6 +10,19 @@ export default function ImageUrlLoaderUtil({ imageUrl, alt = "" }) {
     : fallBackCompanyImage;
 
   return (
-    <img src={url} alt={alt} className={`block object-cover w-full h-full `} />
+    <LazyImageUtil
+      src={url}
+      alt={alt}
+      height="100%"
+      width="100%"
+      className={`block object-cover w-full h-full`}
+    />
+    // <img
+    //   src={url}
+    //   alt={alt}
+    //   height="full"
+    //   width="full"
+    //   className={`block object-cover w-full h-full `}
+    // />
   );
 }
