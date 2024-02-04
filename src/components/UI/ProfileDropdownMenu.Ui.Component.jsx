@@ -54,7 +54,7 @@ export default function ProfileDropdownMenuUiComponent() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="fixed inset-0 z-50 flex flex-col p-5 overflow-hidden text-base list-none sm:border sm:rounded-md sm:h-max sm:left-auto sm:absolute sm:max-w-xs border-border-100 text-content-black bg-background-gray300 border-foreground-300 sm:top-14"
+                className="fixed inset-0 z-50 flex flex-col p-5 overflow-hidden text-base list-none sm:border sm:rounded-md sm:h-max sm:left-auto sm:absolute sm:max-w-xs min-w-96 border-border-100 text-content-black bg-background-gray300 border-foreground-300 sm:top-16"
                 id="user-dropdown"
               >
                 <Menu.Item className="absolute sm:hidden top-5 right-5">
