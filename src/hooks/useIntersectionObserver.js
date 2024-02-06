@@ -25,7 +25,7 @@ export default function useIntersectionObserver(callback) {
             observerRef.current.disconnect();
           }
         },
-        { root: null, rootMargin: "0px", threshold: 1 }
+        { root: null, rootMargin: "0px", threshold: 0.5 }
       );
 
       if (node) {

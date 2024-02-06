@@ -7,9 +7,9 @@ export default function UserDetailsCardSpinnerUtil({ title }) {
       <span className="text-2xl font-bold ">{title}</span>
 
       <div className="flex flex-col gap-2">
-        <div className="w-40 h-4 bg-gray-200 rounded-md animate-pulse dark:bg-gray-600" />
-        <div className="h-3 bg-gray-200 rounded-md w-80 animate-pulse dark:bg-gray-600" />
-        <div className="h-3 bg-gray-200 rounded-md w-80 animate-pulse dark:bg-gray-600" />
+        <div className="w-40 h-4 rounded-md animate-pulse bg-background-gray300_hoover" />
+        <div className="h-3 rounded-md w-80 animate-pulse bg-background-gray300_hoover" />
+        <div className="h-3 rounded-md w-80 animate-pulse bg-background-gray300_hoover" />
       </div>
     </div>
   );

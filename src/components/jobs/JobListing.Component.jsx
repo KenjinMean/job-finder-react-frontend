@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import { useApiJobsInfiniteFetch } from "../../hooks/useApiJob";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
-import JobContainerComponent from "./JobContainer.Component";
+import JobCardComponent from "./JobCard.Component";
 import EndOfListIndicatorUiComponent from "../UI/EndOfListIndicator.Ui.Component";
 import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
 
@@ -29,7 +29,7 @@ export default function JobListingComponent() {
             {group.data?.data?.map((job, jobIndex, array) => {
               const isLastJob = jobIndex === array.length - 1;
               return (
-                <JobContainerComponent
+                <JobCardComponent
                   job={job}
                   key={job.id}
                   ref={isLastJob ? lastJobRef : null}

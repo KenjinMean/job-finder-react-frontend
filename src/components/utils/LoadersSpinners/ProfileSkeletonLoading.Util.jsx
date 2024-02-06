@@ -2,11 +2,11 @@ import React from "react";
 
 export default function ProfileSkeletonLoadingUtil() {
   return (
-    <section className="relative w-full overflow-hidden border border-border-100 sm:rounded-lg bg-background-gray_50 text-content-black">
+    <section className="relative w-full overflow-hidden border bg-background-gray_50 border-border-100 sm:rounded-lg text-content-black">
       <span className="sr-only">Loading...</span>
       <div className="block w-full p-10 border-b h-36 sm:h-48 border-border-100">
         <svg
-          className="w-full h-full text-gray-200 dark:text-gray-600 animate-pulse"
+          className="w-full h-full text-background-gray300_hoover animate-pulse"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -18,7 +18,7 @@ export default function ProfileSkeletonLoadingUtil() {
 
       <div className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-border-100 bg-background-gray_50">
         <svg
-          className="w-full h-full text-gray-200 dark:text-gray-600 animate-pulse"
+          className="w-full h-full text-background-gray300_hoover animate-pulse"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -29,9 +29,9 @@ export default function ProfileSkeletonLoadingUtil() {
 
       <div className="pt-10 mt-3">
         <div className="flex flex-col gap-2 p-5">
-          <div className="w-40 h-4 bg-gray-200 rounded-md animate-pulse dark:bg-gray-600" />
-          <div className="h-3 bg-gray-200 rounded-md w-80 animate-pulse dark:bg-gray-600" />
-          <div className="h-3 bg-gray-200 rounded-md w-80 animate-pulse dark:bg-gray-600" />
+          <div className="w-40 h-4 rounded-md bg-background-gray300_hoover animate-pulse" />
+          <div className="h-3 rounded-md bg-background-gray300_hoover w-80 animate-pulse" />
+          <div className="h-3 rounded-md bg-background-gray300_hoover w-80 animate-pulse" />
         </div>
       </div>
     </section>
