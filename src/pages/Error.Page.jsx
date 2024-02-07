@@ -5,8 +5,6 @@ import ErrorServerErrorUiComponent from "../components/UI/error/ErrorServerError
 import ErrorServerUnavailableUiComponent from "../components/UI/error/ErrorServerUnavailable.Ui.Component";
 
 export default function ErrorPage({ error, resetErrorBoundary }) {
-  console.log("error from error page:", error);
-
   if (error instanceof TypeError) {
     console.log("A Type Error");
   }

@@ -31,7 +31,10 @@ export const useApiSkillSearch = (keyword) => {
           "Handling searchSkill Response Failed on useApiSkill hook:",
           error.message
         );
-        throw new Error("Handling searchSkill Response Failed");
+        throw {
+          code: error.response.status,
+          message: "Failed to search user skill",
+        };
       }
     },
     select: (data) => data?.data?.skills,
@@ -120,7 +123,10 @@ export const useApiUserSkillsFetch = (enabled = true) => {
           "Handling fetchUserSkills Response Failed on useApiSkill hook:",
           error.message
         );
-        throw new Error("Handling fetchUserSkills Response Failed");
+        throw {
+          code: error.response.status,
+          message: "Failed to fetch user skills",
+        };
       }
     },
     select: (data) => data?.data?.skills,

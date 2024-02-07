@@ -32,7 +32,11 @@ export const useApiUserContactFetch = () => {
           "Handling fetchUserContact Response Failed on useApiUserContact hook:",
           error.message
         );
-        throw new Error("Handling fetchUserContact Response Failed");
+
+        throw {
+          code: error.response.status,
+          message: "Failed to fetch user contact",
+        };
       }
     },
     select: (data) => data?.data,
