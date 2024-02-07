@@ -3,12 +3,13 @@ import React, { Fragment, Suspense } from "react";
 const UserContactComponent = React.lazy(() =>
   import("./UserContact.Component")
 );
-const UserEducationComponent = React.lazy(() =>
-  import("./UserEducation.Component")
+const UserExperienceCardComponent = React.lazy(() =>
+  import("./UserExperienceCard.Component")
 );
-const UserExperienceComponent = React.lazy(() =>
-  import("./UserExperience.Component")
+const UserEducationsCardComponent = React.lazy(() =>
+  import("./UserEducationsCard.Component")
 );
+
 const UserInfoComponent = React.lazy(() => import("./UserInfo.Component"));
 const UserAboutComponent = React.lazy(() => import("./UserAbout.Component"));
 const UserSkillsComponent = React.lazy(() => import("./UserSkills.Component"));
@@ -33,11 +34,11 @@ export default function UserProfileComponent() {
         </Suspense>
 
         <Suspense fallback={<UserDetailsCardSpinnerUtil title="Experience" />}>
-          <UserExperienceComponent />
+          <UserExperienceCardComponent />
         </Suspense>
 
         <Suspense fallback={<UserDetailsCardSpinnerUtil title="Education" />}>
-          <UserEducationComponent />
+          <UserEducationsCardComponent />
         </Suspense>
 
         <Suspense fallback={<UserDetailsCardSpinnerUtil title="Skills" />}>
