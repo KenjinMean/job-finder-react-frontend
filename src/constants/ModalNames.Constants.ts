@@ -1,3 +1,5 @@
+import { lazy } from "react"
+
 import UserAboutEditPage from "../pages/UserAboutEdit.Modal.Page"
 import UserInfoEditModalPage from "../pages/UserInfoEdit.Modal.Page"
 import UserAddSkillModalPage from "../pages/UserAddSkill.Modal.Page"
@@ -9,9 +11,21 @@ import UserProfileImageViewModalPage from "../pages/UserProfileImageView.Modal.P
 import UserCoverImageUpdatePreviewModalPage from "../pages/UserCoverImageUpdatePreview.Modal.Page"
 import UserProfileImageUpdatePreviewModalPage from "../pages/UserProfileImageUpdatePreview.Modal.Page"
 
-import SettingsModalComponent from "../components/modals/Settings.Modal.Component"
+const UserAboutEditModalComponent = lazy(() =>
+  import("../components/modals/user/UserAboutEdit.Modal.Component")
+  );
+  const SettingsModalComponent = lazy(() =>
+  import("../components/modals/Settings.Modal.Component")
+  );
+  const UserAddEducationModalComponent =  lazy(() =>
+  import("../components/modals/user/UserEducationAdd.Modal.Component")
+  );
 
+  const UserEducationEditModalComponent =  lazy(() =>
+  import("../components/modals/user/UserEducationEdit.Modal.Component")
+  );
 
+/*---------------------------------------------------------------------------------- */
   const createModal = (
     name: string,
     component: React.ComponentType<any>
@@ -19,6 +33,45 @@ import SettingsModalComponent from "../components/modals/Settings.Modal.Componen
     name,
     component,
   });
+
+/*---------------------------------------------------------------------------------- */
+// IMPLEMENT THIS LATER
+
+// type UserModal = {
+//   [key: string]: { name: string; component: React.ComponentType<any> };
+// };
+
+// // Define an array of modal names
+// const modalNames: string[] = [
+//   "userAboutEditModal",
+//   "userInfoEditModal",
+//   "userAddSkillModal",
+//   "userContactEditModal",
+//   "userAddSkillErrorModal",
+//   "userCoverImageViewModal",
+//   "userAddSkillSuccessModal",
+//   "userProfileImageViewModal",
+//   "userCoverImageUpdatePreviewModal",
+//   "userProfileImageUpdatePreviewModal"
+// ];
+
+// // Create a function to create a modal object
+// const createModal = (name: string, component: React.ComponentType<any>) => {
+//   return { name, component };
+// };
+
+// // Dynamically import and create modal objects
+// const userModals: UserModal = modalNames.reduce((acc, modalName) => {
+//   const importPath = `../pages/${modalName}.Modal.Page`;
+//   const lazyComponent = lazy(() =>
+//     import(importPath).then(module => module.default)
+//   );
+//   return { ...acc, [modalName]: createModal(modalName, lazyComponent) };
+// }, {});
+
+// export default userModals;
+/*---------------------------------------------------------------------------------- */
+
 
   type UserModal = {
     userAddSkillModal: { name: string; component: React.ComponentType<any> };
@@ -31,10 +84,12 @@ import SettingsModalComponent from "../components/modals/Settings.Modal.Componen
     userProfileImageViewModal: { name: string; component: React.ComponentType<any> };
     userCoverImageUpdatePreviewModal: { name: string; component: React.ComponentType<any> };
     userProfileImageUpdatePreviewModal: { name: string; component: React.ComponentType<any> };
+    userEducationAddModal: { name: string; component: React.ComponentType<any> };
+    userEducationEditModal: { name: string; component: React.ComponentType<any> };
   };
   
   const Modals: UserModal = {
-    userAboutEditModal: createModal("user-about-edit-modal",UserAboutEditPage),
+    userAboutEditModal: createModal("user-about-edit-modal",UserAboutEditModalComponent),
     userInfoEditModal: createModal("userInfoEditModal",UserInfoEditModalPage),
     userAddSkillModal: createModal("userAddSkillModal", UserAddSkillModalPage),
     userContactEditModal: createModal("userContactEditModal",UserContactEditModalPage ),
@@ -44,6 +99,9 @@ import SettingsModalComponent from "../components/modals/Settings.Modal.Componen
     userProfileImageViewModal: createModal("userProfileImageViewModal", UserProfileImageViewModalPage),
     userCoverImageUpdatePreviewModal: createModal("userCoverImageUpdatePreviewModal", UserCoverImageUpdatePreviewModalPage),
     userProfileImageUpdatePreviewModal: createModal("userProfileImageUpdatePreviewModal", UserProfileImageUpdatePreviewModalPage),
+
+    userEducationAddModal: createModal("user-education-add-modal",UserAddEducationModalComponent),
+    userEducationEditModal: createModal("user-education-edit-modal",UserEducationEditModalComponent),
   };
 
   type ModalNamesType = {

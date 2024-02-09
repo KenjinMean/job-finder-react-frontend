@@ -28,7 +28,10 @@ export default function UserEducationsCardComponent() {
       <div className="flex flex-col gap-3 p-5">
         {visibleEducations.map((education, index) => (
           <Fragment key={index}>
-            <UserEducationDetailsComponent education={education} />
+            <UserEducationDetailsComponent
+              education={education}
+              index={index}
+            />
             {index !== visibleEducations.length - 1 && (
               <div className="border-b border-border-100"></div>
             )}
@@ -47,7 +50,7 @@ export default function UserEducationsCardComponent() {
 
       <LinkAddUiComponent
         className="absolute top-5 right-5"
-        to={useOpenModalParam(UserModals.userAboutEditModal.name)}
+        to={useOpenModalParam(UserModals.userEducationAddModal.name)}
       />
     </section>
   );
