@@ -132,9 +132,11 @@ export const useCloseModalParam = () => {
   // Return a function that closes the modal
   return () => {
     // Remove the "modal" and "error" parameters
-    const newSearchParams = new URLSearchParams(window.location.search);
-    newSearchParams.delete("modal");
-    newSearchParams.delete("error");
+    // const newSearchParams = new URLSearchParams(window.location.search);
+    // newSearchParams.delete("modal");
+    // newSearchParams.delete("error");
+
+    const newSearchParams = new URLSearchParams();
 
     // Navigate to the new URL
     navigate({
