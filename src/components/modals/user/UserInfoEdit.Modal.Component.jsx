@@ -8,12 +8,14 @@ import {
 
 import UserInfoEditForm from "../../forms/auth/UserInfoEdit.Form";
 
+/* ----------------------------------------------------------- */
 export default function UserInfoEditModalComponent({ setIsUserInfoChanged }) {
+  const [payload, setPayload] = useState(null);
+
   const { data: userInfo } = useApiUserInfoFetch();
   const updateUserInfo = useApiUserInfoUpdateAsync();
 
-  const [payload, setPayload] = useState(null);
-
+  /* ----------------------------------------------------------- */
   const handleInputChange = (e) => {
     setIsUserInfoChanged(true);
     setPayload({
@@ -39,11 +41,12 @@ export default function UserInfoEditModalComponent({ setIsUserInfoChanged }) {
   };
 
   useEffect(() => {
-    const updatedPayload = {};
-    Object.assign(updatedPayload, userInfo);
-    setPayload(updatedPayload);
+    if (userInfo) {
+      setPayload(userInfo);
+    }
   }, [userInfo]);
 
+  /* ----------------------------------------------------------- */
   return (
     <Fragment>
       <div className="p-5">
