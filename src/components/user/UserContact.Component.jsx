@@ -103,11 +103,11 @@ export default function UserContactComponent() {
           <p>{userContact?.birth_date}</p>
         </div>
       </div>
-      <div className="absolute flex items-center gap-1 right-5 top-5">
-        <LinkEditUiComponent
-          to={useOpenModalParam(UserModals.userContactEditModal.name)}
-        />
-      </div>
+
+      <LinkEditUiComponent
+        className="absolute flex items-center gap-1 right-5 top-5"
+        to={useOpenModalParam(UserModals.userContactEditModal.name)}
+      />
     </section>
   );
 }
