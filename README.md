@@ -29,3 +29,38 @@ This is a web application designed to help users find job opportunities. It serv
 
    ```bash
    git clone <repository-url>
+
+    Navigate to the project directory:
+
+    bash
+
+cd job-finder-website
+
+Install dependencies:
+
+bash
+
+npm install
+
+Set up environment variables:
+
+Create a .env file in the root directory and add necessary environment variables, such as the API base URL.
+
+Start the development server:
+
+bash
+
+    npm start
+
+    Open your web browser and navigate to http://localhost:3000 to view the website.
+
+Contributing
+
+Contributions are welcome! Please follow the guidelines in CONTRIBUTING.md.
+License
+
+This project is licensed under the MIT License.
+Acknowledgements
+
+    This project was inspired by [mention any sources or inspirations here].
+    [Any other acknowledgements or credits...]
