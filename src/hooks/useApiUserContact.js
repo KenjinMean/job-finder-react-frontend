@@ -10,7 +10,7 @@ import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 import {
   apiUserContactFetch,
   apiUserContactUpdate,
-} from "../services/api/userContactApi";
+} from "../services/api/apiUserContact";
 
 /* ----------------------------------------------------------- */
 /**

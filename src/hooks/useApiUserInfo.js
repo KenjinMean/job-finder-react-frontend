@@ -3,7 +3,7 @@ import {
   apiUserInfoUpdate,
   apiUserCoverImageUpdate,
   apiUserProfileImageUpdate,
-} from "../services/api/userInfoApi";
+} from "../services/api/apiUserInfo";
 import { devError } from "../utils/devError";
 import { useNavigate } from "react-router-dom";
 import { toMilliseconds } from "../utils/toMilliseconds";

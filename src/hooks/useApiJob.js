@@ -4,7 +4,7 @@ import {
   apiJobsFetch,
   apiJobsSearch,
   apiJobsSuggestionsSearch,
-} from "../services/api/jobApi";
+} from "../services/api/apiJobs";
 import { devError } from "../utils/devError";
 import { toMilliseconds } from "../utils/toMilliseconds";
 

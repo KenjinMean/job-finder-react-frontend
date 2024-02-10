@@ -9,7 +9,7 @@ import {
   apiUserAddSkill,
   apiUserFetchSkill,
   apiUserRemoveSkill,
-} from "../services/api/skillApi";
+} from "../services/api/apiSkills";
 import { devError } from "../utils/devError";
 import { toMilliseconds } from "../utils/toMilliseconds";
 

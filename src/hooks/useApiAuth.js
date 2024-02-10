@@ -6,7 +6,7 @@ import {
   apiRefreshToken,
   apiGitHubAuthLogin,
   apiGoogleAuthLogin,
-} from "../services/api/authApi";
+} from "../services/api/apiAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
