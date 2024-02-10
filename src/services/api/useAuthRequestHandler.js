@@ -1,4 +1,4 @@
-import axiosClient from "../../axios-client";
+import axiosClient from "../../utils/axiosClient.Util";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useAuthenticationStore } from "../state/AuthenticationStore";
 import { useState } from "react";
