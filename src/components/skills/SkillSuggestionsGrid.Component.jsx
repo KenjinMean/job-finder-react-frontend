@@ -5,12 +5,12 @@ import LoadingSpinnerUtil from "../utils/LoadersSpinners/LoadingSpinnder.Util";
 export default function SkillSuggestionsGridComponent({
   skills,
   keyword,
-  addSkillFn,
+  handleSuggestionClick,
   isFetchingSuggestions,
   disableSuggestions = true,
 }) {
-  const handleSuggestionClick = (skillId) => {
-    addSkillFn(skillId);
+  const handleClick = (skill) => {
+    handleSuggestionClick(skill);
   };
 
   return (
@@ -26,7 +26,7 @@ export default function SkillSuggestionsGridComponent({
                 <li key={skill.id}>
                   <button
                     className="px-3 py-1 transition-all border rounded-full bg-background-gray100 border-border-100 hover:bg-accent-100 hover:text-content-black disabled:bg-background-gray_stable"
-                    onClick={() => handleSuggestionClick(skill.id)}
+                    onClick={() => handleClick(skill)}
                     disabled={disableSuggestions}
                   >
                     {skill.name}
