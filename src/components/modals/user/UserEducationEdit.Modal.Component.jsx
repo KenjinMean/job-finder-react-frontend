@@ -11,8 +11,6 @@ import { extractUrlParams } from "../../../utils/extractUrlParams";
 
 import ModalUtil from "../../utils/Modal.Util";
 import UserEducationForm from "../../forms/auth/UserEducation.Form";
-import { useOpenDialog } from "../../../hooks/useModalFunctions";
-import { dialogNames } from "../../../constants/DialogNames.Constants";
 
 /* ----------------------------------------------------------- */
 export default function UserEducationEditModalComponent() {

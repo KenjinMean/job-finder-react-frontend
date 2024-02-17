@@ -113,8 +113,8 @@ export const useApiUserEducationDelete = () => {
     } catch (error) {
       handleFetchError(
         error,
-        "Failed to create user educations",
-        "useApiUserEducationsStore"
+        "Failed to delete user educations",
+        "useApiUserEducationsDestroy"
       );
     }
   };

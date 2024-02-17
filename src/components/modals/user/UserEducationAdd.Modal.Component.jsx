@@ -21,7 +21,6 @@ export default function UserEducationAddModalComponent() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(payload);
     toast.promise(createUserEducation(payload), {
       pending: "Adding Education",
       success: "Education added successfully",
