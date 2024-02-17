@@ -9,10 +9,10 @@ export default function LabeledTextInputUiCoponent({
   ...inputProps
 }) {
   return (
-    <div>
+    <div className="text-sm">
       <label
         htmlFor={id}
-        className={`block mb-2 font-medium text-content-gray ${
+        className={`block mb-1 font-medium text-content-gray ${
           isLabelHidden && "sr-only"
         }`}
       >

@@ -8,7 +8,7 @@ export default function LabeledPhoneInputUiComponent({
   ...inputProps
 }) {
   return (
-    <div>
+    <div className="text-sm">
       <label htmlFor={id} className="font-medium text-content-black">
         {label}
       </label>

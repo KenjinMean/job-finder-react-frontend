@@ -8,11 +8,11 @@ export default function LabeledTextAreaInputUiComponent({
   ...inputProps
 }) {
   return (
-    <div>
+    <div className="text-sm">
       {label && (
         <label
           htmlFor={id}
-          className="block mb-2 font-medium text-content-gray"
+          className="block mb-1 font-medium text-content-gray"
         >
           {label}
         </label>
