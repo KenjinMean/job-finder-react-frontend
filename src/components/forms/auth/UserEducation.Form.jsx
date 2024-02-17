@@ -9,7 +9,7 @@ export default function UserEducationForm({
   payload,
 }) {
   return (
-    <form className="p-5" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-3 p-5" onSubmit={handleSubmit}>
       <LabeledTextInputUiCoponent
         name="institution_name"
         id="institutionName"
