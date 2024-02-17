@@ -54,7 +54,7 @@ export const useApiUserSkillAdd = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  return useMutation((skillId) => apiUserAddSkill(skillId), {
+  return useMutation((skill) => apiUserAddSkill(skill), {
     onSuccess: async () => {
       queryClient.invalidateQueries("searchSkill");
       navigate(useOpenModalParam(UserModals.userAddSkillSuccessModal.name));

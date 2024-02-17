@@ -8,8 +8,8 @@ export const apiSkillSearch = async (keyword) => {
 
 /* ----------------------------------------------------------- */
 // add skill
-export const apiUserAddSkill = async (skillId) => {
-  return await axiosClient.post(`/add-skill?skill_id=${skillId}`);
+export const apiUserAddSkill = async (skill) => {
+  return await axiosClient.post(`/add-skill?skill_id=${skill.id}`);
 };
 
 /* ----------------------------------------------------------- */
