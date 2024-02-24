@@ -1,11 +1,12 @@
 import React from "react";
 
-export default function LabeledTextInputUiComponent({
-  form,
+export default function LabeledSelectUiComponent({
   name,
+  form,
   label,
+  options,
   disabled,
-  placeholder,
+  defaultOption,
   validationSchema,
 }) {
   const { register, formState } = form;
@@ -22,17 +23,29 @@ export default function LabeledTextInputUiComponent({
         {label}
         {required && " *"}
       </label>
-      <input
+
+      <select
         id={name}
         name={name}
-        type="text"
-        placeholder={placeholder}
         disabled={disabled}
-        className={`bg-input-gray border border-border-100 text-content-black rounded-lg focus:ring-accent-blue500 focus:border-accent-blue500 block w-full p-2.5 disabled:opacity-50 ${
+        className={`bg-input-gray border border-border-100 text-content-gray rounded-lg focus:ring-accent-blue500 focus:border-accent-blue500 block w-full p-2.5 disabled:opacity-50 ${
           errors[name] && "border-red-500"
         }`}
         {...register(name, validationSchema)}
-      />
+      >
+        {defaultOption && (
+          <option value="" defaultValue>
+            {defaultOption}
+          </option>
+        )}
+        {options.map((option, index) => {
+          return (
+            <option key={index} value={option.value}>
+              {option.name}
+            </option>
+          );
+        })}
+      </select>
       <p className="text-red-500">{errors[name]?.message}</p>
     </div>
   );
