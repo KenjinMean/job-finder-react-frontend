@@ -1,3 +1,8 @@
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { userRoutes } from "../constants/RoutesPath.Constants";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import {
   apiUserInfoFetch,
   apiUserInfoUpdate,
@@ -5,10 +10,7 @@ import {
   apiUserProfileImageUpdate,
 } from "../services/api/apiUserInfo";
 import { devError } from "../utils/devError";
-import { useNavigate } from "react-router-dom";
 import { toMilliseconds } from "../utils/toMilliseconds";
-import { userRoutes } from "../constants/RoutesPath.Constants";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 /* ----------------------------------------------------------- */
@@ -47,61 +49,24 @@ export const useApiUserInfoFetch = () => {
 };
 
 /* ----------------------------------------------------------- */
-/**
- * ASYNC API REQUEST FUNCTION: useApiUserInfoUpdateAsync
- * Asynchronous function for updating user information using an API request.
- * This function is designed for use with react-toast notifications, which require
- * an asynchronous function for handling promises.
- *
- * @function
- * @async
- * @param {Object} payload - The data payload containing the updated user information.
- * @throws {Error} Throws an error if the API request fails.
- * @returns {Promise<void>} A promise that resolves when the user information is successfully updated.
- *
- * @example
- *
- * // Import the function
- * import { useApiUserInfoUpdateAsync } from 'path-to/useApiUserInfoUpdateAsync';
- * import toast from 'path-to/react-toast';
- *
- * // Usage in a component
- *   const updateUser = useApiUserInfoUpdateAsync();
- *
- *   const handleUpdateUserInfo = (skillId) => {
- *   toast.promise(updateUser(skillId), {
- *      pending: "Updating User Info",
- *      success: "User Info Updated Successfully",
- *      error: "Error Updating User Info",
- *     });
- *   };
- *
- *  <button onClick={() => handleUpdateUserInfo(skillId)}>
- *    update
- *  </button>
- */
-export const useApiUserInfoUpdateAsync = () => {
+export const useApiUserInfoUpdateMutation = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();
 
-  return async (payload) => {
-    navigate(userRoutes.userProfilePage);
-
-    try {
-      const response = await apiUserInfoUpdate(payload);
-
-      if (response.status === 200) {
-        queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
-      }
-    } catch (error) {
-      devError(
-        "Handling updateUserInfo Response Failed on useApiUserInfo:",
-        error.message
+  return useMutation((payload) => apiUserInfoUpdate(payload), {
+    onSuccess: (data) => {
+      toast.success("User info Updated Successfully.");
+      queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
+      navigate(userRoutes.userProfilePage);
+    },
+    onError: (error) => {
+      toast.error(
+        "Sorry, we encountered an issue processing your request. Please try again later."
       );
-      throw { code: error.response.status };
-    }
-  };
+      handleFetchError(error, error.message, "useApiUserInfoUpdateMutation");
+    },
+  });
 };
 
 /* ----------------------------------------------------------- */
