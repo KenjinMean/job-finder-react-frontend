@@ -7,7 +7,6 @@ import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import { useTruncatedElement } from "../../hooks/useTruncatedElement";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
-import { Link } from "react-router-dom";
 
 export default function UserAboutComponent() {
   const { data: userInfo } = useApiUserInfoFetch();
@@ -19,11 +18,6 @@ export default function UserAboutComponent() {
   return (
     <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg text-content-black border-border-100 bg-background-gray_50">
       <h2 className="text-2xl font-semibold">About</h2>
-
-      <a href={useOpenModalParam("user-about-edit-modal")}>
-        Open modal via link
-      </a>
-      <Link to={useOpenModalParam("user-about-edit-modal")}> Open Modal</Link>
 
       <div className="absolute flex items-center gap-1 right-5 top-5">
         {/* edit about link */}

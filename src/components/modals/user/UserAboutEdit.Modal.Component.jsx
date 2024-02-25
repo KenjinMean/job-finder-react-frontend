@@ -1,53 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 import {
   useApiUserInfoFetch,
-  useApiUserInfoUpdateAsync,
+  useApiUserInfoUpdateMutation,
 } from "../../../hooks/useApiUserInfo";
 
-import UserAboutForm from "../../forms/auth/UserAbout.Form";
+import ModalUtil from "../../utils/Modal.Util";
+import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
+import LabeledTextAreaInputUiComponent from "../../UI/LabeledTextAreaInput.Ui.Component";
 
-export default function UserAboutEditModalComponent({ setIsInputChanged }) {
+export default function UserAboutEditModalComponent() {
   const { data: userInfo } = useApiUserInfoFetch();
-  const [payload, setPayload] = useState({});
+  const { isLoading: isUpdating, mutate } = useApiUserInfoUpdateMutation();
 
-  const updateUserInfo = useApiUserInfoUpdateAsync();
+  const form = useForm({
+    defaultValues: {
+      about: userInfo.about,
+    },
+  });
 
-  const handleInputChange = (e) => {
-    setIsInputChanged(true);
-    setPayload({
-      ...payload,
-      [e.target.name]: e.target.value,
-    });
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty },
+  } = form;
+
+  const handleFormSubmit = (data) => {
+    const payload = {
+      ...data,
+      _method: "PATCH",
+    };
+
+    mutate(payload);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-
-    // method spoofing: appending patch method to simulate patch request
-    formData.append("_method", "PATCH");
-    for (const key in payload) {
-      formData.append(key, payload[key]);
-    }
-
-    toast.promise(updateUserInfo(formData), {
-      pending: "Updating User About",
-      success: "User About updated sucessfully",
-      error: "Error Updating About info",
-    });
-  };
-
-  useEffect(() => {
-    setPayload({ ...userInfo });
-  }, [userInfo]);
-
+  /* ----------------------------------------------------------- */
   return (
-    <UserAboutForm
-      handleSubmit={handleSubmit}
-      payload={payload}
-      handleInputChange={handleInputChange}
-    />
+    <ModalUtil modalTitle="Edit User About" isInputChanged={isDirty}>
+      <form className="p-5" onSubmit={handleSubmit(handleFormSubmit)}>
+        <LabeledTextAreaInputUiComponent
+          form={form}
+          name="about"
+          label="About"
+          placeholder="About yourself"
+        />
+        <div className="flex flex-row-reverse mt-5">
+          <ButtonActionUiComponent
+            text="Submit"
+            loadingText="Submitting"
+            isSubmitting={isUpdating}
+          />
+        </div>
+      </form>
+      <DevTool control={control} />
+    </ModalUtil>
   );
 }
