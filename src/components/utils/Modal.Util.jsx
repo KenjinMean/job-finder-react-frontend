@@ -31,7 +31,9 @@ const ModalUtil = ({
   const { setScrollLockActive } = useModalScrollLock();
   setScrollLockActive();
 
-  const handleModalClose = useModalExitHandler(isInputChanged);
+  // Use handleCloseModal if provided, otherwise use the default handleModalClose
+  const handleModalClose =
+    handleCloseModal || useModalExitHandler(isInputChanged);
 
   // close modal if backdrop is clicked
   const handleBackdropClick = (e) => {
