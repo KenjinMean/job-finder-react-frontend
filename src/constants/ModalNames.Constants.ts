@@ -25,7 +25,10 @@ const UserAboutEditModalComponent = lazy(() =>
   import("../components/modals/user/UserEducationEdit.Modal.Component")
   );
 
-/*---------------------------------------------------------------------------------- */
+  import UserExperienceEditModalComponent from "../components/modals/user/UserExperienceEdit.Modal.Component"
+  import UserExperienceAddModalComponent from "../components/modals/user/UserExperienceAdd.Modal.Component"
+  import UserSkillsModalComponent from "../components/modals/user/UserSkills.Modal.Component"
+  /*---------------------------------------------------------------------------------- */
   const createModal = (
     name: string,
     component: React.ComponentType<any>
@@ -35,41 +38,8 @@ const UserAboutEditModalComponent = lazy(() =>
   });
 
 /*---------------------------------------------------------------------------------- */
-// IMPLEMENT THIS LATER
+// IMPLEMENT LATER use map or looping function to automate this
 
-// type UserModal = {
-//   [key: string]: { name: string; component: React.ComponentType<any> };
-// };
-
-// // Define an array of modal names
-// const modalNames: string[] = [
-//   "userAboutEditModal",
-//   "userInfoEditModal",
-//   "userAddSkillModal",
-//   "userContactEditModal",
-//   "userAddSkillErrorModal",
-//   "userCoverImageViewModal",
-//   "userAddSkillSuccessModal",
-//   "userProfileImageViewModal",
-//   "userCoverImageUpdatePreviewModal",
-//   "userProfileImageUpdatePreviewModal"
-// ];
-
-// // Create a function to create a modal object
-// const createModal = (name: string, component: React.ComponentType<any>) => {
-//   return { name, component };
-// };
-
-// // Dynamically import and create modal objects
-// const userModals: UserModal = modalNames.reduce((acc, modalName) => {
-//   const importPath = `../pages/${modalName}.Modal.Page`;
-//   const lazyComponent = lazy(() =>
-//     import(importPath).then(module => module.default)
-//   );
-//   return { ...acc, [modalName]: createModal(modalName, lazyComponent) };
-// }, {});
-
-// export default userModals;
 /*---------------------------------------------------------------------------------- */
 
 
@@ -86,6 +56,10 @@ const UserAboutEditModalComponent = lazy(() =>
     userProfileImageUpdatePreviewModal: { name: string; component: React.ComponentType<any> };
     userEducationAddModal: { name: string; component: React.ComponentType<any> };
     userEducationEditModal: { name: string; component: React.ComponentType<any> };
+    userAddExperienceModal: { name: string; component: React.ComponentType<any> };
+    userEditExperienceModal: { name: string; component: React.ComponentType<any> };
+    UserSkillsModalComponent: { name: string; component: React.ComponentType<any> };
+    
   };
   
   const Modals: UserModal = {
@@ -102,6 +76,10 @@ const UserAboutEditModalComponent = lazy(() =>
 
     userEducationAddModal: createModal("user-education-add-modal",UserAddEducationModalComponent),
     userEducationEditModal: createModal("user-education-edit-modal",UserEducationEditModalComponent),
+
+    userAddExperienceModal: createModal("user-experience-add-modal",UserExperienceAddModalComponent),
+    userEditExperienceModal: createModal("user-experience-edit-modal",UserExperienceEditModalComponent),
+    UserSkillsModalComponent: createModal("user-skills",UserSkillsModalComponent),
   };
 
   type ModalNamesType = {
@@ -110,8 +88,6 @@ const UserAboutEditModalComponent = lazy(() =>
 
   const UserModals: ModalNamesType = Modals;
   export { UserModals };
-
-
 
   type GlobalModalsType = {
     settingsModal: { name: string; component: React.ComponentType<any> };
