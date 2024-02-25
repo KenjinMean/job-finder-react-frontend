@@ -18,6 +18,7 @@ import UserDetailsCardSpinnerUtil from "../utils/LoadersSpinners/UserDetailsCard
 import ProfileSkeletonLoadingUtil from "../utils/LoadersSpinners/ProfileSkeletonLoading.Util";
 
 export default function UserProfileComponent() {
+  // Remove this user profile component directly render this to user profile page
   return (
     <Fragment>
       <div className="flex flex-col gap-1 sm:gap-2">
