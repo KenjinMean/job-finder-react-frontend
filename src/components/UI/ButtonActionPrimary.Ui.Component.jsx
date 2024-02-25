@@ -6,7 +6,7 @@ export default function ButtonActionPrimaryUiComponent({
 }) {
   return (
     <button
-      className="px-4 py-1 transition-colors rounded-full font-secondary text-content-black_inverted hover:text-content-black bg-accent-blue600 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500"
+      className="flex items-center gap-2 px-4 py-1 transition-colors rounded-full font-secondary text-content-black_inverted hover:text-content-black bg-accent-blue600 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500 disabled:bg-slate-500"
       {...restProps}
     >
       {children}
