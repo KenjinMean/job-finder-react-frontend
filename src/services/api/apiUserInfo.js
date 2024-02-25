@@ -15,7 +15,7 @@ export const apiUserInfoUpdate = async (payload) => {
 /* ----------------------------------------------------------- */
 // update profile image
 export const apiUserProfileImageUpdate = async (payload) => {
-  return await axiosClient.post("/user-infos/update-profile-image", payload);
+  return await axiosClient.post("/user-infos/profile-image", payload);
 };
 
 /* ----------------------------------------------------------- */

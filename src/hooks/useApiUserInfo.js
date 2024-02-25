@@ -130,6 +130,27 @@ export const useApiUserProfileImageUpdateAsync = () => {
 };
 
 /* ----------------------------------------------------------- */
+export const useApiUserProfileImageUpdateMutation = () => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useMutation((payload) => apiUserInfoUpdate(payload), {
+    onSuccess: (data) => {
+      toast.success("User info Updated Successfully.");
+      queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
+      navigate(userRoutes.userProfilePage);
+    },
+    onError: (error) => {
+      toast.error(
+        "Sorry, we encountered an issue processing your request. Please try again later."
+      );
+      handleFetchError(error, error.message, "useApiUserInfoUpdateMutation");
+    },
+  });
+};
+
+/* ----------------------------------------------------------- */
 /**
  * ASYNC API REQUEST FUNCTION: useApiUserCoverImageUpdateAsync
  * Asynchronous function for updating user ProfileImage using an API request.
