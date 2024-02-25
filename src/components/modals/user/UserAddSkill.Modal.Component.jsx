@@ -51,7 +51,7 @@ export default function UserAddSkillModalComponent() {
         <SkillSuggestionsGridComponent
           skills={skillSuggestions}
           keyword={keyword}
-          addSkillFn={addSkillMutation}
+          handleSuggestionClick={addSkillMutation}
           isFetchingSuggestions={fetchingSkill}
           disableSuggestions={addSkillLoading}
         />
