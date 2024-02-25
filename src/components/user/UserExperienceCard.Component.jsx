@@ -3,6 +3,8 @@ import React, { Fragment, useState } from "react";
 import { useApiUserExperienceFetch } from "../../hooks/useApiUserExperience";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
+import { UserModals } from "../../constants/ModalNames.Constants";
+import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import UserExperienceDetailsComponent from "./UserExperienceDetails.Component";
 
 export default function UserExperienceCardComponent() {
@@ -22,12 +24,15 @@ export default function UserExperienceCardComponent() {
 
   return (
     <section className="relative w-full overflow-hidden border sm:rounded-lg bg-background-gray_50 border-border-100 text-content-black">
-      <h2 className="text-2xl font-semibold p-5">Experience</h2>
+      <h2 className="p-5 text-2xl font-semibold">Experience</h2>
 
       <div className="flex flex-col gap-3 p-5">
-        {visibleExperiences.map((experiences, index) => (
+        {visibleExperiences.map((experience, index) => (
           <Fragment key={index}>
-            <UserExperienceDetailsComponent experiences={experiences} />
+            <UserExperienceDetailsComponent
+              experience={experience}
+              index={index}
+            />
             {index !== visibleExperiences.length - 1 && (
               <div className="border-b border-border-100"></div>
             )}
@@ -46,7 +51,7 @@ export default function UserExperienceCardComponent() {
 
       <LinkAddUiComponent
         className="absolute top-5 right-5"
-        // to={useOpenModalParam(UserModals.userAboutEditModal.name)}
+        to={useOpenModalParam(UserModals.userAddExperienceModal.name)}
       />
     </section>
   );

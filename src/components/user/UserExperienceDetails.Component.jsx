@@ -1,33 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { dialogNames } from "../../constants/DialogNames.Constants";
+import { UserModals } from "../../constants/ModalNames.Constants";
+import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import { formatDateToMonthYear } from "../../utils/formatDateToMonthYear";
 
-import { useOpenDialog } from "../../hooks/useModalFunctions";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
+import PartialSkillListUiComponent from "../UI/PartialSkillList.Ui.Component";
+import UserSkillsModalComponent from "../modals/user/UserSkills.Modal.Component";
 
-export default function UserExperienceDetailsComponent({ experiences }) {
-  const openDialog = useOpenDialog();
+export default function UserExperienceDetailsComponent({ experience, index }) {
+  const [openSkillsModal, setOpenSkillsModal] = useState(false);
 
   return (
-    <div className="relative text-content-gray ">
+    <div className="relative text-content-gray">
       <LinkEditUiComponent
-        onClick={() => openDialog(dialogNames.notImplementedDialog.name)}
+        to={useOpenModalParam(UserModals.userEditExperienceModal.name, {
+          experience_index: index,
+        })}
         className="absolute top-0 right-0"
       />
-      <h2 className="text-xl font-bold text-content-black">
-        {experiences.job_title}
+      <h2 className="text-lg font-bold text-content-black">
+        {experience.job_title}
       </h2>
       <div className="pl-5">
         <span className="block text-content-black">
-          {experiences.company_name}
+          {experience.company_name}
         </span>
-        <span className="block">{experiences.location}</span>
+        <span className="block">{experience.location}</span>
         <span>
-          {formatDateToMonthYear(experiences.start_date)} -{" "}
-          {formatDateToMonthYear(experiences.end_date)}
+          {formatDateToMonthYear(experience.start_date)} -{" "}
+          {formatDateToMonthYear(experience.end_date)}
+          {experience.is_current ? "Present" : ""}
         </span>
-        <p>{experiences.is_current ? "Present" : ""}</p>
+
+        <div>
+          {openSkillsModal && (
+            <UserSkillsModalComponent
+              skills={experience.skills}
+              handleModalClose={() => setOpenSkillsModal(false)}
+            />
+          )}
+        </div>
+
+        <button onClick={() => setOpenSkillsModal((prev) => !prev)}>
+          <PartialSkillListUiComponent skills={experience.skills} />
+        </button>
       </div>
     </div>
   );
