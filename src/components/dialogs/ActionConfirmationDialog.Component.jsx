@@ -1,21 +1,20 @@
 import React from "react";
 
-import { useCloseDialog } from "../../hooks/useModalFunctions";
-import { dialogNames } from "../../constants/DialogNames.Constants";
-
 import DialogUtil from "../utils/Dialog.Util";
 import ButtonClosePrimaryUiComponent from "../UI/ButtonClosePrimary.Ui.Component";
 import ButtonActionPrimaryUiComponent from "../UI/ButtonActionPrimary.Ui.Component";
 
-export default function ActionConfirmationDialogComponent() {
-  const closeDialog = useCloseDialog(dialogNames.actionConfirmationDialog.name);
-
+export default function ActionConfirmationDialogComponent({
+  prompt,
+  confirm,
+  reject,
+}) {
   const handleConfirm = () => {
-    closeDialog();
+    confirm();
   };
 
   const handleReject = () => {
-    closeDialog();
+    reject();
   };
 
   return (
@@ -26,7 +25,7 @@ export default function ActionConfirmationDialogComponent() {
           <ButtonClosePrimaryUiComponent onClick={handleReject} />
         </div>
         <div>
-          <p>Are you sure you want to proceed?</p>
+          <p>{prompt}</p>
         </div>
         <div className="flex justify-end gap-5">
           <ButtonActionPrimaryUiComponent onClick={handleReject}>
