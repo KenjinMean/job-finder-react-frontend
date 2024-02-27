@@ -1,6 +1,6 @@
 import { devError } from "./devError";
 
-export function handleFetchError(error, message, location = null) {
+export function handleError(error, message, location = null) {
   devError(
     `Handling fetch error${location ? ` at ${location}` : ""}:`,
     error.message
