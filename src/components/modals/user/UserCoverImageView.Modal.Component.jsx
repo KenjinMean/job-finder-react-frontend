@@ -1,18 +1,18 @@
 import React, { Fragment } from "react";
-import { toast } from "react-toastify";
 
 import { UserModals } from "../../../constants/ModalNames.Constants";
 
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenModalParam } from "../../../hooks/useModalFunctions";
 import {
-  useApiUserCoverImageUpdateAsync,
+  useApiUserCoverImageUpdateMutation,
   useApiUserInfoFetch,
 } from "../../../hooks/useApiUserInfo";
+import useConfirmationDialog from "../../../hooks/useConfirmactionDialog";
 
 import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
-import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
+import ButtonActionSecondaryUiComponent from "../../UI/ButtonActionSecondary.Ui.Component";
 
 export default function UserCoverImageViewModalComponent() {
   const { handleImageSelect } = useFileHandling(
@@ -20,20 +20,27 @@ export default function UserCoverImageViewModalComponent() {
   );
 
   const { data: userInfo } = useApiUserInfoFetch();
+  const { requestConfirmation } = useConfirmationDialog();
 
-  const asyncUpdateUserCoverImage = useApiUserCoverImageUpdateAsync();
+  const { isLoading, mutate: updateCoverImage } =
+    useApiUserCoverImageUpdateMutation();
 
-  const handleCoverDelete = () => {
-    const formData = new FormData();
+  const handleCoverDelete = async () => {
+    try {
+      const response = await requestConfirmation(
+        "Are you sure you want to delete Cover Image?"
+      );
 
-    formData.append("_method", "PATCH");
-    formData.append("cover_image", "");
+      if (response) {
+        const formData = new FormData();
+        formData.append("_method", "PATCH");
+        formData.append("cover_image", "");
 
-    toast.promise(asyncUpdateUserCoverImage(formData), {
-      pending: "Deleting User Cover Image",
-      success: "User Cover image Deleted sucessfully",
-      error: "Error Deleting User Cover image",
-    });
+        updateCoverImage(formData);
+      }
+    } catch (error) {
+      console.error("An error occurred while deleting the profile:", error);
+    }
   };
 
   return (
@@ -55,9 +62,12 @@ export default function UserCoverImageViewModalComponent() {
           accept="image/*"
           handleFileSelect={handleImageSelect}
         />
-        <ButtonActionPrimaryUiComponent onClick={handleCoverDelete}>
-          Delete
-        </ButtonActionPrimaryUiComponent>
+        <ButtonActionSecondaryUiComponent
+          text="Delete"
+          loadingText="Deleting"
+          onClick={handleCoverDelete}
+          isSubmitting={isLoading}
+        />
       </div>
     </Fragment>
   );

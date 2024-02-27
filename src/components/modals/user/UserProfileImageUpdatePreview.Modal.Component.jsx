@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
 import { userRoutes } from "../../../constants/RoutesPath.Constants";
@@ -8,9 +7,9 @@ import { UserModals } from "../../../constants/ModalNames.Constants";
 import useFileHandling from "../../../hooks/useFileHandling";
 import { useOpenModalParam } from "../../../hooks/useModalFunctions";
 
+import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
-import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
-import { useApiUserProfileImageUpdateAsync } from "../../../hooks/useApiUserInfo";
+import { useApiUserProfileImageUpdateMutation } from "../../../hooks/useApiUserInfo";
 
 export default function UserProfileImageUpdatePreviewModalComponent() {
   const { handleImageSelect, imageFile, imageDataURL, fromViewPage } =
@@ -18,18 +17,15 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
       useOpenModalParam(UserModals.userProfileImageUpdatePreviewModal.name)
     );
 
-  const asyncUpdateUserProfileImage = useApiUserProfileImageUpdateAsync();
+  const { isLoading, mutate: updateProfileImage } =
+    useApiUserProfileImageUpdateMutation();
 
-  const handleSubmit = () => {
+  const handleUpdateProfileImage = () => {
     const formData = new FormData();
     formData.append("_method", "PATCH");
     formData.append("profile_image", imageFile);
 
-    toast.promise(asyncUpdateUserProfileImage(formData), {
-      pending: "Updating User Profile Image",
-      success: "User Profile image updated sucessfully",
-      error: "Error Updating User profile image",
-    });
+    updateProfileImage(formData);
   };
 
   // prevents user from accessing this page (Profile Image Preview Page) directly.
@@ -41,8 +37,7 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
 
   return (
     <Fragment>
-      {/* body */}
-      <div className="flex justify-center">
+      <div className="flex justify-center py-5">
         <div className="w-64 h-64 overflow-hidden rounded-full">
           <img
             src={imageDataURL}
@@ -51,17 +46,18 @@ export default function UserProfileImageUpdatePreviewModalComponent() {
           />
         </div>
       </div>
-      {/* footer */}
       <div className="flex justify-between p-5">
-        {/* select file button */}
         <ButtonFileUploadUiComponent
-          title="Add Photo"
+          title="Change Image"
           accept="image/*"
           handleFileSelect={handleImageSelect}
         />
-        <ButtonActionPrimaryUiComponent onClick={handleSubmit}>
-          Save
-        </ButtonActionPrimaryUiComponent>
+        <ButtonActionUiComponent
+          text="save"
+          loadingText="saving"
+          onClick={handleUpdateProfileImage}
+          isSubmitting={isLoading}
+        />
       </div>
     </Fragment>
   );

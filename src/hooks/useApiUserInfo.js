@@ -9,7 +9,7 @@ import {
   apiUserCoverImageUpdate,
   apiUserProfileImageUpdate,
 } from "../services/api/apiUserInfo";
-import { devError } from "../utils/devError";
+import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
@@ -18,6 +18,7 @@ export const useApiUserInfoFetch = () => {
   const { authenticatedUser, setAuthenticatedUserUserInfo } =
     useAuthenticationStore();
 
+  // update: is hasError needed??
   let hasError = false;
 
   return useQuery({
@@ -28,17 +29,7 @@ export const useApiUserInfoFetch = () => {
         setAuthenticatedUserUserInfo(response.data);
         return response;
       } catch (error) {
-        devError(
-          "Handling fetchUserInfo Response Failed in useApiUserInfo hook:",
-          error.message
-        );
-
-        hasError = true;
-
-        throw {
-          code: error.response.status,
-          message: "Failed to fetch user info",
-        };
+        handleError(error, error.message, "useApiUserInfoFetch");
       }
     },
     select: (data) => data?.data,
@@ -49,14 +40,14 @@ export const useApiUserInfoFetch = () => {
 };
 
 /* ----------------------------------------------------------- */
-export const useApiUserInfoUpdateMutation = () => {
+const useApiMutation = (apiFunction, successMessage, mutationName) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();
 
-  return useMutation((payload) => apiUserInfoUpdate(payload), {
+  return useMutation((payload) => apiFunction(payload), {
     onSuccess: (data) => {
-      toast.success("User info Updated Successfully.");
+      toast.success(successMessage);
       queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
       navigate(userRoutes.userProfilePage);
     },
@@ -64,148 +55,34 @@ export const useApiUserInfoUpdateMutation = () => {
       toast.error(
         "Sorry, we encountered an issue processing your request. Please try again later."
       );
-      handleFetchError(error, error.message, "useApiUserInfoUpdateMutation");
+      handleError(error, error.message, mutationName);
     },
   });
 };
 
 /* ----------------------------------------------------------- */
-/**
- * ASYNC API REQUEST FUNCTION: useApiUserProfileImageUpdateAsync
- * Asynchronous function for updating user ProfileImage using an API request.
- * This function is designed for use with react-toast notifications, which require
- * an asynchronous function for handling promises.
- *
- * @function
- * @async
- * @param {Object} image - The image file.
- * @throws {Error} Throws an error if the API request fails.
- * @returns {Promise<void>} A promise that resolves when the user ProfileImage is successfully updated.
- *
- * @example
- *
- * // Import the function
- *
- * import { useApiUserProfileImageUpdateAsync } from 'path-to/useApiUserProfileImageUpdateAsync';
- * import toast from 'path-to/react-toast';
- *
- * // Usage in a component
- *   const asyncUpdateUserProfileImage = useApiUserProfileImageUpdateAsync();
- *
- *   const handleSubmit = (image) => {
- *   toast.promise(asyncUpdateUserProfileImage(image), {
- *      pending: "Updating User Profile Image",
- *      success: "User Profile image updated sucessfully",
- *      error: "Error Updating User profile image",
- *     });
- *   };
- *
- *  <button onClick={() => handleSubmit(image)}>
- *   submit
- *  </button>
- *
- */
-export const useApiUserProfileImageUpdateAsync = () => {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
-
-  return async (image) => {
-    try {
-      navigate(userRoutes.userProfilePage);
-
-      const response = await apiUserProfileImageUpdate(image);
-
-      if (response.status === 200) {
-        queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
-      }
-    } catch (error) {
-      devError(
-        "Handling UserProfileImageUpdate Response Failed on useApiUserInfo:",
-        error.message
-      );
-      throw { code: error.response.status };
-    }
-  };
+export const useApiUserInfoUpdateMutation = () => {
+  return useApiMutation(
+    apiUserInfoUpdate,
+    "User info Updated Successfully.",
+    "useApiUserInfoUpdateMutation"
+  );
 };
 
 /* ----------------------------------------------------------- */
 export const useApiUserProfileImageUpdateMutation = () => {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
-
-  return useMutation((payload) => apiUserInfoUpdate(payload), {
-    onSuccess: (data) => {
-      toast.success("User info Updated Successfully.");
-      queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
-      navigate(userRoutes.userProfilePage);
-    },
-    onError: (error) => {
-      toast.error(
-        "Sorry, we encountered an issue processing your request. Please try again later."
-      );
-      handleFetchError(error, error.message, "useApiUserInfoUpdateMutation");
-    },
-  });
+  return useApiMutation(
+    apiUserProfileImageUpdate,
+    "Profile Image Updated Successfully.",
+    "useApiUserProfileImageUpdateMutation"
+  );
 };
 
 /* ----------------------------------------------------------- */
-/**
- * ASYNC API REQUEST FUNCTION: useApiUserCoverImageUpdateAsync
- * Asynchronous function for updating user ProfileImage using an API request.
- * This function is designed for use with react-toast notifications, which require
- * an asynchronous function for handling promises.
- *
- * @function
- * @async
- * @param {Object} image - The image file.
- * @throws {Error} Throws an error if the API request fails.
- * @returns {Promise<void>} A promise that resolves when the user Cover Image is successfully updated.
- *
- * @example
- *
- * // Import the function
- *
- * import { useApiUserCoverImageUpdateAsync } from 'path-to/useApiUserCoverImageUpdateAsync';
- * import toast from 'path-to/react-toast';
- *
- * // Usage in a component
- *   const asyncUpdateUserProfileImage = useApiUserProfileImageUpdateAsync();
- *
- *   const handleSubmit = (image) => {
- *   toast.promise(useApiUserCoverImageUpdateAsync(image), {
- *      pending: "Updating User Cover Image",
- *      success: "User Cover image updated sucessfully",
- *      error: "Error Updating User Cover image",
- *     });
- *   };
- *
- *  <button onClick={() => handleSubmit(image)}>
- *   submit
- *  </button>
- *
- */
-export const useApiUserCoverImageUpdateAsync = () => {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
-
-  return async (image) => {
-    try {
-      navigate(userRoutes.userProfilePage);
-
-      const response = await apiUserCoverImageUpdate(image);
-
-      if (response.status === 200) {
-        queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
-      }
-    } catch (error) {
-      devError(
-        "Handling UserCoverImageUpdate Response Failed on useApiUserInfo:",
-        error.message
-      );
-      throw { code: error.response.status };
-    }
-  };
+export const useApiUserCoverImageUpdateMutation = () => {
+  return useApiMutation(
+    apiUserCoverImageUpdate,
+    "Cover Image Updated Successfully.",
+    "useApiUserCoverImageUpdateMutation"
+  );
 };

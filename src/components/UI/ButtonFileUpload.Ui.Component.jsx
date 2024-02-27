@@ -26,7 +26,7 @@ export default function ButtonFileUploadUiComponent({
   return (
     <button
       onClick={handleClick}
-      className="flex flex-col items-center gap-2 px-4 py-2 rounded-lg cursor-pointer bg-violet-50 text-violet-500 hover:bg-violet-100"
+      className="flex items-center gap-2 px-4 py-1 transition-colors border rounded-md border-border-100 font-secondary text-content-gray hover:text-content-black hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500 disabled:bg-slate-500"
     >
       <span>{title}</span>
       <input
