@@ -11,9 +11,8 @@ import {
   apiUserExperienceUpdate,
   apiUserExperienceDestroy,
 } from "../services/api/apiUserExperience";
-import { devError } from "../utils/devError";
+import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
-import { handleFetchError } from "../utils/handleFetchError";
 import { userRoutes } from "../constants/RoutesPath.Constants";
 
 // GET
@@ -28,15 +27,7 @@ export const useApiUserExperienceFetch = () => {
         const response = await apiUserExperienceFetch();
         return response;
       } catch (error) {
-        devError(
-          "Handling fetchUserExperience Response Failed in useApiUserInfo hook:",
-          error.message
-        );
-
-        throw {
-          code: error.response.status,
-          message: "Failed to fetch user experience",
-        };
+        handleError(error, error.message, "useApiUserExperienceFetch");
       }
     },
     select: (data) => data?.data,
@@ -59,7 +50,7 @@ export const useApiUserExperienceStoreMutation = () => {
     {
       onSuccess: (data) => {
         toast.success("User Experience Created Successfully.");
-        queryClient.refetchQueries([
+        queryClient.invalidateQueries([
           "fetchUserExperience",
           authenticatedUser.id,
         ]);
@@ -73,7 +64,7 @@ export const useApiUserExperienceStoreMutation = () => {
         toast.error(
           "Sorry, we encountered an issue processing your request. Please try again later."
         );
-        handleFetchError(error, error.message, "useApiUserExperienceStore");
+        handleError(error, error.message, "useApiUserExperienceStore");
       },
     }
   );
@@ -93,7 +84,7 @@ export const useApiUserExperienceUpdateMutation = () => {
     {
       onSuccess: (data) => {
         toast.success("User Experience Updated Successfully.");
-        queryClient.refetchQueries([
+        queryClient.invalidateQueries([
           "fetchUserExperience",
           authenticatedUser.id,
         ]);
@@ -107,11 +98,7 @@ export const useApiUserExperienceUpdateMutation = () => {
         toast.error(
           "Sorry, we encountered an issue processing your request. Please try again later."
         );
-        handleFetchError(
-          error,
-          error.message,
-          "useApiUserExperienceUpdateMutation"
-        );
+        handleError(error, error.message, "useApiUserExperienceUpdateMutation");
       },
     }
   );
@@ -134,11 +121,7 @@ export const useApiUserExperienceDeleteMutation = () => {
       toast.error(
         "Sorry, we encountered an issue processing your request. Please try again later."
       );
-      handleFetchError(
-        error,
-        error.message,
-        "useApiUserExperienceDeleteMutation"
-      );
+      handleError(error, error.message, "useApiUserExperienceDeleteMutation");
     },
   });
 };

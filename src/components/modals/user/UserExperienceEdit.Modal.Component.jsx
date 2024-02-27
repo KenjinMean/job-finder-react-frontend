@@ -10,11 +10,13 @@ import {
 } from "../../../hooks/useApiUserExperience";
 import useAddSkill from "../../../hooks/useAddSkill";
 import { extractUrlParams } from "../../../utils/extractUrlParams";
+import useConfirmationDialog from "../../../hooks/useConfirmactionDialog";
 
 import ModalUtil from "../../utils/Modal.Util";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 import UserExperienceInputForm from "../../forms/auth/UserExperienceInput.Form";
 import ButtonActionSecondaryUiComponent from "../../UI/ButtonActionSecondary.Ui.Component";
+import ActionConfirmationDialogComponent from "../../dialogs/ActionConfirmationDialog.Component";
 
 // To Commit
 export default function UserExperienceEditModalComponent() {
@@ -32,12 +34,13 @@ export default function UserExperienceEditModalComponent() {
   const form = useForm({
     defaultValues: userExperience,
   });
-
   const {
     control,
     handleSubmit,
     formState: { isDirty },
   } = form;
+
+  const { requestConfirmation } = useConfirmationDialog();
 
   const { isLoading: isUpdating, mutate: updateExperienceMutation } =
     useApiUserExperienceUpdateMutation();
@@ -64,9 +67,15 @@ export default function UserExperienceEditModalComponent() {
   };
 
   /* ----------------------------------------------------------- */
-  const handleDeleteExperience = (e) => {
+  const handleDeleteExperience = async (e) => {
     e.preventDefault();
-    deleteExperienceMutation(userExperience.id);
+
+    const response = await requestConfirmation(
+      "Are you sure you want to delete this Experience?"
+    );
+    if (response) {
+      deleteExperienceMutation(userExperience.id);
+    }
   };
 
   /* ----------------------------------------------------------- */
@@ -81,6 +90,13 @@ export default function UserExperienceEditModalComponent() {
       modalTitle="Edit User Experience"
       isInputChanged={isDirty || isSkillModified}
     >
+      {confirm.isOpen && (
+        <ActionConfirmationDialogComponent
+          confirm={confirm.proceed}
+          reject={confirm.cancel}
+        />
+      )}
+
       <form
         id="experienceForm"
         noValidate
@@ -102,6 +118,8 @@ export default function UserExperienceEditModalComponent() {
 
         <ButtonActionUiComponent
           form="experienceForm"
+          text="Update"
+          loadingText="Updating"
           isSubmitting={isUpdating}
         />
       </div>
