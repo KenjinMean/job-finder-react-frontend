@@ -1,23 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { userRoutes } from "../constants/RoutesPath.Constants";
-
-import { devError } from "../utils/devError";
-import { toMilliseconds } from "../utils/toMilliseconds";
-import { useAuthenticationStore } from "../services/state/AuthenticationStore";
-
 import {
   apiUserContactFetch,
   apiUserContactUpdate,
 } from "../services/api/apiUserContact";
+import { toMilliseconds } from "../utils/toMilliseconds";
+import { useAuthenticationStore } from "../services/state/AuthenticationStore";
+import { handleError } from "../utils/handleError";
 
 /* ----------------------------------------------------------- */
-/**
- * A custom hook for fetching user contact using the react-query library.
- *
- * @param {string} keyword - The search keyword for skills.
- */
 export const useApiUserContactFetch = () => {
   const { authenticatedUser } = useAuthenticationStore();
 
@@ -28,15 +22,7 @@ export const useApiUserContactFetch = () => {
         const response = await apiUserContactFetch();
         return response;
       } catch (error) {
-        devError(
-          "Handling fetchUserContact Response Failed on useApiUserContact hook:",
-          error.message
-        );
-
-        throw {
-          code: error.response.status,
-          message: "Failed to fetch user contact",
-        };
+        handleError(error, error.message, "useApiUserContactFetch");
       }
     },
     select: (data) => data?.data,
@@ -48,30 +34,22 @@ export const useApiUserContactFetch = () => {
 };
 
 /* ----------------------------------------------------------- */
-/**
- * A custom hook for updating user contact using the react-query library.
- *
- * @param {string} keyword - The search keyword for skills.
- */
-export const useApiUserContactUpdateAsync = () => {
+export const useApiUserContactUpdateMutation = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();
 
-  return async (payload) => {
-    navigate(userRoutes.userProfilePage);
-    try {
-      const response = await apiUserContactUpdate(payload);
-
-      if (response.status === 200) {
-        queryClient.refetchQueries(["fetchUserContact", authenticatedUser.id]);
-      }
-    } catch (error) {
-      devError(
-        "Handling updateUserContact response Failed on useApiUserContact hook:",
-        error.message
+  return useMutation((payload) => apiUserContactUpdate(payload), {
+    onSuccess: (data) => {
+      toast.success("Contact updated Successfully.");
+      queryClient.refetchQueries(["fetchUserContact", authenticatedUser.id]);
+      navigate(userRoutes.userProfilePage);
+    },
+    onError: (error) => {
+      toast.error(
+        "Sorry, we encountered an issue processing your request. Please try again later."
       );
-      throw new Error("Handling updateUserContact response Failed");
-    }
-  };
+      handleError(error, error.message, "useApiUserContactUpdateMutation");
+    },
+  });
 };

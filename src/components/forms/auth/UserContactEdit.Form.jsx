@@ -1,27 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { DevTool } from "@hookform/devtools";
 
 import { dialogNames } from "../../../constants/DialogNames.Constants";
 
-import { prefixHandler } from "../../../utils/prefixHandler";
 import { useOpenDialog } from "../../../hooks/useModalFunctions";
 import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
 
-import LabeledTextInputUiCoponent from "../../UI/LabeledTextInput.Ui.Component";
 import LabeledDateInputUiComponent from "../../UI/LabeledDateInput.Ui.Component";
+import LabeledTextInputUiComponent from "../../UI/LabeledTextInput.Ui.Component";
 import LabeledPhoneInputUiComponent from "../../UI/LabeledPhoneInput.Ui.Component";
-import ButtonActionPrimaryUiComponent from "../../UI/ButtonActionPrimary.Ui.Component";
 
 export default function UserContactEditForm({
-  payload,
-  handleSubmit,
-  handleInputChange,
+  name,
+  form,
+  isSubmitting,
+  handleContactSubmit,
 }) {
+  const { control, handleSubmit } = form;
+
   const openDialog = useOpenDialog();
   const { authenticatedUser } = useAuthenticationStore();
 
   return (
-    <form onSubmit={handleSubmit} className="p-5 overflow-y-auto rounded-md">
+    <form
+      id={name}
+      noValidate
+      name={name}
+      className="p-5 overflow-y-auto rounded-md"
+      onSubmit={handleSubmit(handleContactSubmit)}
+    >
       <div className="flex flex-col gap-5">
         <div>
           <span className="block mb-2 font-medium text-content-black">
@@ -36,71 +44,56 @@ export default function UserContactEditForm({
         </div>
 
         <LabeledPhoneInputUiComponent
-          name="phone"
-          id="phone"
-          label="Phone number"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          placeholder="123-456-7890"
-          value={prefixHandler("remove", payload?.phone, "+63-") || ""}
-          onChange={handleInputChange}
-          autoComplete="off"
+          phoneFieldName="phone_number"
+          countryCodeFieldName="country_code"
+          form={form}
+          validationSchema={{
+            pattern: {
+              value: /[0-9]{3}-[0-9]{3}-[0-9]{4}/,
+              message: "Invalid phone format",
+            },
+          }}
         />
 
-        <LabeledTextInputUiCoponent
+        <LabeledTextInputUiComponent
           name="city"
-          id="city"
           label="City/Municipality"
-          placeholder="city"
-          value={payload?.city || ""}
-          onChange={handleInputChange}
-          autoComplete="off"
+          placeholder="City/Municipality"
+          disabled={isSubmitting}
+          form={form}
         />
 
-        <LabeledTextInputUiCoponent
+        <LabeledTextInputUiComponent
           name="province"
-          id="province"
           label="Province"
           placeholder="Province"
-          value={payload?.province || ""}
-          onChange={handleInputChange}
-          autoComplete="off"
+          disabled={isSubmitting}
+          form={form}
         />
 
-        <LabeledTextInputUiCoponent
+        <LabeledTextInputUiComponent
           name="zip_code"
-          id="zipCoce"
           label="Zip Code"
-          palceholder="Zip Code"
-          value={payload?.zip_code || ""}
-          onChange={handleInputChange}
-          autoComplete="off"
+          placeholder="Zip Code"
+          disabled={isSubmitting}
+          form={form}
         />
 
-        <LabeledTextInputUiCoponent
+        <LabeledTextInputUiComponent
           name="country"
-          id="country"
           label="Country"
           placeholder="Country"
-          value={payload?.country || ""}
-          onChange={handleInputChange}
-          autoComplete="off"
+          disabled={isSubmitting}
+          form={form}
         />
 
         <LabeledDateInputUiComponent
+          form={form}
           name="birth_date"
-          id="birtDate"
           label="Birth Date"
-          value={payload?.birth_date || ""}
-          onChange={handleInputChange}
-          autoComplete="off"
         />
       </div>
-
-      <div className="flex flex-row-reverse mt-5">
-        <ButtonActionPrimaryUiComponent type="submit">
-          Save
-        </ButtonActionPrimaryUiComponent>
-      </div>
+      <DevTool control={control} />
     </form>
   );
 }

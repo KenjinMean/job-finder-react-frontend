@@ -1,62 +1,73 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React, { Fragment, useEffect } from "react";
+import { useForm } from "react-hook-form";
 
-import { prefixHandler } from "../../../utils/prefixHandler";
-import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
 import {
   useApiUserContactFetch,
-  useApiUserContactUpdateAsync,
+  useApiUserContactUpdateMutation,
 } from "../../../hooks/useApiUserContact";
+
+import { parsePhoneNumber } from "../../../utils/parsePhoneNumber";
+import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
+import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 
 export default function UserContactEditModalComponent({ setInputChanged }) {
   const { data: userContact } = useApiUserContactFetch();
+  const { isLoading, mutate: updateUserContact } =
+    useApiUserContactUpdateMutation();
 
-  const [payload, setPayload] = useState({});
+  const form = useForm({
+    defaultValues: {
+      city: userContact.city,
+      phone: userContact.phone,
+      country: userContact.country,
+      province: userContact.province,
+      zip_code: userContact.zip_code,
+      birth_date: userContact.birth_date,
+      country_code: parsePhoneNumber("countryCode", userContact?.phone),
+      phone_number: parsePhoneNumber("phoneNumber", userContact?.phone),
+    },
+    mode: "onTouched",
+  });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const {
+    formState: { isDirty },
+  } = form;
 
-    setInputChanged(true);
-    setPayload({
-      ...payload,
-      [name]: value,
-    });
-  };
+  const handleContactSubmit = (data) => {
+    const phoneNumber = `${data.country_code}-${data.phone_number}`;
 
-  const asyncUpdateUserContact = useApiUserContactUpdateAsync();
+    data.phone = phoneNumber;
+    delete data.country_code;
+    delete data.phone_number;
 
-  // update: can inject the error message on toast error
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("_method", "PATCH");
-    for (const key in payload) {
-      if (key === "phone") {
-        const formattedPhone = prefixHandler("add", payload[key], "+63-");
-        formData.append(key, formattedPhone);
-      } else {
-        formData.append(key, payload[key]);
-      }
-    }
+    const payload = {
+      ...data,
+      _method: "PATCH",
+    };
 
-    toast.promise(asyncUpdateUserContact(formData), {
-      pending: "Updating User Contact",
-      success: "User contact updated sucessfully",
-      error: "Error Updating User contact",
-    });
+    updateUserContact(payload);
   };
 
   useEffect(() => {
-    setPayload({ ...userContact });
-  }, [userContact]);
+    setInputChanged(isDirty);
+  }, [isDirty]);
 
   return (
     <Fragment>
       <UserContactEditForm
-        payload={payload}
-        handleSubmit={handleSubmit}
-        handleInputChange={handleInputChange}
+        name="contactForm"
+        form={form}
+        isSubmitting={isLoading}
+        handleContactSubmit={handleContactSubmit}
       />
+      <div className="flex justify-end p-5">
+        <ButtonActionUiComponent
+          form="contactForm"
+          text="Update"
+          loadingText="Updating"
+          isSubmitting={isLoading}
+        />
+      </div>
     </Fragment>
   );
 }
