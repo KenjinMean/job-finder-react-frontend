@@ -9,7 +9,6 @@ import ModalUtil from "../../utils/Modal.Util";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 import UserExperienceInputForm from "../../forms/auth/UserExperienceInput.Form";
 
-// TO Commit
 export default function UserExperienceAddModalComponent() {
   const form = useForm({
     defaultValues: {
@@ -58,7 +57,7 @@ export default function UserExperienceAddModalComponent() {
           <UserExperienceInputForm form={form} isSubmitting={isLoading} />
         </form>
 
-        <AddSkillUiComponent />
+        {AddSkillUiComponent()}
       </div>
 
       <div className="flex justify-end p-5">

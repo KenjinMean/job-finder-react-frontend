@@ -16,9 +16,7 @@ import ModalUtil from "../../utils/Modal.Util";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 import UserExperienceInputForm from "../../forms/auth/UserExperienceInput.Form";
 import ButtonActionSecondaryUiComponent from "../../UI/ButtonActionSecondary.Ui.Component";
-import ActionConfirmationDialogComponent from "../../dialogs/ActionConfirmationDialog.Component";
 
-// To Commit
 export default function UserExperienceEditModalComponent() {
   const location = useLocation();
   const params = extractUrlParams(location);
@@ -90,13 +88,6 @@ export default function UserExperienceEditModalComponent() {
       modalTitle="Edit User Experience"
       isInputChanged={isDirty || isSkillModified}
     >
-      {confirm.isOpen && (
-        <ActionConfirmationDialogComponent
-          confirm={confirm.proceed}
-          reject={confirm.cancel}
-        />
-      )}
-
       <form
         id="experienceForm"
         noValidate
@@ -106,7 +97,7 @@ export default function UserExperienceEditModalComponent() {
         <UserExperienceInputForm form={form} />
       </form>
 
-      <AddSkillUiComponent />
+      {AddSkillUiComponent()}
 
       <div className="flex justify-between p-5 mt-5">
         <ButtonActionSecondaryUiComponent
