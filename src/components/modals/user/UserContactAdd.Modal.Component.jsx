@@ -1,36 +1,25 @@
 import React, { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import {
-  useApiUserContactFetch,
-  useApiUserContactUpdateMutation,
-} from "../../../hooks/useApiUserContact";
+import { useApiUserContactStoreMutation } from "../../../hooks/useApiUserContact";
 
-import { parsePhoneNumber } from "../../../utils/parsePhoneNumber";
 import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 
-export default function UserContactEditModalComponent({ setInputChanged }) {
-  const { data: userContact } = useApiUserContactFetch();
-  const { isLoading, mutate: updateUserContact } =
-    useApiUserContactUpdateMutation();
+export default function UserContactAddModalComponent({ setInputChanged }) {
+  const { isLoading, mutate: storeUserContact } =
+    useApiUserContactStoreMutation();
 
   const form = useForm({
     defaultValues: {
-      city: userContact?.city || "",
-      phone: userContact?.phone || "",
-      country: userContact?.country || "",
-      province: userContact?.province || "",
-      zip_code: userContact?.zip_code || "",
-      birth_date: userContact?.birth_date || "",
-      country_code:
-        userContact && userContact.phone
-          ? parsePhoneNumber("countryCode", userContact.phone)
-          : undefined,
-      phone_number:
-        userContact && userContact.phone
-          ? parsePhoneNumber("phoneNumber", userContact.phone)
-          : undefined,
+      city: "",
+      phone: "",
+      country: "",
+      province: "",
+      zip_code: "",
+      birth_date: "",
+      phone_number: "",
+      country_code: "+63",
     },
     mode: "onTouched",
   });
@@ -46,12 +35,7 @@ export default function UserContactEditModalComponent({ setInputChanged }) {
     delete data.country_code;
     delete data.phone_number;
 
-    const payload = {
-      ...data,
-      _method: "PATCH",
-    };
-
-    updateUserContact(payload);
+    storeUserContact(data);
   };
 
   useEffect(() => {

@@ -25,7 +25,7 @@ export default function LabeledPhoneInputUiComponent({
           class="z-10 hover:border-accent-blue500 cursor-pointer inline-flex items-center py-2.5 howve px-4 text-sm font-medium text-center text-content-gray bg-input-gray border border-border-100 rounded-s-lg focus:ring-4 focus:ring-accent-blue500 focus:border-accent-blue500"
           {...register(countryCodeFieldName)}
         >
-          <option selected value="+63">
+          <option value="+63" defaultValue>
             +63
           </option>
           <option value="+1">+1</option>
