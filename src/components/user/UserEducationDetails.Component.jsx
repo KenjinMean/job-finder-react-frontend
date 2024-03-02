@@ -1,8 +1,8 @@
 import React from "react";
-import { formatDateToMonthYear } from "../../utils/formatDateToMonthYear";
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import { UserModals } from "../../constants/ModalNames.Constants";
+import { formatDateToMonthYear } from "../../utils/formatDateToMonthYear";
 
 export default function UserEducationDetailsComponent({ education, index }) {
   return (
@@ -20,7 +20,7 @@ export default function UserEducationDetailsComponent({ education, index }) {
 
       <LinkEditUiComponent
         to={useOpenModalParam(UserModals.userEducationEditModal.name, {
-          education_index: index,
+          education_id: education.id,
         })}
         className="absolute top-0 right-0"
       />

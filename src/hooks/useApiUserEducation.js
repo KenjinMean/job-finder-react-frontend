@@ -1,35 +1,30 @@
 import { useNavigate } from "react-router-dom";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-
-import { toMilliseconds } from "../utils/toMilliseconds";
-import { handleFetchError } from "../utils/handleFetchError";
-import { userRoutes } from "../constants/RoutesPath.Constants";
+import { toast } from "react-toastify";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
-  apiUserEducationDestroy,
   apiUserEducationFetch,
   apiUserEducationStore,
   apiUserEducationUpdate,
+  apiUserEducationsFetch,
+  apiUserEducationDestroy,
 } from "../services/api/apiUserEducation";
+
+import { handleError } from "../utils/handleError";
+import { toMilliseconds } from "../utils/toMilliseconds";
+import { userRoutes } from "../constants/RoutesPath.Constants";
+
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
-// GET user education
 /* ----------------------------------------------------------- */
-export const useApiUserEducationsFetch = () => {
-  const { authenticatedUser } = useAuthenticationStore();
-
-  return useQuery({
-    queryKey: ["fetchUserEducations", authenticatedUser.id],
+const useApiQuery = (apiFunction, queryKey, queryName) => {
+  return useQuery(queryKey, {
     queryFn: async () => {
       try {
-        const response = await apiUserEducationFetch();
+        const response = await apiFunction();
         return response;
       } catch (error) {
-        handleFetchError(
-          error,
-          "Failed to fetch user educations",
-          "useApiUserEducationsFetch"
-        );
+        handleError(error, error.message, queryName);
       }
     },
     select: (data) => data?.data,
@@ -39,83 +34,96 @@ export const useApiUserEducationsFetch = () => {
   });
 };
 
-// POST user education
 /* ----------------------------------------------------------- */
-export const useApiUserEducationStore = () => {
+const useApiMutation = (apiFunction, successMessage, mutationName) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();
 
-  return async (payload) => {
-    navigate(userRoutes.userProfilePage);
-    try {
-      const response = await apiUserEducationStore(payload);
-      if (response.status === 201) {
-        queryClient.refetchQueries([
-          "fetchUserEducations",
-          authenticatedUser.id,
-        ]);
-      }
-    } catch (error) {
-      handleFetchError(
-        error,
-        "Failed to create user educations",
-        "useApiUserEducationsStore"
+  return useMutation((payload) => apiFunction(payload), {
+    onSuccess: (data) => {
+      toast.success(successMessage);
+      queryClient.refetchQueries(["fetchUserEducations", authenticatedUser.id]);
+      navigate(userRoutes.userProfilePage);
+    },
+    onError: (error) => {
+      toast.error(
+        "Sorry, we encountered an issue processing your request. Please try again later."
       );
-    }
-  };
+      handleError(error, error.message, mutationName);
+    },
+  });
+};
+
+// GET user educations
+/* ----------------------------------------------------------- */
+export const useApiUserEducationsFetch = () => {
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useApiQuery(
+    apiUserEducationsFetch,
+    ["fetchUserEducations", authenticatedUser.id],
+    "useApiUserEducationsFetch"
+  );
+};
+
+// GET user education
+/* ----------------------------------------------------------- */
+export const useApiUserEducationFetch = () => {
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useApiQuery(
+    apiUserEducationFetch,
+    ["fetchUserEducation", authenticatedUser.id],
+    "useApiUserEducationFetch"
+  );
+};
+
+// POST user education
+/* ----------------------------------------------------------- */
+export const useApiUserEducationStoreMutation = () => {
+  return useApiMutation(
+    apiUserEducationStore,
+    "User Education Created Successfully.",
+    "useApiUserEducationStoreMutation"
+  );
 };
 
 // PATCH user education
 /* ----------------------------------------------------------- */
-export const useApiUserEducationUpdate = () => {
+export const useApiUserEducationUpdateMutation = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();
 
-  return async (educationId, payload) => {
-    navigate(userRoutes.userProfilePage);
-    try {
-      const response = await apiUserEducationUpdate(educationId, payload);
-      if (response.status === 200) {
-        queryClient.refetchQueries([
+  return useMutation(
+    ([educationId, payload]) => apiUserEducationUpdate(educationId, payload),
+    {
+      onSuccess: (data) => {
+        toast.success("User Education Updated Successfully.");
+        queryClient.invalidateQueries([
           "fetchUserEducations",
           authenticatedUser.id,
         ]);
-      }
-    } catch (error) {
-      handleFetchError(
-        error,
-        "Failed to create user educations",
-        "useApiUserEducationsStore"
-      );
+
+        navigate(userRoutes.userProfilePage);
+      },
+      onError: (error) => {
+        toast.error(
+          "Sorry, we encountered an issue processing your request. Please try again later."
+        );
+        handleError(error, error.message, "useApiUserEducationUpdateMutation");
+      },
     }
-  };
+  );
 };
 
 // DELETE user education
 /* ----------------------------------------------------------- */
-export const useApiUserEducationDelete = () => {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
-
-  return async (educationId) => {
-    navigate(userRoutes.userProfilePage);
-    try {
-      const response = await apiUserEducationDestroy(educationId);
-      if (response.status === 200) {
-        queryClient.refetchQueries([
-          "fetchUserEducations",
-          authenticatedUser.id,
-        ]);
-      }
-    } catch (error) {
-      handleFetchError(
-        error,
-        "Failed to delete user educations",
-        "useApiUserEducationsDestroy"
-      );
-    }
-  };
+export const useApiUserEducationDeleteMutation = () => {
+  return useApiMutation(
+    apiUserEducationDestroy,
+    "User Education Deleted Successfully.",
+    "useApiUserEducationDeleteMutation"
+  );
 };

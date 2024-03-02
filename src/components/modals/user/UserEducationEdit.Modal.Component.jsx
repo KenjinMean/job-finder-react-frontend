@@ -1,84 +1,83 @@
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 
 import {
-  useApiUserEducationDelete,
-  useApiUserEducationUpdate,
   useApiUserEducationsFetch,
+  useApiUserEducationDeleteMutation,
+  useApiUserEducationUpdateMutation,
 } from "../../../hooks/useApiUserEducation";
 import { extractUrlParams } from "../../../utils/extractUrlParams";
 
 import ModalUtil from "../../utils/Modal.Util";
 import UserEducationForm from "../../forms/auth/UserEducation.Form";
+import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
+import useConfirmationDialog from "../../../hooks/useConfirmactionDialog";
+import ButtonActionSecondaryUiComponent from "../../UI/ButtonActionSecondary.Ui.Component";
 
 /* ----------------------------------------------------------- */
 export default function UserEducationEditModalComponent() {
   const location = useLocation();
   const params = extractUrlParams(location);
+  const { requestConfirmation } = useConfirmationDialog();
 
   /* ----------------------------------------------------------- */
-  const [payload, setPayload] = useState(null);
-
   const { data: userEducations } = useApiUserEducationsFetch();
-  const userEducation = userEducations[params.education_index] || {};
+  const userEducation = userEducations.find(
+    (edu) => edu.id == params.education_id
+  );
 
+  console.log(userEducation);
   /* ----------------------------------------------------------- */
-  const deleteEducationFunction = useApiUserEducationDelete();
-  const updateEducationFunction = useApiUserEducationUpdate();
+  const form = useForm({
+    defaultValues: userEducation,
+  });
 
-  /* ----------------------------------------------------------- */
-  const handleInputChange = (e) => {
-    setPayload({
-      ...payload,
-      [e.target.name]: e.target.value,
-    });
+  const { isLoading: isUpdating, mutate: updateEducationMutation } =
+    useApiUserEducationUpdateMutation();
+
+  const { isLoading: isDeleting, mutate: deleteEducationMutation } =
+    useApiUserEducationDeleteMutation();
+
+  const handleEducationSubmit = (data) => {
+    const payload = {
+      ...data,
+      _method: "PATCH",
+    };
+
+    updateEducationMutation([userEducation.id, payload]);
   };
 
-  const handleSubmitEducation = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    // method spoofing: appending patch method to simulate patch request
-    formData.append("_method", "PATCH");
-    for (const key in payload) {
-      formData.append(key, payload[key]);
+  const handleEducationDelete = async () => {
+    const response = await requestConfirmation(
+      "Are you sure you want to delete this Education?"
+    );
+    if (response) {
+      deleteEducationMutation(userEducation.id);
     }
-
-    toast.promise(updateEducationFunction(userEducation.id, formData), {
-      pending: "Updating Education",
-      success: "Education updated successfully",
-      error: "Error updating education",
-    });
   };
-
-  const handleDeleteEducation = () => {
-    toast.promise(deleteEducationFunction(userEducation.id), {
-      pending: "Deleting Education",
-      success: "Education deleted successfully",
-      error: "Error deleting education",
-    });
-  };
-
-  useEffect(() => {
-    setPayload({ ...userEducation });
-  }, [userEducation]);
 
   /* ----------------------------------------------------------- */
   return (
     <ModalUtil modalTitle="Edit Education" size="small">
-      <div className="relative">
-        <UserEducationForm
-          payload={payload}
-          handleSubmit={handleSubmitEducation}
-          handleInputChange={handleInputChange}
+      <UserEducationForm
+        name="educationForm"
+        form={form}
+        isSubmitting={isDeleting}
+        handleFormSubmit={handleEducationSubmit}
+      />
+
+      <div className="flex justify-end gap-3 p-5">
+        <ButtonActionSecondaryUiComponent
+          isSubmitting={isDeleting}
+          text="Delete"
+          loadingText="Deleting"
+          onClick={handleEducationDelete}
         />
-        <button
-          onClick={handleDeleteEducation}
-          className="absolute bottom-5 left-5"
-        >
-          delete
-        </button>
+        <ButtonActionUiComponent
+          isSubmitting={isUpdating}
+          form="educationForm"
+        />
       </div>
     </ModalUtil>
   );

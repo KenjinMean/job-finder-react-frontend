@@ -2,8 +2,13 @@ import axiosClient from "../../utils/axiosClient.Util";
 
 // INDEX
 /* ----------------------------------------------------------- */
-export const apiUserEducationFetch = async () => {
+export const apiUserEducationsFetch = async () => {
   return await axiosClient.get("/user-educations");
+};
+
+// GET
+export const apiUserEducationFetch = async (educationId) => {
+  return await axiosClient.get(`/user-educations/${educationId}`);
 };
 
 // STORE
