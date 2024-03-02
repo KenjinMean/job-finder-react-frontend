@@ -15,7 +15,7 @@ export default function UserExperienceDetailsComponent({ experience, index }) {
     <div className="relative text-content-gray">
       <LinkEditUiComponent
         to={useOpenModalParam(UserModals.userEditExperienceModal.name, {
-          experience_index: index,
+          experience_id: experience.id,
         })}
         className="absolute top-0 right-0"
       />
@@ -24,7 +24,8 @@ export default function UserExperienceDetailsComponent({ experience, index }) {
       </h2>
       <div className="pl-5">
         <span className="block text-content-black">
-          {experience.company_name}
+          {experience.company_name} • {experience.position} •{" "}
+          {experience.job_type}
         </span>
         <span className="block">{experience.location}</span>
         <span>

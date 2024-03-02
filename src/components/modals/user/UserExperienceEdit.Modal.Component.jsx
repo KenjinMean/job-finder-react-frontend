@@ -20,13 +20,16 @@ import ButtonActionSecondaryUiComponent from "../../UI/ButtonActionSecondary.Ui.
 export default function UserExperienceEditModalComponent() {
   const location = useLocation();
   const params = extractUrlParams(location);
+  const { requestConfirmation } = useConfirmationDialog();
   const [isSkillModified, setIsSkilleModified] = useState(false);
 
   const { data: userExperiences } = useApiUserExperienceFetch();
-  const userExperience = userExperiences[params.experience_index] || {};
+  const userExperience = userExperiences.find(
+    (experience) => experience.id == params.experience_id
+  );
 
   const { AddSkillUiComponent, selectedSkills } = useAddSkill(
-    userExperience.skills
+    userExperience?.skills
   );
 
   const form = useForm({
@@ -37,8 +40,6 @@ export default function UserExperienceEditModalComponent() {
     handleSubmit,
     formState: { isDirty },
   } = form;
-
-  const { requestConfirmation } = useConfirmationDialog();
 
   const { isLoading: isUpdating, mutate: updateExperienceMutation } =
     useApiUserExperienceUpdateMutation();
@@ -61,18 +62,16 @@ export default function UserExperienceEditModalComponent() {
       _method: "PATCH",
     };
 
-    updateExperienceMutation([userExperience.id, payload]);
+    updateExperienceMutation([userExperience?.id, payload]);
   };
 
   /* ----------------------------------------------------------- */
-  const handleDeleteExperience = async (e) => {
-    e.preventDefault();
-
+  const handleDeleteExperience = async () => {
     const response = await requestConfirmation(
       "Are you sure you want to delete this Experience?"
     );
     if (response) {
-      deleteExperienceMutation(userExperience.id);
+      deleteExperienceMutation(userExperience?.id);
     }
   };
 
