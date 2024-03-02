@@ -2,11 +2,10 @@ import React, { Fragment } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import { dialogNames } from "../../constants/DialogNames.Constants";
-import { useConfirmationModalStore } from "../state/ConfirmationModalStore";
+import useConfirmationDialog from "../../hooks/useConfirmactionDialog";
 import { useOverlayStateStore as useDialogStateStore } from "../state/OverlaysStatesStore";
 
 import ActionConfirmationDialogComponent from "../../components/dialogs/ActionConfirmationDialog.Component";
-import useConfirmationDialog from "../../hooks/useConfirmactionDialog";
 
 const dialogKeys = Object.keys(dialogNames);
 
