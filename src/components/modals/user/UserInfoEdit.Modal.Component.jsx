@@ -1,13 +1,12 @@
 import React, { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
 
 import {
   useApiUserInfoFetch,
   useApiUserInfoUpdateMutation,
 } from "../../../hooks/useApiUserInfo";
 
-import UserInfoInputForm from "../../forms/auth/UserInfoInput.Form";
+import UserInfoForm from "../../forms/auth/UserInfo.Form";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 
 /* ----------------------------------------------------------- */
@@ -27,17 +26,19 @@ export default function UserInfoEditModalComponent({ setIsUserInfoChanged }) {
 
   const {
     watch,
-    control,
-    handleSubmit,
     formState: { isDirty },
   } = form;
 
   const watchedData = watch();
 
-  const onSubmit = (data) => {
-    const formData = { ...data, _method: "PATCH" };
+  const handleUserInfoUpdate = (data) => {
+    console.log(data);
+    const payload = {
+      ...data,
+      _method: "PATCH",
+    };
     if (isDirty) {
-      updateUserInfoMutation(formData);
+      updateUserInfoMutation(payload);
     }
   };
 
@@ -48,17 +49,24 @@ export default function UserInfoEditModalComponent({ setIsUserInfoChanged }) {
   /* ----------------------------------------------------------- */
   return (
     <Fragment>
-      <form className="p-5" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div className="p-5">
         <span className="block mb-5 text-sm font-medium text-content-black">
           * indicates required
         </span>
-        <UserInfoInputForm form={form} isSubmitting={isUpdating} />
+        <UserInfoForm
+          name="userInfoForm"
+          form={form}
+          handleFormSubmit={handleUserInfoUpdate}
+          isSubmitting={isUpdating}
+        />
 
         <div className="flex flex-row-reverse mt-5">
-          <ButtonActionUiComponent isSubmitting={isUpdating} />
+          <ButtonActionUiComponent
+            form="userInfoForm"
+            isSubmitting={isUpdating}
+          />
         </div>
-      </form>
-      <DevTool control={control} />
+      </div>
     </Fragment>
   );
 }
