@@ -47,7 +47,7 @@ export default function UserCoverImageUpdatePreviewModalComponent() {
       </div>
       <div className="flex justify-between p-5">
         <ButtonFileUploadUiComponent
-          title="Add Photo"
+          title="Change Image"
           accept="image/*"
           handleFileSelect={handleImageSelect}
           imagePreviewPage={userRoutes.userCoverImageUpdatePreviewPage}

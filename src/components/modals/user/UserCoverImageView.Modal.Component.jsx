@@ -45,7 +45,6 @@ export default function UserCoverImageViewModalComponent() {
 
   return (
     <Fragment>
-      {/* body */}
       <div className="flex justify-center p-5">
         <div className="w-full h-64 overflow-hidden ">
           <ImageUrlLoaderUtil
@@ -54,19 +53,18 @@ export default function UserCoverImageViewModalComponent() {
           />
         </div>
       </div>
-      {/* footer */}
       <div className="flex justify-between p-5">
-        {/* select file */}
-        <ButtonFileUploadUiComponent
-          title="Add Photo"
-          accept="image/*"
-          handleFileSelect={handleImageSelect}
-        />
         <ButtonActionSecondaryUiComponent
           text="Delete"
           loadingText="Deleting"
           onClick={handleCoverDelete}
           isSubmitting={isLoading}
+        />
+
+        <ButtonFileUploadUiComponent
+          title="Change Image"
+          accept="image/*"
+          handleFileSelect={handleImageSelect}
         />
       </div>
     </Fragment>

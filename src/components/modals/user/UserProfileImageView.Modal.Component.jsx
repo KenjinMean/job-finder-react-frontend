@@ -64,7 +64,7 @@ export default function UserProfileImageViewModalComponent() {
         />
 
         <ButtonFileUploadUiComponent
-          title="Add Photo"
+          title="Change Image"
           accept="image/*"
           handleFileSelect={handleImageSelect}
         />
