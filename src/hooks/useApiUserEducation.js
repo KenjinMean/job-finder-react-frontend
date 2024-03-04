@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
@@ -16,6 +16,7 @@ import { userRoutes } from "../constants/RoutesPath.Constants";
 
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
+// Query function
 /* ----------------------------------------------------------- */
 const useApiQuery = (apiFunction, queryKey, queryName) => {
   return useQuery(queryKey, {
@@ -34,6 +35,7 @@ const useApiQuery = (apiFunction, queryKey, queryName) => {
   });
 };
 
+// Mutation function
 /* ----------------------------------------------------------- */
 const useApiMutation = (apiFunction, successMessage, mutationName) => {
   const navigate = useNavigate();
@@ -55,18 +57,6 @@ const useApiMutation = (apiFunction, successMessage, mutationName) => {
   });
 };
 
-// GET user educations
-/* ----------------------------------------------------------- */
-export const useApiUserEducationsFetch = () => {
-  const { authenticatedUser } = useAuthenticationStore();
-
-  return useApiQuery(
-    apiUserEducationsFetch,
-    ["fetchUserEducations", authenticatedUser.id],
-    "useApiUserEducationsFetch"
-  );
-};
-
 // GET user education
 /* ----------------------------------------------------------- */
 export const useApiUserEducationFetch = () => {
@@ -76,6 +66,18 @@ export const useApiUserEducationFetch = () => {
     apiUserEducationFetch,
     ["fetchUserEducation", authenticatedUser.id],
     "useApiUserEducationFetch"
+  );
+};
+
+// GET user educations
+/* ----------------------------------------------------------- */
+export const useApiUserEducationsFetch = () => {
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useApiQuery(
+    apiUserEducationsFetch,
+    ["fetchUserEducations", authenticatedUser.id],
+    "useApiUserEducationsFetch"
   );
 };
 
@@ -121,9 +123,22 @@ export const useApiUserEducationUpdateMutation = () => {
 // DELETE user education
 /* ----------------------------------------------------------- */
 export const useApiUserEducationDeleteMutation = () => {
-  return useApiMutation(
-    apiUserEducationDestroy,
-    "User Education Deleted Successfully.",
-    "useApiUserEducationDeleteMutation"
-  );
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useMutation((educationId) => apiUserEducationDestroy(educationId), {
+    onSuccess: (data) => {
+      toast.success("User Education Deleted Successfully.");
+      queryClient.refetchQueries(["fetchUserEducations", authenticatedUser.id]);
+      window.history.replaceState(null, "", userRoutes.userProfilePage);
+      navigate(userRoutes.userProfilePage);
+    },
+    onError: (error) => {
+      toast.error(
+        "Sorry, we encountered an issue processing your request. Please try again later."
+      );
+      handleError(error, error.message, "useApiUserEducationDeleteMutation");
+    },
+  });
 };

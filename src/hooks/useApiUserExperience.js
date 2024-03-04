@@ -1,6 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useApiUserSkillsFetch } from "./useApiSkill";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
@@ -15,7 +15,7 @@ import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
 import { userRoutes } from "../constants/RoutesPath.Constants";
 
-// GET
+// GET user experiences
 /* ----------------------------------------------------------- */
 export const useApiUserExperienceFetch = () => {
   const { authenticatedUser } = useAuthenticationStore();
@@ -72,7 +72,6 @@ export const useApiUserExperienceStoreMutation = () => {
 
 // PATCH user education
 /* ----------------------------------------------------------- */
-
 export const useApiUserExperienceUpdateMutation = () => {
   useApiUserSkillsFetch();
   const navigate = useNavigate();
@@ -115,6 +114,7 @@ export const useApiUserExperienceDeleteMutation = () => {
     onSuccess: (data) => {
       toast.success("User Experience Deleted Successfully.");
       queryClient.refetchQueries(["fetchUserExperience", authenticatedUser.id]);
+      window.history.replaceState(null, "", userRoutes.userProfilePage);
       navigate(userRoutes.userProfilePage);
     },
     onError: (error) => {
