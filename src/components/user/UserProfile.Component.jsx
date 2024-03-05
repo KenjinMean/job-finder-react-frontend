@@ -1,7 +1,7 @@
 import React, { Fragment, Suspense } from "react";
 
-const UserContactComponent = React.lazy(() =>
-  import("./UserContact.Component")
+const UserContactCardComponent = React.lazy(() =>
+  import("./UserContactCard.Component")
 );
 const UserExperienceCardComponent = React.lazy(() =>
   import("./UserExperienceCard.Component")
@@ -31,7 +31,7 @@ export default function UserProfileComponent() {
         </Suspense>
 
         <Suspense fallback={<UserDetailsCardSpinnerUtil title="Contact" />}>
-          <UserContactComponent />
+          <UserContactCardComponent />
         </Suspense>
 
         <Suspense fallback={<UserDetailsCardSpinnerUtil title="Experience" />}>

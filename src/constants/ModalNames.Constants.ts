@@ -3,6 +3,7 @@ import { lazy } from "react"
 import UserAboutEditPage from "../pages/UserAboutEdit.Modal.Page"
 import UserInfoEditModalPage from "../pages/UserInfoEdit.Modal.Page"
 import UserAddSkillModalPage from "../pages/UserAddSkill.Modal.Page"
+import UserContactAddModalPage from "../pages/UserContactAdd.Modal.Page"
 import UserContactEditModalPage from "../pages/UserContactEdit.Modal.Page"
 import UserAddSkillErrorModalPage from "../pages/UserAddSkillError.Modal.Page"
 import UserCoverImageViewModalPage from "../pages/UserCoverImageView.Modal.Page"
@@ -37,13 +38,10 @@ const UserAboutEditModalComponent = lazy(() =>
     component,
   });
 
-/*---------------------------------------------------------------------------------- */
-// IMPLEMENT LATER use map or looping function to automate this
 
 /*---------------------------------------------------------------------------------- */
-
-
   type UserModal = {
+    UserContactAddModal: { name: string; component: React.ComponentType<any> };
     userAddSkillModal: { name: string; component: React.ComponentType<any> };
     userInfoEditModal: { name: string; component: React.ComponentType<any> };
     userAboutEditModal: { name: string; component: React.ComponentType<any> };
@@ -59,17 +57,21 @@ const UserAboutEditModalComponent = lazy(() =>
     userAddExperienceModal: { name: string; component: React.ComponentType<any> };
     userEditExperienceModal: { name: string; component: React.ComponentType<any> };
     UserSkillsModalComponent: { name: string; component: React.ComponentType<any> };
-    
   };
   
+/*---------------------------------------------------------------------------------- */
   const Modals: UserModal = {
     userAboutEditModal: createModal("user-about-edit-modal",UserAboutEditModalComponent),
     userInfoEditModal: createModal("userInfoEditModal",UserInfoEditModalPage),
-    userAddSkillModal: createModal("userAddSkillModal", UserAddSkillModalPage),
+    
     userContactEditModal: createModal("userContactEditModal",UserContactEditModalPage ),
+    UserContactAddModal: createModal("user-contact-add-modal",UserContactAddModalPage ),
+    
+    userAddSkillModal: createModal("userAddSkillModal", UserAddSkillModalPage),
     userAddSkillErrorModal: createModal("userAddSkillErrorModal", UserAddSkillErrorModalPage),
-    userCoverImageViewModal: createModal("userCoverImageViewModal", UserCoverImageViewModalPage),
     userAddSkillSuccessModal: createModal("userAddSkillSuccessModal", UserAddSkillSuccessModalPage),
+    
+    userCoverImageViewModal: createModal("userCoverImageViewModal", UserCoverImageViewModalPage),
     userProfileImageViewModal: createModal("userProfileImageViewModal", UserProfileImageViewModalPage),
     userCoverImageUpdatePreviewModal: createModal("userCoverImageUpdatePreviewModal", UserCoverImageUpdatePreviewModalPage),
     userProfileImageUpdatePreviewModal: createModal("userProfileImageUpdatePreviewModal", UserProfileImageUpdatePreviewModalPage),
@@ -79,6 +81,7 @@ const UserAboutEditModalComponent = lazy(() =>
 
     userAddExperienceModal: createModal("user-experience-add-modal",UserExperienceAddModalComponent),
     userEditExperienceModal: createModal("user-experience-edit-modal",UserExperienceEditModalComponent),
+    
     UserSkillsModalComponent: createModal("user-skills",UserSkillsModalComponent),
   };
 
@@ -89,6 +92,7 @@ const UserAboutEditModalComponent = lazy(() =>
   const UserModals: ModalNamesType = Modals;
   export { UserModals };
 
+/*---------------------------------------------------------------------------------- */
   type GlobalModalsType = {
     settingsModal: { name: string; component: React.ComponentType<any> };
   };

@@ -2,12 +2,6 @@ import axiosClient from "../../utils/axiosClient.Util";
 
 /* ----------------------------------------------------------- */
 // fetch user contact
-export const apiUserContactCheck = async () => {
-  return await axiosClient.get("/user-contact/has-contact");
-};
-
-/* ----------------------------------------------------------- */
-// fetch user contact
 export const apiUserContactFetch = async () => {
   return await axiosClient.get("/user-contact");
 };

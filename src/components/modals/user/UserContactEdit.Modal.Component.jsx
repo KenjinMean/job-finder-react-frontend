@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import {
   useApiUserContactFetch,
-  useApiUserContactUpdateMutation,
+  useApiUserContactUpdate,
 } from "../../../hooks/useApiUserContact";
 
 import { parsePhoneNumber } from "../../../utils/parsePhoneNumber";
@@ -12,25 +12,22 @@ import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 
 export default function UserContactEditModalComponent({ setInputChanged }) {
   const { data: userContact } = useApiUserContactFetch();
-  const { isLoading, mutate: updateUserContact } =
-    useApiUserContactUpdateMutation();
+  const { isLoading, mutate: updateUserContact } = useApiUserContactUpdate();
 
   const form = useForm({
     defaultValues: {
-      city: userContact?.city || "",
-      phone: userContact?.phone || "",
-      country: userContact?.country || "",
-      province: userContact?.province || "",
-      zip_code: userContact?.zip_code || "",
-      birth_date: userContact?.birth_date || "",
-      country_code:
-        userContact && userContact.phone
-          ? parsePhoneNumber("countryCode", userContact.phone)
-          : undefined,
+      id: userContact.id,
+      city: userContact.city,
+      phone: userContact.phone,
+      country: userContact.country,
+      province: userContact.province,
+      zip_code: userContact.zip_code,
+      birth_date: userContact.birth_date,
+      country_code: userContact.phone
+        ? parsePhoneNumber("countryCode", userContact.phone)
+        : "+63",
       phone_number:
-        userContact && userContact.phone
-          ? parsePhoneNumber("phoneNumber", userContact.phone)
-          : undefined,
+        userContact.phone && parsePhoneNumber("phoneNumber", userContact.phone),
     },
     mode: "onTouched",
   });
@@ -40,7 +37,9 @@ export default function UserContactEditModalComponent({ setInputChanged }) {
   } = form;
 
   const handleContactSubmit = (data) => {
-    const phoneNumber = `${data.country_code}-${data.phone_number}`;
+    const phoneNumber = data.phone_number
+      ? `${data.country_code}-${data.phone_number}`
+      : "";
 
     data.phone = phoneNumber;
     delete data.country_code;

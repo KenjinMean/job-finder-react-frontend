@@ -1,36 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { userRoutes } from "../constants/RoutesPath.Constants";
 import {
-  apiUserContactCheck,
   apiUserContactFetch,
   apiUserContactStore,
   apiUserContactUpdate,
 } from "../services/api/apiUserContact";
 import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
+import { userRoutes } from "../constants/RoutesPath.Constants";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
-
-export const useApiUserContactCheck = () => {
-  const { authenticatedUser } = useAuthenticationStore();
-
-  return useQuery({
-    queryKey: ["checkUserContact", authenticatedUser.id],
-    queryFn: async () => {
-      try {
-        const response = await apiUserContactCheck();
-        return response;
-      } catch (error) {
-        handleError(error, error.message, "useApiUserContactCheck");
-      }
-    },
-    select: (data) => data?.data,
-    suspense: true,
-    useErrorBoundary: true,
-  });
-};
 
 /* ----------------------------------------------------------- */
 export const useApiUserContactFetch = () => {
@@ -55,7 +35,7 @@ export const useApiUserContactFetch = () => {
 };
 
 /* ----------------------------------------------------------- */
-export const useApiUserContactStoreMutation = () => {
+export const useApiUserContactStore = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();
@@ -76,7 +56,7 @@ export const useApiUserContactStoreMutation = () => {
 };
 
 /* ----------------------------------------------------------- */
-export const useApiUserContactUpdateMutation = () => {
+export const useApiUserContactUpdate = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { authenticatedUser } = useAuthenticationStore();

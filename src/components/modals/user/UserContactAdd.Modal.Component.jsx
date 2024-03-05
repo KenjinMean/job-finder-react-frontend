@@ -1,14 +1,13 @@
 import React, { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { useApiUserContactStoreMutation } from "../../../hooks/useApiUserContact";
+import { useApiUserContactStore } from "../../../hooks/useApiUserContact";
 
 import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 
 export default function UserContactAddModalComponent({ setInputChanged }) {
-  const { isLoading, mutate: storeUserContact } =
-    useApiUserContactStoreMutation();
+  const { isLoading, mutate: storeUserContact } = useApiUserContactStore();
 
   const form = useForm({
     defaultValues: {
@@ -29,7 +28,9 @@ export default function UserContactAddModalComponent({ setInputChanged }) {
   } = form;
 
   const handleContactSubmit = (data) => {
-    const phoneNumber = `${data.country_code}-${data.phone_number}`;
+    const phoneNumber = data.phone_number
+      ? `${data.country_code}-${data.phone_number}`
+      : "";
 
     data.phone = phoneNumber;
     delete data.country_code;
