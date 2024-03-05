@@ -5,12 +5,12 @@ export default function ErrorServerUnavailableUiComponent({
 }) {
   useSetPageTitle("Server Unavailable");
   return (
-    <div class="flex items-center justify-center w-full p-5 bg-background-white">
-      <div class="text-center">
-        <div class="inline-flex rounded-full bg-sky-100 p-4">
-          <div class="rounded-full stroke-sky-600 bg-sky-200 p-4">
+    <div className="flex items-center justify-center w-full p-5 bg-background-white">
+      <div className="text-center">
+        <div className="inline-flex p-4 rounded-full bg-sky-100">
+          <div className="p-4 rounded-full stroke-sky-600 bg-sky-200">
             <svg
-              class="w-16 h-16"
+              className="w-16 h-16"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +24,10 @@ export default function ErrorServerUnavailableUiComponent({
             </svg>
           </div>
         </div>
-        <h1 class="mt-5 text-[36px] font-bold text-content-black lg:text-[50px]">
+        <h1 className="mt-5 text-[36px] font-bold text-content-black lg:text-[50px]">
           503 - Server error
         </h1>
-        <p class="text-content-gray mt-5 lg:text-lg">
+        <p className="mt-5 text-content-gray lg:text-lg">
           Oops something went wrong. Try to{" "}
           <button
             className="inline-block text-accent-blue500 hover:text-accent-blue700"
