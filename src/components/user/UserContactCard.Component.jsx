@@ -10,7 +10,7 @@ import { useAuthenticationStore } from "../../services/state/AuthenticationStore
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
 import PhoneTagUiComponent from "../UI/PhoneTag.Ui.Component";
 import EmailTagUiComponent from "../UI/EmailTag.Ui.Component";
-import LocationTagUiComponent from "../UI/LocationTag.ui.Component";
+import LocationTagUiComponent from "../UI/LocationTag.Ui.Component";
 import BirthDateTagUiComponent from "../UI/BirthDateTag.Ui.Component";
 
 export default function UserContactCardComponent() {
