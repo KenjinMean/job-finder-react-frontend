@@ -9,13 +9,14 @@ import {
   apiUserExperienceFetch,
   apiUserExperienceStore,
   apiUserExperienceUpdate,
+  apiUserExperiencesFetch,
   apiUserExperienceDestroy,
 } from "../services/api/apiUserExperience";
 import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
 import { userRoutes } from "../constants/RoutesPath.Constants";
 
-// GET user experiences
+// GET user experience
 /* ----------------------------------------------------------- */
 export const useApiUserExperienceFetch = () => {
   const { authenticatedUser } = useAuthenticationStore();
@@ -28,6 +29,28 @@ export const useApiUserExperienceFetch = () => {
         return response;
       } catch (error) {
         handleError(error, error.message, "useApiUserExperienceFetch");
+      }
+    },
+    select: (data) => data?.data,
+    suspense: true,
+    cacheTime: toMilliseconds(30, "mins"),
+    staleTime: toMilliseconds(30, "mins"),
+  });
+};
+
+// GET user experiences
+/* ----------------------------------------------------------- */
+export const useApiUserExperiencesFetch = () => {
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useQuery({
+    queryKey: ["fetchUserExperiences", authenticatedUser.id],
+    queryFn: async () => {
+      try {
+        const response = await apiUserExperiencesFetch();
+        return response;
+      } catch (error) {
+        handleError(error, error.message, "useApiUserExperiencesFetch");
       }
     },
     select: (data) => data?.data,
@@ -51,7 +74,7 @@ export const useApiUserExperienceStoreMutation = () => {
       onSuccess: (data) => {
         toast.success("User Experience Created Successfully.");
         queryClient.invalidateQueries([
-          "fetchUserExperience",
+          "fetchUserExperiences",
           authenticatedUser.id,
         ]);
         queryClient.invalidateQueries([
@@ -84,7 +107,7 @@ export const useApiUserExperienceUpdateMutation = () => {
       onSuccess: (data) => {
         toast.success("User Experience Updated Successfully.");
         queryClient.invalidateQueries([
-          "fetchUserExperience",
+          "fetchUserExperiences",
           authenticatedUser.id,
         ]);
         queryClient.invalidateQueries([
@@ -113,7 +136,10 @@ export const useApiUserExperienceDeleteMutation = () => {
   return useMutation((experienceId) => apiUserExperienceDestroy(experienceId), {
     onSuccess: (data) => {
       toast.success("User Experience Deleted Successfully.");
-      queryClient.refetchQueries(["fetchUserExperience", authenticatedUser.id]);
+      queryClient.refetchQueries([
+        "fetchUserExperiences",
+        authenticatedUser.id,
+      ]);
       window.history.replaceState(null, "", userRoutes.userProfilePage);
       navigate(userRoutes.userProfilePage);
     },

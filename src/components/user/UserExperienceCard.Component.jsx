@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-import { useApiUserExperienceFetch } from "../../hooks/useApiUserExperience";
+import { useApiUserExperiencesFetch } from "../../hooks/useApiUserExperience";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
 import { UserModals } from "../../constants/ModalNames.Constants";
@@ -8,7 +8,7 @@ import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import UserExperienceDetailsComponent from "./UserExperienceDetails.Component";
 
 export default function UserExperienceCardComponent() {
-  const { data: UserExperiences } = useApiUserExperienceFetch();
+  const { data: UserExperiences } = useApiUserExperiencesFetch();
 
   const [showAllExperiences, setShowAllExperiences] = useState(false);
 

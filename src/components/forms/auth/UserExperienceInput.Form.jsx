@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { jobTypes } from "../../../constants/jobTypes.Constants";
 import { positions } from "../../../constants/postions.Constants";
@@ -9,8 +9,13 @@ import LabeledCheckboxUiComponent from "../../UI/LabeledCheckbox.Ui.Component";
 import LabeledDateInputUiComponent from "../../UI/LabeledDateInput.Ui.Component";
 import LabeledTextInputUiComponent from "../../UI/LabeledTextInput.Ui.Component";
 
-export default function UserExperienceInputForm({ form, isSubmitting }) {
-  const { watch, setValue, resetField } = form;
+export default function UserExperienceInputForm({
+  name,
+  handleFormSubmit,
+  form,
+  isSubmitting,
+}) {
+  const { watch, setValue, resetField, handleSubmit } = form;
 
   const endDate = watch("end_date");
   const isCurrent = watch("is_current");
@@ -24,7 +29,13 @@ export default function UserExperienceInputForm({ form, isSubmitting }) {
   }, [isCurrent, endDate]);
 
   return (
-    <Fragment>
+    <form
+      id={name}
+      noValidate
+      name={name}
+      className="flex flex-col gap-3 p-5"
+      onSubmit={handleSubmit(handleFormSubmit)}
+    >
       <div className="grid gap-3 sm:grid-cols-2">
         <LabeledTextInputUiComponent
           form={form}
@@ -129,6 +140,6 @@ export default function UserExperienceInputForm({ form, isSubmitting }) {
           }}
         />
       </div>
-    </Fragment>
+    </form>
   );
 }

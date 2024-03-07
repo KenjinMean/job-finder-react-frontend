@@ -4,7 +4,7 @@ import { DevTool } from "@hookform/devtools";
 import { useLocation } from "react-router-dom";
 
 import {
-  useApiUserExperienceFetch,
+  useApiUserExperiencesFetch,
   useApiUserExperienceUpdateMutation,
   useApiUserExperienceDeleteMutation,
 } from "../../../hooks/useApiUserExperience";
@@ -23,7 +23,8 @@ export default function UserExperienceEditModalComponent() {
   const { requestConfirmation } = useConfirmationDialog();
   const [isSkillModified, setIsSkilleModified] = useState(false);
 
-  const { data: userExperiences } = useApiUserExperienceFetch();
+  const { data: userExperiences } = useApiUserExperiencesFetch();
+
   const userExperience = userExperiences.find(
     (experience) => experience.id == params.experience_id
   );
@@ -37,7 +38,6 @@ export default function UserExperienceEditModalComponent() {
   });
   const {
     control,
-    handleSubmit,
     formState: { isDirty },
   } = form;
 
@@ -87,14 +87,12 @@ export default function UserExperienceEditModalComponent() {
       modalTitle="Edit User Experience"
       isInputChanged={isDirty || isSkillModified}
     >
-      <form
-        id="experienceForm"
-        noValidate
-        className="flex flex-col gap-2 p-5"
-        onSubmit={handleSubmit(handleUpdateExperience)}
-      >
-        <UserExperienceInputForm form={form} />
-      </form>
+      <UserExperienceInputForm
+        form={form}
+        name="experienceForm"
+        handleFormSubmit={handleUpdateExperience}
+        isSubmitting={isUpdating}
+      />
 
       {AddSkillUiComponent()}
 

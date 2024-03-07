@@ -1,7 +1,12 @@
 import axiosClient from "../../utils/axiosClient.Util";
 
 /* ----------------------------------------------------------- */
-export const apiUserExperienceFetch = async () => {
+export const apiUserExperienceFetch = async (experienceId) => {
+  return await axiosClient.get(`/user-experiences/${experienceId}`);
+};
+
+/* ----------------------------------------------------------- */
+export const apiUserExperiencesFetch = async () => {
   return await axiosClient.get("/user-experiences");
 };
 
