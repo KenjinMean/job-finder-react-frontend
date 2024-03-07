@@ -1,17 +1,47 @@
+import { toast } from "react-toastify";
+
+import {
+  apiSkillSearch,
+  apiUserAddSkill,
+  apiUserFetchSkills,
+  apiUserRemoveSkill,
+} from "../services/api/apiSkills";
+
 import { useNavigate } from "react-router-dom";
 import { useOpenModalParam } from "./useModalFunctions";
 import { UserModals } from "../constants/ModalNames.Constants";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
-import {
-  apiSkillSearch,
-  apiUserAddSkill,
-  apiUserFetchSkill,
-  apiUserRemoveSkill,
-} from "../services/api/apiSkills";
-import { devError } from "../utils/devError";
+import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
+
+/* ----------------------------------------------------------- */
+/**
+ * A custom hook for fetching user skills using the react-query library.
+ * Uses user token to retrieve user skills on the backend
+ *
+ * @param {boolean} enabled - Flag indicating whether the query should be enabled.
+ */
+export const useApiUserSkillsFetch = (enabled = true) => {
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useQuery({
+    queryKey: ["fetchUserSkills", authenticatedUser.id],
+    queryFn: async () => {
+      try {
+        const response = await apiUserFetchSkills(authenticatedUser.id);
+        return response;
+      } catch (error) {
+        handleError(error, error.message, "useApiUserSkillsFetch");
+      }
+    },
+    select: (data) => data?.data?.skills,
+    enabled: enabled,
+    suspense: true,
+    cacheTime: Infinity,
+  });
+};
 
 /* ----------------------------------------------------------- */
 /**
@@ -27,14 +57,7 @@ export const useApiSkillSearch = (keyword) => {
         const response = await apiSkillSearch(keyword);
         return response;
       } catch (error) {
-        devError(
-          "Handling searchSkill Response Failed on useApiSkill hook:",
-          error.message
-        );
-        throw {
-          code: error.response.status,
-          message: "Failed to search user skill",
-        };
+        handleError(error, error.message, "useApiSkillSearch");
       }
     },
     select: (data) => data?.data?.skills,
@@ -53,85 +76,57 @@ export const useApiSkillSearch = (keyword) => {
 export const useApiUserSkillAdd = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-
-  return useMutation((skill) => apiUserAddSkill(skill), {
-    onSuccess: async () => {
-      queryClient.invalidateQueries("searchSkill");
-      navigate(useOpenModalParam(UserModals.userAddSkillSuccessModal.name));
-    },
-    onError: (error) => {
-      const errorMessage = error.response.data.error || "An error occurred";
-      navigate(
-        useOpenModalParam(UserModals.userAddSkillErrorModal.name, {
-          error: errorMessage,
-        })
-      );
-    },
-  });
-};
-
-/* ----------------------------------------------------------- */
-/**
- * Asynchronous function for removing user skill using an API request.
- * This function is designed for use with react-toast notifications, which require
- * an asynchronous function for handling promises.
- *
- * @function
- * @async
- * @param {Object} skillId - The skillId to be removed
- */
-
-export const useApiUserSkillRemoveAsync = () => {
-  const { authenticatedUser } = useAuthenticationStore();
-  const queryClient = useQueryClient();
-
-  try {
-    return async (skillId) => {
-      const response = await apiUserRemoveSkill(skillId);
-
-      if (response.status === 200) {
-        queryClient.refetchQueries(["fetchUserSkills", authenticatedUser.id]);
-      }
-    };
-  } catch (error) {
-    devError(
-      "Handling removeUserSkill Response Failed on useApiSkill hook:",
-      error.message
-    );
-    throw new Error("Handling removeUserSkill Response Failed");
-  }
-};
-
-/* ----------------------------------------------------------- */
-/**
- * A custom hook for fetching user skills using the react-query library.
- * Uses user token to retrieve user skills on the backend
- *
- * @param {boolean} enabled - Flag indicating whether the query should be enabled.
- */
-export const useApiUserSkillsFetch = (enabled = true) => {
   const { authenticatedUser } = useAuthenticationStore();
 
-  return useQuery({
-    queryKey: ["fetchUserSkills", authenticatedUser.id],
-    queryFn: async () => {
-      try {
-        const response = await apiUserFetchSkill();
-        return response;
-      } catch (error) {
-        devError(
-          "Handling fetchUserSkills Response Failed on useApiSkill hook:",
-          error.message
+  return useMutation(
+    (skillId) => apiUserAddSkill(authenticatedUser.id, skillId),
+    {
+      onSuccess: async () => {
+        queryClient.invalidateQueries([
+          "fetchUserSkills",
+          authenticatedUser.id,
+        ]);
+        navigate(useOpenModalParam(UserModals.userAddSkillSuccessModal.name));
+      },
+      onError: (error) => {
+        const errorMessage = error.response.data.error || "An error occurred";
+        navigate(
+          useOpenModalParam(UserModals.userAddSkillErrorModal.name, {
+            error: errorMessage,
+          })
         );
-        throw {
-          code: error.response.status,
-          message: "Failed to fetch user skills",
-        };
-      }
-    },
-    select: (data) => data?.data?.skills,
-    enabled: enabled,
-    suspense: true,
-    cacheTime: Infinity,
-  });
+      },
+    }
+  );
+};
+
+/* ----------------------------------------------------------- */
+/**
+ * A custom hook for removing a skill to the user using the react-query useMutation.
+ *
+ * @returns {Object} - The mutation object provided by react-query.
+ * @property {Function} mutate - The function to trigger the mutation. accepts skillID parameter
+ */
+export const useApiUserSkillRemove = () => {
+  const queryClient = useQueryClient();
+  const { authenticatedUser } = useAuthenticationStore();
+
+  return useMutation(
+    (skillId) => apiUserRemoveSkill(authenticatedUser.id, skillId),
+    {
+      onSuccess: async () => {
+        toast.success("User Skill Removed Successfully.");
+        queryClient.invalidateQueries([
+          "fetchUserSkills",
+          authenticatedUser.id,
+        ]);
+      },
+      onError: (error) => {
+        toast.error(
+          "Sorry, we encountered an issue processing your request. Please try again later."
+        );
+        handleError(error, error.message, "useApiUserSkillRemove");
+      },
+    }
+  );
 };

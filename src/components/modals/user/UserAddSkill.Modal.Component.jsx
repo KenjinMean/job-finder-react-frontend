@@ -26,6 +26,10 @@ export default function UserAddSkillModalComponent() {
   const { isLoading: addSkillLoading, mutate: addSkillMutation } =
     useApiUserSkillAdd();
 
+  const handleAddSkill = (skill) => {
+    addSkillMutation(skill.id);
+  };
+
   const { data: userSkills } = useApiUserSkillsFetch();
 
   return (
@@ -51,7 +55,7 @@ export default function UserAddSkillModalComponent() {
         <SkillSuggestionsGridComponent
           skills={skillSuggestions}
           keyword={keyword}
-          handleSuggestionClick={addSkillMutation}
+          handleSuggestionClick={handleAddSkill}
           isFetchingSuggestions={fetchingSkill}
           disableSuggestions={addSkillLoading}
         />

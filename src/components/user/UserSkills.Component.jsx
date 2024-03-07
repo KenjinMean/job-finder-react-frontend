@@ -16,7 +16,7 @@ export default function UserSkillsComponent() {
   return (
     <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg bg-background-gray_50 border-border-100 text-content-black">
       <h2 className="text-2xl font-semibold">Skills</h2>
-      <ul className="flex flex-col">
+      <ul className="flex flex-col pt-5">
         {userSkills?.map((skill) => {
           return (
             <li className="flex justify-between" key={skill.id}>

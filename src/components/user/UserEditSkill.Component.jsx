@@ -1,38 +1,28 @@
 import React from "react";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-import { UserModals } from "../../constants/ModalNames.Constants";
-import { userRoutes } from "../../constants/RoutesPath.Constants";
-
-import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import {
   useApiUserSkillsFetch,
-  useApiUserSkillRemoveAsync,
+  useApiUserSkillRemove,
 } from "../../hooks/useApiSkill";
+import { UserModals } from "../../constants/ModalNames.Constants";
+import { userRoutes } from "../../constants/RoutesPath.Constants";
+import { useOpenModalParam } from "../../hooks/useModalFunctions";
 
 import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
+import ButtonBackUiComponent from "../UI/ButtonBack.Ui.Component";
 
 export default function UserEditSkillComponent() {
   const navigate = useNavigate();
   const { data: userSkills } = useApiUserSkillsFetch();
-  const asyncRemoveUserSkill = useApiUserSkillRemoveAsync();
-
-  const handleRemoveSkill = (skillId) => {
-    toast.promise(asyncRemoveUserSkill(skillId), {
-      pending: "Removing Skill",
-      success: "Skill Removed Successfully",
-      error: "Error Removing Skill",
-    });
-  };
+  const { mutate: removeUserSkillMutation } = useApiUserSkillRemove();
 
   return (
     <div className="p-5 text-content-black">
-      <div className="flex justify-between">
-        <button onClick={() => navigate(userRoutes.userProfilePage)}>
-          Go back
-        </button>{" "}
-        {/* add skill link */}
+      <div className="flex justify-between mb-5">
+        <ButtonBackUiComponent
+          onClick={() => navigate(userRoutes.userProfilePage)}
+        />
         <LinkAddUiComponent
           to={useOpenModalParam(UserModals.userAddSkillModal.name)}
         />
@@ -42,7 +32,7 @@ export default function UserEditSkillComponent() {
           return (
             <li className="flex justify-between" key={skill.id}>
               <span className="rounded-md">{skill.name}</span>{" "}
-              <button onClick={() => handleRemoveSkill(skill.id)}>
+              <button onClick={() => removeUserSkillMutation(skill.id)}>
                 remove
               </button>
             </li>
