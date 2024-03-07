@@ -26,7 +26,7 @@ export default function UserExperienceCardComponent() {
     <section className="relative w-full overflow-hidden border sm:rounded-lg bg-background-gray_50 border-border-100 text-content-black">
       <h2 className="p-5 text-2xl font-semibold">Experience</h2>
 
-      <div className="flex flex-col gap-3 p-5">
+      <div className="flex flex-col gap-3 p-5 pt-0">
         {visibleExperiences.map((experience, index) => (
           <Fragment key={index}>
             <UserExperienceDetailsComponent

@@ -25,7 +25,7 @@ export default function UserEducationsCardComponent() {
     <section className="relative w-full overflow-hidden transition-all border sm:rounded-lg bg-background-gray_50 border-border-100 text-content-black">
       <h2 className="p-5 text-2xl font-semibold">Education</h2>
 
-      <div className="flex flex-col gap-3 p-5">
+      <div className="flex flex-col gap-3 p-5 pt-0">
         {visibleEducations.map((education, index) => (
           <Fragment key={index}>
             <UserEducationDetailsComponent

@@ -27,7 +27,6 @@ export default function UserEducationEditModalComponent() {
     (edu) => edu.id == params.education_id
   );
 
-  console.log(userEducation);
   /* ----------------------------------------------------------- */
   const form = useForm({
     defaultValues: userEducation,
