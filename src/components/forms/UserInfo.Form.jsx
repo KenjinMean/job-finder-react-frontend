@@ -1,8 +1,8 @@
 import React from "react";
 import { DevTool } from "@hookform/devtools";
 
-import LabeledTextInputUiComponent from "../../UI/LabeledTextInput.Ui.Component";
-import LabeledTextAreaInputUiComponent from "../../UI/LabeledTextAreaInput.Ui.Component";
+import LabeledTextInputUiComponent from "../UI/LabeledTextInput.Ui.Component";
+import LabeledTextAreaInputUiComponent from "../UI/LabeledTextAreaInput.Ui.Component";
 
 export default function UserInfoForm({
   name,
@@ -56,9 +56,6 @@ export default function UserInfoForm({
         placeholder="Headline"
         disabled={isSubmitting}
         form={form}
-        validationSchema={{
-          required: "Headline field is required",
-        }}
       />
       <DevTool control={control} />
     </form>

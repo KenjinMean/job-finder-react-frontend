@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { useApiUserContactStore } from "../../../hooks/useApiUserContact";
 
-import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
+import UserContactForm from "../../forms/UserContactEdit.Form";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 
 export default function UserContactAddModalComponent({ setInputChanged }) {
@@ -45,7 +45,7 @@ export default function UserContactAddModalComponent({ setInputChanged }) {
 
   return (
     <Fragment>
-      <UserContactEditForm
+      <UserContactForm
         name="contactForm"
         form={form}
         isSubmitting={isLoading}

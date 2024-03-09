@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import ModalUtil from "../../utils/Modal.Util";
 
-import UserEducationForm from "../../forms/auth/UserEducation.Form";
+import UserEducationForm from "../../forms/UserEducation.Form";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 import { useApiUserEducationStoreMutation } from "../../../hooks/useApiUserEducation";
 

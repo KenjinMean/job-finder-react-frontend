@@ -6,7 +6,7 @@ import {
   useApiUserInfoUpdateMutation,
 } from "../../../hooks/useApiUserInfo";
 
-import UserInfoForm from "../../forms/auth/UserInfo.Form";
+import UserInfoForm from "../../forms/UserInfo.Form";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 
 /* ----------------------------------------------------------- */

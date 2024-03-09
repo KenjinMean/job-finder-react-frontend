@@ -10,7 +10,7 @@ import {
 import { extractUrlParams } from "../../../utils/extractUrlParams";
 
 import ModalUtil from "../../utils/Modal.Util";
-import UserEducationForm from "../../forms/auth/UserEducation.Form";
+import UserEducationForm from "../../forms/UserEducation.Form";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 import useConfirmationDialog from "../../../hooks/useConfirmactionDialog";
 import ButtonActionSecondaryUiComponent from "../../UI/ButtonActionSecondary.Ui.Component";

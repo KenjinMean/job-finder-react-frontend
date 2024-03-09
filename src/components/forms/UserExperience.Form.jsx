@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 
-import { jobTypes } from "../../../constants/jobTypes.Constants";
-import { positions } from "../../../constants/postions.Constants";
-import { workLocationTypes } from "../../../constants/workLocationTypes.Constants";
+import { jobTypes } from "../../constants/jobTypes.Constants";
+import { positions } from "../../constants/postions.Constants";
+import { workLocationTypes } from "../../constants/workLocationTypes.Constants";
 
-import LabeledSelectUiComponent from "../../UI/LabeledSelect.Ui.Component";
-import LabeledCheckboxUiComponent from "../../UI/LabeledCheckbox.Ui.Component";
-import LabeledDateInputUiComponent from "../../UI/LabeledDateInput.Ui.Component";
-import LabeledTextInputUiComponent from "../../UI/LabeledTextInput.Ui.Component";
+import LabeledSelectUiComponent from "../UI/LabeledSelect.Ui.Component";
+import LabeledCheckboxUiComponent from "../UI/LabeledCheckbox.Ui.Component";
+import LabeledDateInputUiComponent from "../UI/LabeledDateInput.Ui.Component";
+import LabeledTextInputUiComponent from "../UI/LabeledTextInput.Ui.Component";
 
-export default function UserExperienceInputForm({
+export default function UserExperienceForm({
   name,
   handleFormSubmit,
   form,

@@ -14,7 +14,7 @@ import useConfirmationDialog from "../../../hooks/useConfirmactionDialog";
 
 import ModalUtil from "../../utils/Modal.Util";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
-import UserExperienceInputForm from "../../forms/auth/UserExperienceInput.Form";
+import UserExperienceForm from "../../forms/UserExperience.Form";
 import ButtonActionSecondaryUiComponent from "../../UI/ButtonActionSecondary.Ui.Component";
 
 export default function UserExperienceEditModalComponent() {
@@ -87,7 +87,7 @@ export default function UserExperienceEditModalComponent() {
       modalTitle="Edit User Experience"
       isInputChanged={isDirty || isSkillModified}
     >
-      <UserExperienceInputForm
+      <UserExperienceForm
         form={form}
         name="experienceForm"
         handleFormSubmit={handleUpdateExperience}

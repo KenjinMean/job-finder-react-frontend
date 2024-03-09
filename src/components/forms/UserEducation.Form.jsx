@@ -1,7 +1,7 @@
 import React from "react";
 import { DevTool } from "@hookform/devtools";
-import LabeledDateInputUiComponent from "../../UI/LabeledDateInput.Ui.Component";
-import LabeledTextInputUiComponent from "../../UI/LabeledTextInput.Ui.Component";
+import LabeledDateInputUiComponent from "../UI/LabeledDateInput.Ui.Component";
+import LabeledTextInputUiComponent from "../UI/LabeledTextInput.Ui.Component";
 
 export default function UserEducationForm({
   name,

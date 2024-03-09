@@ -7,7 +7,7 @@ import {
 } from "../../../hooks/useApiUserContact";
 
 import { parsePhoneNumber } from "../../../utils/parsePhoneNumber";
-import UserContactEditForm from "../../forms/auth/UserContactEdit.Form";
+import UserContactForm from "../../forms/UserContactEdit.Form";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
 
 export default function UserContactEditModalComponent({ setInputChanged }) {
@@ -59,7 +59,7 @@ export default function UserContactEditModalComponent({ setInputChanged }) {
 
   return (
     <Fragment>
-      <UserContactEditForm
+      <UserContactForm
         name="contactForm"
         form={form}
         isSubmitting={isLoading}

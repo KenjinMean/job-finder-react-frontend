@@ -2,16 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { DevTool } from "@hookform/devtools";
 
-import { dialogNames } from "../../../constants/DialogNames.Constants";
+import { dialogNames } from "../../constants/DialogNames.Constants";
 
-import { useOpenDialog } from "../../../hooks/useModalFunctions";
-import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
+import { useOpenDialog } from "../../hooks/useModalFunctions";
+import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
-import LabeledDateInputUiComponent from "../../UI/LabeledDateInput.Ui.Component";
-import LabeledTextInputUiComponent from "../../UI/LabeledTextInput.Ui.Component";
-import LabeledPhoneInputUiComponent from "../../UI/LabeledPhoneInput.Ui.Component";
+import LabeledDateInputUiComponent from "../UI/LabeledDateInput.Ui.Component";
+import LabeledTextInputUiComponent from "../UI/LabeledTextInput.Ui.Component";
+import LabeledPhoneInputUiComponent from "../UI/LabeledPhoneInput.Ui.Component";
 
-export default function UserContactEditForm({
+export default function UserContactForm({
   name,
   form,
   isSubmitting,

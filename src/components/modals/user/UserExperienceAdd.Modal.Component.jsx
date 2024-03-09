@@ -7,7 +7,7 @@ import { useApiUserExperienceStoreMutation } from "../../../hooks/useApiUserExpe
 
 import ModalUtil from "../../utils/Modal.Util";
 import ButtonActionUiComponent from "../../UI/ButtonAction.Ui.Component";
-import UserExperienceInputForm from "../../forms/auth/UserExperienceInput.Form";
+import UserExperienceForm from "../../forms/UserExperience.Form";
 
 export default function UserExperienceAddModalComponent() {
   const form = useForm({
@@ -54,7 +54,7 @@ export default function UserExperienceAddModalComponent() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-2 p-5"
         >
-          <UserExperienceInputForm form={form} isSubmitting={isLoading} />
+          <UserExperienceForm form={form} isSubmitting={isLoading} />
         </form>
 
         {AddSkillUiComponent()}
