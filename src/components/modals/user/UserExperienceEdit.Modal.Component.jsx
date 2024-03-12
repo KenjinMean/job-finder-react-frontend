@@ -37,7 +37,6 @@ export default function UserExperienceEditModalComponent() {
     defaultValues: userExperience,
   });
   const {
-    control,
     formState: { isDirty },
   } = form;
 
@@ -111,7 +110,6 @@ export default function UserExperienceEditModalComponent() {
           isSubmitting={isUpdating}
         />
       </div>
-      <DevTool control={control} />
     </ModalUtil>
   );
 }

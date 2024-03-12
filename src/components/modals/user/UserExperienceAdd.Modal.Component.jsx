@@ -25,7 +25,6 @@ export default function UserExperienceAddModalComponent() {
   });
 
   const {
-    control,
     handleSubmit,
     formState: { isDirty },
   } = form;
@@ -66,7 +65,6 @@ export default function UserExperienceAddModalComponent() {
           form="experienceForm"
         />
       </div>
-      <DevTool control={control} />
     </ModalUtil>
   );
 }

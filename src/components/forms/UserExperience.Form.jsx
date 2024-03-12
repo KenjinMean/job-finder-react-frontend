@@ -8,6 +8,7 @@ import LabeledSelectUiComponent from "../UI/LabeledSelect.Ui.Component";
 import LabeledCheckboxUiComponent from "../UI/LabeledCheckbox.Ui.Component";
 import LabeledDateInputUiComponent from "../UI/LabeledDateInput.Ui.Component";
 import LabeledTextInputUiComponent from "../UI/LabeledTextInput.Ui.Component";
+import { DevTool } from "@hookform/devtools";
 
 export default function UserExperienceForm({
   name,
@@ -15,7 +16,7 @@ export default function UserExperienceForm({
   form,
   isSubmitting,
 }) {
-  const { watch, setValue, resetField, handleSubmit } = form;
+  const { watch, setValue, resetField, handleSubmit, control } = form;
 
   const endDate = watch("end_date");
   const isCurrent = watch("is_current");
@@ -140,6 +141,7 @@ export default function UserExperienceForm({
           }}
         />
       </div>
+      <DevTool control={control} />
     </form>
   );
 }
