@@ -51,7 +51,7 @@ export default function RegisterFormv2({
         name="email"
         type="email"
         disabled={isSubmitting}
-        placeholder="email"
+        placeholder="Email"
         validationSchema={{
           pattern: {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -71,22 +71,10 @@ export default function RegisterFormv2({
       <LabeledPasswordInputUiComponent
         form={form}
         name="password"
-        placeholder="password"
+        placeholder="Password"
         disabled={isSubmitting}
         showPassword={showPassword}
         setShowPassword={setShowPassword}
-        validationSchema={{
-          minLength: {
-            value: 8,
-            message: "Password must be at least 8 characters long",
-          },
-          pattern: {
-            value:
-              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-            message:
-              "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
-          },
-        }}
       />
 
       {password && (

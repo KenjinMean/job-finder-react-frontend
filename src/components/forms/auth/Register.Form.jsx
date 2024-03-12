@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import { authRoutes } from "../../../constants/RoutesPath.Constants";
 
 import TermsServices from "../../auth/TermsServices";
-import AuthSubmitButtonComponent from "../../auth/AuthSubmitButton.Component";
 import RegisterEmailInputComponent from "../../auth/RegisterEmailInput.Component";
 import RegisterPasswordInputComponent from "../../auth/RegisterPasswordInput.Component";
 import RegisterPasswordConfirmationInputComponent from "../../auth/RegisterPasswordConfirmationInput.Component";
 
 import { checkPasswordUtil } from "../../../utils/checkPasswordUtil";
+import AuthSubmitButtonUiComponent from "../../UI/AuthSubmitButton.Ui.Component";
 
 const FOCUSED = {
   email: "false",
@@ -99,20 +99,11 @@ export default function RegisterForm({
           showPassword={showPassword}
         />
       )}
-      <AuthSubmitButtonComponent loading={registerLoading} title="Sign Up">
-        <svg
-          className="w-6 h-6 -ml-2"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-          <circle cx="8.5" cy="7" r="4" />
-          <path d="M20 8v6M23 11h-6" />
-        </svg>
-      </AuthSubmitButtonComponent>
+      <AuthSubmitButtonUiComponent
+        isLoading={registerLoading}
+        title="Sign Up"
+      />
+
       <p className="px-2 mt-5 font-medium leading-none tracking-wide text-center transform translate-y-1/ text-content-gray ">
         Alrady have an account?{" "}
         <Link

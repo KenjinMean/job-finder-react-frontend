@@ -41,11 +41,31 @@ export default function LabeledPasswordInputUiComponent({
               value: 8,
               message: "Password must be at least 8 characters long",
             },
-            pattern: {
-              value:
-                /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-              message:
-                "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+            validate: {
+              hasLowercase: (fieldValue) => {
+                return (
+                  /^(?=.*[a-z])/.test(fieldValue) ||
+                  "Password must contain at least one lowercase letter"
+                );
+              },
+              hasUppercase: (fieldValue) => {
+                return (
+                  /^(?=.*[A-Z])/.test(fieldValue) ||
+                  "Password must contain at least one uppercase letter"
+                );
+              },
+              hasNumeric: (fieldValue) => {
+                return (
+                  /^(?=.*\d)/.test(fieldValue) ||
+                  "Password must contain at least one number"
+                );
+              },
+              hasSpecialChar: (fieldValue) => {
+                return (
+                  /^(?=.*[@$!%*?&])/.test(fieldValue) ||
+                  "Password must contain at least one special character"
+                );
+              },
             },
           })}
           {...restProps}
