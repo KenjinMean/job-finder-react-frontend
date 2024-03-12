@@ -23,6 +23,16 @@ export const apiLogout = async () => {
 
 /* ----------------------------------------------------------- */
 /**
+ * API function to check if user email available.
+ *
+ * @returns {Promise} A promise that resolves with the token refresh response.
+ */
+export const apiCheckEmail = async (value) => {
+  return axiosClient.get(`check-email-availability?email=${value}`);
+};
+
+/* ----------------------------------------------------------- */
+/**
  * API function to register a new user.
  *
  * @param {Object} payload - The user registration details.

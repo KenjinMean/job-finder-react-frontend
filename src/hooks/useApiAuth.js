@@ -3,6 +3,7 @@ import {
   apiLogin,
   apiLogout,
   apiRegister,
+  apiCheckEmail,
   apiRefreshToken,
   apiGitHubAuthLogin,
   apiGoogleAuthLogin,
@@ -55,6 +56,18 @@ export const useApiAuthLogout = () => {
       queryClient.invalidateQueries();
     },
     useErrorBoundary: true,
+  });
+};
+
+/* ----------------------------------------------------------- */
+export const useApiAuthCheckEmail = () => {
+  return useQuery({
+    queryKey: "checkEmailAvailability",
+    queryFn: async (payload) => {
+      const response = await apiCheckEmail(payload);
+      return response;
+    },
+    enabled: false,
   });
 };
 

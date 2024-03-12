@@ -3,13 +3,15 @@ import { Fragment } from "react";
 import { Link, Navigate } from "react-router-dom";
 
 import appLogo from "../../assets/logo/JobFinderLogo.png";
-import { jobRoutes } from "../../constants/RoutesPath.Constants";
+import { authRoutes, jobRoutes } from "../../constants/RoutesPath.Constants";
 
 import { useApiAuthRegister } from "../../hooks/useApiAuth";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
+import TermsServices from "./TermsServices";
 import AuthErrorUiComponent from "./AuthError.Component";
-import RegisterForm from "../../components/forms/auth/Register.Form";
+import RegisterFormv2 from "../forms/auth/Register.Form.v2";
+import AuthSubmitButtonComponent from "./AuthSubmitButton.Component";
 
 export default function RegisterComponent() {
   const { token } = useAuthenticationStore();
@@ -20,6 +22,10 @@ export default function RegisterComponent() {
     error,
     mutate: registerMutation,
   } = useApiAuthRegister();
+
+  const handleFormSubmit = (data) => {
+    registerMutation(data);
+  };
 
   if (token) {
     return <Navigate to={jobRoutes.jobListingPage} />;
@@ -43,11 +49,41 @@ export default function RegisterComponent() {
                 error={isError}
                 errorMessage={error?.response?.data?.message}
               />
-              <RegisterForm
-                registerLoading={registerLoading}
-                registerMutation={registerMutation}
-                isError={isError}
+
+              <RegisterFormv2
+                name="registerForm"
+                isSubmitting={registerLoading}
+                handleFormSubmit={handleFormSubmit}
               />
+
+              <AuthSubmitButtonComponent
+                loading={registerLoading}
+                title="Submit"
+                form="registerForm"
+              >
+                <svg
+                  className="w-6 h-6 -ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                  <circle cx="8.5" cy="7" r="4" />
+                  <path d="M20 8v6M23 11h-6" />
+                </svg>
+              </AuthSubmitButtonComponent>
+              <p className="px-2 mt-5 font-medium leading-none tracking-wide text-center transform translate-y-1/ text-content-gray ">
+                Alrady have an account?{" "}
+                <Link
+                  to={authRoutes.authLoginPage}
+                  className="font-bold text-indigo-500"
+                >
+                  Login
+                </Link>
+              </p>
+              <TermsServices />
             </div>
           </div>
         </div>
