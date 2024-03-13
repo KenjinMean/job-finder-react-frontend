@@ -7,8 +7,10 @@ import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import { useTruncatedElement } from "../../hooks/useTruncatedElement";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
+import CardHeadingUiComponent from "../UI/CardHeading.Ui.Component";
+import CardContainerUitl from "../utils/CardContainer.Uitl";
 
-export default function UserAboutComponent() {
+export default function UserAboutCardComponent() {
   const { data: userInfo } = useApiUserInfoFetch();
 
   const ref = useRef(null);
@@ -16,8 +18,8 @@ export default function UserAboutComponent() {
     useTruncatedElement(ref);
 
   return (
-    <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg text-content-black border-border-100 bg-background-gray_50">
-      <h2 className="text-2xl font-semibold">About</h2>
+    <CardContainerUitl>
+      <CardHeadingUiComponent title="About" />
 
       <div className="absolute flex items-center gap-1 right-5 top-5">
         {/* edit about link */}
@@ -27,7 +29,9 @@ export default function UserAboutComponent() {
       </div>
       <p
         ref={ref}
-        className={`whitespace-pre-line ${!isShowingMore && "line-clamp-3"}`}
+        className={`whitespace-pre-line text-sm text-content-slate_500 ${
+          !isShowingMore && "line-clamp-3"
+        }`}
       >
         {userInfo.about}
       </p>
@@ -41,6 +45,6 @@ export default function UserAboutComponent() {
           </button>
         )}
       </div>
-    </section>
+    </CardContainerUitl>
   );
 }

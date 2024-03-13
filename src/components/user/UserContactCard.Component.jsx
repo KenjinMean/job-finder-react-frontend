@@ -12,6 +12,8 @@ import PhoneTagUiComponent from "../UI/PhoneTag.Ui.Component";
 import EmailTagUiComponent from "../UI/EmailTag.Ui.Component";
 import LocationTagUiComponent from "../UI/LocationTag.Ui.Component";
 import BirthDateTagUiComponent from "../UI/BirthDateTag.Ui.Component";
+import CardContainerUitl from "../utils/CardContainer.Uitl";
+import CardHeadingUiComponent from "../UI/CardHeading.Ui.Component";
 
 export default function UserContactCardComponent() {
   const { authenticatedUser } = useAuthenticationStore();
@@ -19,8 +21,8 @@ export default function UserContactCardComponent() {
   const { city, province, zip_code, country, phone } = userContact;
 
   return (
-    <section className="relative w-full p-5 overflow-hidden border sm:rounded-lg border-border-100 bg-background-gray_50 text-content-black">
-      <h2 className="text-2xl font-semibold">Contact</h2>
+    <CardContainerUitl>
+      <CardHeadingUiComponent title="Contact" />
       <div className="flex flex-col gap-0.5 pt-2">
         <EmailTagUiComponent email={authenticatedUser.email} />
 
@@ -49,6 +51,6 @@ export default function UserContactCardComponent() {
           />
         )}
       </div>
-    </section>
+    </CardContainerUitl>
   );
 }

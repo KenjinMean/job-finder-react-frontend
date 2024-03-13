@@ -1,10 +1,14 @@
 import React, { Fragment, useState } from "react";
-import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
-import { useApiUserEducationsFetch } from "../../hooks/useApiUserEducation";
-import UserEducationDetailsComponent from "./UserEducationDetails.Component";
-import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
+
 import { UserModals } from "../../constants/ModalNames.Constants";
+
 import { useOpenModalParam } from "../../hooks/useModalFunctions";
+import { useApiUserEducationsFetch } from "../../hooks/useApiUserEducation";
+
+import CardContainerUitl from "../utils/CardContainer.Uitl";
+import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
+import CardHeadingUiComponent from "../UI/CardHeading.Ui.Component";
+import UserEducationDetailsComponent from "./UserEducationDetails.Component";
 
 export default function UserEducationsCardComponent() {
   const { data: userEducation } = useApiUserEducationsFetch();
@@ -22,10 +26,10 @@ export default function UserEducationsCardComponent() {
   const hideButton = userEducation.length <= 2;
 
   return (
-    <section className="relative w-full overflow-hidden transition-all border sm:rounded-lg bg-background-gray_50 border-border-100 text-content-black">
-      <h2 className="p-5 text-2xl font-semibold">Education</h2>
+    <CardContainerUitl>
+      <CardHeadingUiComponent title="Educations" />
 
-      <div className="flex flex-col gap-3 p-5 pt-0">
+      <div className="flex flex-col gap-3 pt-5 empty:hidden">
         {visibleEducations.map((education, index) => (
           <Fragment key={index}>
             <UserEducationDetailsComponent
@@ -52,6 +56,6 @@ export default function UserEducationsCardComponent() {
         className="absolute top-5 right-5"
         to={useOpenModalParam(UserModals.userEducationAddModal.name)}
       />
-    </section>
+    </CardContainerUitl>
   );
 }

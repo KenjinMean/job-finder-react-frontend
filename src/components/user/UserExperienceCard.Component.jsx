@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from "react";
 
-import { useApiUserExperiencesFetch } from "../../hooks/useApiUserExperience";
-
-import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
 import { UserModals } from "../../constants/ModalNames.Constants";
+import { useApiUserExperiencesFetch } from "../../hooks/useApiUserExperience";
 import { useOpenModalParam } from "../../hooks/useModalFunctions";
+
+import CardContainerUitl from "../utils/CardContainer.Uitl";
+import LinkAddUiComponent from "../UI/LinkAdd.Ui.Component";
+import CardHeadingUiComponent from "../UI/CardHeading.Ui.Component";
 import UserExperienceDetailsComponent from "./UserExperienceDetails.Component";
 
 export default function UserExperienceCardComponent() {
@@ -23,10 +25,10 @@ export default function UserExperienceCardComponent() {
   const hideButton = UserExperiences.length <= 2;
 
   return (
-    <section className="relative w-full overflow-hidden border sm:rounded-lg bg-background-gray_50 border-border-100 text-content-black">
-      <h2 className="p-5 text-2xl font-semibold">Experience</h2>
+    <CardContainerUitl>
+      <CardHeadingUiComponent title="Experiences" />
 
-      <div className="flex flex-col gap-3 p-5 pt-0">
+      <div className="flex flex-col gap-3 pt-5 empty:hidden">
         {visibleExperiences.map((experience, index) => (
           <Fragment key={index}>
             <UserExperienceDetailsComponent
@@ -53,6 +55,6 @@ export default function UserExperienceCardComponent() {
         className="absolute top-5 right-5"
         to={useOpenModalParam(UserModals.userAddExperienceModal.name)}
       />
-    </section>
+    </CardContainerUitl>
   );
 }

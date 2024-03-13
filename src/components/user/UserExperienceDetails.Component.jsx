@@ -19,22 +19,21 @@ export default function UserExperienceDetailsComponent({ experience, index }) {
         })}
         className="absolute top-0 right-0"
       />
-      <h2 className="text-lg font-bold text-content-black">
-        {experience.job_title}
-      </h2>
-      <div className="pl-5">
-        <span className="block text-content-black">
+      <h2 className="text-lg text-content-black">{experience.job_title}</h2>
+      <div className="pl-5 text-sm">
+        <span className="block text-content-gray">
           {experience.company_name} • {experience.position} •{" "}
           {experience.job_type}
         </span>
         <span className="block">{experience.location}</span>
-        <span>
+
+        <span className="opacity-50">
           {formatDateToMonthYear(experience.start_date)} -{" "}
           {formatDateToMonthYear(experience.end_date)}
           {experience.is_current ? "Present" : ""}
         </span>
 
-        <div>
+        <div className="mt-5">
           {openSkillsModal && (
             <UserSkillsModalComponent
               skills={experience.skills}

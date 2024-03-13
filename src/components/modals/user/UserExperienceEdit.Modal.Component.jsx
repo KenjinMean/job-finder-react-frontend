@@ -95,7 +95,7 @@ export default function UserExperienceEditModalComponent() {
 
       {AddSkillUiComponent()}
 
-      <div className="flex justify-between p-5 mt-5">
+      <div className="flex justify-between p-5">
         <ButtonActionSecondaryUiComponent
           text="Delete Experience"
           loadingText="Deleting Experience"

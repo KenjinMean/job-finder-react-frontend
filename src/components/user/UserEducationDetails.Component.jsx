@@ -7,12 +7,14 @@ import { formatDateToMonthYear } from "../../utils/formatDateToMonthYear";
 export default function UserEducationDetailsComponent({ education, index }) {
   return (
     <div className="relative">
-      <h2 className="text-lg font-bold">{education.institution_name}</h2>
-      <div className="pl-5">
-        <span className="block">
+      <h2 className="text-lg text-content-black">
+        {education.institution_name}
+      </h2>
+      <div className="pl-5 text-sm">
+        <span className="block text-content-gray">
           {education.degree} {education.major}
         </span>
-        <span className="block text-content-slate_500">
+        <span className="block opacity-50">
           {formatDateToMonthYear(education.start_date)} -{" "}
           {formatDateToMonthYear(education.end_date)}
         </span>
