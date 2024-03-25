@@ -11,7 +11,7 @@ export default function LogoLinkUiComponent() {
       className="block focus:ring-4 focus:outline-none focus:ring-accent-blue500 "
     >
       <div className="flex justify-center">
-        <img src={appLogo} alt="" />
+        <img src={appLogo} alt="Job Finder Logo" />
       </div>
     </Link>
   );
