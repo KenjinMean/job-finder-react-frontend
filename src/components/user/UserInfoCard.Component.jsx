@@ -1,22 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { UserModals } from "../../constants/ModalNames.Constants";
 
+import { otpStore } from "../../services/state/otpStore";
+import { useApiAuthRequestOtp } from "../../hooks/useApiAuth";
+import { useUserStore } from "../../services/state/UserStore";
 import { useApiUserInfoFetch } from "../../hooks/useApiUserInfo";
 import { useOpenModalParam } from "../../hooks/useModalFunctions";
+import { useApiUserContactFetch } from "../../hooks/useApiUserContact";
 
 import LinkEditUiComponent from "../UI/LinkEdit.Ui.Component";
 import CardHeadingUiComponent from "../UI/CardHeading.Ui.Component";
 import LocationTagUiComponent from "../UI/LocationTag.Ui.Component";
-import { useApiUserContactFetch } from "../../hooks/useApiUserContact";
-import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
+import ButtonActionUiComponent from "../UI/ButtonAction.Ui.Component";
 import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Component";
 
 export default function UserInfoCardComponent() {
+  const navigate = useNavigate();
+  const { user } = useUserStore();
+  const { setOtpState } = otpStore();
+
   const { data: userInfo } = useApiUserInfoFetch();
   const { data: userContact } = useApiUserContactFetch();
-  const { authenticatedUser } = useAuthenticationStore();
+
+  const { mutate: requestOtp, isLoading } = useApiAuthRequestOtp({
+    onSuccess: (response) => {
+      setOtpState({
+        email: user.email,
+        resendTimerSeconds: response.data.resend_timer_seconds,
+        otpRequested: true,
+      });
+      navigate(`/job-finder-react-frontend/auth/verify-otp`);
+    },
+  });
 
   return (
     <section className="relative w-full overflow-hidden border border-border-100 sm:rounded-lg bg-background-gray_50 text-content-black">
@@ -41,13 +57,16 @@ export default function UserInfoCardComponent() {
           ${userInfo.additional_name ? `(${userInfo.additional_name})` : ""}
           ${userInfo?.last_name}`}
           />
-          <div className="flex-wrap items-center space-x-3">
-            <span>{authenticatedUser.email}</span>
+          <div className="flex flex-wrap items-center space-x-3">
+            <span>{user.email}</span>
 
-            {!authenticatedUser.is_email_verified && (
-              <Link className="px-4 text-xl transition-all border rounded-full text-accent-blue500 hover:bg-accent-blue500 hover:text-content-black_inverted border-accent-blue500">
-                Verify Now
-              </Link>
+            {!user.is_email_verified && (
+              <ButtonActionUiComponent
+                text="Verify Now"
+                loadingText="Sending OTP..."
+                isSubmitting={isLoading}
+                onClick={() => requestOtp(user.email)}
+              />
             )}
           </div>
         </div>

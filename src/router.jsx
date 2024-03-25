@@ -22,6 +22,9 @@ import ProtectedRouteUtil from "./components/utils/ProtectedRoute.Util.jsx";
 import ErrorPage from "./pages/Error.Page";
 import LoginPage from "./pages/Login.Page";
 import RegisterPage from "./pages/Register.Page";
+import OTPSuccessPage from "./pages/OTPSuccess.Page.jsx";
+import OTPRequestPage from "./pages/OTPRequest.Page.jsx";
+import OTPVerificationPage from "./pages/OTPVerification.Page.jsx";
 import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
 
 import JobDetailspage from "./pages/JobDetails.Page";
@@ -88,12 +91,25 @@ const router = createBrowserRouter([
             path: authRoutes.authRegisterPage,
             element: <RegisterPage />,
           },
+          {
+            path: "verify-otp",
+            element: <OTPVerificationPage />,
+          },
+          {
+            path: "request-otp",
+            element: <OTPRequestPage />,
+          },
+          {
+            path: "verify-otp-success",
+            element: <OTPSuccessPage />,
+          },
         ],
       },
       {
         path: authRoutes.authProviderCallbackPage,
         element: <AuthProviderCallbackPage />,
       },
+
       {
         path: "component-design",
         element: <ComponentDesignView />,

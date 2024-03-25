@@ -78,16 +78,24 @@ export default function LoginComponent() {
             isLoading={loginLoading}
           />
 
-          <AuthSubmitButtonUiComponent
-            form="loginForm"
-            title="Login"
-            isLoading={loginLoading}
-          />
+          <div className="mt-5">
+            <AuthSubmitButtonUiComponent
+              form="loginForm"
+              title="Login"
+              isLoading={loginLoading}
+            />
+          </div>
 
           <p className="px-2 mt-5 text-sm font-medium leading-none tracking-wide text-center transform translate-y-1/2 text-content-gray">
             Don't have an account yet?{" "}
             <Link to={authRoutes.authRegisterPage} className="text-indigo-500">
               Register
+            </Link>
+          </p>
+
+          <p className="px-2 mt-5 text-sm font-medium leading-none tracking-wide text-center transform translate-y-1/2 text-content-gray">
+            <Link to={authRoutes.authRegisterPage} className="text-indigo-500">
+              forgot password?
             </Link>
           </p>
 

@@ -14,6 +14,8 @@ export default function RegisterFormv2({
 }) {
   const form = useForm({ mode: "onBlur" });
 
+  const [isEmailValid, setIsEmailValid] = useState(false);
+
   const { control, handleSubmit, watch } = form;
 
   const password = watch("password");
@@ -52,6 +54,7 @@ export default function RegisterFormv2({
         type="email"
         disabled={isSubmitting}
         placeholder="Email"
+        onChange={() => setIsEmailValid(false)}
         validationSchema={{
           pattern: {
             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -59,8 +62,11 @@ export default function RegisterFormv2({
           },
           validate: {
             emailAvailable: async (value) => {
-              if (value) {
+              if (value && !isEmailValid) {
                 const response = await apiCheckEmail(value);
+                if (isObjectEmpty(response.data)) {
+                  setIsEmailValid(true);
+                }
                 return isObjectEmpty(response.data) || "email already exists";
               }
             },

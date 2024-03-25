@@ -52,17 +52,19 @@ export default function RegisterComponent() {
                 handleFormSubmit={handleFormSubmit}
               />
 
-              <AuthSubmitButtonUiComponent
-                form="registerForm"
-                isLoading={registerLoading}
-                title="Submit"
-              />
+              <div className="mt-5">
+                <AuthSubmitButtonUiComponent
+                  form="registerForm"
+                  isLoading={registerLoading}
+                  title="Register"
+                />
+              </div>
 
-              <p className="px-2 mt-5 font-medium leading-none tracking-wide text-center transform translate-y-1/ text-content-gray ">
+              <p className="px-2 mt-5 text-sm font-medium leading-none tracking-wide text-center transform translate-y-1/2 text-content-gray">
                 Alrady have an account?{" "}
                 <Link
                   to={authRoutes.authLoginPage}
-                  className="font-bold text-indigo-500"
+                  className="text-indigo-500 "
                 >
                   Login
                 </Link>

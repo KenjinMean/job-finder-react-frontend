@@ -1,14 +1,19 @@
 import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import {
   apiLogin,
   apiLogout,
   apiRegister,
   apiCheckEmail,
   apiRefreshToken,
+  apiAuthVerifyOtp,
+  apiAuthRequestOtp,
   apiGitHubAuthLogin,
   apiGoogleAuthLogin,
+  apiCheckIsUserVerified,
 } from "../services/api/apiAuth";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useUserStore } from "../services/state/UserStore";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 /* ----------------------------------------------------------- */
@@ -20,6 +25,8 @@ export const useApiAuthLogin = () => {
     setSocialServiceLoginError,
   } = useAuthenticationStore();
 
+  const { setUserStore } = useUserStore();
+
   return useMutation(apiLogin, {
     onMutate: () => {
       setSocialServiceLoginError(null);
@@ -28,6 +35,7 @@ export const useApiAuthLogin = () => {
     onSuccess: ({ data }) => {
       setToken(data);
       setAuthenticatedUser(data.user);
+      setUserStore(data.user);
     },
     onSettled: () => {
       setIsLoginButtonDisabled(false);
@@ -44,12 +52,15 @@ export const useApiAuthLogin = () => {
 export const useApiAuthLogout = () => {
   const { setToken, clearRefreshTimeout, setAuthenticatedUser } =
     useAuthenticationStore();
+  const { setUserStore } = useUserStore();
+
   const queryClient = useQueryClient();
 
   return useMutation(apiLogout, {
     onSuccess: () => {
       setToken(null);
       setAuthenticatedUser({});
+      setUserStore({});
       clearRefreshTimeout();
 
       // invalidate all queries on logout
@@ -62,7 +73,7 @@ export const useApiAuthLogout = () => {
 /* ----------------------------------------------------------- */
 export const useApiAuthCheckEmail = () => {
   return useQuery({
-    queryKey: "checkEmailAvailability",
+    queryKey: ["checkEmailAvailability"],
     queryFn: async (payload) => {
       const response = await apiCheckEmail(payload);
       return response;
@@ -72,17 +83,56 @@ export const useApiAuthCheckEmail = () => {
 };
 
 /* ----------------------------------------------------------- */
+export const useApiCheckIsUserVerified = () => {
+  return useQuery({
+    queryKey: ["checkIsUserVerified"],
+    queryFn: async () => {
+      const response = await apiCheckIsUserVerified();
+      return response;
+    },
+    select: (data) => data?.data,
+  });
+};
+
+/* ----------------------------------------------------------- */
 export const useApiAuthRegister = () => {
   const { setToken, setAuthenticatedUser } = useAuthenticationStore();
+  const { setUserStore } = useUserStore();
+
   return useMutation(apiRegister, {
     onSuccess: ({ data }) => {
       setToken(data);
       setAuthenticatedUser(data.user);
+      setUserStore(data.user);
     },
     // do not use ErrorBoundary if the response status is 422 or 409 because register component has error to display error on the component
     useErrorBoundary: (error) =>
       !error.response ||
       (error.response.status !== 422 && error.response.status !== 409),
+  });
+};
+
+/* ----------------------------------------------------------- */
+export const useApiAuthRequestOtp = ({ onSuccess, onError }) => {
+  return useMutation((email) => apiAuthRequestOtp(email), {
+    onSuccess: (response) => {
+      onSuccess(response);
+    },
+    onError: (error) => {
+      onError(error);
+    },
+  });
+};
+
+/* ----------------------------------------------------------- */
+export const useApiAuthVerifyOtp = ({ onSuccess, onError }) => {
+  return useMutation(apiAuthVerifyOtp, {
+    onSuccess: (response) => {
+      onSuccess(response);
+    },
+    onError: (error) => {
+      onError(error);
+    },
   });
 };
 
@@ -138,18 +188,19 @@ export const useApiAuthGoogleAuthLogin = () => {
   });
 };
 
+/* ----------------------------------------------------------- */
 export const useApiAuthRefreshToken = (callback) => {
   const {
-    setRefreshTimeout,
     setToken,
-    clearRefreshTimeout,
     authenticatedUser,
+    setRefreshTimeout,
+    clearRefreshTimeout,
   } = useAuthenticationStore();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { refetch } = useQuery({
-    queryKey: ["refreshToken", authenticatedUser.id], // do you need to provide ID
+    queryKey: ["refreshToken", authenticatedUser.id],
     queryFn: async () => {
       try {
         if (isRefreshing) {

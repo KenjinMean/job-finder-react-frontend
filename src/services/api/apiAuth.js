@@ -33,6 +33,16 @@ export const apiCheckEmail = async (value) => {
 
 /* ----------------------------------------------------------- */
 /**
+ * API function to check if user is verified.
+ *
+ * @returns {Promise} A promise that resolves with the token refresh response.
+ */
+export const apiCheckIsUserVerified = async () => {
+  return axiosClient.get(`email/verify`);
+};
+
+/* ----------------------------------------------------------- */
+/**
  * API function to register a new user.
  *
  * @param {Object} payload - The user registration details.
@@ -40,6 +50,28 @@ export const apiCheckEmail = async (value) => {
  */
 export const apiRegister = async (payload) => {
   return axiosClient.post("/register-user", payload);
+};
+
+/* ----------------------------------------------------------- */
+/**
+ * API function to send otp to user email.
+ *
+ * @param {Object} email - The user email to send the otp.
+ * @returns {Promise} A promise that resolves with the send response.
+ */
+export const apiAuthRequestOtp = async (email) => {
+  return axiosClient.post(`request-otp?email=${email}`);
+};
+
+/* ----------------------------------------------------------- */
+/**
+ * API function to verify otp code.
+ *
+ * @param {Object} email - The user email to send the otp.
+ * @returns {Promise} A promise that resolves with the send response.
+ */
+export const apiAuthVerifyOtp = async (payload) => {
+  return axiosClient.post(`verify-otp`, payload);
 };
 
 /* ----------------------------------------------------------- */
