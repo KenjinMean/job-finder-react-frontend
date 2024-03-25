@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserModals } from "../../constants/ModalNames.Constants";
 
@@ -17,9 +17,9 @@ import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Compo
 
 export default function UserInfoCardComponent() {
   const navigate = useNavigate();
+
   const { user } = useUserStore();
   const { setOtpState } = otpStore();
-
   const { data: userInfo } = useApiUserInfoFetch();
   const { data: userContact } = useApiUserContactFetch();
 

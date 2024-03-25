@@ -1,5 +1,4 @@
 // SOURCE for dropdown menu: https://headlessui.com/react/menu
-
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
@@ -10,18 +9,14 @@ import { userRoutes } from "../../constants/RoutesPath.Constants";
 import { grow } from "../../constants/animationVariants.Constants";
 
 import { useApiAuthLogout } from "../../hooks/useApiAuth";
-import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 import ImageUrlLoaderUtil from "../utils/ImageUrlLoader.Util";
+import { useApiUserInfoFetch } from "../../hooks/useApiUserInfo";
 
 export default function ProfileDropdownMenuUiComponent() {
-  const { authenticatedUser } = useAuthenticationStore();
-
+  const { data: userInfo } = useApiUserInfoFetch();
+  useApiUserInfoFetch();
   const { mutate: logoutFn } = useApiAuthLogout();
-
-  const handleLogout = () => {
-    logoutFn();
-  };
 
   return (
     <Menu>
@@ -34,15 +29,8 @@ export default function ProfileDropdownMenuUiComponent() {
             whileTap={{ scale: 0.9 }}
             className="flex w-12 h-12 mr-3 overflow-hidden text-sm rounded-full sm:mr-0 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           >
-            {authenticatedUser?.user_info && (
-              <ImageUrlLoaderUtil
-                imageUrl={authenticatedUser?.user_info?.profile_image}
-              />
-              // <img
-              //   className="block object-cover w-full h-full"
-              //   src={authenticatedUser?.user_info?.profile_image}
-              //   alt="User Profile image"
-              // />
+            {userInfo && (
+              <ImageUrlLoaderUtil imageUrl={userInfo?.profile_image} />
             )}
           </Menu.Button>{" "}
           <AnimatePresence mode="wait">
@@ -73,11 +61,10 @@ export default function ProfileDropdownMenuUiComponent() {
                 </Menu.Item>
                 <div className="mt-16 sm:mt-0">
                   <span className="block text-lg font-semibold">
-                    {authenticatedUser?.user_info?.first_name}{" "}
-                    {authenticatedUser?.user_info?.last_name}
+                    {userInfo?.first_name} {userInfo?.last_name}
                   </span>
                   <span className="flex-wrap block text-content-gray empty:hidden">
-                    {authenticatedUser?.user_info?.headline}
+                    {userInfo?.headline}
                   </span>
                 </div>
 
@@ -92,7 +79,7 @@ export default function ProfileDropdownMenuUiComponent() {
                 <Menu.Item
                   as="button"
                   className="w-full px-5 py-1 mt-5 text-lg sm:text-left sm:text-content-black hover:text-accent-200 hover:underline"
-                  onClick={handleLogout}
+                  onClick={() => logoutFn()}
                 >
                   Logout
                 </Menu.Item>

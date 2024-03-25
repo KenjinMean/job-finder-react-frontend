@@ -1,16 +1,17 @@
 import { Navigate } from "react-router-dom";
 import React, { Fragment, useEffect, useState } from "react";
-
 import { jobRoutes } from "../constants/RoutesPath.Constants";
 
+import { useUserStore } from "../services/state/UserStore";
+import { useSetPageTitle } from "../hooks/useSetPageTitle";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
-import { useSetPageTitle } from "../hooks/useSetPageTitle";
 import MaxWidthWrapperUtil from "../components/utils/MaxWidthWrapper.Util";
 
 export default function AuthProviderCallbackPage() {
   useSetPageTitle("Social Auth Redirect Page");
-  const { token, setToken, setAuthenticatedUser } = useAuthenticationStore();
+  const { token, setToken } = useAuthenticationStore();
+  const { setUser } = useUserStore();
 
   const [seconds, setSeconds] = useState(5);
   const [loading, setLoading] = useState(true);
@@ -28,7 +29,7 @@ export default function AuthProviderCallbackPage() {
       } else {
         const { user } = responseData.original;
 
-        setAuthenticatedUser(user);
+        setUser(user);
         setToken(responseData.original);
         setLoading(false);
 

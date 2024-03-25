@@ -2,22 +2,24 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { userRoutes } from "../constants/RoutesPath.Constants";
+
 import {
   apiUserContactFetch,
   apiUserContactStore,
   apiUserContactUpdate,
 } from "../services/api/apiUserContact";
+import { useUserStore } from "../services/state/UserStore";
+
 import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
-import { userRoutes } from "../constants/RoutesPath.Constants";
-import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 /* ----------------------------------------------------------- */
 export const useApiUserContactFetch = () => {
-  const { authenticatedUser } = useAuthenticationStore();
+  const { user } = useUserStore();
 
   return useQuery({
-    queryKey: ["fetchUserContact", authenticatedUser.id],
+    queryKey: ["fetchUserContact", user.id],
     queryFn: async () => {
       try {
         const response = await apiUserContactFetch();
@@ -38,12 +40,12 @@ export const useApiUserContactFetch = () => {
 export const useApiUserContactStore = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
+  const { user } = useUserStore();
 
   return useMutation((payload) => apiUserContactStore(payload), {
     onSuccess: (data) => {
       toast.success("Contact Created Successfully.");
-      queryClient.refetchQueries(["fetchUserContact", authenticatedUser.id]);
+      queryClient.refetchQueries(["fetchUserContact", user.id]);
       navigate(userRoutes.userProfilePage);
     },
     onError: (error) => {
@@ -59,12 +61,12 @@ export const useApiUserContactStore = () => {
 export const useApiUserContactUpdate = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
+  const { user } = useUserStore();
 
   return useMutation((payload) => apiUserContactUpdate(payload), {
     onSuccess: (data) => {
       toast.success("Contact updated Successfully.");
-      queryClient.refetchQueries(["fetchUserContact", authenticatedUser.id]);
+      queryClient.refetchQueries(["fetchUserContact", user.id]);
       navigate(userRoutes.userProfilePage);
     },
     onError: (error) => {

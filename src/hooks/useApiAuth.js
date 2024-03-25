@@ -18,14 +18,10 @@ import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 /* ----------------------------------------------------------- */
 export const useApiAuthLogin = () => {
-  const {
-    setToken,
-    setAuthenticatedUser,
-    setIsLoginButtonDisabled,
-    setSocialServiceLoginError,
-  } = useAuthenticationStore();
+  const { setToken, setIsLoginButtonDisabled, setSocialServiceLoginError } =
+    useAuthenticationStore();
 
-  const { setUserStore } = useUserStore();
+  const { setUser } = useUserStore();
 
   return useMutation(apiLogin, {
     onMutate: () => {
@@ -34,8 +30,7 @@ export const useApiAuthLogin = () => {
     },
     onSuccess: ({ data }) => {
       setToken(data);
-      setAuthenticatedUser(data.user);
-      setUserStore(data.user);
+      setUser(data.user);
     },
     onSettled: () => {
       setIsLoginButtonDisabled(false);
@@ -50,17 +45,15 @@ export const useApiAuthLogin = () => {
 
 /* ----------------------------------------------------------- */
 export const useApiAuthLogout = () => {
-  const { setToken, clearRefreshTimeout, setAuthenticatedUser } =
-    useAuthenticationStore();
-  const { setUserStore } = useUserStore();
+  const { setToken, clearRefreshTimeout } = useAuthenticationStore();
+  const { setUser } = useUserStore();
 
   const queryClient = useQueryClient();
 
   return useMutation(apiLogout, {
     onSuccess: () => {
       setToken(null);
-      setAuthenticatedUser({});
-      setUserStore({});
+      setUser({});
       clearRefreshTimeout();
 
       // invalidate all queries on logout
@@ -96,14 +89,13 @@ export const useApiCheckIsUserVerified = () => {
 
 /* ----------------------------------------------------------- */
 export const useApiAuthRegister = () => {
-  const { setToken, setAuthenticatedUser } = useAuthenticationStore();
-  const { setUserStore } = useUserStore();
+  const { setToken } = useAuthenticationStore();
+  const { setUser } = useUserStore();
 
   return useMutation(apiRegister, {
     onSuccess: ({ data }) => {
       setToken(data);
-      setAuthenticatedUser(data.user);
-      setUserStore(data.user);
+      setUser(data.user);
     },
     // do not use ErrorBoundary if the response status is 422 or 409 because register component has error to display error on the component
     useErrorBoundary: (error) =>
@@ -190,17 +182,14 @@ export const useApiAuthGoogleAuthLogin = () => {
 
 /* ----------------------------------------------------------- */
 export const useApiAuthRefreshToken = (callback) => {
-  const {
-    setToken,
-    authenticatedUser,
-    setRefreshTimeout,
-    clearRefreshTimeout,
-  } = useAuthenticationStore();
+  const { user } = useUserStore();
+  const { setToken, setRefreshTimeout, clearRefreshTimeout } =
+    useAuthenticationStore();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { refetch } = useQuery({
-    queryKey: ["refreshToken", authenticatedUser.id],
+    queryKey: ["refreshToken", user.id],
     queryFn: async () => {
       try {
         if (isRefreshing) {

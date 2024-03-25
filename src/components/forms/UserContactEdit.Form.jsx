@@ -10,6 +10,7 @@ import { useAuthenticationStore } from "../../services/state/AuthenticationStore
 import LabeledDateInputUiComponent from "../UI/LabeledDateInput.Ui.Component";
 import LabeledTextInputUiComponent from "../UI/LabeledTextInput.Ui.Component";
 import LabeledPhoneInputUiComponent from "../UI/LabeledPhoneInput.Ui.Component";
+import { useUserStore } from "../../services/state/UserStore";
 
 export default function UserContactForm({
   name,
@@ -19,8 +20,8 @@ export default function UserContactForm({
 }) {
   const { control, handleSubmit } = form;
 
+  const { user } = useUserStore();
   const openDialog = useOpenDialog();
-  const { authenticatedUser } = useAuthenticationStore();
 
   return (
     <form
@@ -39,7 +40,7 @@ export default function UserContactForm({
             onClick={() => openDialog(dialogNames.notImplementedDialog.name)}
             className="mb-2 font-medium text-accent-blue500"
           >
-            {authenticatedUser.email}
+            {user.email}
           </Link>
         </div>
 

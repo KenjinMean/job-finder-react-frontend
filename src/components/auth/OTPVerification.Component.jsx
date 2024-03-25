@@ -25,7 +25,7 @@ export default function OTPVerificationComponent() {
   const [otpValue, setOtpValue] = useState("");
   const [isVerificationSuccess, setIsVerificationSuccess] = useState(false);
 
-  const { updateUserStore } = useUserStore();
+  const { setUser } = useUserStore();
   const { email, resendTimerSeconds, otpRequested, setOtpState } = otpStore();
   const { seconds, start, reset } = useTimer(resendTimerSeconds);
 
@@ -38,7 +38,7 @@ export default function OTPVerificationComponent() {
   } = useApiAuthVerifyOtp({
     onSuccess: (response) => {
       setIsVerificationSuccess(true);
-      updateUserStore(response.data.user);
+      setUser(response.data.user);
       navigate("/job-finder-react-frontend/auth/verify-otp-success");
     },
     onError: () => {

@@ -1,4 +1,8 @@
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import { UserModals } from "../constants/ModalNames.Constants";
 
 import {
   apiSkillSearch,
@@ -6,12 +10,8 @@ import {
   apiUserFetchSkills,
   apiUserRemoveSkill,
 } from "../services/api/apiSkills";
-
-import { useNavigate } from "react-router-dom";
 import { useOpenModalParam } from "./useModalFunctions";
-import { UserModals } from "../constants/ModalNames.Constants";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useAuthenticationStore } from "../services/state/AuthenticationStore";
+import { useUserStore } from "../services/state/UserStore";
 
 import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
@@ -24,13 +24,13 @@ import { toMilliseconds } from "../utils/toMilliseconds";
  * @param {boolean} enabled - Flag indicating whether the query should be enabled.
  */
 export const useApiUserSkillsFetch = (enabled = true) => {
-  const { authenticatedUser } = useAuthenticationStore();
+  const { user } = useUserStore();
 
   return useQuery({
-    queryKey: ["fetchUserSkills", authenticatedUser.id],
+    queryKey: ["fetchUserSkills", user.id],
     queryFn: async () => {
       try {
-        const response = await apiUserFetchSkills(authenticatedUser.id);
+        const response = await apiUserFetchSkills(user.id);
         return response;
       } catch (error) {
         handleError(error, error.message, "useApiUserSkillsFetch");
@@ -76,28 +76,22 @@ export const useApiSkillSearch = (keyword) => {
 export const useApiUserSkillAdd = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
+  const { user } = useUserStore();
 
-  return useMutation(
-    (skillId) => apiUserAddSkill(authenticatedUser.id, skillId),
-    {
-      onSuccess: async () => {
-        queryClient.invalidateQueries([
-          "fetchUserSkills",
-          authenticatedUser.id,
-        ]);
-        navigate(useOpenModalParam(UserModals.userAddSkillSuccessModal.name));
-      },
-      onError: (error) => {
-        const errorMessage = error.response.data.error || "An error occurred";
-        navigate(
-          useOpenModalParam(UserModals.userAddSkillErrorModal.name, {
-            error: errorMessage,
-          })
-        );
-      },
-    }
-  );
+  return useMutation((skillId) => apiUserAddSkill(user.id, skillId), {
+    onSuccess: async () => {
+      queryClient.invalidateQueries(["fetchUserSkills", user.id]);
+      navigate(useOpenModalParam(UserModals.userAddSkillSuccessModal.name));
+    },
+    onError: (error) => {
+      const errorMessage = error.response.data.error || "An error occurred";
+      navigate(
+        useOpenModalParam(UserModals.userAddSkillErrorModal.name, {
+          error: errorMessage,
+        })
+      );
+    },
+  });
 };
 
 /* ----------------------------------------------------------- */
@@ -109,24 +103,18 @@ export const useApiUserSkillAdd = () => {
  */
 export const useApiUserSkillRemove = () => {
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
+  const { user } = useUserStore();
 
-  return useMutation(
-    (skillId) => apiUserRemoveSkill(authenticatedUser.id, skillId),
-    {
-      onSuccess: async () => {
-        toast.success("User Skill Removed Successfully.");
-        queryClient.invalidateQueries([
-          "fetchUserSkills",
-          authenticatedUser.id,
-        ]);
-      },
-      onError: (error) => {
-        toast.error(
-          "Sorry, we encountered an issue processing your request. Please try again later."
-        );
-        handleError(error, error.message, "useApiUserSkillRemove");
-      },
-    }
-  );
+  return useMutation((skillId) => apiUserRemoveSkill(user.id, skillId), {
+    onSuccess: async () => {
+      toast.success("User Skill Removed Successfully.");
+      queryClient.invalidateQueries(["fetchUserSkills", user.id]);
+    },
+    onError: (error) => {
+      toast.error(
+        "Sorry, we encountered an issue processing your request. Please try again later."
+      );
+      handleError(error, error.message, "useApiUserSkillRemove");
+    },
+  });
 };

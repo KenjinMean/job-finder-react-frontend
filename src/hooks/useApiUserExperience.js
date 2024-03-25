@@ -2,8 +2,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { useApiUserSkillsFetch } from "./useApiSkill";
-import { useAuthenticationStore } from "../services/state/AuthenticationStore";
+import { userRoutes } from "../constants/RoutesPath.Constants";
 
 import {
   apiUserExperienceFetch,
@@ -12,17 +11,19 @@ import {
   apiUserExperiencesFetch,
   apiUserExperienceDestroy,
 } from "../services/api/apiUserExperience";
+import { useApiUserSkillsFetch } from "./useApiSkill";
+import { useUserStore } from "../services/state/UserStore";
+
 import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
-import { userRoutes } from "../constants/RoutesPath.Constants";
 
 // GET user experience
 /* ----------------------------------------------------------- */
 export const useApiUserExperienceFetch = () => {
-  const { authenticatedUser } = useAuthenticationStore();
+  const { user } = useUserStore();
 
   return useQuery({
-    queryKey: ["fetchUserExperience", authenticatedUser.id],
+    queryKey: ["fetchUserExperience", user.id],
     queryFn: async () => {
       try {
         const response = await apiUserExperienceFetch();
@@ -41,10 +42,10 @@ export const useApiUserExperienceFetch = () => {
 // GET user experiences
 /* ----------------------------------------------------------- */
 export const useApiUserExperiencesFetch = () => {
-  const { authenticatedUser } = useAuthenticationStore();
+  const { user } = useUserStore();
 
   return useQuery({
-    queryKey: ["fetchUserExperiences", authenticatedUser.id],
+    queryKey: ["fetchUserExperiences", user.id],
     queryFn: async () => {
       try {
         const response = await apiUserExperiencesFetch();
@@ -65,22 +66,16 @@ export const useApiUserExperiencesFetch = () => {
 export const useApiUserExperienceStoreMutation = () => {
   useApiUserSkillsFetch();
   const navigate = useNavigate();
+  const { user } = useUserStore();
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
 
   return useMutation(
     (educationId, payload) => apiUserExperienceStore(educationId, payload),
     {
       onSuccess: (data) => {
         toast.success("User Experience Created Successfully.");
-        queryClient.invalidateQueries([
-          "fetchUserExperiences",
-          authenticatedUser.id,
-        ]);
-        queryClient.invalidateQueries([
-          "fetchUserSkills",
-          authenticatedUser.id,
-        ]);
+        queryClient.invalidateQueries(["fetchUserExperiences", user.id]);
+        queryClient.invalidateQueries(["fetchUserSkills", user.id]);
         navigate(userRoutes.userProfilePage);
       },
       onError: (error) => {
@@ -98,22 +93,16 @@ export const useApiUserExperienceStoreMutation = () => {
 export const useApiUserExperienceUpdateMutation = () => {
   useApiUserSkillsFetch();
   const navigate = useNavigate();
+  const { user } = useUserStore();
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
 
   return useMutation(
     ([experienceId, payload]) => apiUserExperienceUpdate(experienceId, payload),
     {
       onSuccess: (data) => {
         toast.success("User Experience Updated Successfully.");
-        queryClient.invalidateQueries([
-          "fetchUserExperiences",
-          authenticatedUser.id,
-        ]);
-        queryClient.invalidateQueries([
-          "fetchUserSkills",
-          authenticatedUser.id,
-        ]);
+        queryClient.invalidateQueries(["fetchUserExperiences", user.id]);
+        queryClient.invalidateQueries(["fetchUserSkills", user.id]);
         navigate(userRoutes.userProfilePage);
       },
       onError: (error) => {
@@ -130,16 +119,13 @@ export const useApiUserExperienceUpdateMutation = () => {
 /* ----------------------------------------------------------- */
 export const useApiUserExperienceDeleteMutation = () => {
   const navigate = useNavigate();
+  const { user } = useUserStore();
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
 
   return useMutation((experienceId) => apiUserExperienceDestroy(experienceId), {
     onSuccess: (data) => {
       toast.success("User Experience Deleted Successfully.");
-      queryClient.refetchQueries([
-        "fetchUserExperiences",
-        authenticatedUser.id,
-      ]);
+      queryClient.refetchQueries(["fetchUserExperiences", user.id]);
       window.history.replaceState(null, "", userRoutes.userProfilePage);
       navigate(userRoutes.userProfilePage);
     },

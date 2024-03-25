@@ -11,22 +11,17 @@ import {
 } from "../services/api/apiUserInfo";
 import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
-import { useAuthenticationStore } from "../services/state/AuthenticationStore";
+import { useUserStore } from "../services/state/UserStore";
 
 /* ----------------------------------------------------------- */
 export const useApiUserInfoFetch = () => {
-  const { authenticatedUser, setAuthenticatedUserUserInfo } =
-    useAuthenticationStore();
-
-  // update: is hasError needed??
-  let hasError = false;
+  const { user } = useUserStore();
 
   return useQuery({
-    queryKey: ["fetchUserInfo", authenticatedUser.id],
+    queryKey: ["fetchUserInfo", user.id],
     queryFn: async () => {
       try {
         const response = await apiUserInfoFetch();
-        setAuthenticatedUserUserInfo(response.data);
         return response;
       } catch (error) {
         handleError(error, error.message, "useApiUserInfoFetch");
@@ -34,21 +29,21 @@ export const useApiUserInfoFetch = () => {
     },
     select: (data) => data?.data,
     suspense: true,
-    cacheTime: hasError ? undefined : toMilliseconds(30, "mins"),
-    staleTime: hasError ? undefined : toMilliseconds(30, "mins"),
+    cacheTime: toMilliseconds(30, "mins"),
+    staleTime: toMilliseconds(30, "mins"),
   });
 };
 
 /* ----------------------------------------------------------- */
 const useApiMutation = (apiFunction, successMessage, mutationName) => {
   const navigate = useNavigate();
+  const { user } = useUserStore();
   const queryClient = useQueryClient();
-  const { authenticatedUser } = useAuthenticationStore();
 
   return useMutation((payload) => apiFunction(payload), {
     onSuccess: (data) => {
       toast.success(successMessage);
-      queryClient.refetchQueries(["fetchUserInfo", authenticatedUser.id]);
+      queryClient.refetchQueries(["fetchUserInfo", user.id]);
       navigate(userRoutes.userProfilePage);
     },
     onError: (error) => {
