@@ -41,11 +41,13 @@ export default function OTPVerificationComponent() {
       setUser(response.data.user);
       navigate("/job-finder-react-frontend/auth/verify-otp-success");
     },
-    onError: () => {
-      toast.error(
-        "Sorry, we encountered an issue processing your request. Please try again later."
-      );
-      navigate(userRoutes.userProfilePage);
+    onError: (error) => {
+      if (error.response.status !== 400) {
+        toast.error(
+          "Sorry, we encountered an issue processing your request. Please try again later."
+        );
+        navigate(userRoutes.userProfilePage);
+      }
     },
   });
 
