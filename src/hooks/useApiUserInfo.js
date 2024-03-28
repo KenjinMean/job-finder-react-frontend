@@ -14,14 +14,18 @@ import { toMilliseconds } from "../utils/toMilliseconds";
 import { useUserStore } from "../services/state/UserStore";
 
 /* ----------------------------------------------------------- */
-export const useApiUserInfoFetch = () => {
-  const { user } = useUserStore();
+export const useApiUserInfoFetch = (enabled = true) => {
+  const { user, setUserInfo } = useUserStore();
 
   return useQuery({
     queryKey: ["fetchUserInfo", user.id],
     queryFn: async () => {
       try {
         const response = await apiUserInfoFetch();
+        console.log(response.data);
+        if (response.status === 200) {
+          setUserInfo(response.data);
+        }
         return response;
       } catch (error) {
         handleError(error, error.message, "useApiUserInfoFetch");
@@ -29,6 +33,7 @@ export const useApiUserInfoFetch = () => {
     },
     select: (data) => data?.data,
     suspense: true,
+    enabled: enabled,
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(30, "mins"),
   });

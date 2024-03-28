@@ -9,6 +9,8 @@ export const useUserStore = create(
       is_email_verified: false,
     },
 
+    userInfo: JSON.parse(localStorage.getItem("USER_INFO")) || {},
+
     /* ----------------------------------------------------------- */
     setUser: (user) =>
       set(() => {
@@ -18,6 +20,17 @@ export const useUserStore = create(
           localStorage.removeItem("User");
         }
         return { user };
+      }),
+
+    /* ----------------------------------------------------------- */
+    setUserInfo: (userInfo) =>
+      set(() => {
+        if (userInfo !== null && Object.keys(userInfo).length > 0) {
+          localStorage.setItem("USER_INFO", JSON.stringify(userInfo));
+        } else {
+          localStorage.removeItem("USER_INFO");
+        }
+        return { userInfo };
       }),
   }))
 );

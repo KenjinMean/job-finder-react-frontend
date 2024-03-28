@@ -11,7 +11,7 @@ import MaxWidthWrapperUtil from "../components/utils/MaxWidthWrapper.Util";
 export default function AuthProviderCallbackPage() {
   useSetPageTitle("Social Auth Redirect Page");
   const { token, setToken } = useAuthenticationStore();
-  const { setUser } = useUserStore();
+  const { setUser, setUserInfo } = useUserStore();
 
   const [seconds, setSeconds] = useState(5);
   const [loading, setLoading] = useState(true);
@@ -27,9 +27,10 @@ export default function AuthProviderCallbackPage() {
       if (responseData.error) {
         console.log(responseData.error);
       } else {
-        const { user } = responseData.original;
+        const { user, user_info } = responseData.original;
 
         setUser(user);
+        setUserInfo(user_info);
         setToken(responseData.original);
         setLoading(false);
 

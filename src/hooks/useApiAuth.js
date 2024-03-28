@@ -21,7 +21,7 @@ export const useApiAuthLogin = () => {
   const { setToken, setIsLoginButtonDisabled, setSocialServiceLoginError } =
     useAuthenticationStore();
 
-  const { setUser } = useUserStore();
+  const { setUser, setUserInfo } = useUserStore();
 
   return useMutation(apiLogin, {
     onMutate: () => {
@@ -31,6 +31,7 @@ export const useApiAuthLogin = () => {
     onSuccess: ({ data }) => {
       setToken(data);
       setUser(data.user);
+      setUserInfo(data.user_info);
     },
     onSettled: () => {
       setIsLoginButtonDisabled(false);
@@ -46,7 +47,7 @@ export const useApiAuthLogin = () => {
 /* ----------------------------------------------------------- */
 export const useApiAuthLogout = () => {
   const { setToken, clearRefreshTimeout } = useAuthenticationStore();
-  const { setUser } = useUserStore();
+  const { setUser, setUserInfo } = useUserStore();
 
   const queryClient = useQueryClient();
 
@@ -54,6 +55,7 @@ export const useApiAuthLogout = () => {
     onSuccess: () => {
       setToken(null);
       setUser({});
+      setUserInfo({});
       clearRefreshTimeout();
 
       // invalidate all queries on logout
@@ -90,12 +92,13 @@ export const useApiCheckIsUserVerified = () => {
 /* ----------------------------------------------------------- */
 export const useApiAuthRegister = () => {
   const { setToken } = useAuthenticationStore();
-  const { setUser } = useUserStore();
+  const { setUser, setUserInfo } = useUserStore();
 
   return useMutation(apiRegister, {
     onSuccess: ({ data }) => {
       setToken(data);
       setUser(data.user);
+      setUserInfo(data.user_info);
     },
     // do not use ErrorBoundary if the response status is 422 or 409 because register component has error to display error on the component
     useErrorBoundary: (error) =>
