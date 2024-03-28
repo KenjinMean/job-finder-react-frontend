@@ -8,7 +8,7 @@ import { useSetPageTitle } from "../hooks/useSetPageTitle";
 import AuthSkeletonUtil from "../components/utils/LoadersSpinners/AuthSkeleton.Util";
 
 export default function OTPSuccessPage() {
-  useSetPageTitle("Edit User Skill");
+  useSetPageTitle("OTP Verification Success");
   return (
     <Fragment>
       <Suspense fallback={<AuthSkeletonUtil />}>

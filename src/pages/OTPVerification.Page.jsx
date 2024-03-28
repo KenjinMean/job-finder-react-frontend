@@ -9,7 +9,7 @@ import { useSetPageTitle } from "../hooks/useSetPageTitle";
 import AuthSkeletonUtil from "../components/utils/LoadersSpinners/AuthSkeleton.Util";
 
 export default function OTPVerificationPage() {
-  useSetPageTitle("Login");
+  useSetPageTitle("OTP Verification");
   return (
     <Fragment>
       <Suspense fallback={<AuthSkeletonUtil />}>
