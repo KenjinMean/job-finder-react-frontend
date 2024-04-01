@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import { isObjectEmpty } from "../../../utils/isObjectEmpty";
 import { apiCheckEmail } from "../../../services/api/apiAuth";
 import LabeledTextInputUiComponent from "../../UI/LabeledTextInput.Ui.Component";
 import LabeledPasswordInputUiComponent from "../../UI/LabeledPasswordInput.Ui.Component";
@@ -64,10 +63,14 @@ export default function RegisterFormv2({
             emailAvailable: async (value) => {
               if (value && !isEmailValid) {
                 const response = await apiCheckEmail(value);
-                if (isObjectEmpty(response.data)) {
+
+                if (response.data.is_user_exist === false) {
                   setIsEmailValid(true);
                 }
-                return isObjectEmpty(response.data) || "email already exists";
+                return (
+                  response.data.is_user_exist === false ||
+                  "email already exists"
+                );
               }
             },
           },

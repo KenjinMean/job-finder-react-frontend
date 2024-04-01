@@ -33,23 +33,13 @@ export const apiCheckEmail = async (value) => {
 
 /* ----------------------------------------------------------- */
 /**
- * API function to check if user is verified.
- *
- * @returns {Promise} A promise that resolves with the token refresh response.
- */
-export const apiCheckIsUserVerified = async () => {
-  return axiosClient.get(`email/verify`);
-};
-
-/* ----------------------------------------------------------- */
-/**
  * API function to register a new user.
  *
  * @param {Object} payload - The user registration details.
  * @returns {Promise} A promise that resolves with the registration response.
  */
 export const apiRegister = async (payload) => {
-  return axiosClient.post("/register-user", payload);
+  return axiosClient.post("/register", payload);
 };
 
 /* ----------------------------------------------------------- */

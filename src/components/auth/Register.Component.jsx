@@ -43,7 +43,7 @@ export default function RegisterComponent() {
             <div className="max-w-xs mx-auto">
               <AuthErrorUiComponent
                 error={isError}
-                errorMessage={error?.response?.data?.message}
+                errorMessage={error?.response?.data?.error?.message}
               />
 
               <RegisterFormv2

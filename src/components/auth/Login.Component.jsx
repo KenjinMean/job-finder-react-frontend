@@ -69,7 +69,7 @@ export default function LoginComponent() {
 
           <AuthErrorComponent
             error={isLoginError}
-            errorMessage={loginError?.response?.data?.message}
+            errorMessage={loginError?.response?.data?.error?.message}
           />
 
           <LoginForm

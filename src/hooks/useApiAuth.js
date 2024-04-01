@@ -11,7 +11,6 @@ import {
   apiAuthRequestOtp,
   apiGitHubAuthLogin,
   apiGoogleAuthLogin,
-  apiCheckIsUserVerified,
 } from "../services/api/apiAuth";
 import { useUserStore } from "../services/state/UserStore";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
@@ -40,7 +39,7 @@ export const useApiAuthLogin = () => {
     //  component has error to display error on the component
     useErrorBoundary: (error) =>
       !error.response ||
-      (error.response.status !== 422 && error.response.status !== 409),
+      (error.response.status !== 422 && error.response.status !== 401),
   });
 };
 
@@ -74,18 +73,6 @@ export const useApiAuthCheckEmail = () => {
       return response;
     },
     enabled: false,
-  });
-};
-
-/* ----------------------------------------------------------- */
-export const useApiCheckIsUserVerified = () => {
-  return useQuery({
-    queryKey: ["checkIsUserVerified"],
-    queryFn: async () => {
-      const response = await apiCheckIsUserVerified();
-      return response;
-    },
-    select: (data) => data?.data,
   });
 };
 
