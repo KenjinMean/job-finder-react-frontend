@@ -1,1 +1,0 @@
-import{j as e}from"./index-79b2bbc0.js";function t({children:r}){return e.jsx("section",{className:"relative w-full p-5 overflow-hidden border sm:rounded-lg text-content-black border-border-100 bg-background-gray_50",children:r})}export{t as C};
