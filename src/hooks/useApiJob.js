@@ -1,11 +1,12 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import {
-  apiJobDetailsFetch,
   apiJobsFetch,
   apiJobsSearch,
+  apiJobDetailsFetch,
   apiJobsSuggestionsSearch,
 } from "../services/api/apiJobs";
 import { devError } from "../utils/devError";
+import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
 
 // FETCH JOB DETAILS HOOK
@@ -46,19 +47,24 @@ export const useApiJobDetailsFetch = (id) => {
  * @returns {Object} - The query object provided by react-query.
  */
 /* ----------------------------------------------------------- */
-export const useApiJobsInfiniteFetch = () => {
+export const useApiJobsListingFetch = (filters) => {
   return useInfiniteQuery({
     queryKey: ["jobs"],
     queryFn: async ({ pageParam }) => {
+      // jobs relationship to load during query
+      const load = ["company", "jobTypes", "workLocationTypes"];
+      const perPage = 5;
+
       try {
-        const response = await apiJobsFetch({ pageParam });
+        const response = await apiJobsFetch({
+          pageParam,
+          filters,
+          load,
+          perPage,
+        });
         return response;
       } catch (error) {
-        devError(
-          "Handling Fetch Jobs Infinite Response Failed on useApiJobFetchDetails hook:",
-          error
-        );
-        throw { code: error.response.status };
+        handleError(error, error.message, "useApiJobsListingFetch");
       }
     },
     getNextPageParam: (lastPage) => {
@@ -91,12 +97,7 @@ export const useApiJobSearchInfiniteFetch = (params) => {
         const response = await apiJobsSearch(params, { pageParam });
         return response;
       } catch (error) {
-        devError(
-          "Handling Job Search Infinite Response Failed on useApiJobFetchDetails hook:",
-          error.message
-        );
-
-        throw { code: error.response.status };
+        handleError(error, error.message, "useApiJobSearchInfiniteFetch");
       }
     },
     getNextPageParam: (lastPage) => {
@@ -132,11 +133,7 @@ export const useApiJobSearchSuggestionsFetch = (keyword) => {
         }
         return null;
       } catch (error) {
-        devError(
-          "Handling Job Fetch Details Response Failed on useApiJobFetchSuggestions hook:",
-          error.response.status
-        );
-        throw { code: error.response.status };
+        handleError(error, error.message, "useApiJobSearchSuggestionsFetch");
       }
     },
     select: (data) => data?.data?.suggestions,

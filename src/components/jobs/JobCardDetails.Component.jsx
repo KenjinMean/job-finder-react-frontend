@@ -28,7 +28,7 @@ export default function JobCardDetailsComponent({ job }) {
         </div>
       </div>
 
-      <div className="items-baseline gap-2  sm:flex">
+      <div className="items-baseline gap-2 sm:flex">
         <span className="text-content-slate_500">{job.location}</span>
         <div>
           {job.work_location_types.map((workLocationType, index) => (
