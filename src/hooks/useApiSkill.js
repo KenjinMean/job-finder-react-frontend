@@ -30,7 +30,7 @@ export const useApiUserSkillsFetch = (enabled = true) => {
     queryKey: ["fetchUserSkills", user.id],
     queryFn: async () => {
       try {
-        const response = await apiUserFetchSkills(user.id);
+        const response = await apiUserFetchSkills();
         return response;
       } catch (error) {
         handleError(error, error.message, "useApiUserSkillsFetch");
@@ -60,7 +60,7 @@ export const useApiSkillSearch = (keyword) => {
         handleError(error, error.message, "useApiSkillSearch");
       }
     },
-    select: (data) => data?.data?.skills,
+    select: (data) => data?.data?.data,
     cacheTime: toMilliseconds(60, "mins"),
     staleTime: toMilliseconds(60, "mins"),
   });
@@ -78,7 +78,7 @@ export const useApiUserSkillAdd = () => {
   const queryClient = useQueryClient();
   const { user } = useUserStore();
 
-  return useMutation((skillId) => apiUserAddSkill(user.id, skillId), {
+  return useMutation((skillId) => apiUserAddSkill(skillId), {
     onSuccess: async () => {
       queryClient.invalidateQueries(["fetchUserSkills", user.id]);
       navigate(useOpenModalParam(UserModals.userAddSkillSuccessModal.name));
@@ -105,7 +105,7 @@ export const useApiUserSkillRemove = () => {
   const queryClient = useQueryClient();
   const { user } = useUserStore();
 
-  return useMutation((skillId) => apiUserRemoveSkill(user.id, skillId), {
+  return useMutation((skillId) => apiUserRemoveSkill(skillId), {
     onSuccess: async () => {
       toast.success("User Skill Removed Successfully.");
       queryClient.invalidateQueries(["fetchUserSkills", user.id]);

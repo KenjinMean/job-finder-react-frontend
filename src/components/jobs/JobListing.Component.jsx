@@ -13,8 +13,8 @@ export default function JobListingComponent() {
     // keyword: "dev",
     // job_type: ["Freelance"],
     // min_salary: 20000,
-    max_salary: 60000,
-    order_by: "salary",
+    // max_salary: 60000,
+    // order_by: "salary",
   });
 
   const {
