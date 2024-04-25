@@ -1,6 +1,6 @@
 import axiosClient from "../../utils/axiosClient.Util";
 
-const userUserContactbaseUrl = "/user-contact";
+const userUserContactbaseUrl = "/users/user-contact";
 
 /* ----------------------------------------------------------- */
 // fetch user contact
@@ -9,7 +9,7 @@ export const apiUserContactFetch = async () => {
 };
 
 /* ----------------------------------------------------------- */
-// fetch user contact
+// store user contact
 export const apiUserContactStore = async (payload) => {
   return await axiosClient.post(`${userUserContactbaseUrl}`, payload);
 };
@@ -17,5 +17,5 @@ export const apiUserContactStore = async (payload) => {
 /* ----------------------------------------------------------- */
 // update user contact
 export const apiUserContactUpdate = async (payload) => {
-  return await axiosClient.patch(`${userUserContactbaseUrl}`, payload);
+  return await axiosClient.post(`${userUserContactbaseUrl}`, payload);
 };

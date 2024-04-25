@@ -1,6 +1,6 @@
 import axiosClient from "../../utils/axiosClient.Util";
 
-const userInfoBaseUrl = "/user-info";
+const userInfoBaseUrl = "users/user-info";
 
 /* ----------------------------------------------------------- */
 export const apiUserInfoFetch = async () => {
