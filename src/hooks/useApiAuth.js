@@ -57,8 +57,8 @@ export const useApiAuthLogout = () => {
       setUserInfo({});
       clearRefreshTimeout();
 
-      // invalidate all queries on logout
-      queryClient.invalidateQueries();
+      // clear all queries on logout
+      queryClient.clear();
     },
     useErrorBoundary: true,
   });
@@ -119,6 +119,7 @@ export const useApiAuthVerifyOtp = ({ onSuccess, onError }) => {
 };
 
 /* ----------------------------------------------------------- */
+// use response.ok instead of comparing to 200
 export const useApiAuthGithubAuthLogin = () => {
   const { setIsLoginButtonDisabled, setSocialServiceLoginError } =
     useAuthenticationStore();
@@ -160,6 +161,7 @@ export const useApiAuthGoogleAuthLogin = () => {
         }
         return response;
       } catch (error) {
+        // use handleError to automatically throw error
         throw { code: error.response.status };
       } finally {
         setIsLoginButtonDisabled(false);
