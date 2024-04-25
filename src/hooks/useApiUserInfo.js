@@ -22,7 +22,6 @@ export const useApiUserInfoFetch = (enabled = true) => {
     queryFn: async () => {
       try {
         const response = await apiUserInfoFetch();
-        console.log(response.data);
         if (response.status === 200) {
           setUserInfo(response.data);
         }
