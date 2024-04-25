@@ -23,11 +23,11 @@ export default function UserExperienceForm({
 
   useEffect(() => {
     if (isCurrent && endDate) {
-      setValue("end_date", "");
-    } else if (!isCurrent) {
-      resetField("end_date");
+      setValue("end_date", ""); // Clear end_date if isCurrent is true
+    } else if (!isCurrent && !endDate) {
+      setValue("end_date", null); // Reset end_date if isCurrent is false
     }
-  }, [isCurrent, endDate]);
+  }, [isCurrent, endDate, setValue]);
 
   return (
     <form
