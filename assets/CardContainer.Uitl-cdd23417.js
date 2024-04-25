@@ -1,0 +1,1 @@
+import{j as e}from"./index-f8fa1d3f.js";function t({children:r}){return e.jsx("section",{className:"relative w-full p-5 overflow-hidden border sm:rounded-lg text-content-black border-border-100 bg-background-gray_50",children:r})}export{t as C};

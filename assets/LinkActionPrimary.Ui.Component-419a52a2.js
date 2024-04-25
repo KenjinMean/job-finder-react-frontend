@@ -1,0 +1,1 @@
+import{j as s,f as e}from"./index-f8fa1d3f.js";function p({to:n,children:o,onClick:i,...t}){const{...r}=t;return s.jsx(e,{className:"px-4 py-1 text-white bg-indigo-500 rounded-full font-secondary hover:bg-indigo-600",onClick:i,to:n,...r,children:o})}export{p as L};
