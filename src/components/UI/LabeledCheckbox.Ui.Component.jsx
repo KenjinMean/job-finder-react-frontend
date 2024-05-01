@@ -5,6 +5,7 @@ export default function LabeledCheckboxUiComponent({
   name,
   label,
   disabled,
+  onChange,
 }) {
   const { register } = form;
 
@@ -16,6 +17,7 @@ export default function LabeledCheckboxUiComponent({
           id={name}
           name={name}
           disabled={disabled}
+          onChange={onChange}
           className="bg-input-gray border border-border-100 text-content-black rounded-lg focus:ring-accent-blue500 focus:border-accent-blue500 block w-full p-2.5 disabled:opacity-50 "
           {...register(name)}
         />
