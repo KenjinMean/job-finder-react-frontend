@@ -21,13 +21,29 @@ export default function UserExperienceForm({
   const endDate = watch("end_date");
   const isCurrent = watch("is_current");
 
+  // UPDATE: hold initial value to a state so that when user untick the is_current you can restore endDate value
+
+  // Use optional chaining to avoid errors if endDate is initially undefined
+  const initialEndDate = endDate?.toString() || ""; // Set initial value to empty string
+
   useEffect(() => {
-    if (isCurrent && endDate) {
+    if (isCurrent) {
       setValue("end_date", ""); // Clear end_date if isCurrent is true
-    } else if (!isCurrent && !endDate) {
-      setValue("end_date", null); // Reset end_date if isCurrent is false
+    } else {
+      // Only set endDate if it's not empty to avoid overwriting on initial render
+      if (initialEndDate) {
+        setValue("end_date", initialEndDate); // Restore initial value if not empty
+      }
     }
-  }, [isCurrent, endDate, setValue]);
+  }, [isCurrent, setValue, initialEndDate]);
+
+  // useEffect(() => {
+  //   if (isCurrent && endDate) {
+  //     setValue("end_date", ""); // Clear end_date if isCurrent is true
+  //   } else if (!isCurrent && !endDate) {
+  //     setValue("end_date", null); // Reset end_date if isCurrent is false
+  //   }
+  // }, [isCurrent, endDate, setValue]);
 
   return (
     <form
