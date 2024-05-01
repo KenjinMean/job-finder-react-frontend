@@ -15,6 +15,9 @@ const DialogProvider = () => {
   const { prompt, isOpen, confirmCallback, cancelCallback } =
     useConfirmationDialog();
 
+  // Try Implementing dialogs or modals like material UI.
+  // render button that handles opening the modal passed?
+
   return (
     <Fragment>
       <AnimatePresence mode="wait">

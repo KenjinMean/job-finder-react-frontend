@@ -33,6 +33,7 @@ export default function AppLayout() {
       >
         {!isAuthRoute && <HeaderComponent />}
         <Outlet />
+        {/* remove footer from auth login and register  */}
         {!isJobListing && <Footer />}
       </div>
     </AppProviders>
