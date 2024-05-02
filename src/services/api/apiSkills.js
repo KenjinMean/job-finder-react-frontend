@@ -9,7 +9,7 @@ export const apiUserFetchSkills = async () => {
 /* ----------------------------------------------------------- */
 // search skill
 export const apiSkillSearch = async (keyword) => {
-  return await axiosClient.get(`skills/?keyword=${keyword}`);
+  return await axiosClient.get(`skills?keyword=${keyword}`);
   // return await axiosClient.get(`/search-skills?keyword=${keyword}`);
 };
 
