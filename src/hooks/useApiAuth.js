@@ -12,6 +12,7 @@ import {
   apiGitHubAuthLogin,
   apiGoogleAuthLogin,
 } from "../services/api/apiAuth";
+import { handleError } from "../utils/handleError";
 import { useUserStore } from "../services/state/UserStore";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
@@ -212,7 +213,8 @@ export const useApiAuthRefreshToken = (callback) => {
 
         return response;
       } catch (error) {
-        throw { code: error.response.status };
+        handleError(error, error.message, "useApiAuthRefreshToken");
+        // throw { code: error.response.status, error: error };
       } finally {
         setIsRefreshing(false); // Reset the refresh state in case of errors
       }
