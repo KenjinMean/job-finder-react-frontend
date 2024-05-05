@@ -6,9 +6,9 @@ import { Outlet, useLocation } from "react-router-dom";
 
 import { useModalScrollLock } from "../hooks/useModalScrollLock";
 
-import HeaderComponent from "../components/header/Header.Component.jsx";
-import AppProviders from "../services/providers/AppProviders.jsx";
 import Footer from "../components/footer/Footer.jsx";
+import AppProviders from "../services/providers/AppProviders.jsx";
+import HeaderComponent from "../components/header/Header.Component.jsx";
 
 export default function AppLayout() {
   // lock app scrolling when a modal is active
@@ -18,11 +18,10 @@ export default function AppLayout() {
 
   const location = useLocation();
 
-  const isAuthRoute = location.pathname.startsWith(
-    "/job-finder-react-frontend/auth"
-  );
-
-  const isJobListing = location.pathname === "/job-finder-react-frontend/jobs";
+  const isAuthRoute = location.pathname.startsWith("/auth");
+  const isJobListing = location.pathname === "/";
+  const isSearchPage =
+    location.pathname === "/search" && location.search.includes("query");
 
   return (
     <AppProviders>
@@ -34,7 +33,7 @@ export default function AppLayout() {
         {!isAuthRoute && <HeaderComponent />}
         <Outlet />
         {/* remove footer from auth login and register  */}
-        {!isJobListing && <Footer />}
+        {!(isAuthRoute || isJobListing || isSearchPage) && <Footer />}
       </div>
     </AppProviders>
   );
