@@ -1,0 +1,6 @@
+- provide profile, cover, and company image if they have no image
+- forget password component
+- add loader to login and regiter components using lazy loading
+- disable submit button after submitting on otp submit
+- if error is 422 and 401 on otp submit it redirects to user profile page, we just need to show error either on the form or toast without exiting the page
+- inject server errors on toast notification or customize it.
