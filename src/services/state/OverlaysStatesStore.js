@@ -5,9 +5,18 @@ import { dialogNames } from "../../constants/DialogNames.Constants";
 // Mapping the "name" property from "dialogNames" in "DialogNames.Constants"
 // to create an initial dialogStates object with all values set to false.
 // This sets up an automatic store that updates when you add new dialogs to the Constants.
-const initialDialogStates = Object.fromEntries(
-  Object.entries(dialogNames).map(([key, { name }]) => [name, false])
-);
+
+// FIX: Suddenly have error: cant access lexical declaration dialogNames before initialization XD
+// const initialDialogStates = Object.fromEntries(
+//   Object.entries(dialogNames).map(([key, { name }]) => [name, false])
+// );
+
+const initialDialogStates = {
+  exitConfirmationDialog: false,
+  popUpExampleDialog: false,
+  notImplementedDialog: false,
+  actionConfirmationDialog: false,
+};
 
 /**
  * A custom Zustand store for managing dialog states.
