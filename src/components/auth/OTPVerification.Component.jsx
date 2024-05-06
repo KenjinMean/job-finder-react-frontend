@@ -2,7 +2,11 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
-import { jobRoutes, userRoutes } from "../../constants/RoutesPath.Constants";
+import {
+  authRoutes,
+  jobRoutes,
+  userRoutes,
+} from "../../constants/RoutesPath.Constants";
 
 import {
   useApiAuthRequestOtp,
@@ -30,6 +34,13 @@ export default function OTPVerificationComponent() {
   const { seconds, start, reset } = useTimer(resendTimerSeconds);
 
   /* ----------------------------------------------------------- */
+
+  /**
+   * UPDATE: handle 422 and 401 response
+   * - disable button after submit
+   *
+   */
+
   const {
     mutate: verifyOtp,
     error: verifyError,
@@ -39,7 +50,8 @@ export default function OTPVerificationComponent() {
     onSuccess: (response) => {
       setIsVerificationSuccess(true);
       setUser(response.data.user);
-      navigate("/job-finder-react-frontend/auth/verify-otp-success");
+      // navigate("/job-finder-react-frontend/auth/verify-otp-success");
+      navigate(authRoutes.authVerifyOtpSuccess);
     },
     onError: (error) => {
       if (error.response.status !== 400) {

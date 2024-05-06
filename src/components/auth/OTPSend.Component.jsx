@@ -8,6 +8,7 @@ import { useApiAuthRequestOtp } from "../../hooks/useApiAuth";
 import SvgLockUiComponent from "../UI/SvgLock.Ui.Component";
 import LogoLinkUiComponent from "../UI/LogoLink.Ui.Component";
 import AuthSubmitButtonUiComponent from "../UI/AuthSubmitButton.Ui.Component";
+import { authRoutes } from "../../constants/RoutesPath.Constants";
 
 export default function OTPSendComponent() {
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ export default function OTPSendComponent() {
         resendTimerSeconds: response.data.resend_timer_seconds,
         otpRequested: true,
       });
-      navigate(`/job-finder-react-frontend/auth/verify-otp`);
+      // navigate(`/job-finder-react-frontend/auth/verify-otp`);
+      navigate(authRoutes.authVerifyOtp);
     },
     onError: () => {
       toast.error(

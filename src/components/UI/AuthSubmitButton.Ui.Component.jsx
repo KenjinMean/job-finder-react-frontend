@@ -12,6 +12,7 @@ export default function AuthSubmitButtonUiComponent({
       form={form}
       title="Submit"
       className="flex items-center justify-center w-full py-4 font-semibold tracking-wide transition-all duration-300 ease-in-out bg-indigo-500 rounded-lg text-content-white_stable disabled:bg-background-slate300 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-accent-blue500"
+      disabled={isLoading}
       {...restProps}
     >
       {isLoading ? (
