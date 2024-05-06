@@ -14,6 +14,7 @@ import CardHeadingUiComponent from "../UI/CardHeading.Ui.Component";
 import LocationTagUiComponent from "../UI/LocationTag.Ui.Component";
 import ButtonActionUiComponent from "../UI/ButtonAction.Ui.Component";
 import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Component";
+import { authRoutes } from "../../constants/RoutesPath.Constants";
 
 export default function UserInfoCardComponent() {
   const navigate = useNavigate();
@@ -30,7 +31,8 @@ export default function UserInfoCardComponent() {
         resendTimerSeconds: response.data.resend_timer_seconds,
         otpRequested: true,
       });
-      navigate(`/job-finder-react-frontend/auth/verify-otp`);
+      // navigate(`/job-finder-react-frontend/auth/verify-otp`);
+      navigate(authRoutes.authVerifyOtp);
     },
   });
 
