@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useLocation } from "react-router-dom";
-import { baseUrl } from "../../constants/RoutesPath.Constants";
 
 import HeaderNavComponent from "./HeaderNav.Component";
 import AutoCompleteSearchBarUiComponent from "../UI/AutoCompleteSearchBar.Ui.Component";
@@ -13,8 +12,8 @@ export default function HeaderComponent() {
     <header className="p-2 sm:p-3 md:py-5 bg-background-gray_50">
       <div className="flex flex-col max-w-5xl gap-5 mx-auto">
         <HeaderNavComponent />
-        {location.pathname === `${baseUrl}jobs` ||
-        location.pathname.startsWith(`${baseUrl}jobs/search`) ? (
+        {location.pathname === "/" ||
+        location.pathname.startsWith(`/search`) ? (
           <AutoCompleteSearchBarUiComponent />
         ) : null}
       </div>
