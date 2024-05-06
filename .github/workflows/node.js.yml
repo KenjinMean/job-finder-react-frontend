@@ -25,8 +25,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+      - name: Install Vite
+        run: npm install -g vite
+
       - run: npm ci
-      - run: vite build
+      - run: npm run build
       # - run: npm test
 
       - name: Deploy with gh-pages
