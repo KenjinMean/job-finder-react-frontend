@@ -5,26 +5,27 @@ import { UserModals } from "../../../constants/ModalNames.Constants";
 import useFileHandling from "../../../hooks/useFileHandling";
 import {
   useApiUserInfoFetch,
+  useApiUserProfileImageDeleteMutation,
   useApiUserProfileImageUpdateMutation,
 } from "../../../hooks/useApiUserInfo";
 import { useOpenModalParam } from "../../../hooks/useModalFunctions";
 import useConfirmationDialog from "../../../hooks/useConfirmactionDialog";
 
-import ImageUrlLoaderUtil from "../../utils/ImageUrlLoader.Util";
 import ButtonFileUploadUiComponent from "../../UI/ButtonFileUpload.Ui.Component";
 import ButtonActionSecondaryUiComponent from "../../UI/ButtonActionSecondary.Ui.Component";
+import UserProfileImageComponent from "../../user/UserProfileImage.Component";
 
 export default function UserProfileImageViewModalComponent() {
   const { data: userInfo } = useApiUserInfoFetch();
 
   const { requestConfirmation } = useConfirmationDialog();
 
-  const { isLoading, mutate: updateProfileImage } =
-    useApiUserProfileImageUpdateMutation();
-
   const { handleImageSelect } = useFileHandling(
     useOpenModalParam(UserModals.userProfileImageUpdatePreviewModal.name)
   );
+
+  const { isLoading, mutate: deleteProfileImage } =
+    useApiUserProfileImageDeleteMutation();
 
   const handleProfileDelete = async () => {
     try {
@@ -33,11 +34,7 @@ export default function UserProfileImageViewModalComponent() {
       );
 
       if (response) {
-        const formData = new FormData();
-        formData.append("_method", "PATCH");
-        formData.append("profile_image", "");
-
-        updateProfileImage(formData);
+        deleteProfileImage();
       }
     } catch (error) {
       console.error("An error occurred while deleting the profile:", error);
@@ -48,20 +45,21 @@ export default function UserProfileImageViewModalComponent() {
     <Fragment>
       <div className="flex justify-center">
         <div className="w-64 h-64 mt-5 overflow-hidden rounded-full">
-          <ImageUrlLoaderUtil
-            imageUrl={userInfo?.profile_image}
-            alt="user profile image"
-          />
+          <UserProfileImageComponent imageUrl={userInfo?.profile_image} />
         </div>
       </div>
 
       <div className="flex justify-between p-5">
-        <ButtonActionSecondaryUiComponent
-          text="Delete"
-          loadingText="Deleting"
-          onClick={handleProfileDelete}
-          isSubmitting={isLoading}
-        />
+        {userInfo?.profile_image ? (
+          <ButtonActionSecondaryUiComponent
+            text="Delete"
+            loadingText="Deleting"
+            onClick={handleProfileDelete}
+            isSubmitting={isLoading}
+          />
+        ) : (
+          ""
+        )}
 
         <ButtonFileUploadUiComponent
           title="Change Image"

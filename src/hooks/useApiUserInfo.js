@@ -8,6 +8,8 @@ import {
   apiUserInfoUpdate,
   apiUserCoverImageUpdate,
   apiUserProfileImageUpdate,
+  apiUserProfileImageDelete,
+  apiUserCoverImageDelete,
 } from "../services/api/apiUserInfo";
 import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
@@ -82,6 +84,24 @@ export const useApiUserCoverImageUpdateMutation = () => {
   return useApiMutation(
     apiUserCoverImageUpdate,
     "Cover Image Updated Successfully.",
+    "useApiUserCoverImageUpdateMutation"
+  );
+};
+
+/* ----------------------------------------------------------- */
+export const useApiUserProfileImageDeleteMutation = () => {
+  return useApiMutation(
+    apiUserProfileImageDelete,
+    "Profile Image Deleted Successfully.",
+    "useApiUserProfileImageUpdateMutation"
+  );
+};
+
+/* ----------------------------------------------------------- */
+export const useApiUserCoverImageDeleteMutation = () => {
+  return useApiMutation(
+    apiUserCoverImageDelete,
+    "Cover Image Deleted Successfully.",
     "useApiUserCoverImageUpdateMutation"
   );
 };

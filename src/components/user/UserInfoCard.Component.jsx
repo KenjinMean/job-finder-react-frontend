@@ -15,6 +15,9 @@ import LocationTagUiComponent from "../UI/LocationTag.Ui.Component";
 import ButtonActionUiComponent from "../UI/ButtonAction.Ui.Component";
 import ClickableLinkedImageUiComponent from "../UI/ClickableLinkedImage.Ui.Component";
 import { authRoutes } from "../../constants/RoutesPath.Constants";
+import UserCoverImageComponent from "./UserCoverImage.Component";
+import DefaultCoverImageComponent from "./DefaultCoverImage.Component";
+import UserProfileImageComponent from "./UserProfileImage.Component";
 
 export default function UserInfoCardComponent() {
   const navigate = useNavigate();
@@ -39,18 +42,33 @@ export default function UserInfoCardComponent() {
   return (
     <section className="relative w-full overflow-hidden border border-border-100 sm:rounded-lg bg-background-gray_50 text-content-black">
       {/* view Cover Image */}
-      <ClickableLinkedImageUiComponent
-        imagePathUrl={userInfo?.cover_image}
+      <Link
         to={useOpenModalParam(UserModals.userCoverImageViewModal.name)}
         className="block w-full h-36 sm:h-48 "
-      />
+      >
+        <UserCoverImageComponent imageUrl={userInfo?.cover_image} />
+      </Link>
+
+      {/* <ClickableLinkedImageUiComponent
+        imagePathUrl={userInfo?.cover_image}
+        fallbackImage={<DefaultCoverImageComponent />}
+        to={useOpenModalParam(UserModals.userCoverImageViewModal.name)}
+        className="block w-full h-36 sm:h-48 "
+      /> */}
 
       {/* view Profile Image */}
-      <ClickableLinkedImageUiComponent
-        imagePathUrl={userInfo?.profile_image}
+      <Link
         to={useOpenModalParam(UserModals.userProfileImageViewModal.name)}
         className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-border-100"
-      />
+      >
+        <UserProfileImageComponent imageUrl={userInfo?.profile_image} />
+      </Link>
+      {/* <ClickableLinkedImageUiComponent
+        imagePathUrl={userInfo?.profile_image}
+        fallbackImage={<DefaultCoverImageComponent />}
+        to={useOpenModalParam(UserModals.userProfileImageViewModal.name)}
+        className="absolute z-10 w-32 h-32 overflow-hidden border-4 rounded-full sm:w-40 sm:h-40 top-20 left-5 border-border-100"
+      /> */}
 
       <div className="relative p-5">
         <div className="flex flex-wrap items-center mt-10 sm:gap-5">

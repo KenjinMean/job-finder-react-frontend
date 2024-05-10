@@ -1,5 +1,5 @@
 // SOURCE for dropdown menu: https://headlessui.com/react/menu
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -11,7 +11,7 @@ import { grow } from "../../constants/animationVariants.Constants";
 import { useApiAuthLogout } from "../../hooks/useApiAuth";
 import { useUserStore } from "../../services/state/UserStore";
 
-import ImageUrlLoaderUtil from "../utils/ImageUrlLoader.Util";
+import UserProfileImageComponent from "../user/UserProfileImage.Component";
 
 export default function ProfileDropdownMenuUiComponent() {
   const { userInfo } = useUserStore();
@@ -29,7 +29,7 @@ export default function ProfileDropdownMenuUiComponent() {
             className="flex w-12 h-12 mr-3 overflow-hidden text-sm rounded-full sm:mr-0 focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           >
             {userInfo && (
-              <ImageUrlLoaderUtil imageUrl={userInfo?.profile_image} />
+              <UserProfileImageComponent imageUrl={userInfo?.profile_image} />
             )}
           </Menu.Button>{" "}
           <AnimatePresence mode="wait">

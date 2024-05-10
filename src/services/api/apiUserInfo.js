@@ -21,3 +21,13 @@ export const apiUserProfileImageUpdate = async (payload) => {
 export const apiUserCoverImageUpdate = async (payload) => {
   return await axiosClient.post(`${userInfoBaseUrl}/cover-image`, payload);
 };
+
+/* ----------------------------------------------------------- */
+export const apiUserProfileImageDelete = async () => {
+  return await axiosClient.delete(`${userInfoBaseUrl}/profile-image`);
+};
+
+/* ----------------------------------------------------------- */
+export const apiUserCoverImageDelete = async () => {
+  return await axiosClient.delete(`${userInfoBaseUrl}/cover-image`);
+};
