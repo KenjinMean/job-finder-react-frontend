@@ -4,3 +4,4 @@
 - disable submit button after submitting on otp submit
 - if error is 422 and 401 on otp submit it redirects to user profile page, we just need to show error either on the form or toast without exiting the page
 - inject server errors on toast notification or customize it.
+- todo from dev-branch
