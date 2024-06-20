@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "@mui/material";
+import { blue } from "@mui/material/colors";
 
 export default function SearchBarUiComponent({
   id,
@@ -44,7 +46,25 @@ export default function SearchBarUiComponent({
       </div>
 
       <div className="sm:absolute end-2.5 bottom-2.5 flex flex-col gap-2 mt-2 sm:flex-row">
-        <button
+        <Button
+          onClick={handleButtonClear}
+          sx={{
+            "&:hover": { bgcolor: blue[200] },
+          }}
+        >
+          clear
+        </Button>
+        <Button
+          variant="contained"
+          disableElevation
+          onClick={handleSearch}
+          sx={{
+            "&:hover": { bgcolor: blue[200] },
+          }}
+        >
+          search
+        </Button>
+        {/* <button
           type="submit"
           className="px-4 py-3 text-sm font-medium transition-all rounded-lg sm:py-2 text-content-black_inverted hover:text-content-black bg-accent-blue600 hover:bg-accent-purple_inverted focus:ring-4 focus:outline-none focus:ring-accent-blue500"
           onClick={handleButtonClear}
@@ -57,7 +77,7 @@ export default function SearchBarUiComponent({
           onClick={handleSearch}
         >
           Search
-        </button>
+        </button> */}
       </div>
     </div>
   );
