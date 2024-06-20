@@ -102,6 +102,7 @@
 - [![ReactRouter][React.Router]][React-Router-url]
 - [![ReactHookForm][React.Hook.Form]][React-Form-url]
 - [![TailwindCSS][TailwindCSS]][TailwindCSS-url]
+- [![MaterialUi][MaterialUI]][MaterialUI-url]
 - [![Framer][Framer]][Framer-url]
 - [Zustand](https://zustand-demo.pmnd.rs/)
 
@@ -134,27 +135,11 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/KenjinMean/job-finder-react-frontend.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
-   ```
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 
 ## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -248,7 +233,7 @@ Project Link: [https://github.com/KenjinMean/job-finder-react-frontend](https://
 [issues-shield]: https://img.shields.io/github/issues/KenjinMean/job-finder-react-frontend.svg?style=for-the-badge
 [issues-url]: https://github.com/KenjinMean/job-finder-react-frontend/issues
 [license-shield]: https://img.shields.io/github/license/KenjinMean/job-finder-react-frontend.svg?style=for-the-badge
-[license-url]: https://github.com/KenjinMean/job-finder-react-frontend/blob/master/LICENSE.txt
+[license-url]: https://github.com/KenjinMean/job-finder-react-frontend/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/genesis-saquibal-9b99a5245/
 [product-screenshot]: images/screenshot.png
@@ -262,14 +247,6 @@ Project Link: [https://github.com/KenjinMean/job-finder-react-frontend](https://
 [React-Router-url]: https://reactrouter.com/en/main
 [React.Hook.Form]: https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white
 [React-Form-url]: https://react-hook-form.com/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
@@ -280,3 +257,5 @@ Project Link: [https://github.com/KenjinMean/job-finder-react-frontend](https://
 [Framer-url]: https://www.framer.com/motion/
 [Vite]: https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white
 [Vite-url]: https://vitejs.dev/
+[MaterialUI]: https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white
+[MaterialUI-url]: https://mui.com/
