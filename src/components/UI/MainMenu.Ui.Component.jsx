@@ -11,6 +11,7 @@ import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
 import ButtonClosePrimaryUiComponent from "./ButtonClosePrimary.Ui.Component";
+import ThemeToggleSwitch from "./ThemeToggleSwitch/ThemeToggleSwitch";
 
 const MainMenuUiComponent = React.forwardRef(
   ({ id, isMenuOpen, closeMenu, ...restProps }, ref) => {
@@ -43,7 +44,7 @@ const MainMenuUiComponent = React.forwardRef(
               />
             </motion.li>
 
-            <motion.li
+            {/* <motion.li
               role="menuitem"
               className="w-full font-semibold hover:text-accent-blue500"
               whileHover={{ scale: 1.1 }}
@@ -51,9 +52,9 @@ const MainMenuUiComponent = React.forwardRef(
               <a href="#" className="p-2">
                 About
               </a>
-            </motion.li>
+            </motion.li> */}
 
-            <motion.li
+            {/* <motion.li
               className="w-full font-semibold hover:text-accent-blue500"
               whileHover={{ scale: 1.1 }}
               role="menuitem"
@@ -64,7 +65,9 @@ const MainMenuUiComponent = React.forwardRef(
               >
                 Options
               </Link>
-            </motion.li>
+            </motion.li> */}
+
+            <ThemeToggleSwitch />
 
             {!token && (
               <motion.li

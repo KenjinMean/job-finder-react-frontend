@@ -12,6 +12,7 @@ import { ThemeProvider } from "./ThemeProvider";
 import GlobalModalProvider from "./GlobalModalProvider";
 import AuthProviderProvider from "./AuthProvider.Provider";
 import { QueryBoundaries } from "../../components/utils/QueryBoundaries.Util";
+import MuiThemeProvider from "./MuiThemeProvider";
 
 export default function AppProviders({ children }) {
   const scrollRestorationGetKey = (location, matches) => {
@@ -22,16 +23,18 @@ export default function AppProviders({ children }) {
   return (
     <Fragment>
       <QueryBoundaries>
-        <ThemeProvider>
-          <AuthProviderProvider>
-            <ScrollRestoration getKey={scrollRestorationGetKey} />
-            {children}
-            <DialogProvider />
-            <GlobalModalProvider />
-          </AuthProviderProvider>
-          <ToastProvider />
-          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-        </ThemeProvider>
+        <MuiThemeProvider>
+          <ThemeProvider>
+            <AuthProviderProvider>
+              <ScrollRestoration getKey={scrollRestorationGetKey} />
+              {children}
+              <DialogProvider />
+              <GlobalModalProvider />
+            </AuthProviderProvider>
+            <ToastProvider />
+            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+          </ThemeProvider>
+        </MuiThemeProvider>
       </QueryBoundaries>
     </Fragment>
   );
