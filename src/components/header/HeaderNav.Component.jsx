@@ -45,7 +45,7 @@ export default function HeaderNavComponent() {
 
   return (
     <nav className="relative bg-transparent">
-      <div className="flex flex-wrap items-center justify-between max-w-screen-xl gap-5 mx-auto">
+      <div className="flex flex-wrap items-center justify-between max-w-screen-xl gap-2 mx-auto">
         {/* App Logo */}
         <Link
           to={jobRoutes.jobListingPage}
