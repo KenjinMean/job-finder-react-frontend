@@ -1,13 +1,9 @@
 import React, { Suspense, lazy, useMemo, forwardRef } from "react";
 import { Link } from "react-router-dom";
 
-import { dialogNames } from "../../constants/DialogNames.Constants";
-
-import { useOpenDialog } from "../../hooks/useModalFunctions";
-
+import EllipsisMenu from "./EllipsesMenu/EllipsisMenu";
 import JobCardDetailsComponent from "./JobCardDetails.Component";
 import { jobRoutes } from "../../constants/RoutesPath.Constants";
-import ButtonMenuUiComponent from "../UI/ButtonMenu.Ui.Component";
 import ImageSkeletonUtil from "../utils/LoadersSpinners/ImageSkeleton.Util";
 
 const JobCardComponent = forwardRef(({ job }, ref) => {
@@ -18,8 +14,6 @@ const JobCardComponent = forwardRef(({ job }, ref) => {
   const memoizedCompanyLogo = useMemo(() => {
     return <CompanyLogo imageUrl={job?.company?.company_logo} />;
   }, [job?.company?.company_logo]);
-
-  const openDialog = useOpenDialog();
 
   return (
     <article ref={ref} name={`${job?.title}`} className="relative">
@@ -36,14 +30,9 @@ const JobCardComponent = forwardRef(({ job }, ref) => {
         <JobCardDetailsComponent job={job} />
       </Link>
 
-      <ButtonMenuUiComponent
-        className="absolute top-5 right-5"
-        name={`button-${job?.title}`}
-        id={`button-${job?.title}`}
-        role="button"
-        aria-label={`menu for ${job?.title}`}
-        onClick={() => openDialog(dialogNames.notImplementedDialog.name)}
-      />
+      <div className="absolute top-3 right-3">
+        <EllipsisMenu job={job} />
+      </div>
     </article>
   );
 });
