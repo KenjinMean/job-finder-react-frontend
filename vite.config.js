@@ -8,6 +8,7 @@ export default defineConfig({
   // deploy source https://www.youtube.com/watch?v=uEEj2c3_ydg
   // base: baseUrl,
    build: {
+    outDir: 'build', // Ensure this matches your expected output directory
     rollupOptions: {
       external: ['@mui/icons-material']
     }
