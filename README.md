@@ -122,26 +122,47 @@
 
 This section and beyond is still a placeholders and under construction, please bear with me. Thank you :D
 
-To get a local copy up and running follow these simple example steps.
+To get your local environment up and running with this project, follow these steps:
 
-### Prerequisites
+## Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Before you begin, make sure you have the following software installed:
 
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
+- **[Node.js](https://nodejs.org/)**: This project requires Node.js version **18.12.1**. To manage Node.js versions, it's recommended to use [nvm (Node Version Manager)](https://github.com/nvm-sh/nvm). If you haven't installed nvm, you can follow the [nvm installation instructions](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ### Installation
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+To set up and run this project locally, follow these steps:
 
-<!-- USAGE EXAMPLES -->
+1. **Clone the Repository:**
 
-## Usage
+   ```sh
+    git clone https://github.com/KenjinMean/job-finder-react-frontend.git
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+   ```
+
+2. **Navigate inside job-finder-react-frontend:**
+
+   ```sh
+    cd job-finder-react-frontend
+   ```
+
+3. **Install Dependencies:**
+
+   ```sh
+    npm install
+   ```
+
+4. **Run the Development Server:**
+
+   ```sh
+    npm run dev
+   ```
+
+5. **Build for Production:**
+   ```sh
+    npm run build
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
