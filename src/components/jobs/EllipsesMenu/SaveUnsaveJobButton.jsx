@@ -1,8 +1,6 @@
-import React from "react";
-
+import React, { useMemo, useCallback } from "react";
 import { useTheme } from "@emotion/react";
 import { MenuItem, ListItemIcon, ListItemText } from "@mui/material";
-
 import {
   Bookmark as BookmarkIcon,
   BookmarkRemove as BookmarkRemoveIcon,
@@ -20,32 +18,47 @@ export default function SaveUnsaveJobButton({ job, onClose, disabled }) {
   const { data: userSavedJobs = [], isLoading: isLoadingSavedJobs } =
     useApiUserSaveJobsFetch();
 
-  const userSavedJobsData = userSavedJobs ? userSavedJobs : [];
+  const saveJobMutation = useApiUserSaveJobMutation();
+  const unSaveJobMutation = useApiUserUnsaveJobMutation();
 
-  const { isLoading: isSavingJob, mutate: saveJobMutation } =
-    useApiUserSaveJobMutation();
+  const isJobAlreadySaved = useMemo(() => {
+    return (
+      Array.isArray(userSavedJobs) &&
+      userSavedJobs.some((jobEntry) => jobEntry.id === job.id)
+    );
+  }, [userSavedJobs, job.id]);
 
-  const { isLoading: isUnSavingJob, mutate: unSaveJobMutation } =
-    useApiUserUnsaveJobMutation();
+  const isLoading =
+    isLoadingSavedJobs ||
+    saveJobMutation.isLoading ||
+    unSaveJobMutation.isLoading;
 
-  const handleSaveJobsClick = () => {
-    saveJobMutation(job.id);
-    onClose();
-  };
-
-  const handleUnsaveJobClick = () => {
-    unSaveJobMutation(job.id);
-    onClose();
-  };
-
-  const isJobAlreadySaved = userSavedJobsData.some(
-    (jobEntry) => jobEntry.id === job.id
-  );
+  const handleSaveUnsaveJobClick = useCallback(() => {
+    if (isJobAlreadySaved) {
+      unSaveJobMutation.mutate(job.id, {
+        onSuccess: () => {
+          onClose();
+        },
+        onError: (error) => {
+          console.error("Error unsaving job:", error);
+        },
+      });
+    } else {
+      saveJobMutation.mutate(job.id, {
+        onSuccess: () => {
+          onClose();
+        },
+        onError: (error) => {
+          console.error("Error saving job:", error);
+        },
+      });
+    }
+  }, [isJobAlreadySaved, job.id, saveJobMutation, unSaveJobMutation, onClose]);
 
   return (
     <MenuItem
-      onClick={isJobAlreadySaved ? handleUnsaveJobClick : handleSaveJobsClick}
-      disabled={isSavingJob || isUnSavingJob}
+      onClick={handleSaveUnsaveJobClick}
+      disabled={isLoading || disabled}
     >
       <ListItemIcon>
         {isJobAlreadySaved ? (
