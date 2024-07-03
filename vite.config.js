@@ -7,9 +7,10 @@ export default defineConfig({
   plugins: [react()],
   // deploy source https://www.youtube.com/watch?v=uEEj2c3_ydg
   // base: baseUrl,
-   build: {
+  build: {
+    outDir: "build",
     rollupOptions: {
-      external: ['@mui/icons-material']
-    }
-  }
+      external: ["@mui/icons-material"],
+    },
+  },
 });
