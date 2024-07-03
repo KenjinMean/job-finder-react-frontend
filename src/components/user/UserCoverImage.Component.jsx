@@ -6,7 +6,7 @@ export default function UserCoverImageComponent({ imageUrl, alt = "" }) {
   const url = imageUrl
     ? imageUrl.startsWith("http://") || imageUrl.startsWith("https://")
       ? imageUrl
-      : `${import.meta.env.VITE_APP_LARAVEL_API_URL}/${imageUrl}`
+      : `${import.meta.env.VITE_JOB_FINDER_API_URL}/${imageUrl}`
     : "";
 
   return (

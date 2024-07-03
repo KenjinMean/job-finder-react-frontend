@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: `${import.meta.env.VITE_APP_LARAVEL_API_URL}/api/`,
+  baseURL: `${import.meta.env.VITE_JOB_FINDER_API_URL}/api/`,
   headers: {
     common: {
       "Content-Type": "multipart/form-data",
