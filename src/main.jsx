@@ -1,10 +1,11 @@
 import "./index.css";
-import App from "./App";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { QueryBoundaries } from "./components/utils/QueryBoundaries.Util";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -21,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryBoundaries>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <RouterProvider router={router} />
       </QueryClientProvider>
     </QueryBoundaries>
   </React.StrictMode>
