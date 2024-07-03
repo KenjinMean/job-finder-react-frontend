@@ -1,0 +1,1 @@
+import{j as o,aP as e}from"./index-41237f89.js";const l="/assets/fallbackCompanyImage-58ab015e.png";function n({imageUrl:t,alt:a=""}){const s=t?t.startsWith("http://")||t.startsWith("https://")?t:`https://api.job-finder.cloud/${t}`:l;return o.jsx(e,{src:s,alt:a,height:"100%",width:"100%",className:"block object-cover w-full h-full"})}export{n as default};
