@@ -4,9 +4,11 @@ import { useTheme } from "@emotion/react";
 import MenuItem from "@mui/material/MenuItem";
 import { IconButton, ListItemIcon, ListItemText } from "@mui/material";
 
-import FlagIcon from "@mui/icons-material/Flag";
-import BlockIcon from "@mui/icons-material/Block";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import {
+  Flag as FlagIcon,
+  Block as BlockIcon,
+  MoreHoriz as MoreHorizIcon,
+} from "@mui/icons-material";
 
 import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
 
@@ -15,7 +17,7 @@ import LoginToSaveButton from "./LoginToSaveButton";
 
 export default function EllipsisMenu({ job }) {
   const theme = useTheme();
-  const { isUserloggedIn: isUserloggedIn } = useAuthenticationStore();
+  const { token: isUserloggedIn } = useAuthenticationStore();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 

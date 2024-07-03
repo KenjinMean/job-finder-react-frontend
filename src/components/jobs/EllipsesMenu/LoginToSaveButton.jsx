@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useTheme } from "@emotion/react";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { Bookmark as BookmarkIcon } from "@mui/icons-material";
 import { ListItemIcon, ListItemText, MenuItem } from "@mui/material";
 
 import RedirectToLoginModal from "./RedirectToLoginModal";

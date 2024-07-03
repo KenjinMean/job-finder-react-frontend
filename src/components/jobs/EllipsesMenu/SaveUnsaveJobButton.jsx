@@ -1,9 +1,12 @@
 import React from "react";
 
 import { useTheme } from "@emotion/react";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { MenuItem, ListItemIcon, ListItemText } from "@mui/material";
-import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+
+import {
+  Bookmark as BookmarkIcon,
+  BookmarkRemove as BookmarkRemoveIcon,
+} from "@mui/icons-material";
 
 import {
   useApiUserSaveJobMutation,
