@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [18.12.1]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -33,15 +33,15 @@ jobs:
       - name: Check build output
         run: ls -la build
 
-      - name: Commit and push to gh-pages
+      - name: Deploy to gh-pages
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           git fetch origin
-          git switch --orphan gh-pages
-          git rm -rf .
+          git switch gh-pages || git switch --orphan gh-pages
+          git rm -rf . || true
           cp -r build/* .
           git add .
-          git commit -m "Deploy to gh-pages"
+          git commit -m "Deploy to gh-pages" || echo "No changes to commit"
           git push --force origin gh-pages
