@@ -11,6 +11,7 @@ import MainMenuUiComponent from "../UI/MainMenu.Ui.Component.jsx";
 import HamburgerMenuUiComponent from "../UI/HamburgerMenu.Ui.Component";
 import ProfileDropdownMenuUiComponent from "../UI/ProfileDropdownMenu.Ui.Component";
 import LazyImageUtil from "../utils/LazyImage.Util.jsx";
+import UserAccountMenu from "./UserAccountMenu/UserAccountMenu.jsx";
 
 export default function HeaderNavComponent() {
   const mainMenuRef = useRef(null);
@@ -61,12 +62,7 @@ export default function HeaderNavComponent() {
 
         {/* Sub Navigations */}
         <ul className={`flex items-center  ${token ? "sm:order-2" : ""}`}>
-          {/* Profile Dropdown menu */}
-          {token && (
-            <li>
-              <ProfileDropdownMenuUiComponent />
-            </li>
-          )}
+          {token && <UserAccountMenu />}
           <li className="sm:hidden">
             <HamburgerMenuUiComponent
               ref={mainMenuButtonRef}
