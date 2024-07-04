@@ -50,20 +50,18 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function ThemeToggleSwitch() {
-  const { theme, setTheme, initializeSystemTheme } = useThemeStore();
+  const { theme, setTheme } = useThemeStore();
 
   const handleChange = (event) => {
     setTheme(event.target.checked ? "dark" : "light");
   };
 
-  useEffect(() => {
-    // Initialize the theme based on system preference and listen for changes
-    const cleanup = initializeSystemTheme();
-    return cleanup;
-  }, [initializeSystemTheme]);
-
   return (
     <FormControlLabel
+      sx={{
+        width: 62,
+        margin: 0,
+      }}
       control={
         <MaterialUISwitch checked={theme === "dark"} onChange={handleChange} />
       }

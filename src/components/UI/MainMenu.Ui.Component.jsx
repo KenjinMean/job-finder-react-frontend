@@ -4,14 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { authRoutes } from "../../constants/RoutesPath.Constants";
 import { grow } from "../../constants/animationVariants.Constants";
-import { GlobalModals } from "../../constants/ModalNames.Constants";
 
 import useGetDeviceWidth from "../../hooks/useGetDeviceWidth";
-import { useOpenModalParam } from "../../hooks/useModalFunctions";
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";
 
-import ButtonClosePrimaryUiComponent from "./ButtonClosePrimary.Ui.Component";
 import ThemeToggleSwitch from "./ThemeToggleSwitch/ThemeToggleSwitch";
+import ButtonClosePrimaryUiComponent from "./ButtonClosePrimary.Ui.Component";
 
 const MainMenuUiComponent = React.forwardRef(
   ({ id, isMenuOpen, closeMenu, ...restProps }, ref) => {
@@ -33,7 +31,7 @@ const MainMenuUiComponent = React.forwardRef(
             id={id}
             ref={ref}
             {...restProps}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center font-medium text-center bg-background-gray_50 text-content-black sm:relative sm:ml-auto sm:flex-row"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-5 font-medium text-center sm:gap-0 bg-background-gray_50 text-content-black sm:relative sm:ml-auto sm:flex-row"
           >
             {/* close main menu on mobile */}
             <motion.li className="absolute top-5 right-5 sm:hidden">
@@ -43,29 +41,6 @@ const MainMenuUiComponent = React.forwardRef(
                 aria-controls={id}
               />
             </motion.li>
-
-            {/* <motion.li
-              role="menuitem"
-              className="w-full font-semibold hover:text-accent-blue500"
-              whileHover={{ scale: 1.1 }}
-            >
-              <a href="#" className="p-2">
-                About
-              </a>
-            </motion.li> */}
-
-            {/* <motion.li
-              className="w-full font-semibold hover:text-accent-blue500"
-              whileHover={{ scale: 1.1 }}
-              role="menuitem"
-            >
-              <Link
-                to={useOpenModalParam(GlobalModals.settingsModal.name)}
-                className="p-2"
-              >
-                Options
-              </Link>
-            </motion.li> */}
 
             <ThemeToggleSwitch />
 
