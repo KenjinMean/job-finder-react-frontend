@@ -10,6 +10,7 @@ import Footer from "../components/footer/Footer.jsx";
 import AppProviders from "../services/providers/AppProviders.jsx";
 import HeaderComponent from "../components/header/Header.Component.jsx";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import CustomConsoleMessage from "../components/utils/CustomConsoleMessage/CustomConsoleMessage.jsx";
 
 export default function AppLayout() {
   // lock app scrolling when a modal is active
@@ -56,6 +57,7 @@ export default function AppLayout() {
           ref={elementToScrollLockRef}
           className="flex flex-col min-h-screen gap-2 overflow-hidden sm:gap-5 bg-background-white font-primary text-content-black"
         >
+          <CustomConsoleMessage />
           {!isAuthRoute && <HeaderComponent />}
           <Outlet />
           {!(isAuthRoute || isJobListing || isSearchPage) && <Footer />}
