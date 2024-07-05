@@ -13,6 +13,7 @@ import { useUserStore } from "../../services/state/UserStore";
 
 import UserProfileImageComponent from "../user/UserProfileImage.Component";
 
+// can rename this to userMainProfileDropdownMenu or simillar
 export default function ProfileDropdownMenuUiComponent() {
   const { userInfo } = useUserStore();
   const { mutate: logoutFn } = useApiAuthLogout();
@@ -77,7 +78,14 @@ export default function ProfileDropdownMenuUiComponent() {
 
                 <Menu.Item
                   as="button"
-                  className="w-full px-5 py-1 mt-5 text-lg sm:text-left sm:text-content-black hover:text-accent-200 hover:underline"
+                  className="w-full py-1 mt-5 text-lg sm:text-left sm:text-content-black hover:text-accent-200 hover:underline"
+                  onClick={() => {}}
+                >
+                  Saved jobs
+                </Menu.Item>
+                <Menu.Item
+                  as="button"
+                  className="w-full py-1 text-lg sm:text-left sm:text-content-black hover:text-accent-200 hover:underline"
                   onClick={() => logoutFn()}
                 >
                   Logout

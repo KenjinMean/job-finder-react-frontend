@@ -19,6 +19,7 @@ type AuthRoutes = {
 type UserRoutes = {
   userProfilePage: string;
   userEditSkillPage: string;
+  userSavedJobsPage: string;
 };
 
 type JobRoutes = {
@@ -48,6 +49,7 @@ const job: JobRoutes = {
 const user: UserRoutes = {
   userProfilePage: "",
   userEditSkillPage: "/edit-skills",
+  userSavedJobsPage: "/saved-jobs"
 };
 
 // build routes on typescript to take advantage of object suggestion when accessing routes

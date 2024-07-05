@@ -1,21 +1,16 @@
-import {
-  useInfiniteQuery,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { toast } from "react-toastify";
+
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import {
-  apiUserSaveJobsFetch,
   apiUserSaveJob,
   apiUserUnsaveJob,
+  apiUserSaveJobsFetch,
 } from "../services/api/apiUserSaveJobs";
 
 import { devError } from "../utils/devError";
 import { handleError } from "../utils/handleError";
 import { toMilliseconds } from "../utils/toMilliseconds";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useUserStore } from "../services/state/UserStore";
 
 // FETCH USER SAVED JOBS
@@ -43,6 +38,7 @@ export const useApiUserSaveJobsFetch = () => {
         throw { code: error.response.status };
       }
     },
+    suspense: true,
     select: (data) => data.data,
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(10, "mins"),

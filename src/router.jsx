@@ -32,6 +32,7 @@ import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
 
 import UserProfilePage from "./pages/UserProfile.Page";
 import UserSkillEditPage from "./pages/UserSkillEdit.Page.jsx";
+import UserSavedJobsPage from "./pages/UserSavedJobs.Page.jsx";
 const router = createBrowserRouter([
   {
     path: "",
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
           {
             path: userRoutes.userEditSkillPage,
             element: <UserSkillEditPage />,
+          },
+          {
+            path: userRoutes.userSavedJobsPage,
+            element: <UserSavedJobsPage />,
           },
         ],
       },
