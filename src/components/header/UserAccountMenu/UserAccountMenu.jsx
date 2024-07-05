@@ -23,6 +23,7 @@ import MenuLegalSection from "./MenuLegalSection";
 import { useApiAuthLogout } from "../../../hooks/useApiAuth";
 import { useUserStore } from "../../../services/state/UserStore";
 import { userRoutes } from "../../../constants/RoutesPath.Constants";
+import { getFullImageUrl } from "../../../utils/getFullImageUrl";
 
 export default function UserAccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -36,6 +37,8 @@ export default function UserAccountMenu() {
 
   const { userInfo } = useUserStore();
   const { mutate: logoutFn } = useApiAuthLogout();
+
+  // bug on build: user profile image is not loaded
 
   return (
     <React.Fragment>
@@ -56,7 +59,7 @@ export default function UserAccountMenu() {
           >
             <Avatar
               sx={{ width: 55, height: 55 }}
-              src={userInfo?.profile_image}
+              src={getFullImageUrl(userInfo?.profile_image)}
             ></Avatar>
           </IconButton>
         </Tooltip>
@@ -108,7 +111,7 @@ export default function UserAccountMenu() {
           {userInfo?.first_name} {userInfo?.last_name}
         </Typography>
         <MenuItem component={Link} to="/user">
-          <Avatar src={userInfo?.profile_image} /> Profile
+          <Avatar src={getFullImageUrl(userInfo?.profile_image)} /> Profile
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to={userRoutes.userSavedJobsPage}>
