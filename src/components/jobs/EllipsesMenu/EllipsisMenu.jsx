@@ -33,6 +33,7 @@ export default function EllipsisMenu({ job }) {
     <div>
       <IconButton
         id="basic-button"
+        aria-label={`Open menu for ${job.title}`}
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}

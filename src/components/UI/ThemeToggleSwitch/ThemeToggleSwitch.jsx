@@ -1,5 +1,5 @@
+import React from "react";
 import { FormControlLabel, Switch, styled } from "@mui/material";
-import React, { useEffect } from "react";
 import { useThemeStore } from "../../../services/state/ThemeStore";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -52,7 +52,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 export default function ThemeToggleSwitch() {
   const { theme, setTheme } = useThemeStore();
 
-  const handleChange = (event) => {
+  const handleToggleSwitch = (event) => {
     setTheme(event.target.checked ? "dark" : "light");
   };
 
@@ -63,7 +63,11 @@ export default function ThemeToggleSwitch() {
         margin: 0,
       }}
       control={
-        <MaterialUISwitch checked={theme === "dark"} onChange={handleChange} />
+        <MaterialUISwitch
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          checked={theme === "dark"}
+          onChange={handleToggleSwitch}
+        />
       }
       label={<span className="visually-hidden">MUI switch</span>}
     />
