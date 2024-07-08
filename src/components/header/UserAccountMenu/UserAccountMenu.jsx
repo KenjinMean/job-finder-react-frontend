@@ -1,29 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import {
-  Box,
-  Menu,
-  Avatar,
-  Divider,
-  Tooltip,
-  MenuItem,
-  IconButton,
-  Typography,
-  ListItemIcon,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Menu from "@mui/material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Divider from "@mui/material/Divider";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import ListItemIcon from "@mui/material/ListItemIcon";
 
-import {
-  Logout,
-  Settings,
-  BookmarkAdd as BookmarkAddIcon,
-} from "@mui/icons-material";
+import Logout from "@mui/icons-material/Logout";
+import Settings from "@mui/icons-material/Settings";
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
 
-import MenuLegalSection from "./MenuLegalSection";
 import { useApiAuthLogout } from "../../../hooks/useApiAuth";
 import { useUserStore } from "../../../services/state/UserStore";
-import { userRoutes } from "../../../constants/RoutesPath.Constants";
 import { getFullImageUrl } from "../../../utils/getFullImageUrl";
+import { userRoutes } from "../../../constants/RoutesPath.Constants";
+
+import MenuLegalSection from "./MenuLegalSection";
 
 export default function UserAccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);

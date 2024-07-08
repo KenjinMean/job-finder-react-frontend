@@ -1,10 +1,12 @@
 import React, { useMemo, useCallback } from "react";
-import { useTheme } from "@emotion/react";
-import { MenuItem, ListItemIcon, ListItemText } from "@mui/material";
-import {
-  Bookmark as BookmarkIcon,
-  BookmarkRemove as BookmarkRemoveIcon,
-} from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
+
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 
 import {
   useApiUserSaveJobMutation,

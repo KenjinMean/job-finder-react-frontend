@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal, Paper, Typography, Button, useTheme } from "@mui/material";
+
+import Modal from "@mui/material/Modal";
+import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+
+import { useTheme } from "@mui/material/styles";
+
 import { authRoutes } from "../../../constants/RoutesPath.Constants";
 
 export default function RedirectToLoginButton() {

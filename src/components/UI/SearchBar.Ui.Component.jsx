@@ -1,5 +1,7 @@
 import React from "react";
-import { Button } from "@mui/material";
+
+import Button from "@mui/material/Button";
+
 import { blue } from "@mui/material/colors";
 
 export default function SearchBarUiComponent({

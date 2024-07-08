@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Divider, Typography } from "@mui/material";
 
 import JobCardComponent from "../../jobs/JobCard.Component";
 import { useApiUserSaveJobsFetch } from "../../../hooks/useApiUserSaveJobs";

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { styled, alpha, InputBase } from "@mui/material";
-import { Search as SearchIcon } from "@mui/icons-material";
+import { styled, alpha, InputBase } from "@mui/material/styles";
+
+import SearchIcon from "@mui/icons-material/Search";
 import { jobRoutes } from "../../../constants/RoutesPath.Constants";
 
 const SearchComponent = styled("div")(({ theme }) => ({

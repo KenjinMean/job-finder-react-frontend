@@ -5,26 +5,17 @@ import logo from "../../../assets/logo/JobFinderLogo.png";
 import profile from "../../../assets/images/profile.webp";
 
 // import TemporaryDrawer from "../temporaryDrawer/TemporaryDrawer";
+import MuiAppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
-import {
-  AppBar as MuiAppBar,
-  Box,
-  Toolbar,
-  IconButton,
-  Badge,
-  MenuItem,
-  Menu,
-  Avatar,
-  Container,
-  Button,
-  Stack,
-} from "@mui/material";
+import MoreIcon from "@mui/icons-material/MoreVert";
 
-import {
-  Mail as MailIcon,
-  MoreVert as MoreIcon,
-  Notifications as NotificationsIcon,
-} from "@mui/icons-material";
 import MobileMenu from "./MobileMenu";
 import ProfileMenu from "./ProfileMenu";
 import SearchInput from "./SearchInput";
@@ -91,24 +82,6 @@ export default function AppBar() {
 
             {token ? (
               <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                {/* <IconButton
-                  size="large"
-                  aria-label="show 4 new mails"
-                  color="inherit"
-                >
-                  <Badge badgeContent={4} color="error">
-                    <MailIcon />
-                  </Badge>
-                </IconButton>
-                <IconButton
-                  size="large"
-                  aria-label="show 17 new notifications"
-                  color="inherit"
-                >
-                  <Badge badgeContent={17} color="error">
-                    <NotificationsIcon />
-                  </Badge>
-                </IconButton> */}
                 <IconButton
                   size="large"
                   edge="end"

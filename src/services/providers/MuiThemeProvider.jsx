@@ -2,7 +2,7 @@ import React from "react";
 
 import { useThemeStore } from "../state/ThemeStore";
 
-import { ThemeProvider } from "@emotion/react";
+import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline, createTheme } from "@mui/material";
 
 export default function MuiThemeProvider({ children }) {

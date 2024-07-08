@@ -1,7 +1,9 @@
 import React from "react";
 
-import { Box, IconButton } from "@mui/material";
-import { MoreVert as MoreIcon } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+
+import MoreIcon from "@mui/icons-material/MoreVert";
 
 export default function MobileMoreButton() {
   return (

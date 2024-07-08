@@ -1,15 +1,13 @@
-import React, { useCallback, useMemo } from "react";
+import React from "react";
 
-import { useTheme } from "@emotion/react";
-import { Button, Stack, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import { useMediaQuery } from "@mui/material";
 
 import { formatSalary } from "../../../utils/formatSalary";
 import { getElapsedTime } from "../../../utils/getElapsedTime";
-import {
-  useApiUserSaveJobMutation,
-  useApiUserSaveJobsFetch,
-  useApiUserUnsaveJobMutation,
-} from "../../../hooks/useApiUserSaveJobs";
 
 import TagListUiComponent from "../../UI/TagList.Ui.Component";
 import SaveUnsaveJobButton from "./SaveUnsaveJobButton";

@@ -1,14 +1,16 @@
 import * as React from "react";
-import Menu from "@mui/material/Menu";
-import { useTheme } from "@emotion/react";
-import MenuItem from "@mui/material/MenuItem";
-import { IconButton, ListItemIcon, ListItemText } from "@mui/material";
 
-import {
-  Flag as FlagIcon,
-  Block as BlockIcon,
-  MoreHoriz as MoreHorizIcon,
-} from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
+
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+
+import FlagIcon from "@mui/icons-material/Flag";
+import BlockIcon from "@mui/icons-material/Block";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
 
