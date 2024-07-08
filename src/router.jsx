@@ -26,8 +26,8 @@ import OTPRequestPage from "./pages/OTPRequest.Page.jsx";
 import OTPVerificationPage from "./pages/OTPVerification.Page.jsx";
 import AuthProviderCallbackPage from "./pages/AuthProviderCallback.Page.jsx";
 
-import JobDetailspage from "./pages/JobDetails.Page";
 import JobListingPage from "./pages/JobListing.Page.jsx";
+import JobDetailsPage from "./pages/JobDetails/JobDetails.Page.jsx";
 import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
 
 import UserProfilePage from "./pages/UserProfile.Page";
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
           },
           {
             path: `${jobRoutes.jobDetailsPage}:jobSlug`,
-            element: <JobDetailspage />,
+            element: <JobDetailsPage />,
           },
         ],
       },
@@ -124,98 +124,5 @@ const router = createBrowserRouter([
     element: <ErrorPage />,
   },
 ]);
-
-// const router = createBrowserRouter([
-//   {
-//     path: baseUrl,
-//     element: <AppLayout />,
-//     children: [
-//       {
-//         path: "",
-//         element: <Navigate to={`${jobRoutes.jobListingPage}`} />,
-//       },
-//       {
-//         path: jobSubpath,
-//         element: <JobsLayout />,
-//         children: [
-//           {
-//             path: jobRoutes.jobListingPage,
-//             element: <JobListingPage />,
-//           },
-//           {
-//             path: jobRoutes.jobSearchResultPage,
-//             element: <JobSearchResultpage />,
-//           },
-//           {
-//             path: `${jobRoutes.jobDetailsPage}:jobSlug`,
-//             element: <JobDetailspage />,
-//           },
-//         ],
-//       },
-//       {
-//         path: userSubpath,
-//         element: <ProtectedRouteUtil component={<UserLayout />} />,
-//         children: [
-//           {
-//             path: "",
-//             element: <UserProfilePage />,
-//           },
-//           {
-//             path: userRoutes.userEditSkillPage,
-//             element: <UserSkillEditPage />,
-//           },
-//         ],
-//       },
-//       {
-//         path: authSubpath,
-//         element: <AuthLayout />,
-//         children: [
-//           {
-//             path: authSubpath,
-//             element: <Navigate to={`${authRoutes.authLoginPage}}`} />,
-//           },
-//           {
-//             path: authRoutes.authLoginPage,
-//             element: <LoginPage />,
-//           },
-//           {
-//             path: authRoutes.authRegisterPage,
-//             element: <RegisterPage />,
-//           },
-//           {
-//             path: "verify-otp",
-//             element: <OTPVerificationPage />,
-//           },
-//           {
-//             path: "request-otp",
-//             element: <OTPRequestPage />,
-//           },
-//           {
-//             path: "verify-otp-success",
-//             element: <OTPSuccessPage />,
-//           },
-//         ],
-//       },
-//       {
-//         path: authRoutes.authProviderCallbackPage,
-//         element: <AuthProviderCallbackPage />,
-//       },
-
-//       {
-//         path: "component-design",
-//         element: <ComponentDesignView />,
-//       },
-//     ],
-//   },
-
-//   {
-//     path: "*",
-//     element: <ErrorPage error={{ code: "404" }} />,
-//   },
-//   {
-//     path: "error",
-//     element: <ErrorPage />,
-//   },
-// ]);
 
 export default router;

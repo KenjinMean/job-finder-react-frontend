@@ -1,9 +1,9 @@
 import React from "react";
 
 import { motion } from "framer-motion";
-import MaxWidthWrapperUtil from "../MaxWidthWrapper.Util";
+import MaxWidthWrapperUtil from "../../components/utils/MaxWidthWrapper.Util";
 
-export default function JobDetailSkeletonUtil() {
+export default function JobDetailsSkeleton() {
   const containerAnimation = {
     initial: { opacity: 0 },
     animate: { opacity: 1, transition: { duration: 0.5 } },
