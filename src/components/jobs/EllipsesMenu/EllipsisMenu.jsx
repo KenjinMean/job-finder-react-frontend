@@ -12,8 +12,8 @@ import {
 
 import { useAuthenticationStore } from "../../../services/state/AuthenticationStore";
 
-import SaveJobButton from "./SaveUnsaveJobButton";
 import LoginToSaveButton from "./LoginToSaveButton";
+import SaveUnsaveJobButton from "./SaveUnsaveJobButton";
 
 export default function EllipsisMenu({ job }) {
   const theme = useTheme();
@@ -61,7 +61,7 @@ export default function EllipsisMenu({ job }) {
         {!isUserloggedIn ? (
           <LoginToSaveButton />
         ) : (
-          <SaveJobButton job={job} onClose={handleCloseEllipsesMenu} />
+          <SaveUnsaveJobButton job={job} onClose={handleCloseEllipsesMenu} />
         )}
 
         <MenuItem onClick={handleCloseEllipsesMenu}>

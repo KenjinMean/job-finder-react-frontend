@@ -1,6 +1,5 @@
 import React from "react";
-
-export default function JobInformationComponent({ jobDetails }) {
+export default function JobInformation({ jobDetails }) {
   return (
     <div className="flex flex-col gap-5">
       {/* description */}
