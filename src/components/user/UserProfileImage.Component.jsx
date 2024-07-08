@@ -1,18 +1,13 @@
 import React from "react";
 import LazyImageUtil from "../utils/LazyImage.Util";
+import { getFullImageUrl } from "../../utils/getFullImageUrl";
 
 export default function UserProfileImageComponent({ imageUrl, alt = "" }) {
-  const url = imageUrl
-    ? imageUrl.startsWith("http://") || imageUrl.startsWith("https://")
-      ? imageUrl
-      : `${import.meta.env.VITE_JOB_FINDER_API_URL}/${imageUrl}`
-    : "";
-
   return (
     <>
-      {url ? (
+      {imageUrl ? (
         <LazyImageUtil
-          src={url}
+          src={getFullImageUrl(imageUrl)}
           alt={alt}
           height="100%"
           width="100%"
