@@ -50,7 +50,11 @@ const MainMenuUiComponent = React.forwardRef(
                 whileHover={{ scale: 1.1 }}
                 role="menuitem"
               >
-                <Link to={authRoutes.authLoginPage} className="p-2">
+                <Link
+                  to={authRoutes.authLoginPage}
+                  aria-label="Login to your account"
+                  className="p-2"
+                >
                   login
                 </Link>
               </motion.li>
