@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import logo from "../../../assets/logo/JobFinderLogo.png";
+import logo from "../../../assets/logo/JobFinderLogo.webp";
 import profile from "../../../assets/images/profile.webp";
 
 // import TemporaryDrawer from "../temporaryDrawer/TemporaryDrawer";

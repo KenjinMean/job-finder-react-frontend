@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import appLogo from "../../assets/logo/JobFinderLogo.png";
+import appLogo from "../../assets/logo/JobFinderLogo.webp";
 import { jobRoutes } from "../../constants/RoutesPath.Constants";
 
 import { useAuthenticationStore } from "../../services/state/AuthenticationStore";

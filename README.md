@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/KenjinMean/job-finder-react-frontend">
-    <img src="src/assets/logo/JobFinderLogo.png" alt="Logo" height="80">
+    <img src="src/assets/logo/JobFinderLogo.webp" alt="Logo" height="80">
   </a>
 
 <h3 align="center">Job FInder</h3>
