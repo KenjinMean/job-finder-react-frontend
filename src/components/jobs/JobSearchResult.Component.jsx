@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { extractUrlParams } from "../../utils/extractUrlParams";
-import { useApiJobSearchInfiniteFetch } from "../../hooks/useApiJob";
+import { useApiJobsFiltersInfiniteFetch } from "../../hooks/useApiJob";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 import JobCardComponent from "./JobCard.Component";
@@ -14,13 +14,13 @@ export default function JobSearchResultComponent() {
   const params = extractUrlParams(location);
 
   const {
-    data: searchResult,
+    data: jobs,
     refetch,
     isFetching,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useApiJobSearchInfiniteFetch(params);
+  } = useApiJobsFiltersInfiniteFetch(params);
 
   const lastJobRef = useIntersectionObserver(
     () => fetchNextPage(),
@@ -36,7 +36,7 @@ export default function JobSearchResultComponent() {
       <span className="text-3xl font-bold">
         Search Results for "{params.query}"
       </span>
-      {searchResult?.pages?.map((group, index) => {
+      {jobs?.pages?.map((group, index) => {
         return (
           <Fragment key={index}>
             {group.data?.data?.map((job, jobIndex, array) => {
@@ -57,7 +57,7 @@ export default function JobSearchResultComponent() {
 
       {!hasNextPage && !isFetching && !isFetchingNextPage && (
         <EndOfListIndicatorUiComponent
-          message={`No more jobs available for the search: ${params.query}`}
+          message={`No more jobs available for the search: ${params.title}`}
         />
       )}
     </Fragment>

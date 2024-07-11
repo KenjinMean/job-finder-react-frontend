@@ -54,6 +54,7 @@ export const useApiJobsListingFetch = (filters) => {
       // jobs relationship to load during query
       const load = ["company", "jobTypes", "workLocationTypes"];
       const perPage = 5;
+      const filters = {};
 
       try {
         const response = await apiJobsFetch({
@@ -75,6 +76,41 @@ export const useApiJobsListingFetch = (filters) => {
       }
       return undefined;
     },
+    suspense: true,
+    cacheTime: toMilliseconds(30, "mins"),
+    staleTime: toMilliseconds(25, "mins"),
+  });
+};
+
+export const useApiJobsFiltersInfiniteFetch = (filters) => {
+  return useInfiniteQuery({
+    queryKey: ["jobsFilter", filters],
+    queryFn: async ({ pageParam }) => {
+      // jobs relationship to load during query
+      const load = ["company", "jobTypes", "workLocationTypes"];
+      const perPage = 5;
+
+      try {
+        const response = await apiJobsFetch({
+          pageParam,
+          filters,
+          load,
+          perPage,
+        });
+        return response;
+      } catch (error) {
+        handleError(error, error.message, "useApiJobsFiltersInfiniteFetch");
+      }
+    },
+    getNextPageParam: (lastPage) => {
+      if (lastPage.data.links.next) {
+        const nextUrl = new URL(lastPage.data.links.next);
+        const nextPage = nextUrl.searchParams.get("page");
+        return nextPage;
+      }
+      return undefined;
+    },
+    enabled: false,
     suspense: true,
     cacheTime: toMilliseconds(30, "mins"),
     staleTime: toMilliseconds(25, "mins"),

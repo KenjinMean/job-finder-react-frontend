@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import HeaderNavComponent from "./HeaderNav.Component";
 import AutoCompleteSearchBarUiComponent from "../UI/AutoCompleteSearchBar.Ui.Component";
+import FilterSearchBar from "./FilterSearchBar/FilterSearchBar";
 
 export default function HeaderComponent() {
   const location = useLocation();
@@ -14,7 +15,7 @@ export default function HeaderComponent() {
         <HeaderNavComponent />
         {location.pathname === "/" ||
         location.pathname.startsWith(`/search`) ? (
-          <AutoCompleteSearchBarUiComponent />
+          <FilterSearchBar />
         ) : null}
       </div>
     </header>
