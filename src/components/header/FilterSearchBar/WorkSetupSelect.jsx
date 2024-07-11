@@ -1,13 +1,12 @@
 import React from "react";
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  OutlinedInput,
-  Checkbox,
-  ListItemText,
-} from "@mui/material";
+
+import Select from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import ListItemText from "@mui/material/ListItemText";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
