@@ -8,22 +8,13 @@ import EndOfListIndicatorUiComponent from "../UI/EndOfListIndicator.Ui.Component
 import JobListSkeletonUtil from "../../components/utils/LoadersSpinners/JobListSkeleton.Util";
 
 export default function JobListingComponent() {
-  // Implement Search and Filter Here
-  const [filters, setFilters] = useState({
-    // keyword: "dev",
-    // job_type: ["Freelance"],
-    // min_salary: 20000,
-    // max_salary: 60000,
-    // order_by: "salary",
-  });
-
   const {
     data: jobs,
     isFetching,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
-  } = useApiJobsListingFetch(filters);
+  } = useApiJobsListingFetch();
 
   const lastJobRef = useIntersectionObserver(
     () => fetchNextPage(),
