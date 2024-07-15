@@ -1,22 +1,31 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Modal from "@mui/material/Modal";
 import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 import { useTheme } from "@mui/material/styles";
 
-import { authRoutes } from "../../../constants/RoutesPath.Constants";
+import { authRoutes, jobRoutes } from "../../../constants/RoutesPath.Constants";
+import { useStoredActionState } from "../../../services/state/StoredActionStateStore";
 
-export default function RedirectToLoginModal({ isOpen, setIsModalOpen }) {
-  const navigate = useNavigate();
+export default function RedirectToLoginModal({ job, isOpen, setIsModalOpen }) {
   const theme = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { setStoredAction, clearStoredAction } = useStoredActionState();
 
   const handleClose = () => setIsModalOpen(false);
 
   const handleNavigateToLogin = () => {
+    clearStoredAction();
+    setStoredAction({
+      jobId: job.id,
+      action: "saveJob",
+      lastLocation: jobRoutes.jobDetailsPage + job.slug,
+    });
     navigate(authRoutes.authLoginPage);
     handleClose();
   };

@@ -12,9 +12,11 @@ import AuthErrorUiComponent from "./AuthError.Component";
 import RegisterFormv2 from "../forms/auth/Register.Form.v2";
 import LogoLinkUiComponent from "../UI/LogoLink.Ui.Component";
 import AuthSubmitButtonUiComponent from "../UI/AuthSubmitButton.Ui.Component";
+import { useStoredActionState } from "../../services/state/StoredActionStateStore";
 
 export default function RegisterComponent() {
   const { token } = useAuthenticationStore();
+  const { storedAction } = useStoredActionState();
 
   const {
     isLoading: registerLoading,
@@ -28,7 +30,12 @@ export default function RegisterComponent() {
   };
 
   if (token) {
-    return <Navigate to={jobRoutes.jobListingPage} />;
+    if (!storedAction) {
+      return <Navigate to={jobRoutes.jobListingPage} />;
+    }
+    return (
+      <Navigate to={storedAction.lastLocation || jobRoutes.jobListingPage} />
+    );
   }
 
   return (

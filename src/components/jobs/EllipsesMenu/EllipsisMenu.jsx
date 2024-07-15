@@ -16,6 +16,7 @@ import { useAuthenticationStore } from "../../../services/state/AuthenticationSt
 
 import LoginToSaveButton from "./LoginToSaveButton";
 import SaveUnsaveJobButton from "./SaveUnsaveJobButton";
+import LoadingSpinnerUtil from "../../utils/LoadersSpinners/LoadingSpinnder.Util";
 
 export default function EllipsisMenu({ job }) {
   const theme = useTheme();
@@ -60,11 +61,13 @@ export default function EllipsisMenu({ job }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        {!isUserloggedIn ? (
-          <LoginToSaveButton />
-        ) : (
-          <SaveUnsaveJobButton job={job} onClose={handleCloseEllipsesMenu} />
-        )}
+        <React.Suspense fallback={<LoadingSpinnerUtil size={6} />}>
+          {!isUserloggedIn ? (
+            <LoginToSaveButton job={job} />
+          ) : (
+            <SaveUnsaveJobButton job={job} onClose={handleCloseEllipsesMenu} />
+          )}
+        </React.Suspense>
 
         <MenuItem onClick={handleCloseEllipsesMenu}>
           <ListItemIcon>

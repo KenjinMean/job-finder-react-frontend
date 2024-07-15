@@ -9,10 +9,12 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 
 import { authRoutes } from "../../../constants/RoutesPath.Constants";
+import { useStoredActionState } from "../../../services/state/StoredActionStateStore";
 
-export default function RedirectToLoginButton() {
-  const navigate = useNavigate();
+export default function RedirectToLoginButton({ jobId }) {
   const theme = useTheme();
+  const navigate = useNavigate();
+  const { setStoredAction, clearStoredAction } = useStoredActionState();
 
   const [open, setOpen] = useState(false);
 
@@ -20,6 +22,12 @@ export default function RedirectToLoginButton() {
   const handleClose = () => setOpen(false);
 
   const handleNavigateToLogin = () => {
+    clearStoredAction();
+    setStoredAction({
+      jobId: jobId,
+      action: "saveJob",
+      lastLocation: location.pathname,
+    });
     navigate(authRoutes.authLoginPage);
     handleClose();
   };
@@ -63,8 +71,8 @@ export default function RedirectToLoginButton() {
           <Button
             onClick={handleNavigateToLogin}
             variant="contained"
-            color="primary" // Use theme's primary color
-            sx={{ width: "100%" }} // Full width button
+            color="primary"
+            sx={{ width: "100%" }}
           >
             Log In to Save Job
           </Button>

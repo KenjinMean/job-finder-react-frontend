@@ -18,6 +18,7 @@ import AuthErrorComponent from "./AuthError.Component";
 import SocilaLoginComponent from "./SocialLogin.Component";
 import LogoLinkUiComponent from "../UI/LogoLink.Ui.Component";
 import AuthSubmitButtonUiComponent from "../UI/AuthSubmitButton.Ui.Component";
+import { useStoredActionState } from "../../services/state/StoredActionStateStore";
 
 export default function LoginComponent() {
   const { token, socialServiceLoginError, isLoginButtonDisabled } =
@@ -30,6 +31,8 @@ export default function LoginComponent() {
     mutate: loginMutation,
   } = useApiAuthLogin();
 
+  const { storedAction } = useStoredActionState();
+
   const { isFetching: githubLoading, refetch: getGithubAuthURL } =
     useApiAuthGithubAuthLogin();
 
@@ -40,7 +43,12 @@ export default function LoginComponent() {
   useSocialAuthErrorHandling();
 
   if (token) {
-    return <Navigate to={jobRoutes.jobListingPage} />;
+    if (!storedAction) {
+      return <Navigate to={jobRoutes.jobListingPage} />;
+    }
+    return (
+      <Navigate to={storedAction.lastLocation || jobRoutes.jobListingPage} />
+    );
   }
 
   return (

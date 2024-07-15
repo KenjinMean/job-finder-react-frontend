@@ -72,7 +72,7 @@ export default function JobSpecification({ jobDetails }) {
         {isUserloggedIn ? (
           <SaveUnsaveJobButton job={jobDetails} />
         ) : (
-          <RedirectToLoginButton />
+          <RedirectToLoginButton jobId={jobDetails} />
         )}
       </Stack>
     </div>

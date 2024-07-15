@@ -10,7 +10,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 import RedirectToLoginModal from "./RedirectToLoginModal";
 
-export default function LoginToSaveButton() {
+export default function LoginToSaveButton({ job }) {
   const theme = useTheme();
 
   const [isRedirectToLoginModalOpen, setIsRedirectToLoginModalOpen] =
@@ -28,6 +28,7 @@ export default function LoginToSaveButton() {
         <ListItemText>Save Job</ListItemText>
       </MenuItem>
       <RedirectToLoginModal
+        job={job}
         isOpen={isRedirectToLoginModalOpen}
         setIsModalOpen={setIsRedirectToLoginModalOpen}
       />
