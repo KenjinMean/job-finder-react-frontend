@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import logo from "../../../assets/logo/JobFinderLogo.webp";
-import profile from "../../../assets/images/profile.webp";
+import profile from "../../../assets/logo/JobFinderLogo.webp";
 
 // import TemporaryDrawer from "../temporaryDrawer/TemporaryDrawer";
 import MuiAppBar from "@mui/material/AppBar";
