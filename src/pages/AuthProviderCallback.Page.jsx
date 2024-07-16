@@ -7,9 +7,12 @@ import { useSetPageTitle } from "../hooks/useSetPageTitle";
 import { useAuthenticationStore } from "../services/state/AuthenticationStore";
 
 import MaxWidthWrapperUtil from "../components/utils/MaxWidthWrapper.Util";
+import { useStoredActionState } from "../services/state/StoredActionStateStore";
 
 export default function AuthProviderCallbackPage() {
   useSetPageTitle("Social Auth Redirect Page");
+  const { storedAction } = useStoredActionState();
+
   const { token, setToken } = useAuthenticationStore();
   const { setUser, setUserInfo } = useUserStore();
 
@@ -72,7 +75,12 @@ export default function AuthProviderCallbackPage() {
   }
 
   if (token) {
-    return <Navigate to={jobRoutes.jobListingPage} />;
+    if (!storedAction) {
+      return <Navigate to={jobRoutes.jobListingPage} />;
+    }
+    return (
+      <Navigate to={storedAction.lastLocation || jobRoutes.jobListingPage} />
+    );
   }
 
   return (
