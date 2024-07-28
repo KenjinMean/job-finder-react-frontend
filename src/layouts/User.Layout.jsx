@@ -8,7 +8,7 @@ import LoadingSpinnerUtil from "../components/utils/LoadersSpinners/LoadingSpinn
 export default function UserProfileLayout() {
   return (
     <Fragment>
-      <main className="flex flex-col w-full max-w-5xl gap-2 mx-auto sm:gap-3 sm:px-3 lg:px-0">
+      <main className="flex flex-col w-full max-w-5xl gap-2 py-5 mx-auto sm:gap-3 sm:px-3 lg:px-0">
         <QueryBoundaries>
           <Suspense fallback={<LoadingSpinnerUtil />}>
             <Outlet />

@@ -55,7 +55,7 @@ export default function AppLayout() {
 
         <div
           ref={elementToScrollLockRef}
-          className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto] gap-5 bg-background-white font-primary text-content-black"
+          className="grid min-h-[100dvh] grid-rows-[auto_1fr_auto] bg-background-white font-primary text-content-black"
         >
           <CustomConsoleMessage />
           {!isAuthRoute && <HeaderComponent />}
