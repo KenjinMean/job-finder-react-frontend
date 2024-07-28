@@ -1,8 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { formatSalary } from "../../utils/formatSalary";
 import { getElapsedTime } from "../../utils/getElapsedTime";
+import { useStoredActionState } from "../../services/state/StoredActionStateStore";
 
 export default function JobCardDetailsComponent({ job }) {
+  const { clearStoredAction } = useStoredActionState();
+
+  useEffect(() => {
+    clearStoredAction();
+  }, []);
+
   return (
     <div className="flex flex-col w-full gap-0 font-medium text-content-gray">
       <h2 className="text-lg sm:text-xl text-content-black font-secondary">
