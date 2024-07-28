@@ -2,34 +2,18 @@ export const jobSubpath = "/";
 export const authSubpath = "/auth";
 export const userSubpath = "/user";
 
-const prependJobSubpath = (route: string): string => jobSubpath + route;
-const prependUserSubpath = (route: string): string => userSubpath + route;
-const prependAuthSubpath = (route: string): string => authSubpath + route;
-
-// AUTHENICATION Rotues
-type AuthRoutes = {
-  authLoginPage: string;
-  authRegisterPage: string;
-  authProviderCallbackPage: string;
-  authRequestOtp: string;
-  authVerifyOtp: string;
-  authVerifyOtpSuccess: string;
+// Function to prepend subpath to routes and infer the route type
+const createRoutes = <T extends Record<string, string>>(subpath: string, routes: T): Record<keyof T, string> => {
+  return Object.fromEntries(
+    Object.entries(routes).map(([key, value]) => [
+      key,
+      subpath + value,
+    ])
+  ) as Record<keyof T, string>;
 };
 
-type UserRoutes = {
-  userProfilePage: string;
-  userEditSkillPage: string;
-  userSavedJobsPage: string;
-};
-
-type JobRoutes = {
-  jobListingPage: string;
-  jobDetailsPage: string;
-  jobSearchResultPage: string;
-};
-
-// AUTH Routes
-export const auth: AuthRoutes = {
+// Auth routes
+const auth = {
   authLoginPage: "/login",
   authRegisterPage: "/register",
   authRequestOtp: "/request-otp",
@@ -37,108 +21,26 @@ export const auth: AuthRoutes = {
   authVerifyOtpSuccess: "/verify-otp-success",
   authProviderCallbackPage: "/auth-provider-callback",
 };
+export const authRoutes = createRoutes(authSubpath, auth);
 
-// JOB Routes
-const job: JobRoutes = {
+// User routes
+const user = {
+  userProfilePage: "",
+  userEditSkillPage: "/edit-skills",
+  userSavedJobsPage: "/saved-jobs",
+  userPostJobPage: "/post-job",
+  userCompaniesPage: "/companies",
+  userCompanyDetailsPage: "/company-details/",
+  userAddCompanyPage: "/companies/add",
+  userUpdateCompanyPage: "/companies/update/",
+};
+export const userRoutes = createRoutes(userSubpath, user);
+
+// Job routes
+const job = {
   jobListingPage: "",
   jobDetailsPage: "view/",
   jobSearchResultPage: "search",
-};
+} as const;
+export const jobRoutes = createRoutes(jobSubpath, job);
 
-// USER Routes
-const user: UserRoutes = {
-  userProfilePage: "",
-  userEditSkillPage: "/edit-skills",
-  userSavedJobsPage: "/saved-jobs"
-};
-
-// build routes on typescript to take advantage of object suggestion when accessing routes
-export const authRoutes: Record<keyof AuthRoutes, string> = Object.fromEntries(
-  Object.entries(auth).map(([key, value]) => [
-    key as keyof AuthRoutes,
-  prependAuthSubpath(value),
-  ])
-) as Record<keyof AuthRoutes, string>;
-
-export const jobRoutes: Record<keyof JobRoutes, string> = Object.fromEntries(
-  Object.entries(job).map(([key, value]) => [
-    key as keyof JobRoutes,
-  prependJobSubpath(value),
-  ])
-) as Record<keyof JobRoutes, string>;
-
-export const userRoutes: Record<keyof UserRoutes, string> = Object.fromEntries(
-  Object.entries(user).map(([key, value]) => [
-    key as keyof UserRoutes,
-  prependUserSubpath(value),
-  ])
-) as Record<keyof UserRoutes, string>;
-
-// export const baseUrl = "/job-finder-react-frontend/";
-// export const jobSubpath = "jobs";
-// export const authSubpath = "auth";
-// export const userSubpath = "user";
-
-// const prependBaseUrl = (route: string): string => baseUrl + route;
-// const prependJobSubpath = (route: string): string => jobSubpath + route;
-// const prependUserSubpath = (route: string): string => userSubpath + route;
-// const prependAuthSubpath = (route: string): string => authSubpath + route;
-
-// // AUTHENICATION Rotues
-// type AuthRoutes = {
-//   authLoginPage: string;
-//   authRegisterPage: string;
-//   authProviderCallbackPage: string;
-// };
-
-// type UserRoutes = {
-//   userProfilePage: string;
-//   userEditSkillPage: string;
-// };
-
-// type JobRoutes = {
-//   jobListingPage: string;
-//   jobDetailsPage: string;
-//   jobSearchResultPage: string;
-// };
-
-// // AUTH Routes
-// const auth: AuthRoutes = {
-//   authLoginPage: "/login",
-//   authRegisterPage: "/register",
-//   authProviderCallbackPage: "/auth-provider-callback",
-// };
-
-// // JOB Routes
-// const job: JobRoutes = {
-//   jobListingPage: "",
-//   jobDetailsPage: "/view/",
-//   jobSearchResultPage: "/search",
-// };
-
-// // USER Routes
-// const user: UserRoutes = {
-//   userProfilePage: "",
-//   userEditSkillPage: "/edit-skills",
-// };
-
-// export const authRoutes: Record<keyof AuthRoutes, string> = Object.fromEntries(
-//   Object.entries(auth).map(([key, value]) => [
-//     key as keyof AuthRoutes,
-//     prependBaseUrl(prependAuthSubpath(value)),
-//   ])
-// ) as Record<keyof AuthRoutes, string>;
-
-// export const jobRoutes: Record<keyof JobRoutes, string> = Object.fromEntries(
-//   Object.entries(job).map(([key, value]) => [
-//     key as keyof JobRoutes,
-//     prependBaseUrl(prependJobSubpath(value)),
-//   ])
-// ) as Record<keyof JobRoutes, string>;
-
-// export const userRoutes: Record<keyof UserRoutes, string> = Object.fromEntries(
-//   Object.entries(user).map(([key, value]) => [
-//     key as keyof UserRoutes,
-//     prependBaseUrl(prependUserSubpath(value)),
-//   ])
-// ) as Record<keyof UserRoutes, string>;
