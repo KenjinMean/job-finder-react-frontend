@@ -2,10 +2,10 @@ import React from "react";
 
 export default function LoadingSpinnerUtil({ size = 10 }) {
   return (
-    <div role="status" className="flex justify-center">
+    <div role="status" className="flex items-center justify-center flex-grow">
       <svg
         aria-hidden="true"
-        className={`w-${size} h-${size} mr-2 text-content-gray animate-spin  fill-indigo-500`}
+        className={`w-${size} h-${size} mr-2 text-content-gray animate-spin  fill-blue-400`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

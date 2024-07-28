@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import {
@@ -31,8 +32,26 @@ import JobDetailsPage from "./pages/JobDetails/JobDetails.Page.jsx";
 import JobSearchResultpage from "./pages/JobSearchResult.Page.jsx";
 
 import UserProfilePage from "./pages/UserProfile.Page";
+
 import UserSkillEditPage from "./pages/UserSkillEdit.Page.jsx";
+
 import UserSavedJobsPage from "./pages/UserSavedJobs.Page.jsx";
+
+const LazyUserCompanyDetailsPage = lazy(() =>
+  import(
+    "./components/UserCompanies/UserCompanyDetails/UserCompanyDetails.Page.jsx"
+  )
+);
+const LazyUserAddCompanyPage = lazy(() =>
+  import("./components/UserCompanies/AddCompany/UserAddCompany.Page.jsx")
+);
+const LazyUserCompaniesPage = lazy(() =>
+  import("./components/UserCompanies/UserCompanies.Page.jsx")
+);
+const LazyUserUpdateCompanyPage = lazy(() =>
+  import("./components/UserCompanies/UpdateCompany/UserCompanyUpdate.Page.jsx")
+);
+
 const router = createBrowserRouter([
   {
     path: "",
@@ -71,6 +90,27 @@ const router = createBrowserRouter([
           {
             path: userRoutes.userSavedJobsPage,
             element: <UserSavedJobsPage />,
+          },
+          {
+            path: userRoutes.userPostJobPage,
+            element: <LazyUserCompaniesPage />,
+          },
+
+          {
+            path: userRoutes.userCompaniesPage,
+            element: <LazyUserCompaniesPage />,
+          },
+          {
+            path: `${userRoutes.userCompanyDetailsPage}:companyId`,
+            element: <LazyUserCompanyDetailsPage />,
+          },
+          {
+            path: userRoutes.userAddCompanyPage,
+            element: <LazyUserAddCompanyPage />,
+          },
+          {
+            path: `${userRoutes.userUpdateCompanyPage}:companyId`,
+            element: <LazyUserUpdateCompanyPage />,
           },
         ],
       },

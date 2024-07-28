@@ -7,9 +7,11 @@ import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import WorkIcon from "@mui/icons-material/Work";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import BusinessIcon from "@mui/icons-material/Business";
 
 import Logout from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
@@ -117,16 +119,25 @@ export default function UserAccountMenu() {
           </ListItemIcon>
           Saved Jobs
         </MenuItem>
+        <MenuItem component={Link} to={userRoutes.userPostJobPage}>
+          <ListItemIcon>
+            <WorkIcon fontSize="small" />
+          </ListItemIcon>
+          Post a Job
+        </MenuItem>
+        <MenuItem component={Link} to={userRoutes.userCompaniesPage}>
+          <ListItemIcon>
+            <BusinessIcon fontSize="small" />
+          </ListItemIcon>
+          Manage Companies
+        </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Settings
         </MenuItem>
-        <Divider />
         <MenuLegalSection />
-        <Divider />
-        <Divider />
         <MenuItem onClick={logoutFn}>
           <ListItemIcon>
             <Logout fontSize="small" />
