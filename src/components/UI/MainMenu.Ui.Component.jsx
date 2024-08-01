@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { authRoutes } from "../../constants/RoutesPath.Constants";
@@ -10,9 +10,12 @@ import { useAuthenticationStore } from "../../services/state/AuthenticationStore
 
 import ThemeToggleSwitch from "./ThemeToggleSwitch/ThemeToggleSwitch";
 import ButtonClosePrimaryUiComponent from "./ButtonClosePrimary.Ui.Component";
+import { Button } from "@mui/material";
 
 const MainMenuUiComponent = React.forwardRef(
   ({ id, isMenuOpen, closeMenu, ...restProps }, ref) => {
+    const navigate = useNavigate();
+
     const { token } = useAuthenticationStore();
 
     const deviceWidth = useGetDeviceWidth();
@@ -45,19 +48,17 @@ const MainMenuUiComponent = React.forwardRef(
             <ThemeToggleSwitch />
 
             {!token && (
-              <motion.li
-                className="w-full font-semibold hover:text-accent-blue500"
-                whileHover={{ scale: 1.1 }}
-                role="menuitem"
-              >
-                <Link
-                  to={authRoutes.authLoginPage}
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button
                   aria-label="Login to your account"
-                  className="p-2"
+                  component={Link}
+                  role="menuitem"
+                  variant="contained"
+                  to={authRoutes.authLoginPage}
                 >
                   login
-                </Link>
-              </motion.li>
+                </Button>
+              </div>
             )}
           </motion.ul>
         )}
