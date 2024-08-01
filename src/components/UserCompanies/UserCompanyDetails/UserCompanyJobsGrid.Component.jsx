@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 
 import CompanyJobsCard from "./CompanyJobsCard";
 import { useApiUserCompanyJobsFetch } from "../../../hooks/useApiUserCompaniesJobs";
+import { Link } from "react-router-dom";
+import { userRoutes } from "../../../constants/RoutesPath.Constants";
 
 export default function UserCompanyJobsGridComponent({ companyId }) {
   const {
@@ -22,7 +24,13 @@ export default function UserCompanyJobsGridComponent({ companyId }) {
     <div className="mt-5">
       <div className="flex items-center justify-between">
         <Typography variant="h3">Jobs</Typography>
-        <Button variant="outlined">Create Job</Button>
+        <Button
+          component={Link}
+          to={`${userRoutes.userCompanyAddJob}${companyId}`}
+          variant="outlined"
+        >
+          Create Job
+        </Button>
       </div>
 
       {companyJobs && companyJobs.length > 0 ? (

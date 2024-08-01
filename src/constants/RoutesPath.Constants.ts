@@ -29,10 +29,14 @@ const user = {
   userEditSkillPage: "/edit-skills",
   userSavedJobsPage: "/saved-jobs",
   userPostJobPage: "/post-job",
+
   userCompaniesPage: "/companies",
   userCompanyDetailsPage: "/company-details/",
   userAddCompanyPage: "/companies/add",
   userUpdateCompanyPage: "/companies/update/",
+
+  userCompanyAddJob: "/companies/jobs/add/",
+  userCompanyUpdateJob: "/companies/jobs/update/",
 };
 export const userRoutes = createRoutes(userSubpath, user);
 

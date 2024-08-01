@@ -119,7 +119,7 @@ export default function UserAccountMenu() {
           </ListItemIcon>
           Saved Jobs
         </MenuItem>
-        <MenuItem component={Link} to={userRoutes.userPostJobPage}>
+        <MenuItem component={Link} to={userRoutes.userCompanyAddJob}>
           <ListItemIcon>
             <WorkIcon fontSize="small" />
           </ListItemIcon>

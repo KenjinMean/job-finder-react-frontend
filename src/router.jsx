@@ -52,6 +52,13 @@ const LazyUserUpdateCompanyPage = lazy(() =>
   import("./components/UserCompanies/UpdateCompany/UserCompanyUpdate.Page.jsx")
 );
 
+const LazyCompanyAddJobsPage = lazy(() =>
+  import("./components/CompanyJobs/CompanyAddJobs.Page.jsx")
+);
+const LazyCompanyUpdateJobsPage = lazy(() =>
+  import("./components/CompanyJobs/CompanyUpdateJobs.Page.jsx")
+);
+
 const router = createBrowserRouter([
   {
     path: "",
@@ -111,6 +118,14 @@ const router = createBrowserRouter([
           {
             path: `${userRoutes.userUpdateCompanyPage}:companyId`,
             element: <LazyUserUpdateCompanyPage />,
+          },
+          {
+            path: `${userRoutes.userCompanyAddJob}:companyId?`,
+            element: <LazyCompanyAddJobsPage />,
+          },
+          {
+            path: `${userRoutes.userCompanyUpdateJob}:jobId`,
+            element: <LazyCompanyUpdateJobsPage />,
           },
         ],
       },

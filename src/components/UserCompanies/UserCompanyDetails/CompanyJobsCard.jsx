@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { styled } from "@mui/material/styles";
 
@@ -11,6 +12,9 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 
 import { formatSalary } from "../../../utils/formatSalary";
+import { userRoutes } from "../../../constants/RoutesPath.Constants";
+import { useApiUserCompanyJobsDelete } from "../../../hooks/useApiUserCompaniesJobs";
+import MuiConfirmationDialog from "../../dialogs/MuiConfirmationDialog";
 
 const LimitedTypography = styled(Typography)({
   display: "-webkit-box",
@@ -21,6 +25,30 @@ const LimitedTypography = styled(Typography)({
 });
 
 export default function CompanyJobsCard({ job }) {
+  const navigate = useNavigate();
+  const { companyId } = useParams();
+
+  const { mutate: deleteJobMutation } = useApiUserCompanyJobsDelete();
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleDeleteClick = () => {
+    setDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
+
+  const handleConfirmDeleteCompany = () => {
+    deleteJobMutation([companyId, job.id]);
+    handleCloseDialog();
+  };
+
+  const handleJobUpdateClick = () => {
+    navigate(`${userRoutes.userCompanyUpdateJob}${job.id}`);
+  };
+
   return (
     <Card
       sx={{
@@ -44,8 +72,17 @@ export default function CompanyJobsCard({ job }) {
         </LimitedTypography>
       </CardContent>
       <CardActions>
-        <Button>Update</Button>
-        <Button color="error">Delete</Button>
+        <Button onClick={handleJobUpdateClick}>Update</Button>
+        <Button color="error" onClick={handleDeleteClick}>
+          Delete
+        </Button>
+        <MuiConfirmationDialog
+          open={dialogOpen}
+          onClose={handleCloseDialog}
+          onConfirm={handleConfirmDeleteCompany}
+          title="Confirm Job Deletion"
+          content="Are you sure you want to delete this Job?"
+        />
       </CardActions>
     </Card>
   );
