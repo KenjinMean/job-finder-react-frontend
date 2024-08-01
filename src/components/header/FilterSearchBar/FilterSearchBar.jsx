@@ -27,6 +27,7 @@ const SearchComponent = styled("div")(({ theme }) => ({
   width: "100%",
   display: "flex",
   alignItems: "center",
+  border: "1px solid gray",
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -136,7 +137,7 @@ export default function FilterSearchBar() {
         />
         {!filterMenuState && (
           <Button
-            variant="contained"
+            variant="outlined"
             disableElevation
             sx={{
               position: "absolute",
