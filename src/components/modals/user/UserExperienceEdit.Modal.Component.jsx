@@ -86,29 +86,31 @@ export default function UserExperienceEditModalComponent() {
       modalTitle="Edit User Experience"
       isInputChanged={isDirty || isSkillModified}
     >
-      <UserExperienceForm
-        form={form}
-        name="experienceForm"
-        handleFormSubmit={handleUpdateExperience}
-        isSubmitting={isUpdating}
-      />
-
-      {AddSkillUiComponent()}
-
-      <div className="flex justify-between p-5">
-        <ButtonActionSecondaryUiComponent
-          text="Delete Experience"
-          loadingText="Deleting Experience"
-          onClick={handleDeleteExperience}
-          isSubmitting={isDeleting}
-        />
-
-        <ButtonActionUiComponent
-          form="experienceForm"
-          text="Update"
-          loadingText="Updating"
+      <div className="p-5">
+        <UserExperienceForm
+          form={form}
+          name="experienceForm"
+          handleFormSubmit={handleUpdateExperience}
           isSubmitting={isUpdating}
         />
+
+        <div className="mt-5">{AddSkillUiComponent()}</div>
+
+        <div className="flex justify-between mt-5">
+          <ButtonActionSecondaryUiComponent
+            text="Delete Experience"
+            loadingText="Deleting Experience"
+            onClick={handleDeleteExperience}
+            isSubmitting={isDeleting}
+          />
+
+          <ButtonActionUiComponent
+            form="experienceForm"
+            text="Update"
+            loadingText="Updating"
+            isSubmitting={isUpdating}
+          />
+        </div>
       </div>
     </ModalUtil>
   );

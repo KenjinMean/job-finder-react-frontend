@@ -33,8 +33,7 @@ const useAddSkill = (skills = []) => {
 
   const AddSkillUiComponent = () => {
     return (
-      <div className="p-5">
-        <span className="block mb-2">Experience Skills</span>
+      <div className="">
         <ul className="flex flex-col p-5 mb-5 text-sm border rounded-md border-border-100 font-secondary empty:hidden">
           {selectedSkills.map((skill, index) => {
             return (
@@ -104,7 +103,7 @@ const useAddSkill = (skills = []) => {
             )}
           </button>
         ) : (
-          <div className="p-1 mb-5">
+          <div className="mb-5 ">
             <label
               htmlFor="searchSkill"
               className="block mb-1 text-sm font-medium sr-only text-content-gray"

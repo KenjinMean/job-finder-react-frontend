@@ -46,17 +46,17 @@ export default function UserExperienceAddModalComponent() {
       modalTitle="Add Experience"
       isInputChanged={isDirty || selectedSkills.length > 0}
     >
-      <div className="relative">
+      <div className="relative p-5">
         <form
           noValidate
           id="experienceForm"
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-2 p-5"
+          className="flex flex-col gap-2"
         >
           <UserExperienceForm form={form} isSubmitting={isLoading} />
         </form>
 
-        {AddSkillUiComponent()}
+        <div className="mt-5">{AddSkillUiComponent()}</div>
       </div>
 
       <div className="flex justify-end p-5">

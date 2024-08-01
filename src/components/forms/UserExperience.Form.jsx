@@ -50,7 +50,7 @@ export default function UserExperienceForm({
       id={name}
       noValidate
       name={name}
-      className="flex flex-col gap-3 p-5"
+      className="flex flex-col gap-3"
       onSubmit={handleSubmit(handleFormSubmit)}
     >
       <div className="grid gap-3 sm:grid-cols-2">
