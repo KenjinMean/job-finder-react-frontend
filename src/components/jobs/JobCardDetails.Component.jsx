@@ -55,7 +55,11 @@ export default function JobCardDetailsComponent({ job }) {
       </div>
 
       <div className="flex justify-between">
-        <span className="font-bold">PHP {formatSalary(job.salary)}</span>
+        <div>
+          <span className="font-bold empty:hidden">
+            {job.salary ? `PHP ${formatSalary(job.salary)}` : ""}
+          </span>
+        </div>
         <span className="font-bold ">{getElapsedTime(job.created_at)}</span>
       </div>
     </div>

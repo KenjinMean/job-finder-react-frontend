@@ -14,26 +14,11 @@ import ListItemText from "@mui/material/ListItemText";
 
 import useAddSkill from "../../../hooks/useAddSkill";
 import { isObjectEmpty } from "../../../utils/isObjectEmpty";
+import { useApiJobTypesFetch } from "../../../hooks/requests/useApiJobTypes";
 import { useApiUserCompaniesFetch } from "../../../hooks/useApiUserCompanies";
+import { useApiWorkLocationTypesFetch } from "../../../hooks/requests/useApiWorkLocationTypes";
 
 const experienceLevels = ["Junior", "Mid", "Senior"];
-
-const jobTypesOptions = [
-  { id: 1, job_type: "Part-Time" },
-  { id: 2, job_type: "Temporary" },
-  { id: 3, job_type: "Commission-Based" },
-  { id: 4, job_type: "Contract" },
-  { id: 5, job_type: "Internship" },
-  { id: 6, job_type: "Freelance" },
-  { id: 7, job_type: "Seasonal" },
-  { id: 8, job_type: "Full-Time" },
-];
-
-const workLocationTypesOptions = [
-  { id: 1, name: "Onsite" },
-  { id: 2, name: "Remote" },
-  { id: 3, name: "Hybrid" },
-];
 
 const JobForm = ({
   onSubmit,
@@ -57,6 +42,8 @@ const JobForm = ({
     ),
   };
 
+  const isDefaultValuesPropsNotPresent = isObjectEmpty(defaultValues);
+
   const { handleSubmit, control, setValue } = useForm({
     defaultValues: transformedDefaultValues,
   });
@@ -66,13 +53,16 @@ const JobForm = ({
   );
 
   const { data: userCompanies } = useApiUserCompaniesFetch();
+
+  // used if user opens post a job link that is not from company page and sets default company as first company
   const defaultCompanyId = companyId
     ? companyId
     : defaultValues?.company?.id
     ? defaultValues?.company?.id
     : userCompanies[0].id;
 
-  const isDefaultValuesPropsNotPresent = isObjectEmpty(defaultValues);
+  const { data: jobTypes } = useApiJobTypesFetch();
+  const { data: workLocationTypes } = useApiWorkLocationTypesFetch();
 
   useEffect(() => {
     const skillIds = selectedSkills.map((skill) => skill.id);
@@ -176,13 +166,12 @@ const JobForm = ({
                       (selected || [])
                         .map(
                           (id) =>
-                            jobTypesOptions.find((type) => type.id === id)
-                              .job_type
+                            jobTypes?.find((type) => type.id === id)?.job_type
                         )
                         .join(", ")
                     }
                   >
-                    {jobTypesOptions.map((type) => (
+                    {jobTypes?.map((type) => (
                       <MenuItem key={type.id} value={type.id}>
                         <Checkbox
                           checked={(field.value || []).includes(type.id)}
@@ -209,14 +198,13 @@ const JobForm = ({
                       (selected || [])
                         .map(
                           (id) =>
-                            workLocationTypesOptions.find(
-                              (type) => type.id === id
-                            )?.name || ""
+                            workLocationTypes?.find((type) => type.id === id)
+                              ?.name
                         )
                         .join(", ")
                     }
                   >
-                    {workLocationTypesOptions.map((type) => (
+                    {workLocationTypes.map((type) => (
                       <MenuItem key={type.id} value={type.id}>
                         <Checkbox
                           checked={(field.value || []).includes(type.id)}
